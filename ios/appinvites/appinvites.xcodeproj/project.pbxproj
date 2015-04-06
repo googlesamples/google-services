@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D835D65B84E12DF53C5ADDCB /* libPods.a */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4BC032E41ACF33B70092326A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E31ACF33B70092326A /* main.m */; };
 		4BC032E71ACF33B70092326A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E61ACF33B70092326A /* AppDelegate.m */; };
@@ -35,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1FF77D077DC23584C54D3F5A /* Pods-appinvites.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appinvites.release.xcconfig"; path = "Pods/Target Support Files/Pods-appinvites/Pods-appinvites.release.xcconfig"; sourceTree = "<group>"; };
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4BC032DE1ACF33B70092326A /* appinvites.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appinvites.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC032E21ACF33B70092326A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,8 +56,10 @@
 		4BDB99DE1ACF46FA00C4DC2C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		4BDB99E01ACF470F00C4DC2C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		84D78B4F5539649B30659E0A /* Pods-appinvites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-appinvites.debug.xcconfig"; path = "Pods/Target Support Files/Pods-appinvites/Pods-appinvites.debug.xcconfig"; sourceTree = "<group>"; };
+		9014CA488BE26179B6105D3D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		99346A9561C77A02BAC73774 /* libPods-appinvites.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appinvites.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D835D65B84E12DF53C5ADDCB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				4BDB99DB1ACF46EC00C4DC2C /* AssetsLibrary.framework in Frameworks */,
 				4BDB99D91ACF46E500C4DC2C /* AddressBook.framework in Frameworks */,
 				E469428237705AFE8F947301 /* libPods-appinvites.a in Frameworks */,
+				1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,8 +153,8 @@
 		A4BF5E1D769EC5D28AF80686 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				84D78B4F5539649B30659E0A /* Pods-appinvites.debug.xcconfig */,
-				1FF77D077DC23584C54D3F5A /* Pods-appinvites.release.xcconfig */,
+				B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */,
+				9014CA488BE26179B6105D3D /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */,
 				4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */,
 				99346A9561C77A02BAC73774 /* libPods-appinvites.a */,
+				D835D65B84E12DF53C5ADDCB /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -281,7 +285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-appinvites/Pods-appinvites-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C3521D756350C4F6AD3CFAE4 /* Check Pods Manifest.lock */ = {
@@ -430,7 +434,7 @@
 		};
 		4BC033021ACF33B70092326A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84D78B4F5539649B30659E0A /* Pods-appinvites.debug.xcconfig */;
+			baseConfigurationReference = B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = appinvites/Info.plist;
@@ -441,7 +445,7 @@
 		};
 		4BC033031ACF33B70092326A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FF77D077DC23584C54D3F5A /* Pods-appinvites.release.xcconfig */;
+			baseConfigurationReference = 9014CA488BE26179B6105D3D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = appinvites/Info.plist;
