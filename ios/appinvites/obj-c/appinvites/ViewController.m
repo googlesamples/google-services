@@ -52,12 +52,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
   [self toggleAuthUI];
 }
 
-- (IBAction)signInTapped:(id)sender {
-  [[GIDSignIn sharedInstance] signIn];
-  [self toggleAuthUI];
-}
-
-
 - (IBAction)signOutTapped:(id)sender {
   [[GIDSignIn sharedInstance] signOut];
   [self toggleAuthUI];

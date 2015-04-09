@@ -30,15 +30,6 @@
                                     <action selector="signOutTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zUX-ZB-r3m"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sk-3y-kLX">
-                                <rect key="frame" x="51" y="60" width="47" height="30"/>
-                                <state key="normal" title="Sign in">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cyu-yV-18e"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-kI-dga">
                                 <rect key="frame" x="51" y="135" width="78" height="30"/>
                                 <state key="normal" title="Disconnect">
@@ -57,6 +48,10 @@
                                     <action selector="inviteTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hvJ-u6-0Fu"/>
                                 </connections>
                             </button>
+                            <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
+                                <rect key="frame" x="51" y="33" width="156" height="49"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9Y-PN-e0N">
                                 <rect key="frame" x="51" y="20" width="255" height="37"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,14 +68,14 @@
                         <outlet property="SignInView" destination="c9Y-PN-e0N" id="KJJ-UU-YCG"/>
                         <outlet property="disconnectButton" destination="8OM-kI-dga" id="ypn-v6-CMD"/>
                         <outlet property="inviteButton" destination="iIa-Wp-vTk" id="ZTg-fy-Sc2"/>
-                        <outlet property="signInButton" destination="7Sk-3y-kLX" id="QNF-Ty-037"/>
+                        <outlet property="signInButton" destination="XGN-Qm-TJZ" id="jID-uf-sE9"/>
                         <outlet property="signOutButton" destination="eWa-ii-5oh" id="IKO-uH-Mpe"/>
                         <outlet property="statusText" destination="BJZ-79-K2W" id="jy7-sW-84S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="579" y="627"/>
+            <point key="canvasLocation" x="584" y="629"/>
         </scene>
     </scenes>
 </document>

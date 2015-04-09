@@ -15,25 +15,13 @@
 		4BC032ED1ACF33B70092326A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EB1ACF33B70092326A /* Main.storyboard */; };
 		4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EE1ACF33B70092326A /* Images.xcassets */; };
 		4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032F01ACF33B70092326A /* LaunchScreen.xib */; };
-		4BC032FE1ACF33B70092326A /* appinvitesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032FD1ACF33B70092326A /* appinvitesTests.m */; };
 		4BDB99D91ACF46E500C4DC2C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */; };
 		4BDB99DB1ACF46EC00C4DC2C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */; };
 		4BDB99DD1ACF46F400C4DC2C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DC1ACF46F400C4DC2C /* CoreLocation.framework */; };
 		4BDB99DF1ACF46FA00C4DC2C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DE1ACF46FA00C4DC2C /* CoreMotion.framework */; };
 		4BDB99E11ACF470F00C4DC2C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E01ACF470F00C4DC2C /* MessageUI.framework */; };
 		4BDB99E31ACF472000C4DC2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */; };
-		E469428237705AFE8F947301 /* libPods-appinvites.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99346A9561C77A02BAC73774 /* libPods-appinvites.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4BC032F81ACF33B70092326A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4BC032D61ACF33B70092326A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4BC032DD1ACF33B70092326A;
-			remoteInfo = appinvites;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
@@ -47,9 +35,6 @@
 		4BC032EC1ACF33B70092326A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BC032EE1ACF33B70092326A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4BC032F11ACF33B70092326A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4BC032F71ACF33B70092326A /* appinvitesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appinvitesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BC032FC1ACF33B70092326A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BC032FD1ACF33B70092326A /* appinvitesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = appinvitesTests.m; sourceTree = "<group>"; };
 		4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4BDB99DC1ACF46F400C4DC2C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -57,7 +42,6 @@
 		4BDB99E01ACF470F00C4DC2C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9014CA488BE26179B6105D3D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		99346A9561C77A02BAC73774 /* libPods-appinvites.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appinvites.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D835D65B84E12DF53C5ADDCB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,15 +57,7 @@
 				4BDB99DD1ACF46F400C4DC2C /* CoreLocation.framework in Frameworks */,
 				4BDB99DB1ACF46EC00C4DC2C /* AssetsLibrary.framework in Frameworks */,
 				4BDB99D91ACF46E500C4DC2C /* AddressBook.framework in Frameworks */,
-				E469428237705AFE8F947301 /* libPods-appinvites.a in Frameworks */,
 				1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4BC032F41ACF33B70092326A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +69,6 @@
 			children = (
 				4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */,
 				4BC032E01ACF33B70092326A /* appinvites */,
-				4BC032FA1ACF33B70092326A /* appinvitesTests */,
 				4BC032DF1ACF33B70092326A /* Products */,
 				A4BF5E1D769EC5D28AF80686 /* Pods */,
 				E27D599993EDB54E213FA076 /* Frameworks */,
@@ -104,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				4BC032DE1ACF33B70092326A /* appinvites.app */,
-				4BC032F71ACF33B70092326A /* appinvitesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,23 +107,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4BC032FA1ACF33B70092326A /* appinvitesTests */ = {
-			isa = PBXGroup;
-			children = (
-				4BC032FD1ACF33B70092326A /* appinvitesTests.m */,
-				4BC032FB1ACF33B70092326A /* Supporting Files */,
-			);
-			path = appinvitesTests;
-			sourceTree = "<group>";
-		};
-		4BC032FB1ACF33B70092326A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4BC032FC1ACF33B70092326A /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		A4BF5E1D769EC5D28AF80686 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +125,6 @@
 				4BDB99DC1ACF46F400C4DC2C /* CoreLocation.framework */,
 				4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */,
 				4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */,
-				99346A9561C77A02BAC73774 /* libPods-appinvites.a */,
 				D835D65B84E12DF53C5ADDCB /* libPods.a */,
 			);
 			name = Frameworks;
@@ -196,24 +152,6 @@
 			productReference = 4BC032DE1ACF33B70092326A /* appinvites.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4BC032F61ACF33B70092326A /* appinvitesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4BC033041ACF33B70092326A /* Build configuration list for PBXNativeTarget "appinvitesTests" */;
-			buildPhases = (
-				4BC032F31ACF33B70092326A /* Sources */,
-				4BC032F41ACF33B70092326A /* Frameworks */,
-				4BC032F51ACF33B70092326A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4BC032F91ACF33B70092326A /* PBXTargetDependency */,
-			);
-			name = appinvitesTests;
-			productName = appinvitesTests;
-			productReference = 4BC032F71ACF33B70092326A /* appinvitesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -225,10 +163,6 @@
 				TargetAttributes = {
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					4BC032F61ACF33B70092326A = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 4BC032DD1ACF33B70092326A;
 					};
 				};
 			};
@@ -246,7 +180,6 @@
 			projectRoot = "";
 			targets = (
 				4BC032DD1ACF33B70092326A /* appinvites */,
-				4BC032F61ACF33B70092326A /* appinvitesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -260,13 +193,6 @@
 				4BC032ED1ACF33B70092326A /* Main.storyboard in Resources */,
 				4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */,
 				4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4BC032F51ACF33B70092326A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,23 +242,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4BC032F31ACF33B70092326A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4BC032FE1ACF33B70092326A /* appinvitesTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4BC032F91ACF33B70092326A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4BC032DD1ACF33B70092326A /* appinvites */;
-			targetProxy = 4BC032F81ACF33B70092326A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4BC032EB1ACF33B70092326A /* Main.storyboard */ = {
@@ -454,40 +364,6 @@
 			};
 			name = Release;
 		};
-		4BC033051ACF33B70092326A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = appinvitesTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/appinvites.app/appinvites";
-			};
-			name = Debug;
-		};
-		4BC033061ACF33B70092326A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = appinvitesTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/appinvites.app/appinvites";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,15 +381,6 @@
 			buildConfigurations = (
 				4BC033021ACF33B70092326A /* Debug */,
 				4BC033031ACF33B70092326A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4BC033041ACF33B70092326A /* Build configuration list for PBXNativeTarget "appinvitesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4BC033051ACF33B70092326A /* Debug */,
-				4BC033061ACF33B70092326A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
