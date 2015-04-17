@@ -1,0 +1,4 @@
+# AnalyticsExample
+platform :ios, '7.0'
+pod 'GoogleAnalytics-iOS-SDK'
+link_with 'AnalyticsExample', 'AnalyticsExampleSwift'
