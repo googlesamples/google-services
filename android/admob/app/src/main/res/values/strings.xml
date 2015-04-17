@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AdMob Quickstart</string>
+
+    <string name="hello_world">Hello world!</string>
+    <!-- [SNIPPET define_test_ad_unit_id]
+        Defines an ad unit ID that pulls in test ads.
+        [START define_test_ad_unit_id] -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <!-- [END define_test_ad_unit_id] -->
+</resources>
