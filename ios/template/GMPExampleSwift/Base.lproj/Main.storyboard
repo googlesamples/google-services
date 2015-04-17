@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9NG-T1-Iag">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="lPS-T9-Crs">
             <objects>
-                <viewController id="9NG-T1-Iag" customClass="ViewController" customModule="GMPExampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9NG-T1-Iag" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ucd-qd-hQS"/>
                         <viewControllerLayoutGuide type="bottom" id="UW4-9A-bwW"/>

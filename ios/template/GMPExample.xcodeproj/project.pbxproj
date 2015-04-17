@@ -14,11 +14,9 @@
 		5F5A535D1ADE670C00F81DF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A535C1ADE670C00F81DF0 /* Images.xcassets */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* ViewController.swift */; };
-		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
 		5F5A539D1ADE69AF00F81DF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A535C1ADE670C00F81DF0 /* Images.xcassets */; };
 		5F5A53A01ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A539F1ADE6AD200F81DF0 /* LaunchScreen.xib */; };
 		5F5A53A11ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A539F1ADE6AD200F81DF0 /* LaunchScreen.xib */; };
-		5FFE1BC21AE0B69700C160B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE1BC41AE0B69700C160B5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,10 +204,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F5A53A11ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */,
 				5F5A539D1ADE69AF00F81DF0 /* Images.xcassets in Resources */,
-				5FFE1BC21AE0B69700C160B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
