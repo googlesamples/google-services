@@ -11,12 +11,16 @@
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
 		5F5A53581ADE670C00F81DF0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53571ADE670C00F81DF0 /* ViewController.m */; };
 		5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
-		5F5A535D1ADE670C00F81DF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A535C1ADE670C00F81DF0 /* Images.xcassets */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* ViewController.swift */; };
-		5F5A539D1ADE69AF00F81DF0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A535C1ADE670C00F81DF0 /* Images.xcassets */; };
-		5F5A53A01ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A539F1ADE6AD200F81DF0 /* LaunchScreen.xib */; };
-		5F5A53A11ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A539F1ADE6AD200F81DF0 /* LaunchScreen.xib */; };
+		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
+		5F9961081AE0CF4F0034F503 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961051AE0CF4F0034F503 /* Icon@2x.png */; };
+		5F9961091AE0CF4F0034F503 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961051AE0CF4F0034F503 /* Icon@2x.png */; };
+		5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
+		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
+		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		5FFE1BC21AE0B69700C160B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE1BC41AE0B69700C160B5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +32,13 @@
 		5F5A53561ADE670C00F81DF0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5F5A53571ADE670C00F81DF0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5F5A535A1ADE670C00F81DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5F5A535C1ADE670C00F81DF0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* GMPExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMPExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F5A539B1ADE695B00F81DF0 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		5F5A539F1ADE6AD200F81DF0 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		5F9961051AE0CF4F0034F503 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5FFE1BC31AE0B69700C160B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +66,7 @@
 				5F5A534E1ADE670C00F81DF0 /* GMPExample */,
 				5F5A537A1ADE67D500F81DF0 /* GMPExampleSwift */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
+				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,8 +86,6 @@
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
 				5F5A53561ADE670C00F81DF0 /* ViewController.h */,
 				5F5A53571ADE670C00F81DF0 /* ViewController.m */,
-				5F5A535C1ADE670C00F81DF0 /* Images.xcassets */,
-				5F5A539F1ADE6AD200F81DF0 /* LaunchScreen.xib */,
 				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
 			);
@@ -114,6 +118,17 @@
 				5F5A539B1ADE695B00F81DF0 /* BridgingHeader.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F9961041AE0CF4F0034F503 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5F9961051AE0CF4F0034F503 /* Icon@2x.png */,
+				5F9961061AE0CF4F0034F503 /* Images.xcassets */,
+				5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */,
+			);
+			name = Shared;
+			path = ../shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +209,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
-				5F5A53A01ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */,
-				5F5A535D1ADE670C00F81DF0 /* Images.xcassets in Resources */,
+				5F9961081AE0CF4F0034F503 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,8 +220,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F5A53A11ADE6AD200F81DF0 /* LaunchScreen.xib in Resources */,
-				5F5A539D1ADE69AF00F81DF0 /* Images.xcassets in Resources */,
+				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
+				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
+				5F9961091AE0CF4F0034F503 /* Icon@2x.png in Resources */,
+				5FFE1BC21AE0B69700C160B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = GMPExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -347,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = GMPExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -357,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/GMPExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -368,6 +390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/GMPExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
