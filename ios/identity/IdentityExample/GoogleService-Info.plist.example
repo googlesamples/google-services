@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDENTITY_PROVIDERS</key>
+	<array>
+		<string>google</string>
+		<string>facebook</string>
+	</array>
+	<key>API_KEY</key>
+	<string>YOUR_API_KEY</string>
+	<key>TRACKING_ID</key>
+	<string>UA-YOUR_ID_1</string>
+	<key>CLIENT_ID</key>
+	<string>YOUR_CLIENT_ID.apps.googleusercontent.com</string>
+	<key>IDENTITY_TOOLKIT_WIDGET_URL</key>
+	<string>http://localhost</string>
+	<key>WEB_CLIENT_ID</key>
+	<string>YOUR_APP_ID.apps.googleusercontent.com</string>
+</dict>
+</plist>
