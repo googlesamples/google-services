@@ -1,0 +1,21 @@
+PODS:
+  - GMPInstanceID (1.0.1):
+    - GSDKOverload (~> 1.0)
+    - GTM (~> 1.0)
+    - GTMSessionFetcher (~> 1.0)
+  - GSDKOverload (1.0.0)
+  - GTM (1.0.0):
+    - GSDKOverload (~> 1.0)
+  - GTMSessionFetcher (1.0.0):
+    - GSDKOverload (~> 1.0)
+
+DEPENDENCIES:
+  - GMPInstanceID
+
+SPEC CHECKSUMS:
+  GMPInstanceID: aade3b1a67fb0a97ce19c6ca971e5ee52806b145
+  GSDKOverload: f880a36018771f8a8269e29aa0ff62b0e0f3b73b
+  GTM: f2150b7d0d0c1f839790c18e106280bb24a27ea9
+  GTMSessionFetcher: 91400111e9718a755c940e62d9e2354d08e8ef58
+
+COCOAPODS: 0.36.3
