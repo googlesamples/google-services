@@ -16,6 +16,8 @@
 
 #import "AppDelegate.h"
 #import <GoogleSignIn/GIDSignIn.h>
+#import <GPPInvite.h>
+
 
 @implementation AppDelegate
 
@@ -23,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GIDSignIn sharedInstance].clientID = @"YOUR_CLIENT_ID.apps.googleusercontent.com";
   [GIDSignIn sharedInstance].scopes = @[ @"https://www.googleapis.com/auth/plus.login" ];
-
+  [GPPInvite applicationDidFinishLaunching];
   return YES;
 }
 
