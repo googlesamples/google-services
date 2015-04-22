@@ -49,15 +49,13 @@ class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
   }
 
   @IBAction func inviteTapped(sender: AnyObject) {
-    let invite = GPPInvite.sharedInstance()
-    invite.delegate = self
+    let invite = GPPInvite.inviteDialog()
+    invite.setMessage("Message")
+    invite.setTitle("Title")
+    invite.setDeepLink("/invite")
+    invite.setEmailMessage("Email message")
 
-    let inviteDialog = invite.inviteDialog()
-    inviteDialog.setMessage("Message")
-    inviteDialog.setTitle("Title")
-    inviteDialog.setEmailMessage("Email message")
-
-    inviteDialog.open()
+    invite.open()
   }
 
   func updateUI() {
