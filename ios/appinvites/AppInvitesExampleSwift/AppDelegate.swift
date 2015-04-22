@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Initialize sign-in
       GIDSignIn.sharedInstance().clientID = "YOUR_CLIENT_ID"
       GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login"]
+      GPPInvite.applicationDidFinishLaunching()
       return true
   }
 

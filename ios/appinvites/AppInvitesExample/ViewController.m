@@ -63,12 +63,10 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
 
 - (IBAction)inviteTapped:(id)sender {
-    GPPInvite *invite = [GPPInvite sharedInstance];
-    [invite setDelegate:self];
-    id<GPPInviteBuilder> inviteDialog = [invite inviteDialog];
+    id<GPPInviteBuilder> inviteDialog = [GPPInvite inviteDialog];
     [inviteDialog setMessage:@"message"];
     [inviteDialog setTitle:@"title"];
-    [inviteDialog setAppURL:@"app_url"];
+    [inviteDialog setDeepLink:@"app_url"];
     [inviteDialog setEmailMessage:@"email message"];
     [inviteDialog open];
 }
