@@ -1,27 +1,140 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eeg-iu-cjG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Blue-->
+        <scene sceneID="jUt-xG-r3W">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="Blue" id="lVf-Ya-OQV" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="Vpe-J1-fiS"/>
+                        <viewControllerLayoutGuide type="bottom" id="ABr-eH-ePx"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="M3b-jw-4PX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Blue" image="blue.png" id="whl-nQ-ck2"/>
+                    <connections>
+                        <outlet property="background" destination="eOi-nw-mNK" id="bDi-sH-tCL"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dxv-GQ-DsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue.png" id="eOi-nw-mNK">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </objects>
-            <point key="canvasLocation" x="312" y="446"/>
+            <point key="canvasLocation" x="149" y="428"/>
+        </scene>
+        <!--Angles-->
+        <scene sceneID="T4b-ot-V0m">
+            <objects>
+                <viewController title="Angles" id="A0V-En-EJl" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="paV-2x-1SP"/>
+                        <viewControllerLayoutGuide type="bottom" id="dJb-g6-QTF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QBZ-F6-IFj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Angles" image="angles.png" id="1ez-db-05h"/>
+                    <connections>
+                        <outlet property="background" destination="zJp-GC-kJ1" id="IRU-gd-Qlf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NGL-DL-qgy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="angles.png" id="zJp-GC-kJ1">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </objects>
+            <point key="canvasLocation" x="148" y="-234"/>
+        </scene>
+        <!--Patterns-->
+        <scene sceneID="8gd-ga-mjo">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E1m-Ew-oHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tabBarController title="Patterns" id="eeg-iu-cjG" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="QrM-NQ-Tka">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="A0V-En-EJl" kind="relationship" relationship="viewControllers" id="c1O-wh-Yr6"/>
+                        <segue destination="lVf-Ya-OQV" kind="relationship" relationship="viewControllers" id="25Z-jG-WWy"/>
+                        <segue destination="Vqn-rV-AtV" kind="relationship" relationship="viewControllers" id="9mO-rK-9Cq"/>
+                        <segue destination="vhB-Nv-UYJ" kind="relationship" relationship="viewControllers" id="Tfu-96-CWN"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="-660" y="-102"/>
+        </scene>
+        <!--Dots-->
+        <scene sceneID="ZvK-wS-pgM">
+            <objects>
+                <viewController title="Dots" id="Vqn-rV-AtV" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eaF-dR-pcr"/>
+                        <viewControllerLayoutGuide type="bottom" id="bYg-H7-CJJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6t9-j2-aMP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Dots" image="dots.png" id="54A-Qd-hDy"/>
+                    <connections>
+                        <outlet property="background" destination="9v2-rB-XeE" id="S4Y-2f-Rtp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w2d-ed-TnE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots.png" id="9v2-rB-XeE">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </objects>
+            <point key="canvasLocation" x="-932" y="866"/>
+        </scene>
+        <!--Lines-->
+        <scene sceneID="yAq-nS-xJM">
+            <objects>
+                <viewController title="Lines" id="vhB-Nv-UYJ" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FUr-9S-O0D"/>
+                        <viewControllerLayoutGuide type="bottom" id="iEu-NN-tCj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7nq-AR-YU8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Lines" image="lines.png" id="TIH-P3-nMk"/>
+                    <connections>
+                        <outlet property="background" destination="yGc-vb-1vi" id="2KN-dH-Asu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q18-zn-iy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lines.png" id="yGc-vb-1vi">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </objects>
+            <point key="canvasLocation" x="-192" y="1150"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="angles.png" width="16" height="16"/>
+        <image name="blue.png" width="16" height="16"/>
+        <image name="dots.png" width="16" height="16"/>
+        <image name="lines.png" width="16" height="16"/>
+    </resources>
 </document>
