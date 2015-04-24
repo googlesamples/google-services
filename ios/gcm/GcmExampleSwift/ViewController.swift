@@ -15,95 +15,44 @@
 //
 
 import UIKit
-
+ 
+@objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  var connectingToGCM = false;
   var apnsDeviceToken : NSData?
   // TODO(silvano): move to info.plist
-  let senderId = "1052345580647"
-  // TODO(silvano): replace with prod one
-  let GCMSendUrl = "https://jmt17.google.com/gcm/send"
-
-  @IBOutlet weak var activityIndicatorView:UIActivityIndicatorView!
-
-  @IBOutlet weak var registerButtonView: UIButton!
-
-  @IBOutlet weak var successLabelView: UILabel!
+  let senderId = "177545629583"
+  @IBOutlet weak var registeringLabel: UILabel!
+  @IBOutlet weak var registrationProgressing: UIActivityIndicatorView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    activityIndicatorView.hidesWhenStopped = true
-    activityIndicatorView.startAnimating()
-  }
-
-  @IBAction func didTapRegister(sender: UIButton) {
-
-    var types: UIUserNotificationType = UIUserNotificationType.Badge |
-      UIUserNotificationType.Alert |
-      UIUserNotificationType.Sound
-
-    var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
-
-    let application = UIApplication.sharedApplication()
-    application.registerUserNotificationSettings( settings )
-    let instanceId = GMPInstanceID.sharedInstance()
-
-    if (!connectingToGCM) {
-
-      let appDelegate = application.delegate! as AppDelegate
-      var options = [kGMPInstanceIDRegisterAPNSOption:apnsDeviceToken!,kGMPInstanceIDAPNSServerTypeSandboxOption: true]
-      instanceId.tokenWithAudience(senderId, scope: kGMPInstanceIDScopeGCM, options: options, handler: {
-        (registrationId: String!, error: NSError!) -> Void in
-
-        // TODO(silvano): add a text boxt to allow the user to provide the api key?
-        if (registrationId != nil) {
-          println("Use this cURL command to send messages to your device," +
-                  " replacing <YOUR_API_KEY> with the project number of" +
-                  " your GCM enabled Google Developer Console project.\n\n")
-          println(self.getCurlCommandForRequest(registrationId)!)
-          self.registerButtonView.hidden = true
-          let message = "Check the xcode debug console for a cURL command that you can use to send" +
-              " a notification to your device"
-          let success = UIAlertView(title: "Registration Successful!", message: message,
-              delegate: self, cancelButtonTitle: "Dismiss")
-          success.show()
-        } else {
-          println("Registration to GCM failed with error: \(error)")
-        }
-
-      })
-
-      connectingToGCM = false
-
-    }
-  }
-
-  func getCurlCommandForRequest(registrationId: String) -> String? {
-    let deviceName = UIDevice.currentDevice().name
-    let message = ["to": registrationId, "notification": ["alert": "Hello \(deviceName) from GCM"]]
-    var jsonError:NSError? = nil
-    let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
-    if (jsonError == nil) {
-      let payload = NSString(data: jsonBody!, encoding: NSUTF8StringEncoding)
-      let escapedPayload = payload?.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
-      let command = "curl --header \"Authorization: key=<YOUR_API_KEY>\"" +
-                    " --header Content-Type:\"application/json\" \(GCMSendUrl) -d \"\(escapedPayload!)\""
-      return command
-    } else {
-      println("Error encoding JSON: \(jsonError)")
-      return nil
-    }
+    registrationProgressing.hidesWhenStopped = true
+    registrationProgressing.startAnimating()
   }
 
   func didReceiveAPNSToken(apnsDeviceToken: NSData!) {
     self.apnsDeviceToken = apnsDeviceToken
-    enableRegistering()
+    let instanceId = GMPInstanceID.sharedInstance()
+    let application = UIApplication.sharedApplication()
+    let appDelegate = application.delegate! as AppDelegate
+    var options = [kGMPInstanceIDRegisterAPNSOption:apnsDeviceToken!,kGMPInstanceIDAPNSServerTypeSandboxOption: true]
+    instanceId.tokenWithAudience(senderId, scope: kGMPInstanceIDScopeGCM, options: options, handler: {
+        (registrationId: String!, error: NSError!) -> Void in
+      if (registrationId != nil) {
+        self.registrationProgressing.stopAnimating();
+        self.registeringLabel.text = "Registered!"
+        println("Registration ID: \(registrationId)")
+        let message = "Check the xcode debug console for the registration ID that you can use with" +
+            " the demo server to send notifications to your device"
+        let success = UIAlertView(title: "Registration Successful!", message: message,
+          delegate: self, cancelButtonTitle: "Dismiss")
+        success.show()
+      } else {
+        println("Registration to GCM failed with error: \(error)")
+        let alert = UIAlertView(title: "Error registering with GCM", message: error.localizedDescription, delegate: self, cancelButtonTitle: "Dismiss")
+        alert.show()
+      }
+    })
   }
-
-  func enableRegistering() {
-    activityIndicatorView.stopAnimating()
-    registerButtonView.hidden = false
-  }
-
 }
