@@ -16,16 +16,36 @@
 
 import UIKit
 
+@objc(ViewController)
 class ViewController: UIViewController {
+
+  @IBOutlet var background: UIImageView?
+  private var color: UIColor?
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
 
+    var name = "Pattern~\(self.title!)"
+
     var tracker = GAI.sharedInstance().defaultTracker
-    tracker.set(kGAIScreenName, value: "Home Screen")
+    tracker.set(kGAIScreenName, value: name)
 
     var builder = GAIDictionaryBuilder.createScreenView()
     tracker.send(builder.build() as [NSObject : AnyObject])
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+
+    var image = background?.image
+    var color: UIColor
+    if image != nil {
+      color = UIColor(patternImage:image!)
+    } else {
+      color = UIColor()
+    }
+
+    self.view.backgroundColor = color
   }
 
 }
