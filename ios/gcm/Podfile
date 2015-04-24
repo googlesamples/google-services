@@ -1,0 +1,8 @@
+#### Remove
+source 'sso://cpdc-eap/spec.git'
+#### End remove
+# GcmExample
+platform :ios, '7.0'
+link_with 'GcmExample', 'GcmExampleSwift'
+pod 'GMPInstanceID'
+#pod 'GCM'
