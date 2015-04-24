@@ -235,7 +235,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
-				ORGANIZATIONNAME = gusclass;
+				ORGANIZATIONNAME = Google;
 				TargetAttributes = {
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
