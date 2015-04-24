@@ -16,21 +16,25 @@
 
 import UIKit
 
+@objc(ViewController)
 class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var signOutButton: UIButton!
   @IBOutlet weak var disconnectButton: UIButton!
   @IBOutlet weak var inviteButton: UIButton!
+  @IBOutlet weak var statusText: UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     GIDSignIn.sharedInstance().delegate = self
+    statusText.text = "Initialized Swift demo"
     updateUI()
   }
 
   func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
     if (error == nil) {
       // User Successfully signed in.
+      statusText.text = "Signed in ID: \(user.userID)"
       updateUI()
     } else {
       println("\(error.localizedDescription)")
@@ -40,11 +44,13 @@ class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
 
   @IBAction func signOutTapped(sender: AnyObject) {
     GIDSignIn.sharedInstance().signOut()
+    statusText.text = "Signed out"
     updateUI()
   }
 
   @IBAction func disconnectTapped(sender: AnyObject) {
     GIDSignIn.sharedInstance().disconnect()
+    statusText.text = "Disconnected"
     updateUI()
   }
 
