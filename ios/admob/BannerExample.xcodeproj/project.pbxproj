@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		102DC22F1AEAAE0900F3E423 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 102DC22E1AEAAE0900F3E423 /* GoogleService-Info.plist */; };
+		102DC2301AEAAE0900F3E423 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 102DC22E1AEAAE0900F3E423 /* GoogleService-Info.plist */; };
 		105919B71ADDA97D00344065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2419787E6B00411520 /* Main.storyboard */; };
 		105919B81ADDA98100344065 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2719787E6B00411520 /* Images.xcassets */; };
 		105919B91ADDAA5900344065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B31ADDA93F00344065 /* AppDelegate.swift */; };
@@ -21,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		102DC22E1AEAAE0900F3E423 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1059198A1ADDA8F700344065 /* BannerExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BannerExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1059198D1ADDA8F700344065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105919B01ADDA92E00344065 /* BannerExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BannerExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -135,6 +138,7 @@
 			children = (
 				CF86EE1B19787E6B00411520 /* Info.plist */,
 				CF86EE1C19787E6B00411520 /* main.m */,
+				102DC22E1AEAAE0900F3E423 /* GoogleService-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -223,6 +227,7 @@
 			files = (
 				105919B71ADDA97D00344065 /* Main.storyboard in Resources */,
 				105919B81ADDA98100344065 /* Images.xcassets in Resources */,
+				102DC2301AEAAE0900F3E423 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +237,7 @@
 			files = (
 				CF86EE2619787E6B00411520 /* Main.storyboard in Resources */,
 				CF86EE2819787E6B00411520 /* Images.xcassets in Resources */,
+				102DC22F1AEAAE0900F3E423 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

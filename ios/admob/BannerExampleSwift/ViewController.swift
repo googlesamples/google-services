@@ -19,6 +19,8 @@
 
 import UIKit
 
+// Makes ViewController available to Objc classes.
+@objc(ViewController)
 class ViewController: UIViewController {
     @IBOutlet weak var bannerView: GADBannerView!
 
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Replace this ad unit ID with your own ad unit ID.
-        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.adUnitID = GHIContext.sharedInstance().defaultAdUnitID
         self.bannerView.rootViewController = self
 
         let request = GADRequest();
