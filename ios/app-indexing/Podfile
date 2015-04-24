@@ -1,0 +1,3 @@
+# AppIndexingExample
+platform :ios, '7.0'
+link_with 'AppIndexingExample', 'AppIndexingExampleSwift'
