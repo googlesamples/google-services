@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>CLIENT_ID</key>
+        <string>Your client ID for iOS applications here</string>
+        <key>TRACKING_ID</key>
+        <string>Your tracking ID for Google Analytics here</string>
+        <key>AD_UNIT_ID</key>
+        <string>ca-app-pub-3940256099942544/2934735716</string>
+    </dict>
+</plist>
