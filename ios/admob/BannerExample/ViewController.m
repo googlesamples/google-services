@@ -20,6 +20,7 @@
 @import GoogleMobileAds;
 
 #import "ViewController.h"
+#import "GMPAdmobAPI.h"
 
 @implementation ViewController
 
@@ -27,7 +28,7 @@
   [super viewDidLoad];
 
   // Replace this ad unit ID with your own ad unit ID.
-  self.bannerView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";
+  self.bannerView.adUnitID = [GHIContext sharedInstance].defaultAdUnitID;
   self.bannerView.rootViewController = self;
 
   GADRequest *request = [GADRequest request];
