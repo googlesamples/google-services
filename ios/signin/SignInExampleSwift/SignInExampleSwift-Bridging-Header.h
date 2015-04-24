@@ -1,6 +1,4 @@
 //
-//  Copyright (c) 2015 Google Inc.
-//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
@@ -13,11 +11,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-#import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-
-@property(nonatomic, strong) IBOutlet UIImageView *background;
-
-@end
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
+#import <GoogleSignIn/GIDGoogleUser.h>
+#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleSignIn/GIDSignInButton.h>

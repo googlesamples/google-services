@@ -1,5 +1,6 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  AppDelegate.h
+//  signin
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -12,12 +13,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property(nonatomic, strong) IBOutlet UIImageView *background;
+@property (strong, nonatomic) UIWindow *window;
 
 @end
+

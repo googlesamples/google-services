@@ -20,7 +20,14 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
-		5FFE1BC21AE0B69700C160B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE1BC41AE0B69700C160B5 /* Main.storyboard */; };
+		5FC29E591AE9255700668C8D /* angles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E551AE9255700668C8D /* angles@2x.png */; };
+		5FC29E5A1AE9255700668C8D /* angles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E551AE9255700668C8D /* angles@2x.png */; };
+		5FC29E5B1AE9255700668C8D /* blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E561AE9255700668C8D /* blue@2x.png */; };
+		5FC29E5C1AE9255700668C8D /* blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E561AE9255700668C8D /* blue@2x.png */; };
+		5FC29E5D1AE9255700668C8D /* dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E571AE9255700668C8D /* dots@2x.png */; };
+		5FC29E5E1AE9255700668C8D /* dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E571AE9255700668C8D /* dots@2x.png */; };
+		5FC29E5F1AE9255700668C8D /* lines@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E581AE9255700668C8D /* lines@2x.png */; };
+		5FC29E601AE9255700668C8D /* lines@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC29E581AE9255700668C8D /* lines@2x.png */; };
 		7C691A3717E3A2ACAA08E2BC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015473BF00CF94FE37903C76 /* libPods.a */; };
 		99C3977D32009FD348B1D6BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015473BF00CF94FE37903C76 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -43,7 +50,10 @@
 		5F9961051AE0CF4F0034F503 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		5FFE1BC31AE0B69700C160B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5FC29E551AE9255700668C8D /* angles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angles@2x.png"; sourceTree = "<group>"; };
+		5FC29E561AE9255700668C8D /* blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue@2x.png"; sourceTree = "<group>"; };
+		5FC29E571AE9255700668C8D /* dots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dots@2x.png"; sourceTree = "<group>"; };
+		5FC29E581AE9255700668C8D /* lines@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lines@2x.png"; sourceTree = "<group>"; };
 		8E083FEDD04CD62E5A34D032 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +84,7 @@
 				5F5A537A1ADE67D500F81DF0 /* AnalyticsExampleSwift */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
+				5FC29E541AE9255700668C8D /* Images */,
 				BE334A8239E3D2CBA0822848 /* Pods */,
 				65DD086D0CC28632A2B0C455 /* Frameworks */,
 			);
@@ -95,7 +106,6 @@
 				5F5A53541ADE670C00F81DF0 /* AppDelegate.m */,
 				5F5A53561ADE670C00F81DF0 /* ViewController.h */,
 				5F5A53571ADE670C00F81DF0 /* ViewController.m */,
-				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				5F5A534F1ADE670C00F81DF0 /* Supporting Files */,
 			);
 			path = AnalyticsExample;
@@ -104,6 +114,7 @@
 		5F5A534F1ADE670C00F81DF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
 				5F5A53511ADE670C00F81DF0 /* main.m */,
 			);
@@ -113,7 +124,6 @@
 		5F5A537A1ADE67D500F81DF0 /* AnalyticsExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
-				5FFE1BC41AE0B69700C160B5 /* Main.storyboard */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537F1ADE67D500F81DF0 /* ViewController.swift */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
@@ -138,6 +148,17 @@
 			);
 			name = Shared;
 			path = ../shared;
+			sourceTree = "<group>";
+		};
+		5FC29E541AE9255700668C8D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5FC29E551AE9255700668C8D /* angles@2x.png */,
+				5FC29E561AE9255700668C8D /* blue@2x.png */,
+				5FC29E571AE9255700668C8D /* dots@2x.png */,
+				5FC29E581AE9255700668C8D /* lines@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		65DD086D0CC28632A2B0C455 /* Frameworks */ = {
@@ -239,8 +260,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FC29E5B1AE9255700668C8D /* blue@2x.png in Resources */,
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				5FC29E5D1AE9255700668C8D /* dots@2x.png in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
+				5FC29E5F1AE9255700668C8D /* lines@2x.png in Resources */,
+				5FC29E591AE9255700668C8D /* angles@2x.png in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 				5F9961081AE0CF4F0034F503 /* Icon@2x.png in Resources */,
 			);
@@ -250,11 +275,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FC29E5C1AE9255700668C8D /* blue@2x.png in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				5FC29E601AE9255700668C8D /* lines@2x.png in Resources */,
+				5FC29E5E1AE9255700668C8D /* dots@2x.png in Resources */,
 				5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F9961091AE0CF4F0034F503 /* Icon@2x.png in Resources */,
-				5FFE1BC21AE0B69700C160B5 /* Main.storyboard in Resources */,
+				5FC29E5A1AE9255700668C8D /* angles@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,14 +378,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				5F5A535A1ADE670C00F81DF0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5FFE1BC41AE0B69700C160B5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5FFE1BC31AE0B69700C160B5 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
