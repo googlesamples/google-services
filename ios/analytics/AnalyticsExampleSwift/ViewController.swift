@@ -16,7 +16,7 @@
 
 import UIKit
 
-@objc(ViewController)
+@objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
   @IBOutlet var background: UIImageView?
