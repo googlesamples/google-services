@@ -21,6 +21,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
+  // [START didfinishlaunching]
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       // Initialize sign-in
@@ -28,10 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       GIDSignIn.sharedInstance().scopes = ["profile"]
       return true
   }
+  // [END didfinishlaunching]
 
+  // [START openurl]
   func application(application: UIApplication,
     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
       return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
   }
+  // [END openurl]
 }
 
