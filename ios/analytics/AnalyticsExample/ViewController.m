@@ -20,14 +20,29 @@
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 
-@implementation ViewController
+@implementation ViewController {
+  UIColor *_color;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
+  NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
+
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker set:kGAIScreenName value:@"Home Screen"];
+  [tracker set:kGAIScreenName value:name];
   [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  self.view.backgroundColor = _color;
+}
+
+- (void)setBackground:(UIImageView *)background {
+  _background = background;
+
+  UIImage *image = _background.image;
+  _color = image ? [UIColor colorWithPatternImage:image] : nil;
 }
 
 @end

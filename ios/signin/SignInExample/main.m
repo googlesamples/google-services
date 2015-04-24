@@ -1,5 +1,6 @@
 //
-//  Copyright (c) 2015 Google Inc.
+//  main.m
+//  signin
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -12,12 +13,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface ViewController : UIViewController
-
-@property(nonatomic, strong) IBOutlet UIImageView *background;
-
-@end
+int main(int argc, char * argv[]) {
+  @autoreleasepool {
+      return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+  }
+}
