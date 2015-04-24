@@ -67,10 +67,12 @@ public class MainActivity extends ActionBarActivity implements
         setContentView(R.layout.activity_main);
 
         // Restore from saved instance state
+        // [START restore_saved_instance_state]
         if (savedInstanceState != null) {
             mIsResolving = savedInstanceState.getBoolean(KEY_IS_RESOLVING);
             mShouldResolve = savedInstanceState.getBoolean(KEY_SHOULD_RESOLVE);
         }
+        // [END restore_saved_instance_state]
 
         // Set up button click listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -80,6 +82,7 @@ public class MainActivity extends ActionBarActivity implements
         // Set up view instances
         mStatus = (TextView) findViewById(R.id.status);
 
+        // [START create_google_api_client]
         // Build GoogleApiClient with access to basic profile
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -87,6 +90,7 @@ public class MainActivity extends ActionBarActivity implements
                 .addApi(Plus.API)
                 .addScope(new Scope("profile"))
                 .build();
+        // [END create_google_api_client]
     }
 
     private void updateUI(boolean isSignedIn) {
@@ -104,6 +108,7 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
+    // [START on_start_on_stop]
     @Override
     protected void onStart() {
         super.onStart();
@@ -115,14 +120,18 @@ public class MainActivity extends ActionBarActivity implements
         super.onStop();
         mGoogleApiClient.disconnect();
     }
+    // [END on_start_on_stop]
 
+    // [START on_save_instance_state]
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_IS_RESOLVING, mIsResolving);
         outState.putBoolean(KEY_SHOULD_RESOLVE, mIsResolving);
     }
+    // [END on_save_instance_state]
 
+    // [START on_activity_result]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -138,6 +147,7 @@ public class MainActivity extends ActionBarActivity implements
             mGoogleApiClient.connect();
         }
     }
+    // [END on_activity_result]
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -158,6 +168,7 @@ public class MainActivity extends ActionBarActivity implements
         Log.w(TAG, "onConnectionSuspended:" + i);
     }
 
+    // [START on_connection_failed]
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         // Could not connect to Google Play Services.  The user needs to select an account,
@@ -176,12 +187,16 @@ public class MainActivity extends ActionBarActivity implements
                     mGoogleApiClient.connect();
                 }
             } else {
+                // Could not resolve the connection result, show the user an
+                // error dialog.
                 showErrorDialog(connectionResult);
             }
         } else {
+            // Show the signed-out UI
             updateUI(false);
         }
     }
+    // [END on_connection_failed]
 
     private void showErrorDialog(ConnectionResult connectionResult) {
         int errorCode = connectionResult.getErrorCode();
@@ -214,25 +229,31 @@ public class MainActivity extends ActionBarActivity implements
                 // User clicked the sign-in button, so begin the sign-in process and automatically
                 // attempt to resolve any errors that occur.
                 mStatus.setText(R.string.signing_in);
+                // [START sign_in_clicked]
                 mShouldResolve = true;
                 mGoogleApiClient.connect();
+                // [END sign_in_clicked]
                 break;
             case R.id.sign_out_button:
                 // Clear the default account so that GoogleApiClient will not automatically
                 // connect in the future.
+                // [START sign_out_clicked]
                 if (mGoogleApiClient.isConnected()) {
                     Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                     mGoogleApiClient.disconnect();
                 }
+                // [END sign_out_clicked]
                 updateUI(false);
                 break;
             case R.id.disconnect_button:
                 // Revoke all granted permissions and clear the default account.  The user will have
                 // to pass the consent screen to sign in again.
+                // [START disconnect_clicked]
                 if (mGoogleApiClient.isConnected()) {
                     Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                     Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
                 }
+                // [END disconnect_clicked]
                 updateUI(false);
                 break;
         }
