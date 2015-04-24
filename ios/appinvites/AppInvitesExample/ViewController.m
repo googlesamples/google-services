@@ -54,6 +54,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
 - (IBAction)signOutTapped:(id)sender {
   [[GIDSignIn sharedInstance] signOut];
+  self.statusText.text = @"Signed out";
   [self toggleAuthUI];
 }
 
