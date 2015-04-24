@@ -31,6 +31,9 @@
   // Remove before app release.
   gai.logger.logLevel = kGAILogLevelVerbose;
 
+  // Set a white background so that patterns are showcased.
+  _window.backgroundColor = [UIColor whiteColor];
+
   return YES;
 }
 

@@ -31,7 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Optional: set Logger to VERBOSE for debug information.
     // Remove before app release.
-    gai.logger.logLevel = GAILogLevel.Verbose;
+    gai.logger.logLevel = GAILogLevel.Verbose
+
+    // Set a white background so that patterns are showcased.
+    window?.backgroundColor = UIColor.whiteColor()
 
     return true
   }
