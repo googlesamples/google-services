@@ -14,10 +14,9 @@
   ~ limitations under the License.
   -->
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment"
-    android:name="com.google.samples.apps.friendlyping.fragment.SignInFragment"
-    tools:layout="@layout/fragment_sign_in"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+<resources>
+    <!-- This is an ad unit ID for a test ad. Replace with your own banner ad unit id. -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <!-- Use your device's id in order to display the test ad. -->
+    <string name="test_device_id">AAF55FC1CC86C5B4FE07CC865AE73CA5</string>
+</resources>
