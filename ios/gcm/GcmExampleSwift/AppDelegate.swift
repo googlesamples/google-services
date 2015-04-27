@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    var types: UIUserNotificationType = UIUserNotificationType.Badge |
+      UIUserNotificationType.Alert |
+      UIUserNotificationType.Sound
+    var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+    application.registerUserNotificationSettings( settings )
     application.registerForRemoteNotifications()
     GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
     return true
@@ -37,7 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError! ) {
     println("Registration for remote notification failed with error: \(error.localizedDescription)")
-
+    let alert = UIAlertView(title: "Error registering for remote notification", message: error.localizedDescription, delegate: self, cancelButtonTitle: "Dismiss")
+    alert.show()
   }
 
   func application( application: UIApplication,
@@ -51,6 +57,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       println("Notification received: \(userInfo)")
       handler(UIBackgroundFetchResult.NoData)
   }
-
 }
-
