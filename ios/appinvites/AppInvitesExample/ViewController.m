@@ -19,22 +19,36 @@
 #import <GoogleSignIn/GIDGoogleUser.h>
 #import <GoogleSignIn/GIDProfileData.h>
 
-@interface ViewController () <GPPInviteDelegate>
-
+// [START viewcontroller_interfaces]
+@interface ViewController () <GPPInviteDelegate, GIDSignInDelegate>
+// [END viewcontroller_interfaces]
+// [START viewcontroller_vars]
+@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *signOutButton;
+@property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
+@property (weak, nonatomic) IBOutlet UIButton *inviteButton;
+@property (weak, nonatomic) IBOutlet GIDSignInButton *SignInView;
+@property (weak, nonatomic) IBOutlet UILabel *statusText;
+// [END viewcontroler_vars]
 @end
 
 @implementation ViewController
 
+// [START viewdidload]
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   // TODO(developer) Configure the sign-in button look/feel
   [GIDSignIn sharedInstance].delegate = self;
 
+  // Uncomment to sign in automatically.
   [[GIDSignIn sharedInstance] signInSilently];
+
   [self toggleAuthUI];
 }
+// [END viewdidload]
 
+// [START signin_handler]
 - (void)signIn:(GIDSignIn *)signIn
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
@@ -43,7 +57,9 @@ didSignInForUser:(GIDGoogleUser *)user
                           user.profile.name];
   [self toggleAuthUI];
 }
+// [END signin_handler]
 
+// [START disconnect_handler]
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
@@ -51,18 +67,23 @@ didDisconnectWithUser:(GIDGoogleUser *)user
   self.statusText.text = @"Disconnected user";
   [self toggleAuthUI];
 }
+// [END disconnect_handler]
 
+// [START signout_tapped]
 - (IBAction)signOutTapped:(id)sender {
   [[GIDSignIn sharedInstance] signOut];
   self.statusText.text = @"Signed out";
   [self toggleAuthUI];
 }
+// [END signout_tapped]
 
+// [START disconnect_tapped]
 - (IBAction)disconnectTapped:(id)sender {
   [[GIDSignIn sharedInstance] disconnect];
 }
+// [END disconnect_tapped]
 
-
+// [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
     id<GPPInviteBuilder> inviteDialog = [GPPInvite inviteDialog];
     [inviteDialog setMessage:@"message"];
@@ -71,8 +92,9 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [inviteDialog setEmailMessage:@"email message"];
     [inviteDialog open];
 }
+// [END invite_tapped]
 
-
+// [START invite_finished]
 - (void)inviteFinishedWithInvitations:(NSArray *)invitationIds
                                 error:(NSError *)error {
   NSString *message = error ? error.localizedDescription :
@@ -83,7 +105,9 @@ didDisconnectWithUser:(GIDGoogleUser *)user
                     cancelButtonTitle:@"OK"
                     otherButtonTitles:nil] show];
 }
+// [END invite_finished]
 
+// [START toggle_auth]
 - (void)toggleAuthUI {
   if ([GIDSignIn sharedInstance].currentUser.authentication == nil) {
     // Not signed in
@@ -99,5 +123,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     self.inviteButton.enabled = YES;
   }
 }
+// [END toggle_auth]
 
 @end

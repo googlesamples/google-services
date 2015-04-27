@@ -21,22 +21,42 @@
 
 @implementation AppDelegate
 
-
+// [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GIDSignIn sharedInstance].clientID = @"YOUR_CLIENT_ID.apps.googleusercontent.com";
   [GIDSignIn sharedInstance].scopes = @[ @"https://www.googleapis.com/auth/plus.login" ];
   [GPPInvite applicationDidFinishLaunching];
   return YES;
 }
+// [END didfinishlaunching]
 
-
+// [START openurl]
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
+
+  // Handle App Invite requests
+  GPPReceivedInvite *invite = [GPPInvite handleURL:url
+                                 sourceApplication:sourceApplication
+                                        annotation:annotation];
+  if (invite) {
+    NSString *message =
+    [NSString stringWithFormat:
+        @"Deep link from %@ \nInvite ID: %@\nApp URL: %@",
+        sourceApplication, invite.inviteId, invite.deepLink];
+    [[[UIAlertView alloc] initWithTitle:@"Deep-link Data"
+                                message:message
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+    return YES;
+  }
+
   return [[GIDSignIn sharedInstance] handleURL:url
                              sourceApplication:sourceApplication
                                     annotation:annotation];
 }
+// [END openurl]
 
 @end
