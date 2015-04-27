@@ -16,44 +16,58 @@
 
 import UIKit
 
+// Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
+// [START viewcontroller_interfaces]
 class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
+// [END viewcontroller_interfaces]
+  // [START viewcontroller_vars]
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var signOutButton: UIButton!
   @IBOutlet weak var disconnectButton: UIButton!
   @IBOutlet weak var inviteButton: UIButton!
   @IBOutlet weak var statusText: UILabel!
+  // [END viewcontroller_vars]
 
+  // [START viewdidload]
   override func viewDidLoad() {
     super.viewDidLoad()
     GIDSignIn.sharedInstance().delegate = self
     statusText.text = "Initialized Swift demo"
-    updateUI()
+    toggleAuthUI()
   }
+  // [END viewdidload]
 
+  // [START signin_handler]
   func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
     if (error == nil) {
       // User Successfully signed in.
       statusText.text = "Signed in ID: \(user.userID)"
-      updateUI()
+      toggleAuthUI()
     } else {
       println("\(error.localizedDescription)")
-      updateUI()
+      toggleAuthUI()
     }
   }
+  // [END signin_handler]
 
+  // [START signout_tapped]
   @IBAction func signOutTapped(sender: AnyObject) {
     GIDSignIn.sharedInstance().signOut()
     statusText.text = "Signed out"
-    updateUI()
+    toggleAuthUI()
   }
+  // [END signout_tapped]
 
+  // [START disconnect_tapped]
   @IBAction func disconnectTapped(sender: AnyObject) {
     GIDSignIn.sharedInstance().disconnect()
     statusText.text = "Disconnected"
-    updateUI()
+    toggleAuthUI()
   }
+  // [END disconnect_tapped]
 
+  // [START invite_tapped]
   @IBAction func inviteTapped(sender: AnyObject) {
     let invite = GPPInvite.inviteDialog()
     invite.setMessage("Message")
@@ -63,8 +77,10 @@ class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
 
     invite.open()
   }
+  // [END invite_tapped]
 
-  func updateUI() {
+  // [START toggle_auth]
+  func toggleAuthUI() {
     if (GIDSignIn.sharedInstance().hasAuthInKeychain()){
       // Signed in
       signInButton.enabled = false
@@ -78,7 +94,9 @@ class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
       inviteButton.enabled = false
     }
   }
+  // [END toggle_auth]
 
+  // [START invite_finished]
   func inviteFinishedWithInvitations(invitationIds: [AnyObject]!, error: NSError!) {
     if (error != nil){
       println("Failed: " + error.localizedDescription)
@@ -86,4 +104,5 @@ class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
       println("Invitations sent")
     }
   }
+  // [END invite_finished]
 }
