@@ -17,13 +17,13 @@
 //  BannerExample
 //
 
+// [START gmp_config]
 #import "AppDelegate.h"
-#import "GMPCoreAPI.h"
+#import <GoogleMobilePlatform/Core.h>
 
 @interface AppDelegate ()
 
 @end
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -31,6 +31,7 @@
   [[GHIContext sharedInstance] configure];
   return YES;
 }
+// [END gmp_config]
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   // Sent when the application is about to move from active to inactive state. This can occur for
