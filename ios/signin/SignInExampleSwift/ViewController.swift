@@ -17,38 +17,65 @@
 
 import UIKit
 
+// Match the ObjC symbol name inside Main.storyboard.
+@objc(ViewController)
+// [START viewcontroller_interfaces]
 class ViewController: UIViewController, GIDSignInDelegate {
+// [END viewcontroller_interfaces]
+  // [START viewcontroller_vars]
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var signOutButton: UIButton!
   @IBOutlet weak var disconnectButton: UIButton!
+  @IBOutlet weak var statusText: UILabel!
+  // [END viewcontroller_vars]
 
+  // [START viewdidload]
   override func viewDidLoad() {
     super.viewDidLoad()
     GIDSignIn.sharedInstance().delegate = self
-    updateUI()
+    toggleAuthUI()
+    statusText.text = "Initialized Swift app..."
   }
+  // [END viewdidload]
 
-  func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+  // [START signin_handler]
+  func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+      withError error: NSError!) {
     if (error == nil) {
       // User Successfully signed in.
-      updateUI()
+      toggleAuthUI()
+      statusText.text = "Signed in user: \(user.userID)"
     } else {
       println("\(error.localizedDescription)")
-      updateUI()
+      toggleAuthUI()
     }
   }
+  // [END signin_handler]
 
-  @IBAction func signOutTapped(sender: AnyObject) {
+  func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+      withError error: NSError!) {
+    statusText.text = "User disconnected."
+    toggleAuthUI()
+
+  }
+
+  // [START signout_tapped]
+  @IBAction func didTapSignOut(sender: AnyObject) {
     GIDSignIn.sharedInstance().signOut()
-    updateUI()
+    statusText.text = "Signed out."
+    toggleAuthUI()
   }
+  // [END signout_tapped]
 
-  @IBAction func disconnectTapped(sender: AnyObject) {
+  // [START disconnect_tapped]
+  @IBAction func didTapDisconnect(sender: AnyObject) {
     GIDSignIn.sharedInstance().disconnect()
-    updateUI()
+    statusText.text = "Disconnecting."
   }
+  // [END disconnect_tapped]
 
-  func updateUI() {
+  // [START toggle_auth]
+  func toggleAuthUI() {
     if (GIDSignIn.sharedInstance().hasAuthInKeychain()){
       // Signed in
       signInButton.enabled = false
@@ -60,4 +87,6 @@ class ViewController: UIViewController, GIDSignInDelegate {
       disconnectButton.enabled = false
     }
   }
+  // [END toggle_auth]
+
 }

@@ -19,14 +19,16 @@
 
 @implementation AppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+// [START didfinishlaunching]
+- (BOOL)application:(UIApplication *)application
+      didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GIDSignIn sharedInstance].clientID = @"YOUR_CLIENT_ID.apps.googleusercontent.com";
   [GIDSignIn sharedInstance].scopes = @[ @"profile" ];
   return YES;
 }
+// [END didfinishlaunching]
 
-
+// [START openurl]
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -35,5 +37,6 @@
                              sourceApplication:sourceApplication
                                     annotation:annotation];
 }
+// [END openurl]
 
 @end
