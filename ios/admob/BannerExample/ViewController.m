@@ -17,10 +17,11 @@
 //  BannerExample
 //
 
+// [START gmp_banner_example]
 @import GoogleMobileAds;
 
 #import "ViewController.h"
-#import "GMPAdmobAPI.h"
+#import <GoogleMobilePlatform/AdMob.h>
 
 @implementation ViewController
 
@@ -41,5 +42,5 @@
   ];
   [self.bannerView loadRequest:request];
 }
-
 @end
+// [END gmp_banner_example]
