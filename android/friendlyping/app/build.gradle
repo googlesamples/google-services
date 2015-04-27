@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "com.google.samples.apps.friendlyping"
-        minSdkVersion 21
+        minSdkVersion 11
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -36,9 +36,8 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services:7.0.0'
-    compile 'com.google.android.gms:play-services-ads:7.0.0'
-    compile 'com.google.android.gms:play-services-analytics:7.0.0'
-    compile 'com.google.android.gms:play-services-identity:7.0.0'
-    compile 'com.google.android.gms:play-services-gcm:7.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:design:22.1.1'
+    compile 'com.android.support:support-v4:22.1.1'
+    compile 'com.google.android.gms:play-services:7.5.0'
 }

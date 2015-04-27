@@ -16,9 +16,10 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.google.samples.apps.friendlyping.activity.FriendlyPingActivity">
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/sign_out"
+        android:title="@string/sign_out"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 </menu>
