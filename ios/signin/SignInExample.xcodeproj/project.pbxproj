@@ -11,8 +11,8 @@
 		3DBFCF970AC4481BC6FB9222 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B5A4722417C2E158537DC8 /* libPods.a */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
-		4B3329251AE04F9F00327B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B97B25C1AD7145E0036DD6C /* Main.storyboard */; };
 		4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */; };
+		4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EB1ACF33B70092326A /* Main.storyboard */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
 		4B97B25B1AD7145E0036DD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B25A1AD7145E0036DD6C /* ViewController.swift */; };
 		4BA30A161AE81F5A00E5CDE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */; };
@@ -41,7 +41,6 @@
 		4B97B2571AD7145E0036DD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B97B2581AD7145E0036DD6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B97B25A1AD7145E0036DD6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4B97B25D1AD7145E0036DD6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B97B25F1AD7145E0036DD6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B97B2621AD7145E0036DD6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4BC032DE1ACF33B70092326A /* SignInExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +103,6 @@
 			children = (
 				4B97B2581AD7145E0036DD6C /* AppDelegate.swift */,
 				4B97B25A1AD7145E0036DD6C /* ViewController.swift */,
-				4B97B25C1AD7145E0036DD6C /* Main.storyboard */,
 				4B97B25F1AD7145E0036DD6C /* Images.xcassets */,
 				4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */,
 				4B97B2561AD7145E0036DD6C /* Supporting Files */,
@@ -149,7 +147,6 @@
 				4BC032E61ACF33B70092326A /* AppDelegate.m */,
 				4BC032E81ACF33B70092326A /* ViewController.h */,
 				4BC032E91ACF33B70092326A /* ViewController.m */,
-				4BC032EB1ACF33B70092326A /* Main.storyboard */,
 				4BC032EE1ACF33B70092326A /* Images.xcassets */,
 				4BC032F01ACF33B70092326A /* LaunchScreen.xib */,
 				4BC032E11ACF33B70092326A /* Supporting Files */,
@@ -160,6 +157,7 @@
 		4BC032E11ACF33B70092326A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BC032EB1ACF33B70092326A /* Main.storyboard */,
 				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BC032E31ACF33B70092326A /* main.m */,
 			);
@@ -268,8 +266,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */,
 				4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */,
-				4B3329251AE04F9F00327B83 /* Main.storyboard in Resources */,
 				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,14 +371,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4B97B25C1AD7145E0036DD6C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4B97B25D1AD7145E0036DD6C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
