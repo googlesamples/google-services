@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // TODO(silvano): move to info.plist
   let senderId = "177545629583"
 
+  // [START register_for_remote_notifications]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
       [NSObject: AnyObject]?) -> Bool {
     var types: UIUserNotificationType = UIUserNotificationType.Badge |
@@ -38,9 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     application.registerForRemoteNotifications()
     return true
   }
+  // [END register_for_remote_notifications]
 
+  // [START receive_apns_token]
   func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken
       deviceToken: NSData! ) {
+  // [END receive_apns_token]
         // [START get_gcm_reg_token]
         GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
         var options = [kGMPInstanceIDRegisterAPNSOption:deviceToken!,
@@ -62,10 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         // [END get_gcm_reg_token]
   }
-
+  
+  // [START receive_apns_token_error]
   func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError
       error: NSError! ) {
     println("Registration for remote notification failed with error: \(error.localizedDescription)")
+  // [END receive_apns_token_error]
     let userInfo = ["error": error.localizedDescription]
     NSNotificationCenter.defaultCenter().postNotificationName(
         notificationKey, object: nil, userInfo: userInfo)
