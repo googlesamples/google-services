@@ -15,5 +15,5 @@
 //
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
-#import "GMPCoreAPI.h"
-#import "GMPAdmobAPI.h"
+#import <GoogleMobilePlatform/Core.h>
+#import <GoogleMobilePlatform/AdMob.h>
