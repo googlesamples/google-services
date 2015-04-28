@@ -18,7 +18,8 @@ OPTIONS:
    -e, --example EXAMPLE
          Specify the example name, e.g. "FooExample".
    -p, --pod POD
-         Specify the pod to include, e.g. "GoogleAnalytics-iOS-SDK".
+         Specify the pod to include, e.g. "GoogleAnalytics-iOS-SDK". Leave
+         empty or blank for none -- you can update the Podfile later.
    -o, --out PATH
          Specify the path to use, e.g. "foo". If this is unspecified, the left
          part of "BarExample" will be used, aka "bar".
@@ -89,7 +90,10 @@ for SUFFIX in "${SUFFIXES[@]}"; do
 done
 echo
 
-# >> Part 2: Update text content from GMPExample => YourExample.
+# >> Part 2: Copy misc license/etc files to the new sample folder.
+cp -Rv $T/layout/* ${OUT_PATH}
+
+# >> Part 3: Update text content from GMPExample => YourExample.
 cd ${OUT_PATH}
 
 # Fix the pbxproj file.
@@ -106,7 +110,6 @@ grep $SOURCE -R . && {
 
 # Create a stock Podfile.
 echo "Creating Podfile..."
-LIBRARY="GoogleAnalytics-iOS-SDK"
 echo "# $DEST" > Podfile
 echo "platform :ios, '7.0'" >> Podfile
 if [[ -n "${POD}" ]]; then
