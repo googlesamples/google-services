@@ -19,43 +19,44 @@ import UIKit
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  // TODO(silvano): move to info.plist
-  let senderId = "177545629583"
   @IBOutlet weak var registeringLabel: UILabel!
   @IBOutlet weak var registrationProgressing: UIActivityIndicatorView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRegistrationStatus:",
+        name: appDelegate.notificationKey, object: nil)
     registrationProgressing.hidesWhenStopped = true
     registrationProgressing.startAnimating()
   }
 
-  func didReceiveAPNSToken(apnsDeviceToken: NSData!) {
-    let instanceId = GMPInstanceID.sharedInstance()
-    var options = [kGMPInstanceIDRegisterAPNSOption:apnsDeviceToken!,
-        kGMPInstanceIDAPNSServerTypeSandboxOption:true]
-    instanceId.tokenWithAudience(senderId, scope: kGMPInstanceIDScopeGCM, options: options,
-        handler: {
-      (registrationId: String!, error: NSError!) -> Void in
-        if (registrationId != nil) {
-          self.registrationProgressing.stopAnimating()
-          self.registeringLabel.text = "Registered!"
-          println("Registration ID: \(registrationId)")
-          let message = "Check the xcode debug console for the registration ID that you can use with" +
-              " the demo server to send notifications to your device"
-          let success = UIAlertController(title: "Registration Successful!",
-            message: message, preferredStyle: .Alert)
-          let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
-          success.addAction(dismissAction)
-          self.presentViewController(success, animated: true, completion: nil)
-        } else {
-          println("Registration to GCM failed with error: \(error)")
-          let alert = UIAlertController(title: "Error registering with GCM",
-            message: error.localizedDescription, preferredStyle: .Alert)
-          let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
-          alert.addAction(dismissAction)
-          self.presentViewController(alert, animated: true, completion: nil)
-        }
-    })
+  func updateRegistrationStatus(notification: NSNotification) {
+    registrationProgressing.stopAnimating()
+    if let info = notification.userInfo as? Dictionary<String,String> {
+      if let error = info["error"] {
+        registeringLabel.text = "Error registering!"
+        let alert = UIAlertController(title: "Error registering with GCM", message: error,
+            preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+        alert.addAction(dismissAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+      } else if let registrationToken = info["registrationToken"] {
+        registeringLabel.text = "Registered!"
+        let message = "Check the xcode debug console for the registration token that you " +
+        " can use with the demo server to send notifications to your device"
+        let success = UIAlertController(title: "Registration Successful!",
+          message: message, preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+        success.addAction(dismissAction)
+        self.presentViewController(success, animated: true, completion: nil)
+      }
+    } else {
+      println("Software failure. Guru meditation.")
+    }
+  }
+
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 }

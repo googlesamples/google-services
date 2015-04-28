@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  let notificationKey = "onRegistrationCompleted"
+  // TODO(silvano): move to info.plist
+  let senderId = "177545629583"
+
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
       [NSObject: AnyObject]?) -> Bool {
     var types: UIUserNotificationType = UIUserNotificationType.Badge |
@@ -32,26 +36,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIUserNotificationSettings( forTypes: types, categories: nil )
     application.registerUserNotificationSettings( settings )
     application.registerForRemoteNotifications()
-    GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
     return true
   }
 
   func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken
       deviceToken: NSData! ) {
-    //TODO(silvano): check with Ian to refactor to notification or view controller observing
-    if let rootViewController = window!.rootViewController as? ViewController {
-      rootViewController.didReceiveAPNSToken(deviceToken)
-    }
+        // [START get_gcm_reg_token]
+        GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
+        var options = [kGMPInstanceIDRegisterAPNSOption:deviceToken!,
+          kGMPInstanceIDAPNSServerTypeSandboxOption:true]
+        GMPInstanceID.sharedInstance().tokenWithAudience(senderId, scope: kGMPInstanceIDScopeGCM,
+            options: options, handler: {
+              (registrationToken: String!, error: NSError!) -> Void in
+                if (registrationToken != nil) {
+                  println("Registration Token: \(registrationToken)")
+                  let userInfo = ["registrationToken": registrationToken]
+                  NSNotificationCenter.defaultCenter().postNotificationName(
+                      self.notificationKey, object: nil, userInfo: userInfo)
+                } else {
+                  println("Registration to GCM failed with error: \(error.localizedDescription)")
+                  let userInfo = ["error": error.localizedDescription]
+                  NSNotificationCenter.defaultCenter().postNotificationName(
+                      self.notificationKey, object: nil, userInfo: userInfo)
+              }
+        })
+        // [END get_gcm_reg_token]
   }
 
   func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError
       error: NSError! ) {
     println("Registration for remote notification failed with error: \(error.localizedDescription)")
-    let controller = UIAlertController(title: "Error registering for remote notification",
-        message: error.localizedDescription, preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
-    controller.addAction(dismissAction)
-    window!.rootViewController?.presentViewController(controller, animated: true, completion: nil)
+    let userInfo = ["error": error.localizedDescription]
+    NSNotificationCenter.defaultCenter().postNotificationName(
+        notificationKey, object: nil, userInfo: userInfo)
   }
 
   func application( application: UIApplication,
