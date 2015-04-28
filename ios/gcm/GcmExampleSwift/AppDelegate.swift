@@ -23,27 +23,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+      [NSObject: AnyObject]?) -> Bool {
     var types: UIUserNotificationType = UIUserNotificationType.Badge |
-      UIUserNotificationType.Alert |
-      UIUserNotificationType.Sound
-    var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        UIUserNotificationType.Alert |
+        UIUserNotificationType.Sound
+    var settings: UIUserNotificationSettings =
+        UIUserNotificationSettings( forTypes: types, categories: nil )
     application.registerUserNotificationSettings( settings )
     application.registerForRemoteNotifications()
     GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
     return true
   }
 
-  func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData! ) {
+  func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken
+      deviceToken: NSData! ) {
+    //TODO(silvano): check with Ian to refactor to notification or view controller observing
     if let rootViewController = window!.rootViewController as? ViewController {
       rootViewController.didReceiveAPNSToken(deviceToken)
     }
   }
 
-  func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError! ) {
+  func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError
+      error: NSError! ) {
     println("Registration for remote notification failed with error: \(error.localizedDescription)")
-    let alert = UIAlertView(title: "Error registering for remote notification", message: error.localizedDescription, delegate: self, cancelButtonTitle: "Dismiss")
-    alert.show()
+    let controller = UIAlertController(title: "Error registering for remote notification",
+        message: error.localizedDescription, preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+    controller.addAction(dismissAction)
+    window!.rootViewController?.presentViewController(controller, animated: true, completion: nil)
   }
 
   func application( application: UIApplication,
@@ -57,4 +65,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       println("Notification received: \(userInfo)")
       handler(UIBackgroundFetchResult.NoData)
   }
+
 }

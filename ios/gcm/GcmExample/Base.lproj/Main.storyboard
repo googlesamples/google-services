@@ -37,7 +37,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="registeringLabel" destination="3Vj-jj-PT7" id="Vn8-yI-Swo"/>
+                        <outlet property="registeringLabel" destination="3Vj-jj-PT7" id="DEV-UN-Bcd"/>
                         <outlet property="registrationProgressing" destination="MW1-De-tlg" id="3f4-d7-1nP"/>
                     </connections>
                 </viewController>
