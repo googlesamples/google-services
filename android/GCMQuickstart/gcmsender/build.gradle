@@ -1,0 +1,14 @@
+apply plugin: 'application'
+
+mainClassName = "gcm.play.android.samples.com.gcmsender.GcmSender"
+
+run {
+    if(project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-io:1.3.2'
+    compile 'org.json:json:20140107'
+}
