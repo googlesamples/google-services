@@ -21,6 +21,7 @@ static NSString *const senderID = @"177545629583";
 
 @implementation AppDelegate
 
+// [START register_for_remote_notifications]
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   _notificationKey = @"onRegistrationCompleted";
@@ -32,9 +33,12 @@ static NSString *const senderID = @"177545629583";
   [[UIApplication sharedApplication] registerForRemoteNotifications];
   return YES;
 }
+// [END register_for_remote_notifications]
 
+// [START receive_apns_token]
 - (void)application:(UIApplication *)application
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+// [END receive_apns_token]
   // [START get_gcm_reg_token]
   [[GMPInstanceID sharedInstance] startWithConfig:[GMPInstanceIDConfig defaultConfig]];
   NSDictionary *options = @{kGMPInstanceIDRegisterAPNSOption: deviceToken,
@@ -62,9 +66,11 @@ static NSString *const senderID = @"177545629583";
   // [END get_gcm_reg_token]
 }
 
+// [START receive_apns_token_error]
 - (void)application:(UIApplication *)application
     didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
+// [END receive_apns_token_error]
   NSDictionary *userInfo = @{@"error" : error.localizedDescription};
   [[NSNotificationCenter defaultCenter] postNotificationName: _notificationKey
                                                       object: nil
