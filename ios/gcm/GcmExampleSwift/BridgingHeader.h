@@ -16,5 +16,5 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#import <GMPInstanceID/GMPInstanceID.h>
-#import <GMPInstanceID/GMPInstanceIDConfig.h>
+#import <GMPInstanceID.h>
+#import <GMPInstanceIDConfig.h>

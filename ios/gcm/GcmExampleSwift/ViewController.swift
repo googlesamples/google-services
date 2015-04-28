@@ -15,11 +15,10 @@
 //
 
 import UIKit
- 
+
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  var apnsDeviceToken : NSData?
   // TODO(silvano): move to info.plist
   let senderId = "177545629583"
   @IBOutlet weak var registeringLabel: UILabel!
@@ -32,27 +31,31 @@ class ViewController: UIViewController {
   }
 
   func didReceiveAPNSToken(apnsDeviceToken: NSData!) {
-    self.apnsDeviceToken = apnsDeviceToken
     let instanceId = GMPInstanceID.sharedInstance()
-    let application = UIApplication.sharedApplication()
-    let appDelegate = application.delegate! as AppDelegate
-    var options = [kGMPInstanceIDRegisterAPNSOption:apnsDeviceToken!,kGMPInstanceIDAPNSServerTypeSandboxOption: true]
-    instanceId.tokenWithAudience(senderId, scope: kGMPInstanceIDScopeGCM, options: options, handler: {
-        (registrationId: String!, error: NSError!) -> Void in
-      if (registrationId != nil) {
-        self.registrationProgressing.stopAnimating();
-        self.registeringLabel.text = "Registered!"
-        println("Registration ID: \(registrationId)")
-        let message = "Check the xcode debug console for the registration ID that you can use with" +
-            " the demo server to send notifications to your device"
-        let success = UIAlertView(title: "Registration Successful!", message: message,
-          delegate: self, cancelButtonTitle: "Dismiss")
-        success.show()
-      } else {
-        println("Registration to GCM failed with error: \(error)")
-        let alert = UIAlertView(title: "Error registering with GCM", message: error.localizedDescription, delegate: self, cancelButtonTitle: "Dismiss")
-        alert.show()
-      }
+    var options = [kGMPInstanceIDRegisterAPNSOption:apnsDeviceToken!,
+        kGMPInstanceIDAPNSServerTypeSandboxOption:true]
+    instanceId.tokenWithAudience(senderId, scope: kGMPInstanceIDScopeGCM, options: options,
+        handler: {
+      (registrationId: String!, error: NSError!) -> Void in
+        if (registrationId != nil) {
+          self.registrationProgressing.stopAnimating()
+          self.registeringLabel.text = "Registered!"
+          println("Registration ID: \(registrationId)")
+          let message = "Check the xcode debug console for the registration ID that you can use with" +
+              " the demo server to send notifications to your device"
+          let success = UIAlertController(title: "Registration Successful!",
+            message: message, preferredStyle: .Alert)
+          let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+          success.addAction(dismissAction)
+          self.presentViewController(success, animated: true, completion: nil)
+        } else {
+          println("Registration to GCM failed with error: \(error)")
+          let alert = UIAlertController(title: "Error registering with GCM",
+            message: error.localizedDescription, preferredStyle: .Alert)
+          let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+          alert.addAction(dismissAction)
+          self.presentViewController(alert, animated: true, completion: nil)
+        }
     })
   }
 }
