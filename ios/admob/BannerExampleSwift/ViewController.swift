@@ -17,6 +17,7 @@
 //  BannerExample
 //
 
+// [START gmp_banner_example]
 import UIKit
 
 // Makes ViewController available to Objc classes.
@@ -41,6 +42,6 @@ class ViewController: UIViewController {
         ]
         self.bannerView.loadRequest(request)
     }
-
 }
+// [END gmp_banner_example]
 

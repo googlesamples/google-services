@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Mobile Ads Banner Example" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChV-Lb-5si">
-                                <rect key="frame" x="21" y="70" width="278" height="21"/>
+                                <rect key="frame" x="21.5" y="70" width="277.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERm-s1-MsA" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="498" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="70b-Fl-Qa6"/>
@@ -36,7 +36,7 @@
                             <constraint firstAttribute="centerX" secondItem="ERm-s1-MsA" secondAttribute="centerX" id="JGS-LE-fD3"/>
                             <constraint firstAttribute="centerX" secondItem="ChV-Lb-5si" secondAttribute="centerX" id="NIs-CX-Ldp"/>
                             <constraint firstItem="ChV-Lb-5si" firstAttribute="top" secondItem="cqw-rn-aGh" secondAttribute="bottom" constant="50" id="cAO-jl-Cb8"/>
-                            <constraint firstAttribute="bottom" secondItem="ERm-s1-MsA" secondAttribute="bottom" id="puV-V7-veJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ERm-s1-MsA" secondAttribute="bottom" constant="20" symbolic="YES" id="puV-V7-veJ"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
