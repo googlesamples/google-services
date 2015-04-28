@@ -14,61 +14,58 @@
 //  limitations under the License.
 //
 
-#import <GMPInstanceID.h>
-
+#import "AppDelegate.h"
 #import "ViewController.h"
-
-// TODO(silvano): move to info.plist
-static NSString *const senderID = @"177545629583";
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  NSString *notificationKey = appDelegate.notificationKey;
+  [[NSNotificationCenter defaultCenter] addObserver: self
+                                           selector: @selector(updateRegistrationStatus:)
+                                               name: notificationKey
+                                             object: nil];
   _registrationProgressing.hidesWhenStopped = YES;
   [_registrationProgressing startAnimating];
 }
 
-- (void) didReceiveAPNSToken:(NSData *)apnsDeviceToken {
-  NSDictionary *options = @{kGMPInstanceIDRegisterAPNSOption: apnsDeviceToken,
-                            kGMPInstanceIDAPNSServerTypeSandboxOption: @YES};
-  GMPInstanceIDTokenHandler registrationHandler = ^void(NSString *registrationId, NSError *error) {
-      if (registrationId != nil) {
-        [_registrationProgressing stopAnimating];
-        _registeringLabel.text = @"Registered!";
-        NSLog(@"Registration ID: %@", registrationId);
-        NSString *message = @"Check the xcode debug console for the registration ID that you can"
-            " use with the demo server to send notifications to your device";
-        UIAlertController *success =
-            [UIAlertController alertControllerWithTitle: @"Registration Successful"
-                                                message: message
-                                         preferredStyle: UIAlertControllerStyleAlert];
+- (void) updateRegistrationStatus:(NSNotification *) notification {
+  [_registrationProgressing stopAnimating];
+  if ([notification.userInfo objectForKey:@"error"]) {
+    _registeringLabel.text = @"Error registering!";
+    UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle: @"Error registering with GCM"
+                                            message: notification.userInfo[@"error"]
+                                     preferredStyle: UIAlertControllerStyleAlert];
 
-        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
-                                                                style: UIAlertActionStyleDestructive
-                                                              handler: nil];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
+                                                            style: UIAlertActionStyleDestructive
+                                                          handler: nil];
 
-        [success addAction: dismissAction];
-        [self presentViewController: success animated: YES completion: nil];
-      } else {
-        NSLog(@"Registration to GCM failed with error: %@", error);
-        UIAlertController *alert =
-            [UIAlertController alertControllerWithTitle: @"Error registering with GCM"
-                                                message: error.localizedDescription
-                                         preferredStyle: UIAlertControllerStyleAlert];
+    [alert addAction: dismissAction];
+    [self presentViewController: alert animated: YES completion: nil];
+  } else {
+    _registeringLabel.text = @"Registered!";
+    NSString *message = @"Check the xcode debug console for the registration token that you can"
+        " use with the demo server to send notifications to your device";
+    UIAlertController *success =
+        [UIAlertController alertControllerWithTitle: @"Registration Successful"
+                                            message: message
+                                     preferredStyle: UIAlertControllerStyleAlert];
 
-        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
-                                                                style: UIAlertActionStyleDestructive
-                                                              handler: nil];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
+                                                            style: UIAlertActionStyleDestructive
+                                                          handler: nil];
 
-        [alert addAction: dismissAction];
-        [self presentViewController: alert animated: YES completion: nil];
-      }
+    [success addAction: dismissAction];
+    [self presentViewController: success animated: YES completion: nil];
   };
-  [[GMPInstanceID sharedInstance] tokenWithAudience:senderID
-                                              scope:kGMPInstanceIDScopeGCM
-                                            options:options
-                                            handler:registrationHandler];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

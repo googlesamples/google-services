@@ -17,7 +17,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property(weak, nonatomic) IBOutlet UILabel *registeringLabel;
-@property(weak, nonatomic) IBOutlet UIActivityIndicatorView *registrationProgressing;
-- (void) didReceiveAPNSToken:(NSData *)apnsDeviceToken;
+@property(nonatomic, weak) IBOutlet UILabel *registeringLabel;
+@property(nonatomic, weak) IBOutlet UIActivityIndicatorView *registrationProgressing;
 @end

@@ -16,41 +16,59 @@
 
 #import "AppDelegate.h"
 
+// TODO(silvano): move to info.plist
+static NSString *const senderID = @"177545629583";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  _notificationKey = @"onRegistrationCompleted";
   UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
   UIUserNotificationSettings *settings =
       [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
   [[UIApplication sharedApplication] registerForRemoteNotifications];
-  [[GMPInstanceID sharedInstance] startWithConfig:[GMPInstanceIDConfig defaultConfig]];
   return YES;
 }
 
 - (void)application:(UIApplication *)application
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  //TODO(silvano): check with Ian to refactor to notification or view controller observing
-  ViewController* viewController = (ViewController*) self.window.rootViewController;
-  [viewController didReceiveAPNSToken:deviceToken];
+  // [START get_gcm_reg_token]
+  [[GMPInstanceID sharedInstance] startWithConfig:[GMPInstanceIDConfig defaultConfig]];
+  NSDictionary *options = @{kGMPInstanceIDRegisterAPNSOption: deviceToken,
+                            kGMPInstanceIDAPNSServerTypeSandboxOption: @YES};
+  GMPInstanceIDTokenHandler registrationHandler = ^void(NSString *registrationToken,
+                                                        NSError *error) {
+    if (registrationToken != nil) {
+      NSLog(@"Registration Token: %@", registrationToken);
+      NSDictionary *userInfo = @{@"registrationToken" : registrationToken};
+      [[NSNotificationCenter defaultCenter] postNotificationName: _notificationKey
+                                                          object: nil
+                                                        userInfo: userInfo];
+    } else {
+      NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
+      NSDictionary *userInfo = @{@"error" : error.localizedDescription};
+      [[NSNotificationCenter defaultCenter] postNotificationName: _notificationKey
+                                                          object: nil
+                                                        userInfo: userInfo];
+    }
+  };
+  [[GMPInstanceID sharedInstance] tokenWithAudience:senderID
+                                              scope:kGMPInstanceIDScopeGCM
+                                            options:options
+                                            handler:registrationHandler];
+  // [END get_gcm_reg_token]
 }
 
 - (void)application:(UIApplication *)application
     didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
-  UIAlertController *controller =
-      [UIAlertController alertControllerWithTitle: @"Error registering for remote notification"
-                                          message: error.localizedDescription
-                                   preferredStyle: UIAlertControllerStyleAlert];
-
-  UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
-                                                          style: UIAlertActionStyleDestructive
-                                                        handler: nil];
-
-  [controller addAction: dismissAction];
-  [self.window.rootViewController presentViewController: controller animated: YES completion: nil];
+  NSDictionary *userInfo = @{@"error" : error.localizedDescription};
+  [[NSNotificationCenter defaultCenter] postNotificationName: _notificationKey
+                                                      object: nil
+                                                    userInfo: userInfo];
 }
 
 - (void)application:(UIApplication *)application
