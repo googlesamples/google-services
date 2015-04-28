@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+// TODO(arthurthompson): Remove libs repository.
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "gcm.play.android.samples.com.gcmquickstart"
+        minSdkVersion 9
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // TODO(arthurthompson): use release version of gms.
+    // compile 'com.google.android.gms:play-services:7.5.+'
+    compile (name: 'google-play-services-7526000', ext: 'aar')
+    compile 'com.android.support:support-v4:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.0.0'
+}
