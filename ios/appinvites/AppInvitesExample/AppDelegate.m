@@ -15,16 +15,22 @@
 //  limitations under the License.
 
 #import "AppDelegate.h"
-#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleMobilePlatform/GHIContext+AppInvite.h>
+#import <GIDSignIn.h>
 #import <GPPInvite.h>
 
 
 @implementation AppDelegate
 
+//#error Replace the values here and remove this line to run the sample.
 // [START didfinishlaunching]
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [GIDSignIn sharedInstance].clientID = @"YOUR_CLIENT_ID.apps.googleusercontent.com";
-  [GIDSignIn sharedInstance].scopes = @[ @"https://www.googleapis.com/auth/plus.login" ];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
+      (NSDictionary *)launchOptions {
+  [[GHIContext sharedInstance] configure];
+
+  // TODO: Remove after plus.login is no longer required.
+  [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/plus.login"];
+
   [GPPInvite applicationDidFinishLaunching];
   return YES;
 }

@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *signOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
-@property (weak, nonatomic) IBOutlet GIDSignInButton *SignInView;
 @property (weak, nonatomic) IBOutlet UILabel *statusText;
 // [END viewcontroler_vars]
 @end
@@ -86,10 +85,11 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
     id<GPPInviteBuilder> inviteDialog = [GPPInvite inviteDialog];
-    [inviteDialog setMessage:@"message"];
-    [inviteDialog setTitle:@"title"];
-    [inviteDialog setDeepLink:@"app_url"];
-    [inviteDialog setEmailMessage:@"email message"];
+    [inviteDialog setInviteDelegate: self];
+    [inviteDialog setMessage: @"message"];
+    [inviteDialog setTitle: @"title"];
+    [inviteDialog setDeepLink: @"message=yes"];
+    [inviteDialog setEmailMessage: @"email message"];
     [inviteDialog open];
 }
 // [END invite_tapped]
@@ -98,7 +98,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 - (void)inviteFinishedWithInvitations:(NSArray *)invitationIds
                                 error:(NSError *)error {
   NSString *message = error ? error.localizedDescription :
-  [NSString stringWithFormat:@"%lu invites sent", (unsigned long)invitationIds.count];
+    [NSString stringWithFormat:@"%lu invites sent", (unsigned long)invitationIds.count];
   [[[UIAlertView alloc] initWithTitle:@"Done"
                               message:message
                              delegate:nil
