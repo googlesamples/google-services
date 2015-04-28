@@ -16,20 +16,20 @@
 
 #import "AppDelegate.h"
 
-#import "GAI.h"
+#import <GoogleMobilePlatform/Analytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // [START tracker_objc]
+  // Configure tracker from GoogleService-Info.plist.
+  [[GHIContext sharedInstance] configure];
+
+  // Optional: configure GAI options.
   GAI *gai = [GAI sharedInstance];
-  [gai trackerWithTrackingId:@"YOUR_TRACKING_ID"];
-
-  // Optional: automatically report uncaught exceptions.
-  gai.trackUncaughtExceptions = YES;
-
-  // Optional: set Logger to VERBOSE for debug information.
-  // Remove before app release.
-  gai.logger.logLevel = kGAILogLevelVerbose;
+  gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+  gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+  // [END tracker_objc]
 
   // Set a white background so that patterns are showcased.
   _window.backgroundColor = [UIColor whiteColor];

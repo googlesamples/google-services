@@ -23,15 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
+    // [START tracker_swift]
+    // Configure tracker from GoogleService-Info.plist.
+    GHIContext.sharedInstance().configure()
+
+    // Optional: configure GAI options.
     var gai = GAI.sharedInstance()
-    gai.trackerWithTrackingId("YOUR_TRACKING_ID")
-
-    // Optional: automatically report uncaught exceptions.
-    gai.trackUncaughtExceptions = true
-
-    // Optional: set Logger to VERBOSE for debug information.
-    // Remove before app release.
-    gai.logger.logLevel = GAILogLevel.Verbose
+    gai.trackUncaughtExceptions = true  // report uncaught exceptions
+    gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+    // [END tracker_swift]
 
     // Set a white background so that patterns are showcased.
     window?.backgroundColor = UIColor.whiteColor()
