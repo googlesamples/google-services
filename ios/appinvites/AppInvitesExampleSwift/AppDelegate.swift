@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START didfinishlaunching]
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+      GHIContext.sharedInstance().configure()
       // Initialize sign-in
-      GIDSignIn.sharedInstance().clientID = "YOUR_CLIENT_ID.apps.googleusercontent.com"
       GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login"]
       GPPInvite.applicationDidFinishLaunching()
       return true
