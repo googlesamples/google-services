@@ -14,13 +14,61 @@
 //  limitations under the License.
 //
 
+#import <GMPInstanceID.h>
+
 #import "ViewController.h"
+
+// TODO(silvano): move to info.plist
+static NSString *const senderID = @"177545629583";
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // TODO: Add your initialization code here.
+  _registrationProgressing.hidesWhenStopped = YES;
+  [_registrationProgressing startAnimating];
+}
+
+- (void) didReceiveAPNSToken:(NSData *)apnsDeviceToken {
+  NSDictionary *options = @{kGMPInstanceIDRegisterAPNSOption: apnsDeviceToken,
+                            kGMPInstanceIDAPNSServerTypeSandboxOption: @YES};
+  GMPInstanceIDTokenHandler registrationHandler = ^void(NSString *registrationId, NSError *error) {
+      if (registrationId != nil) {
+        [_registrationProgressing stopAnimating];
+        _registeringLabel.text = @"Registered!";
+        NSLog(@"Registration ID: %@", registrationId);
+        NSString *message = @"Check the xcode debug console for the registration ID that you can"
+            " use with the demo server to send notifications to your device";
+        UIAlertController *success =
+            [UIAlertController alertControllerWithTitle: @"Registration Successful"
+                                                message: message
+                                         preferredStyle: UIAlertControllerStyleAlert];
+
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
+                                                                style: UIAlertActionStyleDestructive
+                                                              handler: nil];
+
+        [success addAction: dismissAction];
+        [self presentViewController: success animated: YES completion: nil];
+      } else {
+        NSLog(@"Registration to GCM failed with error: %@", error);
+        UIAlertController *alert =
+            [UIAlertController alertControllerWithTitle: @"Error registering with GCM"
+                                                message: error.localizedDescription
+                                         preferredStyle: UIAlertControllerStyleAlert];
+
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
+                                                                style: UIAlertActionStyleDestructive
+                                                              handler: nil];
+
+        [alert addAction: dismissAction];
+        [self presentViewController: alert animated: YES completion: nil];
+      }
+  };
+  [[GMPInstanceID sharedInstance] tokenWithAudience:senderID
+                                              scope:kGMPInstanceIDScopeGCM
+                                            options:options
+                                            handler:registrationHandler];
 }
 
 @end

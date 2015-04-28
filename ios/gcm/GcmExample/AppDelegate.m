@@ -18,8 +18,44 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+      didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  UIUserNotificationType allNotificationTypes =
+      (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+  UIUserNotificationSettings *settings =
+      [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+  [[UIApplication sharedApplication] registerForRemoteNotifications];
+  [[GMPInstanceID sharedInstance] startWithConfig:[GMPInstanceIDConfig defaultConfig]];
   return YES;
+}
+
+- (void)application:(UIApplication *)application
+    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  //TODO(silvano): check with Ian to refactor to notification or view controller observing
+  ViewController* viewController = (ViewController*) self.window.rootViewController;
+  [viewController didReceiveAPNSToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application
+    didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
+  UIAlertController *controller =
+      [UIAlertController alertControllerWithTitle: @"Error registering for remote notification"
+                                          message: error.localizedDescription
+                                   preferredStyle: UIAlertControllerStyleAlert];
+
+  UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
+                                                          style: UIAlertActionStyleDestructive
+                                                        handler: nil];
+
+  [controller addAction: dismissAction];
+  [self.window.rootViewController presentViewController: controller animated: YES completion: nil];
+}
+
+- (void)application:(UIApplication *)application
+    didReceiveRemoteNotification:(NSDictionary *)userInfo {
+  NSLog(@"Notification received: %@", userInfo);
 }
 
 @end
