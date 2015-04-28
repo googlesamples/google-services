@@ -3,19 +3,29 @@ PODS:
     - GSDKOverload (~> 1.0)
     - GTM (~> 1.0)
     - GTMSessionFetcher (~> 1.0)
+  - GoogleCloudMessaging (1.0.0):
+    - GSDKOverload (~> 1.0)
+    - GTM (~> 1.0)
+    - GTMSessionFetcher (~> 1.0)
+    - ProtocolBuffers2 (~> 1.0)
   - GSDKOverload (1.0.0)
   - GTM (1.0.0):
     - GSDKOverload (~> 1.0)
   - GTMSessionFetcher (1.0.0):
     - GSDKOverload (~> 1.0)
+  - ProtocolBuffers2 (1.0.0):
+    - GSDKOverload (~> 1.0)
 
 DEPENDENCIES:
   - GMPInstanceID
+  - GoogleCloudMessaging
 
 SPEC CHECKSUMS:
   GMPInstanceID: 0a76a8111b407035119bc8c5562f8798e8c0e8c7
+  GoogleCloudMessaging: c6b5bb7ea7eb30fa75cc48e9b6502f0913c4616c
   GSDKOverload: f880a36018771f8a8269e29aa0ff62b0e0f3b73b
   GTM: f2150b7d0d0c1f839790c18e106280bb24a27ea9
   GTMSessionFetcher: 91400111e9718a755c940e62d9e2354d08e8ef58
+  ProtocolBuffers2: 0ba750f36f4fa7e203d15422afda36c17ac552ef
 
 COCOAPODS: 0.36.3

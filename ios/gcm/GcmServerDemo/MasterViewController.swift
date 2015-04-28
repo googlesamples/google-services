@@ -60,7 +60,7 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
           NSAlert(error: error).runModal()
         } else {
           println("Success! Response from the GCM server:")
-          println("Response")
+          println(response)
         }
       })
     } else {
