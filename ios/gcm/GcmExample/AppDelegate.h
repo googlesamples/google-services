@@ -16,11 +16,12 @@
 
 #import <GMPInstanceID.h>
 #import <GMPInstanceIDConfig.h>
+#import <GoogleCloudMessaging.h>
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property(nonatomic) UIWindow *window;
-@property(nonatomic, readwrite) NSString *notificationKey;
+@property(nonatomic, strong) UIWindow *window;
+@property(nonatomic, readwrite, strong) NSString *notificationKey;
 
 @end
