@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>IDENTITY_PROVIDERS</key>
-	<array>
-		<string>google</string>
-	</array>
-  <key>API_KEY</key>
-  <string>12345678910</string>
 	<key>CLIENT_ID</key>
 	<string>YOUR_CLIENT_ID.apps.googleusercontent.com</string>
 </dict>
