@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ga_trackingId">YOUR_TRACKER_ID</string>
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <!-- Optional: automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">false</bool>
+</resources>
