@@ -2,6 +2,7 @@
     <string name="app_name">Signin Quickstart</string>
 
     <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="signed_in">Signed in</string>
     <string name="signing_in">Signing in…</string>
     <string name="signed_out">Signed out</string>
     <string name="play_services_error_fmt">Google Play Services Error: %i</string>

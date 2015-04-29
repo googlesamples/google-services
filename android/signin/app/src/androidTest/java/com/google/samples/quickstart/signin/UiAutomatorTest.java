@@ -1,9 +1,7 @@
-package com.google.example.signinquickstart;
+package com.google.samples.quickstart.signin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
@@ -131,6 +129,9 @@ public class UiAutomatorTest {
      * Checks the UI for text containing "Signed in" to determine if the user is signed in.
      */
     private boolean isSignedIn() {
+        // Wait until at least one of the buttons is enabled
+        mDevice.wait(Until.hasObject(By.clazz(CLASS_BUTTON).enabled(true)), UI_TIMEOUT);
+
         String signedInText = mContext.getString(R.string.signed_in_fmt, "");
         BySelector signedInTextSelector = By.textContains(signedInText);
         return mDevice.wait(Until.hasObject(signedInTextSelector), UI_TIMEOUT);

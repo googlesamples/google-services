@@ -1,0 +1,42 @@
+{
+  "project_info":{
+    "project_id":"signin-test--gmp ",
+    "project_number":"116279033454",
+    "name":"SigninTest"
+  },
+  "client":[
+    {
+      "client_info":{
+        "project_id":"signin-test--gmp ",
+        "client_id":"android:com.google.example.signinquickstart",
+        "client_type":1,
+        "android_client_info":{
+          "package_name":"com.google.example.signinquickstart"
+        }
+      },
+      "oauth_client":[
+        {
+          "client_id":"8276855578-bqu7pibcevjqtfnu7t58qa0g7b4tqmui.apps.googleusercontent.com",
+          "client_type":1,
+          "android_info":{
+            "package_name":"com.google.example.signinquickstart",
+            "certificate_hash":"NEMyMDY0NERFMzZCOEY4OUQyNTY1MEM3RDFGRjlGQkFFNjUwRkRGNwo="
+          }
+        }
+      ],
+      "services":{
+        "google_signin_service":{
+          "status":2
+        },
+        "analytics_service":{
+          "status":2,
+          "analytics_property":{
+            "property_id":"123",
+            "name":"SignInTest",
+            "tracking_id":"UT-12345678-1"
+          }
+        }
+      }
+    }
+  ]
+}
