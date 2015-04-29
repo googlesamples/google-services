@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       // Initialize sign-in
-      GIDSignIn.sharedInstance().clientID = "YOUR_CLIENT_ID.apps.googleusercontent.com"
-      GIDSignIn.sharedInstance().scopes = ["profile"]
+      GHIContext.sharedInstance().configure()
       return true
   }
   // [END didfinishlaunching]
