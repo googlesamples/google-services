@@ -6,3 +6,5 @@ build/
 # Android Studio
 .idea
 *.iml
+
+google-services.json
