@@ -15,9 +15,7 @@
 //
 
 #import "AppDelegate.h"
-
-// TODO(silvano): move to info.plist
-static NSString *const senderID = @"177545629583";
+#import <GoogleMobilePlatform/CloudMessaging.h>
 
 @implementation AppDelegate
 
@@ -25,6 +23,8 @@ static NSString *const senderID = @"177545629583";
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   _notificationKey = @"onRegistrationCompleted";
+  [[GHIContext sharedInstance] configure];
+  _gcmSenderID = [[[GHIContext sharedInstance] configuration] gcmSenderID];
   UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
   UIUserNotificationSettings *settings =
@@ -80,7 +80,7 @@ static NSString *const senderID = @"177545629583";
                                                         userInfo: userInfo];
     }
   };
-  [[GMPInstanceID sharedInstance] tokenWithAudience:senderID
+  [[GMPInstanceID sharedInstance] tokenWithAudience:_gcmSenderID
                                               scope:kGMPInstanceIDScopeGCM
                                             options:options
                                             handler:registrationHandler];
