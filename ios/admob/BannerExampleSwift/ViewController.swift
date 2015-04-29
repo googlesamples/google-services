@@ -28,19 +28,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Replace this ad unit ID with your own ad unit ID.
-        self.bannerView.adUnitID = GHIContext.sharedInstance().defaultAdUnitID
+        self.bannerView = GHIContext.sharedInstance().bannerView
+        self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        self.bannerView.frame = CGRectMake(0,
+                                           self.view.frame.size.height - self.bannerView.frame.size.height,
+                                           self.bannerView.frame.size.width,
+                                           self.bannerView.frame.size.height)
         self.bannerView.rootViewController = self
-
-        let request = GADRequest();
-        // Requests test ads on devices you specify. Your test device ID is printed to the console when
-        // an ad request is made. GADBannerView automatically returns test ads when running on a
-        // simulator.
-        // Replace this device ID with your own test device ID.
-        request.testDevices = [
-        "2077ef9a63d2b398840261c8221a0c9a"
-        ]
-        self.bannerView.loadRequest(request)
+        self.view.addSubview(self.bannerView)
+        self.bannerView.loadRequest(GADRequest())
     }
 }
 // [END gmp_banner_example]
