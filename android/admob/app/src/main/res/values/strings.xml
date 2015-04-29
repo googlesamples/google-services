@@ -2,9 +2,12 @@
     <string name="app_name">AdMob Quickstart</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="second_activity">This is the second activity.</string>
     <!-- [SNIPPET define_test_ad_unit_id]
-        Defines an ad unit ID that pulls in test ads.
+        Defines ad unit IDs that pull in test ads.
         [START define_test_ad_unit_id] -->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad_unit_id">"ca-app-pub-3940256099942544/1033173712"</string>
+    <string name="title_second_activity">SecondActivity</string>
     <!-- [END define_test_ad_unit_id] -->
 </resources>
