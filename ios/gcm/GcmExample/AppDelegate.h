@@ -14,14 +14,12 @@
 //  limitations under the License.
 //
 
-#import <GMPInstanceID.h>
-#import <GMPInstanceIDConfig.h>
-#import <GoogleCloudMessaging.h>
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property(nonatomic, strong) UIWindow *window;
-@property(nonatomic, readwrite, strong) NSString *notificationKey;
+@property(nonatomic, readonly, strong) NSString *notificationKey;
+@property(nonatomic, readonly, strong) NSString *gcmSenderID;
 
 @end
