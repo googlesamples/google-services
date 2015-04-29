@@ -1,4 +1,4 @@
-package com.google.samples.admob.quickstart.admobquickstart;
+package com.google.samples.quickstart.bannerexample;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
