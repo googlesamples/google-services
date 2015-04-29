@@ -16,14 +16,13 @@
   -->
 
 <resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
-      <item name="android:colorPrimary">@color/primary</item>
-      <item name="android:statusBarColor">@color/primary_dark</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
     </style>
 
-  <style name="SignInTheme" parent="android:Theme.Material.Light.NoActionBar">
-    <item name="android:colorPrimary">@color/sign_in_background</item>
-    <item name="android:statusBarColor">@color/sign_in_status</item>
-    <item name="android:windowBackground">@color/sign_in_background</item>
-  </style>
+    <style name="SignInTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/sign_in_background</item>
+        <item name="android:statusBarColor">@color/sign_in_status</item>
+    </style>
 </resources>
