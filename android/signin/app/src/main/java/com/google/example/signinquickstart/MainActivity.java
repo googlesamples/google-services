@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
@@ -79,6 +80,11 @@ public class MainActivity extends ActionBarActivity implements
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
 
+        // Start with all buttons disabled
+        findViewById(R.id.sign_in_button).setEnabled(false);
+        findViewById(R.id.sign_out_button).setEnabled(false);
+        findViewById(R.id.disconnect_button).setEnabled(false);
+
         // Set up view instances
         mStatus = (TextView) findViewById(R.id.status);
 
@@ -88,7 +94,7 @@ public class MainActivity extends ActionBarActivity implements
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
-                .addScope(new Scope("profile"))
+                .addScope(new Scope(Scopes.PROFILE))
                 .build();
         // [END create_google_api_client]
     }
