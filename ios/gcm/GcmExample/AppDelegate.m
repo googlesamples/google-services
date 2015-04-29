@@ -31,9 +31,30 @@ static NSString *const senderID = @"177545629583";
       [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
   [[UIApplication sharedApplication] registerForRemoteNotifications];
+  // [END register_for_remote_notifications]
+  // [START start_gcm_service]
+  [[GCMService sharedInstance] startWithConfig: [GCMConfig defaultConfig]];
+  // [END start_gcm_service]
   return YES;
 }
-// [END register_for_remote_notifications]
+
+// [START connect_gcm_service]
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+    if (error) {
+      NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+    } else {
+      NSLog(@"Connected to GCM");
+    }
+  }];
+}
+// [END connect_gcm_service]
+
+// [START disconnect_gcm_service]
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+  [[GCMService sharedInstance] disconnect];
+}
+// [END disconnect_gcm_service]
 
 // [START receive_apns_token]
 - (void)application:(UIApplication *)application
