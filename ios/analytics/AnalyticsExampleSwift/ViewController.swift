@@ -27,11 +27,13 @@ class ViewController: UIViewController {
 
     var name = "Pattern~\(self.title!)"
 
+    // [START screen_view_event_swift]
     var tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: name)
 
     var builder = GAIDictionaryBuilder.createScreenView()
     tracker.send(builder.build() as [NSObject : AnyObject])
+    // [END screen_view_event_swift]
   }
 
   override func viewDidAppear(animated: Bool) {

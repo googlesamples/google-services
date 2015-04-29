@@ -16,9 +16,7 @@
 
 #import "ViewController.h"
 
-#import "GAI.h"
-#import "GAIFields.h"
-#import "GAIDictionaryBuilder.h"
+#import <GoogleMobilePlatform/Analytics.h>
 
 @implementation ViewController {
   UIColor *_color;
@@ -29,9 +27,11 @@
 
   NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
 
+  // [START screen_view_event_objc]
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker set:kGAIScreenName value:name];
   [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+  // [END screen_view_event_objc]
 }
 
 - (void)viewDidAppear:(BOOL)animated {
