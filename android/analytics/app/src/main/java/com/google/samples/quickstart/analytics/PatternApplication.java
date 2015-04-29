@@ -37,10 +37,6 @@ public class PatternApplication extends Application {
     if (mTracker == null) {
       GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
       analytics.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
-
-      // TODO(thorogood): Explain this with <API 14.
-      analytics.enableAutoActivityReports(this);
-
       mTracker = analytics.newTracker(R.xml.tracker);
     }
     return mTracker;
