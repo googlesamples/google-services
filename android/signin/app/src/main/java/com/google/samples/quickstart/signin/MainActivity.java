@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.example.signinquickstart;
+package com.google.samples.quickstart.signin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -163,6 +164,7 @@ public class MainActivity extends ActionBarActivity implements
         Log.d(TAG, "onConnected:" + bundle);
 
         // Show the signed-in UI
+        showSnackBar(getString(R.string.signed_in));
         updateUI(true);
     }
 
@@ -219,13 +221,17 @@ public class MainActivity extends ActionBarActivity implements
                         }
                     }).show();
         } else {
-            // No default Google Play Services error, display a Toast
-            Toast.makeText(this, getString(R.string.play_services_error_fmt, errorCode),
-                    Toast.LENGTH_SHORT).show();
+            // No default Google Play Services error, display a message to the user,
+            showSnackBar(getString(R.string.play_services_error_fmt, errorCode));
 
             mShouldResolve = false;
             updateUI(false);
         }
+    }
+
+    private void showSnackBar(String msg) {
+        ViewGroup container = (ViewGroup) findViewById(R.id.snackbar_layout);
+        Snackbar.make(container, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -258,6 +264,7 @@ public class MainActivity extends ActionBarActivity implements
                 if (mGoogleApiClient.isConnected()) {
                     Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
                     Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
+                    mGoogleApiClient.disconnect();
                 }
                 // [END disconnect_clicked]
                 updateUI(false);
