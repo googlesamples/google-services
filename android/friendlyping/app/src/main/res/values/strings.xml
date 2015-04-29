@@ -17,8 +17,7 @@
 <resources>
     <string name="app_name">FriendlyPing!</string>
     <string name="management_summary">The fastest way to send and receive friendly pings.</string>
-    <string name="title_activity_sign_in">SignInActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_friendly_ping">FriendlyPingActivity</string>
+    <string name="sign_out">Sign out</string>
     <string name="sign_in_prompt">Sign in to get started</string>
+    <string name="play_services_error_fmt">Google Play Services Error: %i</string>
 </resources>

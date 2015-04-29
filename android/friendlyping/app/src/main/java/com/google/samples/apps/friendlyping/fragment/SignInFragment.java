@@ -16,20 +16,25 @@
 
 package com.google.samples.apps.friendlyping.fragment;
 
-import android.app.Fragment;
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.samples.apps.friendlyping.R;
-import com.google.samples.apps.friendlyping.activity.FriendlyPingActivity;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class SignInFragment extends Fragment {
+
+    private static final String TAG = "SignInFragment";
+    private GoogleApiClient mGoogleApiClient;
 
     public SignInFragment() {
         /* no-op */
@@ -38,7 +43,16 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        final FragmentActivity activity = getActivity();
+        if (null != activity && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().setStatusBarColor(
+                    getResources().getColor(R.color.sign_in_status));
+        }
         return inflater.inflate(R.layout.fragment_sign_in, container, false);
+    }
+
+    public void setGoogleApiClient(GoogleApiClient client) {
+        mGoogleApiClient = client;
     }
 
     @Override
@@ -46,8 +60,14 @@ public class SignInFragment extends Fragment {
         view.findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), FriendlyPingActivity.class));
+                if (mGoogleApiClient == null) {
+                    Log.w(TAG, "GoogleApiClient is not set. Make sure to set it before trying "
+                            + "to connect to it.");
+                } else {
+                    mGoogleApiClient.connect();
+                }
             }
         });
+        super.onViewCreated(view, savedInstanceState);
     }
 }

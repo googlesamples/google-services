@@ -14,21 +14,25 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sign_in_background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.google.samples.apps.friendlyping.fragment.SignInFragment">
+    android:paddingLeft="@dimen/keyline_16"
+    android:paddingRight="@dimen/keyline_16">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
         android:gravity="center"
-        android:text="@string/app_name"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_display_1" />
+        android:minHeight="@dimen/fab_size_normal"
+        android:scaleType="fitXY"
+        android:src="@drawable/logotype" />
 
     <TextView
         android:layout_width="match_parent"
@@ -36,8 +40,7 @@
         android:gravity="center"
         android:paddingBottom="@dimen/keyline_16"
         android:text="@string/management_summary"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_subhead" />
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/sign_in_button"
@@ -45,10 +48,8 @@
         android:layout_height="wrap_content"
         android:background="@color/primary"
         android:gravity="center"
-        android:layout_marginStart="@dimen/keyline_16"
-        android:layout_marginEnd="@dimen/keyline_16"
         android:text="@string/sign_in_prompt"
         android:textAllCaps="true"
-        android:textColor="@android:color/white" />
-
+        android:textColor="@android:color/white"
+        tools:ignore="UnusedAttribute" />
 </LinearLayout>
