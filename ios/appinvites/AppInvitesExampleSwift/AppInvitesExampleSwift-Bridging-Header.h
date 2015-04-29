@@ -18,4 +18,5 @@
 #import <GoogleSignIn/GIDSignIn.h>
 #import <GoogleSignIn/GIDSignInButton.h>
 #import <GPPInvite/GPPInvite.h>
+#import <GoogleMobilePlatform/GHIContext+AppInvite.h>
 // [END bridging_header]
