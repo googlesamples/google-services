@@ -84,7 +84,9 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
   }
 
   func getMessage() -> NSDictionary {
+// [START notification_format]
     return ["to": regIdTextField.stringValue, "notification": ["body": "Hello from GCM"]]
+// [END notification_format]
   }
 
 }
