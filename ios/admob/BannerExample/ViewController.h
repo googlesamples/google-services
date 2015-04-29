@@ -17,12 +17,8 @@
 //  BannerExample
 //
 
-#import <UIKit/UIKit.h>
-
-@class GADBannerView;
+@import UIKit;
 
 @interface ViewController : UIViewController
-
-@property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
 
 @end
