@@ -18,3 +18,4 @@
 
 #import <GMPInstanceID.h>
 #import <GMPInstanceIDConfig.h>
+#import <GoogleCloudMessaging.h>
