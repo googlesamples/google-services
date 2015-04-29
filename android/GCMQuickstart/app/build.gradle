@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.android.quickstart'
 
 // TODO(arthurthompson): Remove libs repository.
 repositories {
