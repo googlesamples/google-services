@@ -37,9 +37,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIUserNotificationSettings( forTypes: types, categories: nil )
     application.registerUserNotificationSettings( settings )
     application.registerForRemoteNotifications()
+  // [END register_for_remote_notifications]
+  // [START start_gcm_service]
+    GCMService.sharedInstance().startWithConfig(GCMConfig.defaultConfig())
+  // [END start_gcm_service]
     return true
   }
-  // [END register_for_remote_notifications]
+
+  // [START connect_gcm_service]
+  func applicationDidBecomeActive( application: UIApplication) {
+    GCMService.sharedInstance().connectWithHandler({
+        (NSError error) -> Void in
+      if error != nil {
+        println("Could not connect to GCM: \(error.localizedDescription)")
+      } else {
+        println("Connected to GCM")
+      }
+    })
+  }
+  // [END connect_gcm_service]
+
+  // [START disconnect_gcm_service]
+  func applicationDidEnterBackground(application: UIApplication) {
+    GCMService.sharedInstance().disconnect()
+  }
+  // [END disconnect_gcm_service]
 
   // [START receive_apns_token]
   func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken
