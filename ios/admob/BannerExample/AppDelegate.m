@@ -28,6 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // Use Google Mobile Platform to configure APIs
   [[GHIContext sharedInstance] configure];
   return YES;
 }
