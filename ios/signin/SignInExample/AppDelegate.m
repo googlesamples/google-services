@@ -15,15 +15,15 @@
 //  limitations under the License.
 
 #import "AppDelegate.h"
-#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleMobilePlatform/SignIn.h>
 
 @implementation AppDelegate
 
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [GIDSignIn sharedInstance].clientID = @"YOUR_CLIENT_ID.apps.googleusercontent.com";
-  [GIDSignIn sharedInstance].scopes = @[ @"profile" ];
+  [[GHIContext sharedInstance] configure];
+
   return YES;
 }
 // [END didfinishlaunching]

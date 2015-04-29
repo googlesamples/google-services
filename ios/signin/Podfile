@@ -1,6 +1,6 @@
 source 'sso://cpdc-internal/spec.git'
 
 platform :ios, '7.0'
-pod 'GoogleSignIn', '~> 1.0.0'
+pod 'GoogleMobilePlatform/SignIn', '~> 1.0.0'
 
 link_with 'SignInExample', 'SignInExampleSwift'

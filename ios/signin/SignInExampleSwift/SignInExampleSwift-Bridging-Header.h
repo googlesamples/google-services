@@ -14,7 +14,5 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 // [START bridging_header]
-#import <GoogleSignIn/GIDGoogleUser.h>
-#import <GoogleSignIn/GIDSignIn.h>
-#import <GoogleSignIn/GIDSignInButton.h>
+#import <GoogleMobilePlatform/SignIn.h>
 // [END bridging_header]
