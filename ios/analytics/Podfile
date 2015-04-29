@@ -1,4 +1,6 @@
+source 'sso://cpdc-internal/spec'
+
 # AnalyticsExample
 platform :ios, '7.0'
-pod 'GoogleAnalytics-iOS-SDK'
+pod 'GoogleMobilePlatform/Analytics'
 link_with 'AnalyticsExample', 'AnalyticsExampleSwift'
