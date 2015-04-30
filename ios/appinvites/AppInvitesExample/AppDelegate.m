@@ -15,9 +15,7 @@
 //  limitations under the License.
 
 #import "AppDelegate.h"
-#import <GoogleMobilePlatform/GHIContext+AppInvite.h>
-#import <GIDSignIn.h>
-#import <GPPInvite.h>
+#import <GoogleMobilePlatform/AppInvite.h>
 
 
 @implementation AppDelegate
