@@ -13,6 +13,8 @@
 		105919B81ADDA98100344065 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2719787E6B00411520 /* Images.xcassets */; };
 		105919B91ADDAA5900344065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B31ADDA93F00344065 /* AppDelegate.swift */; };
 		105919BA1ADDAA5D00344065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B41ADDA93F00344065 /* ViewController.swift */; };
+		10CE0FFE1AF29D5900660A19 /* InterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10CE0FFD1AF29D5900660A19 /* InterstitialViewController.m */; };
+		10CE10001AF2A52600660A19 /* InterstitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CE0FFF1AF2A52600660A19 /* InterstitialViewController.swift */; };
 		353B751DB86BBBAEBE2E04EE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A61AF2A76422378AC9C8F5CD /* libPods.a */; };
 		72C14A57B7BA63CA8D9A5059 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A61AF2A76422378AC9C8F5CD /* libPods.a */; };
 		CF86EE1D19787E6B00411520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86EE1C19787E6B00411520 /* main.m */; };
@@ -24,14 +26,17 @@
 
 /* Begin PBXFileReference section */
 		102DC22E1AEAAE0900F3E423 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1059198A1ADDA8F700344065 /* BannerExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BannerExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1059198D1ADDA8F700344065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		105919B01ADDA92E00344065 /* BannerExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BannerExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdMobExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		105919B31ADDA93F00344065 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		105919B41ADDA93F00344065 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		10CE0FFC1AF29D5900660A19 /* InterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialViewController.h; sourceTree = "<group>"; };
+		10CE0FFD1AF29D5900660A19 /* InterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialViewController.m; sourceTree = "<group>"; };
+		10CE0FFF1AF2A52600660A19 /* InterstitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialViewController.swift; sourceTree = "<group>"; };
 		187CD65AE197182A002BF8AE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A61AF2A76422378AC9C8F5CD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF86EE1719787E6B00411520 /* BannerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BannerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF86EE1719787E6B00411520 /* AdMobExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF86EE1B19787E6B00411520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF86EE1C19787E6B00411520 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF86EE1E19787E6B00411520 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,20 +76,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1059198B1ADDA8F700344065 /* BannerExampleSwift */ = {
+		1059198B1ADDA8F700344065 /* AdMobExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
+				10CE0FFF1AF2A52600660A19 /* InterstitialViewController.swift */,
 				105919B31ADDA93F00344065 /* AppDelegate.swift */,
 				105919B41ADDA93F00344065 /* ViewController.swift */,
 				1059198C1ADDA8F700344065 /* Supporting Files */,
 			);
-			path = BannerExampleSwift;
+			path = AdMobExampleSwift;
 			sourceTree = "<group>";
 		};
 		1059198C1ADDA8F700344065 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				105919B01ADDA92E00344065 /* BannerExampleSwift-Bridging-Header.h */,
+				105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */,
 				1059198D1ADDA8F700344065 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -102,8 +108,8 @@
 		CF86EE0E19787E6B00411520 = {
 			isa = PBXGroup;
 			children = (
-				CF86EE1919787E6B00411520 /* BannerExample */,
-				1059198B1ADDA8F700344065 /* BannerExampleSwift */,
+				CF86EE1919787E6B00411520 /* AdMobExample */,
+				1059198B1ADDA8F700344065 /* AdMobExampleSwift */,
 				CF86EE1819787E6B00411520 /* Products */,
 				3A7DE75875B93733F5A2A4A1 /* Pods */,
 				06B745B830556561717C3552 /* Frameworks */,
@@ -113,15 +119,17 @@
 		CF86EE1819787E6B00411520 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF86EE1719787E6B00411520 /* BannerExample.app */,
-				1059198A1ADDA8F700344065 /* BannerExampleSwift.app */,
+				CF86EE1719787E6B00411520 /* AdMobExample.app */,
+				1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CF86EE1919787E6B00411520 /* BannerExample */ = {
+		CF86EE1919787E6B00411520 /* AdMobExample */ = {
 			isa = PBXGroup;
 			children = (
+				10CE0FFC1AF29D5900660A19 /* InterstitialViewController.h */,
+				10CE0FFD1AF29D5900660A19 /* InterstitialViewController.m */,
 				CF86EE2419787E6B00411520 /* Main.storyboard */,
 				CF86EE1E19787E6B00411520 /* AppDelegate.h */,
 				CF86EE1F19787E6B00411520 /* AppDelegate.m */,
@@ -130,7 +138,7 @@
 				CF86EE2719787E6B00411520 /* Images.xcassets */,
 				CF86EE1A19787E6B00411520 /* Supporting Files */,
 			);
-			path = BannerExample;
+			path = AdMobExample;
 			sourceTree = "<group>";
 		};
 		CF86EE1A19787E6B00411520 /* Supporting Files */ = {
@@ -146,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		105919891ADDA8F700344065 /* BannerExampleSwift */ = {
+		105919891ADDA8F700344065 /* AdMobExampleSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 105919AA1ADDA8F800344065 /* Build configuration list for PBXNativeTarget "BannerExampleSwift" */;
+			buildConfigurationList = 105919AA1ADDA8F800344065 /* Build configuration list for PBXNativeTarget "AdMobExampleSwift" */;
 			buildPhases = (
 				29CF6D8A02B43252787553E3 /* Check Pods Manifest.lock */,
 				105919861ADDA8F700344065 /* Sources */,
@@ -160,14 +168,14 @@
 			);
 			dependencies = (
 			);
-			name = BannerExampleSwift;
+			name = AdMobExampleSwift;
 			productName = BannerExampleSwift;
-			productReference = 1059198A1ADDA8F700344065 /* BannerExampleSwift.app */;
+			productReference = 1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CF86EE1619787E6B00411520 /* BannerExample */ = {
+		CF86EE1619787E6B00411520 /* AdMobExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF86EE3719787E6B00411520 /* Build configuration list for PBXNativeTarget "BannerExample" */;
+			buildConfigurationList = CF86EE3719787E6B00411520 /* Build configuration list for PBXNativeTarget "AdMobExample" */;
 			buildPhases = (
 				2C4F18905ED7E74F6F4FB826 /* Check Pods Manifest.lock */,
 				CF86EE1319787E6B00411520 /* Sources */,
@@ -179,9 +187,9 @@
 			);
 			dependencies = (
 			);
-			name = BannerExample;
+			name = AdMobExample;
 			productName = BannerExample;
-			productReference = CF86EE1719787E6B00411520 /* BannerExample.app */;
+			productReference = CF86EE1719787E6B00411520 /* AdMobExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -201,7 +209,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CF86EE1219787E6B00411520 /* Build configuration list for PBXProject "BannerExample" */;
+			buildConfigurationList = CF86EE1219787E6B00411520 /* Build configuration list for PBXProject "AdMobExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -214,8 +222,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CF86EE1619787E6B00411520 /* BannerExample */,
-				105919891ADDA8F700344065 /* BannerExampleSwift */,
+				CF86EE1619787E6B00411520 /* AdMobExample */,
+				105919891ADDA8F700344065 /* AdMobExampleSwift */,
 			);
 		};
 /* End PBXProject section */
@@ -313,6 +321,7 @@
 			files = (
 				105919BA1ADDAA5D00344065 /* ViewController.swift in Sources */,
 				105919B91ADDAA5900344065 /* AppDelegate.swift in Sources */,
+				10CE10001AF2A52600660A19 /* InterstitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +331,7 @@
 			files = (
 				CF86EE2319787E6B00411520 /* ViewController.m in Sources */,
 				CF86EE2019787E6B00411520 /* AppDelegate.m in Sources */,
+				10CE0FFE1AF29D5900660A19 /* InterstitialViewController.m in Sources */,
 				CF86EE1D19787E6B00411520 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,11 +360,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = BannerExampleSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				INFOPLIST_FILE = AdMobExampleSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BannerExampleSwift/BannerExampleSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -366,11 +376,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = BannerExampleSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				INFOPLIST_FILE = AdMobExampleSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BannerExampleSwift/BannerExampleSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "AdMobExampleSwift/AdMobExampleSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -458,7 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = BannerExample/Info.plist;
+				INFOPLIST_FILE = AdMobExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -470,7 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = BannerExample/Info.plist;
+				INFOPLIST_FILE = AdMobExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -479,7 +489,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		105919AA1ADDA8F800344065 /* Build configuration list for PBXNativeTarget "BannerExampleSwift" */ = {
+		105919AA1ADDA8F800344065 /* Build configuration list for PBXNativeTarget "AdMobExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				105919AB1ADDA8F800344065 /* Debug */,
@@ -488,7 +498,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF86EE1219787E6B00411520 /* Build configuration list for PBXProject "BannerExample" */ = {
+		CF86EE1219787E6B00411520 /* Build configuration list for PBXProject "AdMobExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF86EE3519787E6B00411520 /* Debug */,
@@ -497,7 +507,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF86EE3719787E6B00411520 /* Build configuration list for PBXNativeTarget "BannerExample" */ = {
+		CF86EE3719787E6B00411520 /* Build configuration list for PBXNativeTarget "AdMobExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF86EE3819787E6B00411520 /* Debug */,

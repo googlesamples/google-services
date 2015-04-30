@@ -17,7 +17,7 @@
 //  BannerExample
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 

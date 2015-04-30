@@ -19,6 +19,7 @@
 
 // [START gmp_config]
 #import "AppDelegate.h"
+#import "ViewController.h"
 #import <GoogleMobilePlatform/Core.h>
 
 @interface AppDelegate ()
@@ -28,6 +29,11 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  ViewController *homeViewController = [[ViewController alloc] init];
+  UINavigationController *navigationController =
+      [[UINavigationController alloc] initWithRootViewController:homeViewController];
+  navigationController.navigationBar.translucent = NO;
+
   // Use Google Mobile Platform to configure APIs
   [[GHIContext sharedInstance] configure];
   return YES;
