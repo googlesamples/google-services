@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eeg-iu-cjG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aUL-89-tJW">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Blue-->
@@ -57,11 +57,31 @@
             </objects>
             <point key="canvasLocation" x="148" y="-234"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ch5-8q-zav">
+            <objects>
+                <navigationController id="aUL-89-tJW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ig6-z0-idQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eeg-iu-cjG" kind="relationship" relationship="rootViewController" id="3H5-V3-0NP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eK2-N2-23V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1024" y="-848"/>
+        </scene>
         <!--Patterns-->
         <scene sceneID="8gd-ga-mjo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E1m-Ew-oHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController title="Patterns" id="eeg-iu-cjG" sceneMemberID="viewController">
+                <tabBarController title="Patterns" id="eeg-iu-cjG" customClass="PatternTabBarController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tic-du-7VP">
+                        <connections>
+                            <outlet property="rightBarButtonItem" destination="hCL-4j-2le" id="uhg-Y0-IYr"/>
+                        </connections>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QrM-NQ-Tka">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -75,6 +95,12 @@
                         <segue destination="vhB-Nv-UYJ" kind="relationship" relationship="viewControllers" id="Tfu-96-CWN"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E1m-Ew-oHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Share" id="hCL-4j-2le">
+                    <connections>
+                        <action selector="didTapShare:" destination="eeg-iu-cjG" id="Ojc-zG-nyi"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="-660" y="-102"/>
         </scene>
