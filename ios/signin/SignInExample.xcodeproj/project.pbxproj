@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15C5006B1AF2885000B8E1C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */; };
 		1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D835D65B84E12DF53C5ADDCB /* libPods.a */; };
 		3DBFCF970AC4481BC6FB9222 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B5A4722417C2E158537DC8 /* libPods.a */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
@@ -21,8 +22,6 @@
 		4BA30A191AE81F5A00E5CDE9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DC1ACF46F400C4DC2C /* CoreLocation.framework */; };
 		4BA30A1A1AE81F5A00E5CDE9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */; };
 		4BA30A1B1AE81F5A00E5CDE9 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */; };
-		4BB1601B1AF14B60001B9F48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BB1601A1AF14B60001B9F48 /* GoogleService-Info.plist */; };
-		4BB160291AF14E3F001B9F48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BB1601A1AF14B60001B9F48 /* GoogleService-Info.plist */; };
 		4BC032E41ACF33B70092326A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E31ACF33B70092326A /* main.m */; };
 		4BC032E71ACF33B70092326A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E61ACF33B70092326A /* AppDelegate.m */; };
 		4BC032EA1ACF33B70092326A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E91ACF33B70092326A /* ViewController.m */; };
@@ -38,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B97B2531AD7145E0036DD6C /* SignInExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B97B2571AD7145E0036DD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +45,6 @@
 		4B97B25A1AD7145E0036DD6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B97B25F1AD7145E0036DD6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B97B2621AD7145E0036DD6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4BB1601A1AF14B60001B9F48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4BC032DE1ACF33B70092326A /* SignInExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC032E21ACF33B70092326A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC032E31ACF33B70092326A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,7 +159,7 @@
 		4BC032E11ACF33B70092326A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4BB1601A1AF14B60001B9F48 /* GoogleService-Info.plist */,
+				15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */,
 				4BC032EB1ACF33B70092326A /* Main.storyboard */,
 				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BC032E31ACF33B70092326A /* main.m */,
@@ -270,7 +269,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BB160291AF14E3F001B9F48 /* GoogleService-Info.plist in Resources */,
 				4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */,
 				4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */,
 				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
@@ -283,9 +281,9 @@
 			files = (
 				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				4BC032ED1ACF33B70092326A /* Main.storyboard in Resources */,
-				4BB1601B1AF14B60001B9F48 /* GoogleService-Info.plist in Resources */,
 				4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */,
 				4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */,
+				15C5006B1AF2885000B8E1C3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SignInExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -541,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SignInExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
