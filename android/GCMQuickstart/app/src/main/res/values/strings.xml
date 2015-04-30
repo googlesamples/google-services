@@ -5,5 +5,4 @@
     <string name="registering_message">Generating InstanceID token...</string>
     <string name="token_error_message">Ensure that you have replaced the SENDER_ID. Do this via
         config package import, or you can paste it in.</string>
-    <string name="sender_id">SENDER_ID</string>
 </resources>

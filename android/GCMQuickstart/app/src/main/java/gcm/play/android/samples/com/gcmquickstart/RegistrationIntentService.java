@@ -45,7 +45,8 @@ public class RegistrationIntentService extends IntentService {
              * Initially this call goes out to the network to retrieve the token,
              * subsequent calls are local.
              */
-            String token = instanceID.getToken(getString(R.string.sender_id), "GCM", null);
+            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
+                    "GCM", null);
 
             /**
              * You should store a boolean that the generated token has been sent to your server.
