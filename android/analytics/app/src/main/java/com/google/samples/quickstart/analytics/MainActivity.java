@@ -18,24 +18,16 @@ package com.google.samples.quickstart.analytics;
 
 import java.util.Locale;
 
-import android.support.v4.view.PagerTabStrip;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -100,15 +92,52 @@ public class MainActivity extends AppCompatActivity {
     sendScreenPatternName();
   }
 
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch(item.getItemId()) {
+      case R.id.menu_share:
+        // [START custom_event]
+        mTracker.send(new HitBuilders.EventBuilder()
+            .setCategory("Action")
+            .setAction("Share")
+            .build());
+        // [END custom_even]
+
+        String name = getCurrentPatternTitle();
+        String text = "I'd love you to hear about " + name;
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+        break;
+    }
+    return false;
+  }
+
+  /**
+   * Return the title of the currently displayed pattern.
+   * @return title of pattern
+   */
+  private String getCurrentPatternTitle() {
+    int position = mViewPager.getCurrentItem();
+    PatternInfo info = PATTERN_INFOS[position];
+    return getString(info.title);
+  }
+
   /**
    * Record a screen view event for the visible {@link PatternFragment} displayed
    * inside {@link FragmentPagerAdapter}.
    */
   private void sendScreenPatternName() {
-    int position = mViewPager.getCurrentItem();
-
-    PatternInfo info = PATTERN_INFOS[position];
-    String name = getString(info.title);
+    String name = getCurrentPatternTitle();
 
     // [START screen_view_event]
     Log.i(TAG, "Setting screen name: " + name);
