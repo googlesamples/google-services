@@ -41,7 +41,7 @@
          annotation:(id)annotation {
 
   // Handle App Invite requests
-  GPPReceivedInvite *invite = [GINInvite handleURL:url
+  GIDReceivedInvite *invite = [GINInvite handleURL:url
                                  sourceApplication:sourceApplication
                                         annotation:annotation];
   if (invite) {
