@@ -89,7 +89,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [inviteDialog setMessage: @"message"];
     [inviteDialog setTitle: @"title"];
     [inviteDialog setDeepLink: @"message=yes"];
-    [inviteDialog setEmailMessage: @"email message"];
     [inviteDialog open];
 }
 // [END invite_tapped]
