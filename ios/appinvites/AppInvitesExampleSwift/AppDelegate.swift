@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       GHIContext.sharedInstance().configure()
       // Initialize sign-in
       GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login"]
-      GPPInvite.applicationDidFinishLaunching()
+      GINInvite.applicationDidFinishLaunching()
       return true
   }
   // [END didfinishlaunching]
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START openurl]
   func application(application: UIApplication,
     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-      let invite = GPPInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation)
+      let invite = GINInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation)
       if (invite != nil) {
         println("Invite received from: \(sourceApplication) Deeplink: \(invite.deepLink), Id: \(invite.inviteId)")
         return true
