@@ -19,7 +19,7 @@ import UIKit
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
 // [START viewcontroller_interfaces]
-class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
+class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
 // [END viewcontroller_interfaces]
   // [START viewcontroller_vars]
   @IBOutlet weak var signInButton: GIDSignInButton!
@@ -69,7 +69,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GPPInviteDelegate {
 
   // [START invite_tapped]
   @IBAction func inviteTapped(sender: AnyObject) {
-    let invite = GPPInvite.inviteDialog()
+    let invite = GINInvite.inviteDialog()
     invite.setMessage("Message")
     invite.setTitle("Title")
     invite.setDeepLink("/invite")

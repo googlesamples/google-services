@@ -15,12 +15,12 @@
 //  limitations under the License.
 
 #import "ViewController.h"
-#import <GPPInvite/GPPInvite.h>
+#import <GINInvite/GINInvite.h>
 #import <GoogleSignIn/GIDGoogleUser.h>
 #import <GoogleSignIn/GIDProfileData.h>
 
 // [START viewcontroller_interfaces]
-@interface ViewController () <GPPInviteDelegate, GIDSignInDelegate>
+@interface ViewController () <GINInviteDelegate, GIDSignInDelegate>
 // [END viewcontroller_interfaces]
 // [START viewcontroller_vars]
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
@@ -84,7 +84,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
-    id<GPPInviteBuilder> inviteDialog = [GPPInvite inviteDialog];
+    id<GINInviteBuilder> inviteDialog = [GINInvite inviteDialog];
     [inviteDialog setInviteDelegate: self];
     [inviteDialog setMessage: @"message"];
     [inviteDialog setTitle: @"title"];

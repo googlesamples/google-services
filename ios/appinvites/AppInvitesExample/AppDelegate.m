@@ -29,7 +29,7 @@
   // TODO: Remove after plus.login is no longer required.
   [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/plus.login"];
 
-  [GPPInvite applicationDidFinishLaunching];
+  [GINInvite applicationDidFinishLaunching];
   return YES;
 }
 // [END didfinishlaunching]
@@ -41,7 +41,7 @@
          annotation:(id)annotation {
 
   // Handle App Invite requests
-  GPPReceivedInvite *invite = [GPPInvite handleURL:url
+  GPPReceivedInvite *invite = [GINInvite handleURL:url
                                  sourceApplication:sourceApplication
                                         annotation:annotation];
   if (invite) {
