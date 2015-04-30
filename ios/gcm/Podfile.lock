@@ -8,6 +8,14 @@ PODS:
     - GTM (~> 1.0)
     - GTMSessionFetcher (~> 1.0)
     - ProtocolBuffers2 (~> 1.0)
+  - GoogleMobilePlatform/CloudMessaging (1.0.0):
+    - GMPInstanceID (~> 1.0)
+    - GoogleCloudMessaging (~> 1.0)
+    - GoogleMobilePlatform/Core
+  - GoogleMobilePlatform/Core (1.0.0):
+    - GSDKOverload (~> 1.0)
+    - GTM (~> 1.0)
+    - GTMSessionFetcher (~> 1.0)
   - GSDKOverload (1.0.0)
   - GTM (1.0.0):
     - GSDKOverload (~> 1.0)
@@ -17,15 +25,15 @@ PODS:
     - GSDKOverload (~> 1.0)
 
 DEPENDENCIES:
-  - GMPInstanceID
-  - GoogleCloudMessaging
+  - GoogleMobilePlatform/CloudMessaging
 
 SPEC CHECKSUMS:
-  GMPInstanceID: 0a76a8111b407035119bc8c5562f8798e8c0e8c7
-  GoogleCloudMessaging: c6b5bb7ea7eb30fa75cc48e9b6502f0913c4616c
-  GSDKOverload: f880a36018771f8a8269e29aa0ff62b0e0f3b73b
-  GTM: f2150b7d0d0c1f839790c18e106280bb24a27ea9
-  GTMSessionFetcher: 91400111e9718a755c940e62d9e2354d08e8ef58
-  ProtocolBuffers2: 0ba750f36f4fa7e203d15422afda36c17ac552ef
+  GMPInstanceID: 7e9ce48032dd3b696b7e014466c8138d482bee60
+  GoogleCloudMessaging: 4f6c2c6024e9d36481834309edd0af19f0facc89
+  GoogleMobilePlatform: 29f5cc9d34cba01f10a62bc1861a1f93da908d8f
+  GSDKOverload: e1323b04dec4fa4bfdbc9d18c7a60786e23a0aaf
+  GTM: ae436663ed8f3273de67d30d4f36fe0b0db423fc
+  GTMSessionFetcher: 0862831b200c502305a955fcb6a180da2b739bf4
+  ProtocolBuffers2: 46dc5006bcc5bcde9703fede54971c839260f45a
 
 COCOAPODS: 0.36.3
