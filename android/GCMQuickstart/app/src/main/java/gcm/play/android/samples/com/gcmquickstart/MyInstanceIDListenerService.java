@@ -52,8 +52,8 @@ public class MyInstanceIDListenerService extends InstanceIDListenerService {
          * This is where you would update the application server with new token.
          */
         try {
-            String token = InstanceID.getInstance(this).getToken(getString(R.string.sender_id),
-                    "GCM", null);
+            String token = InstanceID.getInstance(this)
+                    .getToken(getString(R.string.gcm_defaultSenderId), "GCM", null);
             Log.d(TAG, "Refreshed token: " + token);
 
             // Send new token to server if another call has not already done so.
