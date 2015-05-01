@@ -72,9 +72,8 @@ public class UiAutomatorTest {
      * check that in the end the app is in the signed-in state.
      */
     private void signInTest() {
-
         // Sign-in button (enabled)
-        BySelector signInButtonSelector = By.clazz(CLASS_BUTTON).text("Sign in").enabled(true);
+        BySelector signInButtonSelector = By.clazz(CLASS_BUTTON).textContains("Sign in").enabled(true);
 
         // Click Sign-in button (must be enabled)
         assertTrue(mDevice.wait(Until.hasObject(signInButtonSelector), UI_TIMEOUT));
@@ -99,9 +98,10 @@ public class UiAutomatorTest {
         // The Google Play Services consent screen accept button
         BySelector acceptButtonSelector = By.res(GMS_PACKAGE, "accept_button");
 
-        // Accept consent screen (click OK button)
-        assertTrue(mDevice.wait(Until.hasObject(acceptButtonSelector), UI_TIMEOUT));
-        mDevice.findObject(acceptButtonSelector).click();
+        // Accept consent screen and click OK button (this also may not appear)
+        if (mDevice.wait(Until.hasObject(acceptButtonSelector), UI_TIMEOUT)) {
+            mDevice.findObject(acceptButtonSelector).click();
+        }
 
         // Check that the UI shows signed-in state
         assertTrue(isSignedIn());
@@ -129,7 +129,7 @@ public class UiAutomatorTest {
      * Checks the UI for text containing "Signed in" to determine if the user is signed in.
      */
     private boolean isSignedIn() {
-        // Wait until at least one of the buttons is enabled
+        // Wait until we have an enabled button on screen
         mDevice.wait(Until.hasObject(By.clazz(CLASS_BUTTON).enabled(true)), UI_TIMEOUT);
 
         String signedInText = mContext.getString(R.string.signed_in_fmt, "");

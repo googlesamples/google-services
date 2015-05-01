@@ -1,11 +1,19 @@
 <resources>
-    <string name="app_name">Signin Quickstart</string>
+    <string name="app_name">Sign-In Quickstart</string>
+    <string name="title_text">Google Sign-In\nQuickstart</string>
 
+    <!-- Sign-in status messages -->
     <string name="signed_in_fmt">Signed in as: %s</string>
-    <string name="signed_in">Signed in</string>
     <string name="signing_in">Signing in…</string>
     <string name="signed_out">Signed out</string>
+
+    <!-- Google Play Services error for Toast -->
     <string name="play_services_error_fmt">Google Play Services Error: %i</string>
+
+    <!-- Button labels -->
     <string name="sign_out">Sign Out</string>
     <string name="disconnect">Disconnect</string>
+
+    <!-- Content Description for images -->
+    <string name="desc_google_icon">Google Logo</string>
 </resources>
