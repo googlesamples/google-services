@@ -24,6 +24,7 @@ import UIKit
 @objc(ViewController)
 class ViewController: UIViewController {
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var interstitialButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,12 @@ class ViewController: UIViewController {
         self.view.addSubview(self.bannerView)
         self.bannerView.loadRequest(GADRequest())
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.interstitialButton.enabled = false
+        println("GADInterstitial is a one time use object.")
+    }
+
 }
 // [END gmp_banner_example]
 
