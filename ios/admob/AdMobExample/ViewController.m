@@ -29,6 +29,7 @@
  * A UIView subclass that displays ads capable of responding to user touch.
  */
 @property(nonatomic, strong) GADBannerView *bannerView;
+@property (weak, nonatomic) IBOutlet UIButton *interstitialButton;
 
 @end
 
@@ -47,6 +48,12 @@
   self.bannerView.rootViewController = self;
   [self.view addSubview:self.bannerView];
   [self.bannerView loadRequest:[GADRequest request]];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [self.interstitialButton setEnabled:NO];
+    NSLog(@"GADInterstitial is a one time use object.");
 }
 @end
 // [END gmp_banner_example]

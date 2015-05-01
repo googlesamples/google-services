@@ -3,4 +3,4 @@ source 'sso://cpdc-internal/spec'
 platform :ios, '7.0'
 pod 'GoogleMobilePlatform/AdMob', '~> 1.0.0'
 
-link_with 'BannerExample', 'BannerExampleSwift'
+link_with 'AdMobExample', 'AdMobExampleSwift'
