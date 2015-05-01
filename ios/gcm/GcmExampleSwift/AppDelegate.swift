@@ -19,10 +19,11 @@ import UIKit
 // TODO(silvano): remember to change the bundle identifier
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GMPInstanceIDDelegate {
 
   var window: UIWindow?
   var gcmSenderID: String?
+  var registrationOptions = [String: AnyObject]()
 
   let notificationKey = "onRegistrationCompleted"
 
@@ -70,26 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [END receive_apns_token]
         // [START get_gcm_reg_token]
         GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
-        var options = [kGMPInstanceIDRegisterAPNSOption:deviceToken!,
+        registrationOptions = [kGMPInstanceIDRegisterAPNSOption:deviceToken!,
           kGMPInstanceIDAPNSServerTypeSandboxOption:true]
         GMPInstanceID.sharedInstance().tokenWithAudience(gcmSenderID, scope: kGMPInstanceIDScopeGCM,
-            options: options, handler: {
-              (registrationToken: String!, error: NSError!) -> Void in
-                if (registrationToken != nil) {
-                  println("Registration Token: \(registrationToken)")
-                  let userInfo = ["registrationToken": registrationToken]
-                  NSNotificationCenter.defaultCenter().postNotificationName(
-                      self.notificationKey, object: nil, userInfo: userInfo)
-                } else {
-                  println("Registration to GCM failed with error: \(error.localizedDescription)")
-                  let userInfo = ["error": error.localizedDescription]
-                  NSNotificationCenter.defaultCenter().postNotificationName(
-                      self.notificationKey, object: nil, userInfo: userInfo)
-              }
-        })
+            options: registrationOptions, handler: registrationHandler)
         // [END get_gcm_reg_token]
   }
-  
+
   // [START receive_apns_token_error]
   func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError
       error: NSError! ) {
@@ -110,6 +98,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
       println("Notification received: \(userInfo)")
       handler(UIBackgroundFetchResult.NoData)
+  }
+
+  func registrationHandler(registrationToken: String!, error: NSError!) {
+    if (registrationToken != nil) {
+      println("Registration Token: \(registrationToken)")
+      let userInfo = ["registrationToken": registrationToken]
+      NSNotificationCenter.defaultCenter().postNotificationName(
+        self.notificationKey, object: nil, userInfo: userInfo)
+    } else {
+      println("Registration to GCM failed with error: \(error.localizedDescription)")
+      let userInfo = ["error": error.localizedDescription]
+      NSNotificationCenter.defaultCenter().postNotificationName(
+        self.notificationKey, object: nil, userInfo: userInfo)
+    }
+  }
+
+  func onTokenRefresh(updateID: Bool) {
+    println("The GCM registration token has been invalidated.")
+    GMPInstanceID.sharedInstance().tokenWithAudience(gcmSenderID, scope: kGMPInstanceIDScopeGCM,
+      options: registrationOptions, handler: registrationHandler)
   }
 
 }
