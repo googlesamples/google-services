@@ -15,7 +15,11 @@
 //
 
 #import "AppDelegate.h"
-#import <GoogleMobilePlatform/CloudMessaging.h>
+
+@interface AppDelegate ()
+@property(nonatomic, strong) void (^registrationHandler)
+    (NSString *registrationToken, NSError *error);
+@end
 
 @implementation AppDelegate
 
@@ -35,6 +39,22 @@
   // [START start_gcm_service]
   [[GCMService sharedInstance] startWithConfig: [GCMConfig defaultConfig]];
   // [END start_gcm_service]
+  __weak typeof(self) weakSelf = self;
+  _registrationHandler = ^(NSString *registrationToken, NSError *error){
+    if (registrationToken != nil) {
+      NSLog(@"Registration Token: %@", registrationToken);
+      NSDictionary *userInfo = @{@"registrationToken" : registrationToken};
+      [[NSNotificationCenter defaultCenter] postNotificationName: weakSelf.notificationKey
+                                                          object: nil
+                                                        userInfo: userInfo];
+    } else {
+      NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
+      NSDictionary *userInfo = @{@"error" : error.localizedDescription};
+      [[NSNotificationCenter defaultCenter] postNotificationName: weakSelf.notificationKey
+                                                          object: nil
+                                                        userInfo: userInfo];
+    }
+  };
   return YES;
 }
 
@@ -62,28 +82,12 @@
 // [END receive_apns_token]
   // [START get_gcm_reg_token]
   [[GMPInstanceID sharedInstance] startWithConfig:[GMPInstanceIDConfig defaultConfig]];
-  NSDictionary *options = @{kGMPInstanceIDRegisterAPNSOption: deviceToken,
-                            kGMPInstanceIDAPNSServerTypeSandboxOption: @YES};
-  GMPInstanceIDTokenHandler registrationHandler = ^void(NSString *registrationToken,
-                                                        NSError *error) {
-    if (registrationToken != nil) {
-      NSLog(@"Registration Token: %@", registrationToken);
-      NSDictionary *userInfo = @{@"registrationToken" : registrationToken};
-      [[NSNotificationCenter defaultCenter] postNotificationName: _notificationKey
-                                                          object: nil
-                                                        userInfo: userInfo];
-    } else {
-      NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
-      NSDictionary *userInfo = @{@"error" : error.localizedDescription};
-      [[NSNotificationCenter defaultCenter] postNotificationName: _notificationKey
-                                                          object: nil
-                                                        userInfo: userInfo];
-    }
-  };
+  _registrationOptions = @{kGMPInstanceIDRegisterAPNSOption: deviceToken,
+                           kGMPInstanceIDAPNSServerTypeSandboxOption: @YES};
   [[GMPInstanceID sharedInstance] tokenWithAudience:_gcmSenderID
                                               scope:kGMPInstanceIDScopeGCM
-                                            options:options
-                                            handler:registrationHandler];
+                                            options:_registrationOptions
+                                            handler:_registrationHandler];
   // [END get_gcm_reg_token]
 }
 
@@ -101,6 +105,14 @@
 - (void)application:(UIApplication *)application
     didReceiveRemoteNotification:(NSDictionary *)userInfo {
   NSLog(@"Notification received: %@", userInfo);
+}
+
+- (void)onTokenRefresh:(BOOL)updateID {
+  NSLog(@"The GCM registration token has been invalidated.");
+  [[GMPInstanceID sharedInstance] tokenWithAudience:_gcmSenderID
+                                              scope:kGMPInstanceIDScopeGCM
+                                            options:_registrationOptions
+                                            handler:_registrationHandler];
 }
 
 @end
