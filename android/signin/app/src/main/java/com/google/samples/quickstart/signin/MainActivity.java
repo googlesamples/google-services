@@ -19,16 +19,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
@@ -37,7 +37,7 @@ import com.google.android.gms.plus.Plus;
 /**
  * Minimal activity demonstrating basic Google Sign-In.
  */
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -81,10 +81,11 @@ public class MainActivity extends ActionBarActivity implements
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
 
-        // Start with all buttons disabled
+        // Large sign-in
+        ((SignInButton) findViewById(R.id.sign_in_button)).setSize(SignInButton.SIZE_WIDE);
+
+        // Start with sign-in button disabled until sign-in either succeeds or fails
         findViewById(R.id.sign_in_button).setEnabled(false);
-        findViewById(R.id.sign_out_button).setEnabled(false);
-        findViewById(R.id.disconnect_button).setEnabled(false);
 
         // Set up view instances
         mStatus = (TextView) findViewById(R.id.status);
@@ -101,17 +102,22 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     private void updateUI(boolean isSignedIn) {
-        // Enable/disable buttons
-        findViewById(R.id.sign_in_button).setEnabled(!isSignedIn);
-        findViewById(R.id.sign_out_button).setEnabled(isSignedIn);
-        findViewById(R.id.disconnect_button).setEnabled(isSignedIn);
-
-        // Set status text
-        if (!isSignedIn) {
-            mStatus.setText(R.string.signed_out);
-        } else {
+        if (isSignedIn) {
+            // Show signed-in user's name
             String name = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient).getDisplayName();
             mStatus.setText(getString(R.string.signed_in_fmt, name));
+
+            // Set button visibility
+            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+        } else {
+            // Show signed-out message
+            mStatus.setText(R.string.signed_out);
+
+            // Set button visibility
+            findViewById(R.id.sign_in_button).setEnabled(true);
+            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
     }
 
@@ -164,7 +170,6 @@ public class MainActivity extends ActionBarActivity implements
         Log.d(TAG, "onConnected:" + bundle);
 
         // Show the signed-in UI
-        showSnackBar(getString(R.string.signed_in));
         updateUI(true);
     }
 
@@ -221,17 +226,13 @@ public class MainActivity extends ActionBarActivity implements
                         }
                     }).show();
         } else {
-            // No default Google Play Services error, display a message to the user,
-            showSnackBar(getString(R.string.play_services_error_fmt, errorCode));
+            // No default Google Play Services error, display a message to the user.
+            String errorString = getString(R.string.play_services_error_fmt, errorCode);
+            Toast.makeText(this, errorString, Toast.LENGTH_SHORT).show();
 
             mShouldResolve = false;
             updateUI(false);
         }
-    }
-
-    private void showSnackBar(String msg) {
-        ViewGroup container = (ViewGroup) findViewById(R.id.snackbar_layout);
-        Snackbar.make(container, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

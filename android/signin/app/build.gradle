@@ -36,7 +36,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.0'
-    compile 'com.android.support:design:22.1.0'
 
     // TODO(samstern): update before launch (7.5.0)
     compile 'com.google.android.gms:play-services:7.5.+'
