@@ -30,64 +30,63 @@ import java.io.IOException;
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
+    private SharedPreferences mSharedPreferences;
 
     public RegistrationIntentService() {
         super(TAG);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     // [START get_token]
     @Override
     protected void onHandleIntent(Intent intent) {
         try {
-            InstanceID instanceID = InstanceID.getInstance(this);
+            // In the (unlikely) event that multiple refresh operations occur simultaneously,
+            // ensure that they are processed sequentially.
+            synchronized (TAG) {
+                // Initially this call goes out to the network to retrieve the token, subsequent calls
+                // are local.
+                InstanceID instanceID = InstanceID.getInstance(this);
+                String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), "GCM", null);
+                // TODO(trevorjohns): Replace with GoogleCloudMessaging.INSTANCE_ID_SCOPE
 
-            /**
-             * Initially this call goes out to the network to retrieve the token,
-             * subsequent calls are local.
-             */
-            String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
-                    "GCM", null);
+                // TODO: Implement this method to send any registration to your app's servers.
+                sendRegistrationToServer(token);
 
-            /**
-             * You should store a boolean that the generated token has been sent to your server.
-             * If the boolean is false you should send the token to your server, otherwise your
-             * server should have already received the token.
-             */
-            // [START_EXCLUDE]
-            SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(this);
-            boolean sentToken = sharedPreferences
-                    .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
-            if (!sentToken) {
-                // Send token to server.
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true);
-                editor.commit();
+                // You should store a boolean that the generated token has been sent to your server.
+                // If the boolean is false you should send the token to your server, otherwise your
+                // server should have already received the token.
+                mSharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true).apply();
             }
-
-            /**
-             * Use your generated token to send a GCM message to your application by
-             * running the following command in your terminal from the root of the
-             * GCMQuickstart.
-             *
-             * Windows
-             * .\gradlew.bat run -Pargs="<message>,<token>"
-             *
-             * Linux/Mac
-             * ./gradlew run -Pargs="<message>,<token>"
-             */
-            Log.d(TAG, "Token: " + token);
-            // [END_EXCLUDE]
-        } catch (IOException e) {
-            Log.e(TAG, "Unable to get InstanceID token " + e);
-            Log.e(TAG, getString(R.string.token_error_message));
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.d(TAG, "Failed to complete token refresh", e);
+            // If an exception happens while fetching the new token or updating our registration data
+            // on a third-party server, this ensures that we'll attempt the update at a later time.
+            mSharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false).apply();
         }
-        // [START_EXCLUDE]
+        // [BEGIN_EXCLUDE]
+        // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(QuickstartPreferences.REGISTRATION_COMPLETE);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
-        // [START_EXCLUDE]
+        // [END_EXCLUDE]
     }
     // [END get_token]
+
+    /**
+     * Persist registration to third-party servers.
+     *
+     * Modify this method to associate the user's GCM registration token with any server-side account
+     * maintained by your application.
+     *
+     * @param token The new token.
+     */
+    private void sendRegistrationToServer(String token) {
+        // Add custom implementation, as needed.
+    }
 
 }

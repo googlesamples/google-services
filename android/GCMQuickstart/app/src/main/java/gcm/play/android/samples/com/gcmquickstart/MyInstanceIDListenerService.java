@@ -16,14 +16,13 @@
 
 package gcm.play.android.samples.com.gcmquickstart;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gms.iid.InstanceID;
 import com.google.android.gms.iid.InstanceIDListenerService;
-
-import java.io.IOException;
 
 public class MyInstanceIDListenerService extends InstanceIDListenerService {
 
@@ -40,34 +39,9 @@ public class MyInstanceIDListenerService extends InstanceIDListenerService {
     // [START refresh_token]
     @Override
     public void onTokenRefresh(boolean updateID) {
-        /**
-         * Set boolean that current token has not been sent to server.
-         */
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
-        editor.commit();
-
-        /**
-         * This is where you would update the application server with new token.
-         */
-        try {
-            String token = InstanceID.getInstance(this)
-                    .getToken(getString(R.string.gcm_defaultSenderId), "GCM", null);
-            Log.d(TAG, "Refreshed token: " + token);
-
-            // Send new token to server if another call has not already done so.
-            if (!sharedPreferences.getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false)) {
-                // Send token to your server.
-
-                // Update boolean to show that token has been sent to server.
-                editor.putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true);
-                editor.commit();
-            }
-        } catch (IOException e) {
-            Log.d(TAG, "Unable to retrieve new token. " + e.getMessage());
-            e.printStackTrace();
-        }
+        // Fetch updated Instance ID token and notify our app's server of any changes (if applicable).
+        Intent intent = new Intent(this, RegistrationIntentService.class);
+        startService(intent);
     }
     // [END refresh_token]
 }
