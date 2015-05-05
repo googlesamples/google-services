@@ -40,7 +40,6 @@
 		15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B97B2531AD7145E0036DD6C /* SignInExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B97B2571AD7145E0036DD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B97B2581AD7145E0036DD6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B97B25A1AD7145E0036DD6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B97B25F1AD7145E0036DD6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -115,7 +114,7 @@
 		4B97B2561AD7145E0036DD6C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B97B2571AD7145E0036DD6C /* Info.plist */,
+				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BD491861AD717C3002569B8 /* SignInExampleSwift-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -161,7 +160,6 @@
 			children = (
 				15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */,
 				4BC032EB1ACF33B70092326A /* Main.storyboard */,
-				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BC032E31ACF33B70092326A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -408,7 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = SignInExampleSwift/Info.plist;
+				INFOPLIST_FILE = SignInExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
