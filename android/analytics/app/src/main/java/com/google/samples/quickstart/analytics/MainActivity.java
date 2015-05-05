@@ -32,6 +32,8 @@ import android.view.MenuItem;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.util.Locale;
+
 /**
  * Activity which displays numerous background images that may be viewed. These background images
  * are shown via {@link PatternFragment}.
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             .setCategory("Action")
             .setAction("Share")
             .build());
-        // [END custom_even]
+        // [END custom_event]
 
         String name = getCurrentPatternTitle();
         String text = "I'd love you to hear about " + name;
