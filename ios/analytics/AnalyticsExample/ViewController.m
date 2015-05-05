@@ -27,6 +27,10 @@
 
   NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
 
+  // The UA-XXXXX-Y tracker ID is loaded automatically from the
+  // GoogleService-Info.plist by the `GHIContext` in the AppDelegate.
+  // If you're copying this to an app just using Analytics, you'll
+  // need to configure your tracking ID here.
   // [START screen_view_event_objc]
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker set:kGAIScreenName value:name];
