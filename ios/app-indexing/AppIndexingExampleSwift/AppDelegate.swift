@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START handle_link]
   func application(application: UIApplication,
                    openURL url: NSURL,
-                   sourceApplication: NSString,
+                   sourceApplication: String?,
                    annotation: AnyObject?) -> Bool {
     var sanitizedURL = GSPDeepLink.handleDeepLink(url)
     currentArticleId = sanitizedURL.lastPathComponent as String!
