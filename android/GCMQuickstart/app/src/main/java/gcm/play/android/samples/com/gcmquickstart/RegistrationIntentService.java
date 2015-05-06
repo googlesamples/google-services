@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
@@ -30,21 +31,17 @@ import java.io.IOException;
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
-    private SharedPreferences mSharedPreferences;
+    private static final String[] TOPICS = {"global"};
 
     public RegistrationIntentService() {
         super(TAG);
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-    }
-
     // [START get_token]
     @Override
     protected void onHandleIntent(Intent intent) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         try {
             // In the (unlikely) event that multiple refresh operations occur simultaneously,
             // ensure that they are processed sequentially.
@@ -53,21 +50,25 @@ public class RegistrationIntentService extends IntentService {
                 // are local.
                 InstanceID instanceID = InstanceID.getInstance(this);
                 String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), "GCM", null);
+                Log.i(TAG, "GCM Registration Token: " + token);
                 // TODO(trevorjohns): Replace with GoogleCloudMessaging.INSTANCE_ID_SCOPE
 
                 // TODO: Implement this method to send any registration to your app's servers.
                 sendRegistrationToServer(token);
 
+                // Subscribe to topic channels
+                subscribeTopics(token);
+
                 // You should store a boolean that the generated token has been sent to your server.
                 // If the boolean is false you should send the token to your server, otherwise your
                 // server should have already received the token.
-                mSharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true).apply();
+                sharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true).apply();
             }
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);
             // If an exception happens while fetching the new token or updating our registration data
             // on a third-party server, this ensures that we'll attempt the update at a later time.
-            mSharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false).apply();
+            sharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false).apply();
         }
         // [BEGIN_EXCLUDE]
         // Notify UI that registration has completed, so the progress indicator can be hidden.
@@ -88,5 +89,20 @@ public class RegistrationIntentService extends IntentService {
     private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
     }
+
+    /**
+     * Subscribe to any GCM topics of interest, as defined by the TOPICS constant.
+     *
+     * @param token GCM token
+     * @throws IOException if unable to reach the GCM PubSub service
+     */
+    // [START subscribe_topics]
+    private void subscribeTopics(String token) throws IOException {
+        for (String topic : TOPICS) {
+            GcmPubSub pubSub = GcmPubSub.getInstance(this);
+            pubSub.subscribe(token, "/topics/" + topic, null);
+        }
+    }
+    // [END subscribe_topics]
 
 }
