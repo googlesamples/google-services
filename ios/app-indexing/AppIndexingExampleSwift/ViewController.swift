@@ -16,6 +16,7 @@
 
 import UIKit
 
+@objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
     @IBOutlet var articleIdLabel: UILabel!
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     func applicationBecameActive(notification: NSNotification){
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         articleIdLabel.text = appDelegate.currentArticleId
     }
     // [END display_link]

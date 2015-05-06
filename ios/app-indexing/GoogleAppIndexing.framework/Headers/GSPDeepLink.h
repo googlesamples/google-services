@@ -33,6 +33,8 @@
 //
 //
 
+#import <Foundation/Foundation.h>
+
 @interface GSPDeepLink : NSObject
 
 /**
