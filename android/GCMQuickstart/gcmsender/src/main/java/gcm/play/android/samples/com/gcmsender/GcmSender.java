@@ -31,23 +31,33 @@ public class GcmSender {
     public static final String API_KEY = "API_KEY";
 
     public static void main(String[] args) {
-        if (args.length < 2 || args[0] == null || args[1] == null) {
-            System.out.println("You must provide the message and token separated by a comma" +
-                    " in the gradle command.");
-            System.out.println("Eg:\n" +
+        if (args.length < 1 || args.length > 2 || args[0] == null) {
+            System.err.println("usage: ./gradlew run -Pargs=\"MESSAGE[,DEVICE_TOKEN]\"");
+            System.err.println("");
+            System.err.println("Specify a test message to broadcast via GCM. If a device's GCM registration token is\n" +
+                    "specified, the message will only be sent to that device. Otherwise, the message \n" +
+                    "will be sent to all devices subscribed to the \"global\" topic.");
+            System.err.println("");
+            System.err.println("Example (Broadcast):\n" +
+                    "On Windows:   .\\gradlew.bat run -Pargs=\"<Your_Message>\"\n" +
+                    "On Linux/Mac: ./gradlew run -Pargs=\"<Your_Message>\"");
+            System.err.println("");
+            System.err.println("Example (Unicast):\n" +
                     "On Windows:   .\\gradlew.bat run -Pargs=\"<Your_Message>,<Your_Token>\"\n" +
                     "On Linux/Mac: ./gradlew run -Pargs=\"<Your_Message>,<Your_Token>\"");
-            return;
+            System.exit(1);
         }
         try {
             // Prepare JSON containing the GCM message content. What to send and where to send.
             JSONObject jGcmData = new JSONObject();
             JSONObject jData = new JSONObject();
-            JSONArray jRegIds = new JSONArray();
-            jRegIds.put(args[1].trim());
             jData.put("message", args[0].trim());
             // Where to send GCM message.
-            jGcmData.put("registration_ids", jRegIds);
+            if (args.length > 1 && args[1] != null) {
+                jGcmData.put("to", args[1].trim());
+            } else {
+                jGcmData.put("to", "/topics/global");
+            }
             // What to send in GCM message.
             jGcmData.put("data", jData);
 
@@ -72,7 +82,7 @@ public class GcmSender {
         } catch (IOException e) {
             System.out.println("Unable to send GCM message.");
             System.out.println("Please ensure that YOUR_API_KEY has been replaced by the server " +
-                    "API key.");
+                    "API key, and that the device's registration token is correct (if specified).");
             e.printStackTrace();
         }
     }
