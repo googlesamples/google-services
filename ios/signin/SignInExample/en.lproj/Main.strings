@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Disconnect"; ObjectID = "8OM-kI-dga"; */
+"8OM-kI-dga.normalTitle" = "Disconnect";
+
+/* Class = "UILabel"; text = "Google Sign in iOS Demo"; ObjectID = "BJZ-79-K2W"; */
+"BJZ-79-K2W.text" = "Google Sign in iOS Demo";
+
+/* Class = "UIButton"; normalTitle = "Sign out"; ObjectID = "eWa-ii-5oh"; */
+"eWa-ii-5oh.normalTitle" = "Sign out";
