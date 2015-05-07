@@ -31,8 +31,8 @@ class ViewController: UIViewController, GIDSignInDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     GIDSignIn.sharedInstance().delegate = self
-    toggleAuthUI()
     statusText.text = "Initialized Swift app..."
+    toggleAuthUI()
   }
   // [END viewdidload]
 
@@ -42,7 +42,7 @@ class ViewController: UIViewController, GIDSignInDelegate {
     if (error == nil) {
       // User Successfully signed in.
       toggleAuthUI()
-      statusText.text = "Signed in user: \(user.userID)"
+      statusText.text = "Signed in user:\n\(user.profile.name)"
     } else {
       println("\(error.localizedDescription)")
       toggleAuthUI()
@@ -54,7 +54,6 @@ class ViewController: UIViewController, GIDSignInDelegate {
       withError error: NSError!) {
     statusText.text = "User disconnected."
     toggleAuthUI()
-
   }
 
   // [START signout_tapped]
@@ -76,13 +75,14 @@ class ViewController: UIViewController, GIDSignInDelegate {
   func toggleAuthUI() {
     if (GIDSignIn.sharedInstance().hasAuthInKeychain()){
       // Signed in
-      signInButton.enabled = false
-      signOutButton.enabled = true
-      disconnectButton.enabled = true
+      signInButton.hidden = true
+      signOutButton.hidden = false
+      disconnectButton.hidden = false
     } else {
-      signInButton.enabled = true
-      signOutButton.enabled = false
-      disconnectButton.enabled = false
+      signInButton.hidden = false
+      signOutButton.hidden = true
+      disconnectButton.hidden = true
+      statusText.text = "Google Sign in\niOS Demo"
     }
   }
   // [END toggle_auth]

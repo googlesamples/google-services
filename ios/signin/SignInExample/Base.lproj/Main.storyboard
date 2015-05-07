@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -12,49 +14,93 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="redraw" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status text should go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
-                                <rect key="frame" x="51" y="368" width="244" height="161"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDJ-Bc-8ku">
+                                <rect key="frame" x="0.0" y="570" width="414" height="134"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWa-ii-5oh">
+                                        <rect key="frame" x="8" y="52" width="94" height="30"/>
+                                        <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                        <state key="normal" title="Sign out">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSignOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKN-9W-SNH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-kI-dga">
+                                        <rect key="frame" x="312" y="52" width="94" height="30"/>
+                                        <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="94" id="M3m-1M-ArK"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                        <state key="normal" title="Disconnect">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapDisconnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IY0-iR-fbZ"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
+                                        <rect key="frame" x="102" y="42" width="160" height="49"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="XGN-Qm-TJZ" secondAttribute="height" multiplier="160:49" id="CS8-w7-K8r"/>
+                                            <constraint firstAttribute="width" constant="160" id="We4-md-2sF"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.14901961386203766" green="0.19215688109397888" blue="0.21568629145622253" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="XGN-Qm-TJZ" secondAttribute="centerX" constant="20" id="126-I0-Kav"/>
+                                    <constraint firstAttribute="centerY" secondItem="XGN-Qm-TJZ" secondAttribute="centerY" id="CCQ-04-kET"/>
+                                    <constraint firstAttribute="centerY" secondItem="eWa-ii-5oh" secondAttribute="centerY" id="No9-sv-fFi"/>
+                                    <constraint firstItem="eWa-ii-5oh" firstAttribute="width" secondItem="8OM-kI-dga" secondAttribute="width" id="QZp-1d-5hJ"/>
+                                    <constraint firstAttribute="centerX" relation="lessThanOrEqual" secondItem="XGN-Qm-TJZ" secondAttribute="centerX" constant="25" id="SG1-x7-eS5"/>
+                                    <constraint firstAttribute="trailing" secondItem="8OM-kI-dga" secondAttribute="trailing" constant="8" id="gVN-7n-RSp"/>
+                                    <constraint firstAttribute="centerY" secondItem="8OM-kI-dga" secondAttribute="centerY" id="ld2-2U-vSw"/>
+                                    <constraint firstItem="eWa-ii-5oh" firstAttribute="height" secondItem="8OM-kI-dga" secondAttribute="height" id="uwp-Yn-EHu"/>
+                                    <constraint firstItem="eWa-ii-5oh" firstAttribute="leading" secondItem="iDJ-Bc-8ku" secondAttribute="leading" constant="8" id="xAS-NZ-gvx"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Google Sign in iOS Demo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
+                                <rect key="frame" x="0.0" y="167" width="401" height="133.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWa-ii-5oh">
-                                <rect key="frame" x="51" y="97" width="58" height="30"/>
-                                <state key="normal" title="Sign out">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapSignOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKN-9W-SNH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-kI-dga">
-                                <rect key="frame" x="51" y="135" width="78" height="30"/>
-                                <state key="normal" title="Disconnect">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapDisconnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IY0-iR-fbZ"/>
-                                </connections>
-                            </button>
-                            <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
-                                <rect key="frame" x="51" y="33" width="156" height="49"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9Y-PN-e0N">
                                 <rect key="frame" x="51" y="20" width="255" height="37"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" image="appbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8v-V0-Tis">
+                                <rect key="frame" x="159" y="231.5" width="96" height="96"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iDJ-Bc-8ku" secondAttribute="trailing" id="2op-p7-RbP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iDJ-Bc-8ku" secondAttribute="bottom" id="7UR-uC-Lux"/>
+                            <constraint firstAttribute="centerY" secondItem="iDJ-Bc-8ku" secondAttribute="centerY" constant="-269" id="9rR-Mo-S8v"/>
+                            <constraint firstAttribute="centerX" secondItem="BJZ-79-K2W" secondAttribute="centerX" id="KHP-jJ-UHW"/>
+                            <constraint firstAttribute="centerX" secondItem="I8v-V0-Tis" secondAttribute="centerX" id="Oss-1h-dtn"/>
+                            <constraint firstItem="BJZ-79-K2W" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UFT-K1-FsO"/>
+                            <constraint firstAttribute="centerY" secondItem="BJZ-79-K2W" secondAttribute="centerY" id="mGS-07-16v"/>
+                            <constraint firstItem="BJZ-79-K2W" firstAttribute="top" secondItem="I8v-V0-Tis" secondAttribute="bottom" constant="20" id="t2u-B7-rdZ"/>
+                            <constraint firstItem="iDJ-Bc-8ku" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vVH-DD-J1X"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="c9Y-PN-e0N"/>
                             </mask>
                         </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="disconnectButton" destination="8OM-kI-dga" id="ypn-v6-CMD"/>
                         <outlet property="signInButton" destination="XGN-Qm-TJZ" id="jID-uf-sE9"/>
@@ -64,7 +110,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="584" y="629"/>
+            <point key="canvasLocation" x="457" y="575"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="appbg.png" width="96" height="96"/>
+    </resources>
 </document>

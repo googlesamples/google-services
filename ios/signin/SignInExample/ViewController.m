@@ -43,7 +43,7 @@
   [[GIDSignIn sharedInstance] signInSilently];
   [self toggleAuthUI];
 
-  [self statusText].text = @"Initialized...";
+  [self statusText].text = @"Google Sign in\niOS Demo";
 }
 // [END viewdidload]
 
@@ -85,14 +85,15 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 - (void)toggleAuthUI {
   if ([GIDSignIn sharedInstance].currentUser.authentication == nil) {
     // Not signed in
-    self.signInButton.enabled = YES;
-    self.signOutButton.enabled = NO;
-    self.disconnectButton.enabled = NO;
+    [self statusText].text = @"Google Sign in\niOS Demo";
+    self.signInButton.hidden = NO;
+    self.signOutButton.hidden = YES;
+    self.disconnectButton.hidden = YES;
   } else {
     // Signed in
-    self.signInButton.enabled = NO;
-    self.signOutButton.enabled = YES;
-    self.disconnectButton.enabled = YES;
+    self.signInButton.hidden = YES;
+    self.signOutButton.hidden = NO;
+    self.disconnectButton.hidden = NO;
   }
 }
 // [END toggle_auth]
