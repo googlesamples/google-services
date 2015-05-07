@@ -16,5 +16,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+/**
+ * CircleImageView is a UIImageView subclass that renders an image inside a
+ * circle that has a drop shadow. It should be given equal width and height.
+ *
+ * This is shared between the Objective-C and Swift versions of the samples.
+ */
+IB_DESIGNABLE
+@interface CircleImageView : UIImageView
 @end

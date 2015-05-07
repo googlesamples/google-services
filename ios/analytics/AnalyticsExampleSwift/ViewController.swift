@@ -19,9 +19,6 @@ import UIKit
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  @IBOutlet var background: UIImageView?
-  private var color: UIColor?
-
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
 
@@ -38,20 +35,6 @@ class ViewController: UIViewController {
     var builder = GAIDictionaryBuilder.createScreenView()
     tracker.send(builder.build() as [NSObject : AnyObject])
     // [END screen_view_event_swift]
-  }
-
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-
-    var image = background?.image
-    var color: UIColor
-    if image != nil {
-      color = UIColor(patternImage:image!)
-    } else {
-      color = UIColor()
-    }
-
-    self.view.backgroundColor = color
   }
 
 }
