@@ -72,7 +72,6 @@ class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
     invite.setMessage("Message")
     invite.setTitle("Title")
     invite.setDeepLink("/invite")
-    invite.setEmailMessage("Email message")
 
     invite.open()
   }
