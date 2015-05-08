@@ -18,9 +18,7 @@
 
 #import <GoogleMobilePlatform/Analytics.h>
 
-@implementation ViewController {
-  UIColor *_color;
-}
+@implementation ViewController
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
@@ -36,17 +34,6 @@
   [tracker set:kGAIScreenName value:name];
   [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
   // [END screen_view_event_objc]
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  self.view.backgroundColor = _color;
-}
-
-- (void)setBackground:(UIImageView *)background {
-  _background = background;
-
-  UIImage *image = _background.image;
-  _color = image ? [UIColor colorWithPatternImage:image] : nil;
 }
 
 @end
