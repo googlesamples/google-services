@@ -81,13 +81,13 @@
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // [END receive_apns_token]
   // [START get_gcm_reg_token]
-  [[GMPInstanceID sharedInstance] startWithConfig:[GMPInstanceIDConfig defaultConfig]];
-  _registrationOptions = @{kGMPInstanceIDRegisterAPNSOption: deviceToken,
-                           kGMPInstanceIDAPNSServerTypeSandboxOption: @YES};
-  [[GMPInstanceID sharedInstance] tokenWithAudience:_gcmSenderID
-                                              scope:kGMPInstanceIDScopeGCM
-                                            options:_registrationOptions
-                                            handler:_registrationHandler];
+  [[GMSInstanceID sharedInstance] startWithConfig:[GMSInstanceIDConfig defaultConfig]];
+  _registrationOptions = @{kGMSInstanceIDRegisterAPNSOption: deviceToken,
+                           kGMSInstanceIDAPNSServerTypeSandboxOption: @YES};
+  [[GMSInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
+                                                      scope:kGMSInstanceIDScopeGCM
+                                                    options:_registrationOptions
+                                                    handler:_registrationHandler];
   // [END get_gcm_reg_token]
 }
 
@@ -109,10 +109,10 @@
 
 - (void)onTokenRefresh:(BOOL)updateID {
   NSLog(@"The GCM registration token has been invalidated.");
-  [[GMPInstanceID sharedInstance] tokenWithAudience:_gcmSenderID
-                                              scope:kGMPInstanceIDScopeGCM
-                                            options:_registrationOptions
-                                            handler:_registrationHandler];
+  [[GMSInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
+                                                      scope:kGMSInstanceIDScopeGCM
+                                                    options:_registrationOptions
+                                                    handler:_registrationHandler];
 }
 
 @end

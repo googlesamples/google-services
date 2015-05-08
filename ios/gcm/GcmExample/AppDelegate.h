@@ -17,7 +17,7 @@
 #import <Google/CloudMessaging.h>
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, GMPInstanceIDDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GMSInstanceIDDelegate>
 
 @property(nonatomic, strong) UIWindow *window;
 @property(nonatomic, readonly, strong) NSString *notificationKey;

@@ -19,7 +19,7 @@ import UIKit
 // TODO(silvano): remember to change the bundle identifier
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GMPInstanceIDDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
 
   var window: UIWindow?
   var gcmSenderID: String?
@@ -70,10 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMPInstanceIDDelegate {
       deviceToken: NSData! ) {
   // [END receive_apns_token]
         // [START get_gcm_reg_token]
-        GMPInstanceID.sharedInstance().startWithConfig(GMPInstanceIDConfig.defaultConfig())
-        registrationOptions = [kGMPInstanceIDRegisterAPNSOption:deviceToken!,
-          kGMPInstanceIDAPNSServerTypeSandboxOption:true]
-        GMPInstanceID.sharedInstance().tokenWithAudience(gcmSenderID, scope: kGMPInstanceIDScopeGCM,
+        GMSInstanceID.sharedInstance().startWithConfig(GMSInstanceIDConfig.defaultConfig())
+        registrationOptions = [kGMSInstanceIDRegisterAPNSOption:deviceToken!,
+          kGMSInstanceIDAPNSServerTypeSandboxOption:true]
+        GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID, scope: kGMSInstanceIDScopeGCM,
             options: registrationOptions, handler: registrationHandler)
         // [END get_gcm_reg_token]
   }
@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMPInstanceIDDelegate {
 
   func onTokenRefresh(updateID: Bool) {
     println("The GCM registration token has been invalidated.")
-    GMPInstanceID.sharedInstance().tokenWithAudience(gcmSenderID, scope: kGMPInstanceIDScopeGCM,
+    GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID, scope: kGMSInstanceIDScopeGCM,
       options: registrationOptions, handler: registrationHandler)
   }
 
