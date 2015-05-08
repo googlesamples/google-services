@@ -19,7 +19,6 @@ package com.google.samples.quickstart.analytics;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,28 +29,28 @@ import android.widget.ImageView;
 
 
 /**
- * A fragment that just displays a background image as a pattern.
+ * This fragment displays a featured, specified image.
  */
-public class PatternFragment extends Fragment {
+public class ImageFragment extends Fragment {
   private static final String ARG_PATTERN = "pattern";
 
   private int resId;
 
   /**
-   * Create a {@link PatternFragment} displaying the given pattern.
+   * Create a {@link ImageFragment} displaying the given image.
    *
-   * @param resId to display as the pattern background
-   * @return a new instance of {@link PatternFragment}
+   * @param resId to display as the featured image
+   * @return a new instance of {@link ImageFragment}
    */
-  public static PatternFragment newInstance(int resId) {
-    PatternFragment fragment = new PatternFragment();
+  public static ImageFragment newInstance(int resId) {
+    ImageFragment fragment = new ImageFragment();
     Bundle args = new Bundle();
     args.putInt(ARG_PATTERN, resId);
     fragment.setArguments(args);
     return fragment;
   }
 
-  public PatternFragment() {
+  public ImageFragment() {
   }
 
   @Override
@@ -66,15 +65,10 @@ public class PatternFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container,
                            Bundle savedInstanceState) {
-    // Generate a repeated tile from the source bitmap.
-    Bitmap b = BitmapFactory.decodeResource(getResources(), resId);
-    BitmapDrawable drawable = new BitmapDrawable(getResources(), b);
-    drawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+    View view = inflater.inflate(R.layout.fragment_main, null);
+    ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+    imageView.setImageResource(resId);
 
-    ImageView view = new ImageView(getActivity());
-    // Set background, as the image drawable doesn't respect tileMode. Use the deprecated call
-    // as this app needs to support API 9+.
-    view.setBackgroundDrawable(drawable);
     return view;
   }
 
