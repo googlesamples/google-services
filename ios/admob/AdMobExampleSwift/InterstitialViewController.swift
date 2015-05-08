@@ -25,7 +25,7 @@ class InterstitialViewController: UIViewController, GADInterstitialDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.interstitialView = GHIContext.sharedInstance().interstitialView
+        self.interstitialView = GGLContext.sharedInstance().interstitialView
         self.interstitialView.delegate = self
         self.interstitialView.loadRequest(GADRequest())
     }

@@ -7,5 +7,5 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'sso://cpdc-internal/spec'
 platform :ios, '8.1'
 
-pod 'GoogleMobilePlatform/Identity', '~> 0.0'
+pod 'Google/Identity', '~> 0.0'
 pod 'Facebook-iOS-SDK', '~> 4.0'

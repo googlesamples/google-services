@@ -27,8 +27,8 @@
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   _notificationKey = @"onRegistrationCompleted";
-  [[GHIContext sharedInstance] configure];
-  _gcmSenderID = [[[GHIContext sharedInstance] configuration] gcmSenderID];
+  [[GGLContext sharedInstance] configure];
+  _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
   UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
   UIUserNotificationSettings *settings =

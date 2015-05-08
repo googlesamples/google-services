@@ -16,14 +16,14 @@
 
 #import "AppDelegate.h"
 
-#import <GoogleMobilePlatform/Analytics.h>
+#import <Google/Analytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START tracker_objc]
   // Configure tracker from GoogleService-Info.plist.
-  [[GHIContext sharedInstance] configure];
+  [[GGLContext sharedInstance] configure];
 
   // Optional: configure GAI options.
   GAI *gai = [GAI sharedInstance];
