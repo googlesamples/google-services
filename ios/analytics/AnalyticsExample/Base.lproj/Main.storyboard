@@ -77,7 +77,7 @@
         <scene sceneID="8gd-ga-mjo">
             <objects>
                 <tabBarController title="Patterns" id="eeg-iu-cjG" customClass="PatternTabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tic-du-7VP">
+                    <navigationItem key="navigationItem" title="Analytics Quickstart" id="tic-du-7VP">
                         <connections>
                             <outlet property="rightBarButtonItem" destination="hCL-4j-2le" id="uhg-Y0-IYr"/>
                         </connections>
