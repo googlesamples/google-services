@@ -5,55 +5,67 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--Blue-->
+        <!--A-->
         <scene sceneID="jUt-xG-r3W">
             <objects>
-                <viewController title="Blue" id="lVf-Ya-OQV" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="A" id="lVf-Ya-OQV" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vpe-J1-fiS"/>
                         <viewControllerLayoutGuide type="bottom" id="ABr-eH-ePx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="M3b-jw-4PX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="favorite.png" translatesAutoresizingMaskIntoConstraints="NO" id="zIB-UN-zJs" customClass="CircleImageView">
+                                <rect key="frame" x="172" y="148" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="QF0-yo-PQ6"/>
+                                    <constraint firstAttribute="height" constant="256" id="jwz-gG-ahM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="zIB-UN-zJs" secondAttribute="centerX" id="svQ-3f-czU"/>
+                            <constraint firstAttribute="centerY" secondItem="zIB-UN-zJs" secondAttribute="centerY" id="w5D-lZ-IUK"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Blue" image="blue.png" id="whl-nQ-ck2"/>
-                    <connections>
-                        <outlet property="background" destination="eOi-nw-mNK" id="bDi-sH-tCL"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="A" image="icon-favorite.png" id="whl-nQ-ck2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxv-GQ-DsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue.png" id="eOi-nw-mNK">
-                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
             <point key="canvasLocation" x="149" y="428"/>
         </scene>
-        <!--Angles-->
+        <!--B-->
         <scene sceneID="T4b-ot-V0m">
             <objects>
-                <viewController title="Angles" id="A0V-En-EJl" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="B" id="A0V-En-EJl" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="paV-2x-1SP"/>
                         <viewControllerLayoutGuide type="bottom" id="dJb-g6-QTF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QBZ-F6-IFj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="flash_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="fu5-Ys-Uq9" customClass="CircleImageView">
+                                <rect key="frame" x="172" y="148" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="7d9-XY-dJb"/>
+                                    <constraint firstAttribute="height" constant="256" id="gKb-jg-fgz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="fu5-Ys-Uq9" secondAttribute="centerY" id="2Yd-FF-lv3"/>
+                            <constraint firstAttribute="centerX" secondItem="fu5-Ys-Uq9" secondAttribute="centerX" id="3yM-wB-hj1"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Angles" image="angles.png" id="1ez-db-05h"/>
-                    <connections>
-                        <outlet property="background" destination="zJp-GC-kJ1" id="IRU-gd-Qlf"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="B" image="icon-flash_on.png" id="1ez-db-05h"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGL-DL-qgy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="angles.png" id="zJp-GC-kJ1">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
             <point key="canvasLocation" x="148" y="-234"/>
         </scene>
@@ -83,16 +95,23 @@
                         </connections>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="QrM-NQ-Tka">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="QrM-NQ-Tka">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.090196078430000007" green="0.68235294120000001" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.090196078430000007" green="0.68235294120000001" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.090196078430000007" green="0.68235294120000001" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="A0V-En-EJl" kind="relationship" relationship="viewControllers" id="c1O-wh-Yr6"/>
                         <segue destination="lVf-Ya-OQV" kind="relationship" relationship="viewControllers" id="25Z-jG-WWy"/>
-                        <segue destination="Vqn-rV-AtV" kind="relationship" relationship="viewControllers" id="9mO-rK-9Cq"/>
-                        <segue destination="vhB-Nv-UYJ" kind="relationship" relationship="viewControllers" id="Tfu-96-CWN"/>
+                        <segue destination="A0V-En-EJl" kind="relationship" relationship="viewControllers" id="Hhg-ek-N8J"/>
+                        <segue destination="Vqn-rV-AtV" kind="relationship" relationship="viewControllers" id="aTh-1Q-AeJ"/>
+                        <segue destination="vhB-Nv-UYJ" kind="relationship" relationship="viewControllers" id="gcf-rD-9bU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1m-Ew-oHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -104,63 +123,80 @@
             </objects>
             <point key="canvasLocation" x="-660" y="-102"/>
         </scene>
-        <!--Dots-->
+        <!--C-->
         <scene sceneID="ZvK-wS-pgM">
             <objects>
-                <viewController title="Dots" id="Vqn-rV-AtV" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="C" id="Vqn-rV-AtV" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eaF-dR-pcr"/>
                         <viewControllerLayoutGuide type="bottom" id="bYg-H7-CJJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6t9-j2-aMP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="tag_faces.png" translatesAutoresizingMaskIntoConstraints="NO" id="xHb-8o-vTm" customClass="CircleImageView">
+                                <rect key="frame" x="172" y="148" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="XZD-p0-75O"/>
+                                    <constraint firstAttribute="width" constant="256" id="y9B-ec-pwE"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="xHb-8o-vTm" secondAttribute="centerX" id="DDe-tY-AUH"/>
+                            <constraint firstAttribute="centerY" secondItem="xHb-8o-vTm" secondAttribute="centerY" id="HbO-06-6Xc"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dots" image="dots.png" id="54A-Qd-hDy"/>
-                    <connections>
-                        <outlet property="background" destination="9v2-rB-XeE" id="S4Y-2f-Rtp"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="C" image="icon-tag_faces.png" id="54A-Qd-hDy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2d-ed-TnE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dots.png" id="9v2-rB-XeE">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
             <point key="canvasLocation" x="-932" y="866"/>
         </scene>
-        <!--Lines-->
+        <!--D-->
         <scene sceneID="yAq-nS-xJM">
             <objects>
-                <viewController title="Lines" id="vhB-Nv-UYJ" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="D" id="vhB-Nv-UYJ" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FUr-9S-O0D"/>
                         <viewControllerLayoutGuide type="bottom" id="iEu-NN-tCj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7nq-AR-YU8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="256" image="wb_incandescent.png" translatesAutoresizingMaskIntoConstraints="NO" id="8t4-48-5D9" customClass="CircleImageView">
+                                <rect key="frame" x="172" y="148" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="TIe-EE-hBP"/>
+                                    <constraint firstAttribute="width" constant="256" id="jmF-hb-TkU"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="8t4-48-5D9" secondAttribute="centerX" id="Ucl-Cn-Kus"/>
+                            <constraint firstAttribute="centerY" secondItem="8t4-48-5D9" secondAttribute="centerY" id="mbq-gp-ekr"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Lines" image="lines.png" id="TIH-P3-nMk"/>
-                    <connections>
-                        <outlet property="background" destination="yGc-vb-1vi" id="2KN-dH-Asu"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="D" image="icon-wb_incandescent.png" id="TIH-P3-nMk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q18-zn-iy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lines.png" id="yGc-vb-1vi">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
             <point key="canvasLocation" x="-192" y="1150"/>
         </scene>
     </scenes>
     <resources>
-        <image name="angles.png" width="16" height="16"/>
-        <image name="blue.png" width="16" height="16"/>
-        <image name="dots.png" width="16" height="16"/>
-        <image name="lines.png" width="16" height="16"/>
+        <image name="favorite.png" width="200" height="200"/>
+        <image name="flash_on.png" width="200" height="200"/>
+        <image name="icon-favorite.png" width="32" height="32"/>
+        <image name="icon-flash_on.png" width="32" height="32"/>
+        <image name="icon-tag_faces.png" width="32" height="32"/>
+        <image name="icon-wb_incandescent.png" width="32" height="32"/>
+        <image name="tag_faces.png" width="200" height="200"/>
+        <image name="wb_incandescent.png" width="200" height="200"/>
     </resources>
+    <color key="tintColor" red="0.090196078431372548" green="0.68235294117647061" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
 </document>
