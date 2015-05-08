@@ -19,7 +19,7 @@
 
 #import "InterstitialViewController.h"
 
-#import <GoogleMobilePlatform/AdMob.h>
+#import <Google/AdMob.h>
 
 @interface InterstitialViewController () <GADInterstitialDelegate>
 
@@ -36,14 +36,14 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.interstitialView = [GHIContext sharedInstance].interstitialView;
+  self.interstitialView = [GGLContext sharedInstance].interstitialView;
   self.interstitialView.delegate = self;
   [self.interstitialView loadRequest:[GADRequest request]];
 }
 
 - (GADInterstitial *)createAndLoadInterstitial {
   GADInterstitial *interstitial = [[GADInterstitial alloc] init];
-  interstitial.adUnitID = [GHIContext sharedInstance].adUnitIDForInterstitialTest;
+  interstitial.adUnitID = [GGLContext sharedInstance].adUnitIDForInterstitialTest;
   interstitial.delegate = self;
   [interstitial loadRequest:[GADRequest request]];
   return interstitial;

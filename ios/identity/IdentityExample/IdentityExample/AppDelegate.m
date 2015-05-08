@@ -24,7 +24,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [[GHIContext sharedInstance] configure];
+  [[GGLContext sharedInstance] configure];
   return YES;
 }
 

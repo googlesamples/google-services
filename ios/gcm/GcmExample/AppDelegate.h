@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-#import <GoogleMobilePlatform/CloudMessaging.h>
+#import <Google/CloudMessaging.h>
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, GMPInstanceIDDelegate>

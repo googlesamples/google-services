@@ -15,7 +15,7 @@
 //
 
 #import "AppDelegate.h"
-#import <GoogleMobilePlatform/AppInvite.h>
+#import <Google/AppInvite.h>
 
 
 @implementation AppDelegate
@@ -24,7 +24,7 @@
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
       (NSDictionary *)launchOptions {
-  [[GHIContext sharedInstance] configure];
+  [[GGLContext sharedInstance] configure];
 
   // TODO: Remove after plus.login is no longer required.
   [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/plus.login"];

@@ -4,4 +4,4 @@ source 'sso://cpdc-internal/spec.git'
 # GcmExample
 platform :ios, '7.0'
 link_with 'GcmExample', 'GcmExampleSwift'
-pod 'GoogleMobilePlatform/CloudMessaging'
+pod 'Google/CloudMessaging'

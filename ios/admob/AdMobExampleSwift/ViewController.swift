@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.bannerView = GHIContext.sharedInstance().bannerView
+        self.bannerView = GGLContext.sharedInstance().bannerView
         self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
         self.bannerView.frame = CGRectMake(0,
                                            self.view.frame.size.height - self.bannerView.frame.size.height,
