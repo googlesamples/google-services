@@ -17,20 +17,20 @@
 package com.google.samples.quickstart.analytics;
 
 /**
- * Pair of resource IDs representing a pattern and its title.
+ * Pair of resource IDs representing an image and its title.
  */
-public class PatternInfo {
+public class ImageInfo {
 
-  public final int background;
+  public final int image;
   public final int title;
 
   /**
-   * Create a new PatternInfo.
-   * @param background resource of background image
+   * Create a new ImageInfo.
+   * @param image resource of image
    * @param title resource of title
    */
-  public PatternInfo(int background, int title) {
-    this.background = background;
+  public ImageInfo(int image, int title) {
+    this.image = image;
     this.title = title;
   }
 

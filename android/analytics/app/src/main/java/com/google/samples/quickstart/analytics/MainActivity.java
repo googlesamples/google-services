@@ -32,27 +32,25 @@ import android.view.MenuItem;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import java.util.Locale;
-
 /**
  * Activity which displays numerous background images that may be viewed. These background images
- * are shown via {@link PatternFragment}.
+ * are shown via {@link ImageFragment}.
  */
 public class MainActivity extends AppCompatActivity {
   private static final String TAG = "MainActivity";
 
-  private static final PatternInfo[] PATTERN_INFOS = {
-      new PatternInfo(R.drawable.angles, R.string.pattern1_title),
-      new PatternInfo(R.drawable.blue, R.string.pattern2_title),
-      new PatternInfo(R.drawable.dots, R.string.pattern3_title),
-      new PatternInfo(R.drawable.lines, R.string.pattern4_title),
+  private static final ImageInfo[] IMAGE_INFOS = {
+      new ImageInfo(R.drawable.favorite, R.string.pattern1_title),
+      new ImageInfo(R.drawable.flash, R.string.pattern2_title),
+      new ImageInfo(R.drawable.face, R.string.pattern3_title),
+      new ImageInfo(R.drawable.whitebalance, R.string.pattern4_title),
   };
 
   /**
-   * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each pattern.
+   * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each image.
    * This uses a {@link FragmentPagerAdapter}, which keeps every loaded fragment in memory.
    */
-  private PatternPagerAdapter mPatternPagerAdapter;
+  private ImagePagerAdapter mImagePagerAdapter;
 
   /**
    * The {@link ViewPager} that will host the patterns.
@@ -71,27 +69,27 @@ public class MainActivity extends AppCompatActivity {
 
     // [START shared_tracker]
     // Obtain the shared Tracker instance.
-    PatternApplication application = (PatternApplication) getApplication();
+    AnalyticsApplication application = (AnalyticsApplication) getApplication();
     mTracker = application.getDefaultTracker();
     // [END shared_tracker]
 
-    // Create the adapter that will return a fragment for each pattern.
-    mPatternPagerAdapter = new PatternPagerAdapter(getSupportFragmentManager(), PATTERN_INFOS);
+    // Create the adapter that will return a fragment for each image.
+    mImagePagerAdapter = new ImagePagerAdapter(getSupportFragmentManager(), IMAGE_INFOS);
 
     // Set up the ViewPager with the pattern adapter.
     mViewPager = (ViewPager) findViewById(R.id.pager);
-    mViewPager.setAdapter(mPatternPagerAdapter);
+    mViewPager.setAdapter(mImagePagerAdapter);
 
-    // When the visible pattern changes, send a new visible event.
+    // When the visible image changes, send a new visible event.
     mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
       @Override
       public void onPageSelected(int position) {
-        sendScreenPatternName();
+        sendScreenImageName();
       }
     });
 
     // Send initial screen event.
-    sendScreenPatternName();
+    sendScreenImageName();
   }
 
   @Override
@@ -111,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             .build());
         // [END custom_event]
 
-        String name = getCurrentPatternTitle();
+        String name = getCurrentImageTitle();
         String text = "I'd love you to hear about " + name;
 
         Intent sendIntent = new Intent();
@@ -125,25 +123,25 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * Return the title of the currently displayed pattern.
-   * @return title of pattern
+   * Return the title of the currently displayed image.
+   * @return title of image
    */
-  private String getCurrentPatternTitle() {
+  private String getCurrentImageTitle() {
     int position = mViewPager.getCurrentItem();
-    PatternInfo info = PATTERN_INFOS[position];
+    ImageInfo info = IMAGE_INFOS[position];
     return getString(info.title);
   }
 
   /**
-   * Record a screen view event for the visible {@link PatternFragment} displayed
+   * Record a screen view event for the visible {@link ImageFragment} displayed
    * inside {@link FragmentPagerAdapter}.
    */
-  private void sendScreenPatternName() {
-    String name = getCurrentPatternTitle();
+  private void sendScreenImageName() {
+    String name = getCurrentImageTitle();
 
     // [START screen_view_event]
     Log.i(TAG, "Setting screen name: " + name);
-    mTracker.setScreenName("Pattern~" + name);
+    mTracker.setScreenName("Image~" + name);
     mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     // [END screen_view_event]
   }
@@ -152,19 +150,19 @@ public class MainActivity extends AppCompatActivity {
    * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
    * one of the sections/tabs/pages.
    */
-  public class PatternPagerAdapter extends FragmentPagerAdapter {
+  public class ImagePagerAdapter extends FragmentPagerAdapter {
 
-    private final PatternInfo[] infos;
+    private final ImageInfo[] infos;
 
-    public PatternPagerAdapter(FragmentManager fm, PatternInfo[] infos) {
+    public ImagePagerAdapter(FragmentManager fm, ImageInfo[] infos) {
       super(fm);
       this.infos = infos;
     }
 
     @Override
     public Fragment getItem(int position) {
-      PatternInfo info = infos[position];
-      return PatternFragment.newInstance(info.background);
+      ImageInfo info = infos[position];
+      return ImageFragment.newInstance(info.image);
     }
 
     @Override
@@ -178,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
       }
       Locale l = Locale.getDefault();
-      PatternInfo info = infos[position];
+      ImageInfo info = infos[position];
       return getString(info.title).toUpperCase(l);
     }
   }
