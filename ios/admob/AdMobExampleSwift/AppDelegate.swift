@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Use Google Mobile Platform to configure APIs
-        GHIContext.sharedInstance().configure()
+        // Use Google library to configure APIs
+        GGLContext.sharedInstance().configure()
         return true
     }
 // [END gmp_config]

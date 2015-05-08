@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMPInstanceIDDelegate {
   // [START register_for_remote_notifications]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
       [NSObject: AnyObject]?) -> Bool {
-    GHIContext.sharedInstance().configure()
-    gcmSenderID = GHIContext.sharedInstance().configuration.gcmSenderID
+    GGLContext.sharedInstance().configure()
+    gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
     var types: UIUserNotificationType = UIUserNotificationType.Badge |
         UIUserNotificationType.Alert |
         UIUserNotificationType.Sound

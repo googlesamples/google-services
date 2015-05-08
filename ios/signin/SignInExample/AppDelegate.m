@@ -15,14 +15,14 @@
 //
 
 #import "AppDelegate.h"
-#import <GoogleMobilePlatform/SignIn.h>
+#import <Google/SignIn.h>
 
 @implementation AppDelegate
 
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [[GHIContext sharedInstance] configure];
+  [[GGLContext sharedInstance] configure];
 
   return YES;
 }

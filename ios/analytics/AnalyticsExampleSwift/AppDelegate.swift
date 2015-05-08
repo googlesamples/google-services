@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START tracker_swift]
     // Configure tracker from GoogleService-Info.plist.
-    GHIContext.sharedInstance().configure()
+    GGLContext.sharedInstance().configure()
 
     // Optional: configure GAI options.
     var gai = GAI.sharedInstance()

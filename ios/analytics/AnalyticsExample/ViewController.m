@@ -16,7 +16,7 @@
 
 #import "ViewController.h"
 
-#import <GoogleMobilePlatform/Analytics.h>
+#import <Google/Analytics.h>
 
 @implementation ViewController
 
@@ -26,7 +26,7 @@
   NSString *name = [NSString stringWithFormat:@"Pattern~%@", self.title];
 
   // The UA-XXXXX-Y tracker ID is loaded automatically from the
-  // GoogleService-Info.plist by the `GHIContext` in the AppDelegate.
+  // GoogleService-Info.plist by the `GGLContext` in the AppDelegate.
   // If you're copying this to an app just using Analytics, you'll
   // need to configure your tracking ID here.
   // [START screen_view_event_objc]

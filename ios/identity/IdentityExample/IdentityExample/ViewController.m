@@ -23,10 +23,10 @@
 @implementation ViewController
 
 - (IBAction)signInTapped:(id)sender {
-  GHIContext *context = [GHIContext sharedInstance];
+  GGLContext *context = [GGLContext sharedInstance];
 
   [context.identity startSignInWithCompletion:^(NSString *accessToken,
-                                                GHIIdentityData *identityData,
+                                                GGLIdentityData *identityData,
                                                 NSError *error) {
     if (!error) {
       NSLog(@"Access Token: %@", accessToken);
