@@ -20,7 +20,7 @@
 // [START gmp_banner_example]
 
 #import "ViewController.h"
-#import <GoogleMobilePlatform/AdMob.h>
+#import <Google/AdMob.h>
 
 @interface ViewController ()
 
@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.bannerView = [GHIContext sharedInstance].bannerView;
+  self.bannerView = [GGLContext sharedInstance].bannerView;
   [self.bannerView setAdSize:kGADAdSizeSmartBannerPortrait];
   self.bannerView.frame = CGRectMake(0,
                                      self.view.frame.size.height -

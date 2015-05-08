@@ -16,7 +16,7 @@
 
 #import "PatternTabBarController.h"
 
-#import <GoogleMobilePlatform/Analytics.h>
+#import <Google/Analytics.h>
 
 @implementation PatternTabBarController
 
