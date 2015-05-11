@@ -4,11 +4,13 @@ buildscript {
     repositories {
         jcenter()
         maven {
+            // TODO(ldenison): remove before shipping.
             url 'https://android-devtools-staging.corp.google.com/no_crawl/greenhouse'
         }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
+        // TODO(ldenison): This will be renamed 'quickstart' to 'googleservices'.
         classpath 'com.google.android.quickstart:quickstart:1.0'
 
         // NOTE: Do not place your application dependencies here; they belong
