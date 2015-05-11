@@ -40,19 +40,49 @@
   // TODO(developer) Configure the sign-in button look/feel
   [GIDSignIn sharedInstance].delegate = self;
 
-  // Uncomment to sign in automatically.
+  // Sign in automatically.
   [[GIDSignIn sharedInstance] signInSilently];
 
+  [self setupUI];
   [self toggleAuthUI];
 }
 // [END viewdidload]
 
+- (void)setupUI {
+  float grayValue = (204.0/255);
+  UIColor* grayColor = [UIColor colorWithRed:grayValue
+                                       green:grayValue
+                                        blue:grayValue
+                                       alpha:1.0];
+  
+  self.inviteButton.layer.cornerRadius = 3;
+  self.inviteButton.layer.shadowRadius = 1;
+  self.inviteButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+  self.inviteButton.layer.shadowColor = [UIColor blackColor].CGColor;
+  self.inviteButton.layer.shadowOpacity = .7;
+  
+  self.signOutButton.layer.borderWidth = .5;
+  self.signOutButton.layer.borderColor = grayColor.CGColor;
+  self.signOutButton.layer.cornerRadius = 2;
+  self.signOutButton.layer.shadowRadius = .5;
+  self.signOutButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+  self.signOutButton.layer.shadowColor = [UIColor blackColor].CGColor;
+  self.signOutButton.layer.shadowOpacity = .4;
+
+  self.disconnectButton.layer.borderWidth = .5;
+  self.disconnectButton.layer.borderColor = grayColor.CGColor;
+  self.disconnectButton.layer.cornerRadius = 2;
+  self.disconnectButton.layer.shadowRadius = .5;
+  self.disconnectButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+  self.disconnectButton.layer.shadowColor = [UIColor blackColor].CGColor;
+  self.disconnectButton.layer.shadowOpacity = .4;
+}
+
 // [START signin_handler]
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   // Perform any operations on signed in user here.
-  self.statusText.text = [NSString stringWithFormat:@"Signed in user: %@",
+  self.statusText.text = [NSString stringWithFormat:@"Signed in as %@",
                           user.profile.name];
   [self toggleAuthUI];
 }
@@ -114,7 +144,8 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     self.signOutButton.enabled = NO;
     self.disconnectButton.enabled = NO;
     self.inviteButton.enabled = NO;
-  }else{
+    [self performSegueWithIdentifier:@"SignedOutScreen" sender:self];
+  } else {
     // Signed in
     self.signInButton.enabled = NO;
     self.signOutButton.enabled = YES;
@@ -124,4 +155,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 }
 // [END toggle_auth]
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
+}
 @end
