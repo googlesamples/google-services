@@ -87,4 +87,7 @@ class ViewController: UIViewController, GIDSignInDelegate {
   }
   // [END toggle_auth]
 
+  override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return UIStatusBarStyle.LightContent
+  }
 }
