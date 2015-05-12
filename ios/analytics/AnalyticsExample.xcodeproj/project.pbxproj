@@ -16,7 +16,6 @@
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* ViewController.swift */; };
 		5F5A539C1ADE69AA00F81DF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
-		5F77381C1AFB413C00C5E8D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F77381B1AFB413C00C5E8D4 /* GoogleService-Info.plist */; };
 		5F7738291AFB4A0600C5E8D4 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77381D1AFB4A0600C5E8D4 /* favorite.png */; };
 		5F77382A1AFB4A0600C5E8D4 /* favorite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77381E1AFB4A0600C5E8D4 /* favorite@2x.png */; };
 		5F77382B1AFB4A0600C5E8D4 /* favorite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77381F1AFB4A0600C5E8D4 /* favorite@3x.png */; };
@@ -65,7 +64,6 @@
 		5F7738621AFB4D5800C5E8D4 /* icon-wb_incandescent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77384B1AFB4D5800C5E8D4 /* icon-wb_incandescent@2x.png */; };
 		5F7738631AFB4D5800C5E8D4 /* icon-wb_incandescent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77384C1AFB4D5800C5E8D4 /* icon-wb_incandescent@3x.png */; };
 		5F7738641AFB4D5800C5E8D4 /* icon-wb_incandescent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F77384C1AFB4D5800C5E8D4 /* icon-wb_incandescent@3x.png */; };
-		5F7738651AFB4EFC00C5E8D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F77381B1AFB413C00C5E8D4 /* GoogleService-Info.plist */; };
 		5F9961081AE0CF4F0034F503 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961051AE0CF4F0034F503 /* Icon@2x.png */; };
 		5F9961091AE0CF4F0034F503 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961051AE0CF4F0034F503 /* Icon@2x.png */; };
 		5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
@@ -95,7 +93,6 @@
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F5A539B1ADE695B00F81DF0 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		5F77381B1AFB413C00C5E8D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F77381D1AFB4A0600C5E8D4 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		5F77381E1AFB4A0600C5E8D4 /* favorite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite@2x.png"; sourceTree = "<group>"; };
 		5F77381F1AFB4A0600C5E8D4 /* favorite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite@3x.png"; sourceTree = "<group>"; };
@@ -152,7 +149,6 @@
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
-				5F77381B1AFB413C00C5E8D4 /* GoogleService-Info.plist */,
 				5F5A534E1ADE670C00F81DF0 /* AnalyticsExample */,
 				5F5A537A1ADE67D500F81DF0 /* AnalyticsExampleSwift */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
@@ -370,7 +366,6 @@
 				5F77382D1AFB4A0600C5E8D4 /* flash_on@2x.png in Resources */,
 				5F77384D1AFB4D5800C5E8D4 /* icon-favorite.png in Resources */,
 				5F7738291AFB4A0600C5E8D4 /* favorite.png in Resources */,
-				5F77381C1AFB413C00C5E8D4 /* GoogleService-Info.plist in Resources */,
 				5F7738611AFB4D5800C5E8D4 /* icon-wb_incandescent@2x.png in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F77382B1AFB4A0600C5E8D4 /* favorite@3x.png in Resources */,
@@ -398,7 +393,6 @@
 				5F7738391AFB4A2100C5E8D4 /* flash_on@2x.png in Resources */,
 				5F77383D1AFB4A2100C5E8D4 /* tag_faces@3x.png in Resources */,
 				5F7738371AFB4A2100C5E8D4 /* favorite@3x.png in Resources */,
-				5F7738651AFB4EFC00C5E8D4 /* GoogleService-Info.plist in Resources */,
 				5F77385E1AFB4D5800C5E8D4 /* icon-tag_faces@3x.png in Resources */,
 				5F7738521AFB4D5800C5E8D4 /* icon-favorite@3x.png in Resources */,
 				5F7738381AFB4A2100C5E8D4 /* flash_on.png in Resources */,
