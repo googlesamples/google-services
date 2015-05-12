@@ -12,8 +12,9 @@
 		2C6749CD1AE9975A00F9AB0A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6749CB1AE9975A00F9AB0A /* MainMenu.xib */; };
 		2C6749E21AE9979E00F9AB0A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6749E01AE9979E00F9AB0A /* MasterViewController.swift */; };
 		2C6749E31AE9979E00F9AB0A /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6749E11AE9979E00F9AB0A /* MasterViewController.xib */; };
-		2C7F94D81AF19BD8001AF719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7F94D71AF19BD8001AF719 /* GoogleService-Info.plist */; };
-		2C7F94D91AF1A0C2001AF719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7F94D71AF19BD8001AF719 /* GoogleService-Info.plist */; };
+		2C85628D1B012BFD00F0B24B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C85628C1B012BFD00F0B24B /* GoogleService-Info.plist */; };
+		2C85628E1B012BFD00F0B24B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C85628C1B012BFD00F0B24B /* GoogleService-Info.plist */; };
+		2C85628F1B01391E00F0B24B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A53591ADE670C00F81DF0 /* Main.storyboard */; };
 		3336527EF95F198EE30EEC3A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD6BAAD64060697695C7E6F /* libPods.a */; };
 		5F5A53521ADE670C00F81DF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53511ADE670C00F81DF0 /* main.m */; };
 		5F5A53551ADE670C00F81DF0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A53541ADE670C00F81DF0 /* AppDelegate.m */; };
@@ -38,7 +39,7 @@
 		2C6749CC1AE9975A00F9AB0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2C6749E01AE9979E00F9AB0A /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		2C6749E11AE9979E00F9AB0A /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
-		2C7F94D71AF19BD8001AF719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2C85628C1B012BFD00F0B24B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F5A534C1ADE670C00F81DF0 /* GcmExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GcmExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A53501ADE670C00F81DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F5A53511ADE670C00F81DF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -148,7 +149,7 @@
 				5F5A53591ADE670C00F81DF0 /* Main.storyboard */,
 				5F5A53501ADE670C00F81DF0 /* Info.plist */,
 				5F5A53511ADE670C00F81DF0 /* main.m */,
-				2C7F94D71AF19BD8001AF719 /* GoogleService-Info.plist */,
+				2C85628C1B012BFD00F0B24B /* GoogleService-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -271,6 +272,7 @@
 					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = EQHXZ8M8AV;
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
@@ -315,7 +317,7 @@
 			files = (
 				5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
 				5F99610A1AE0CF4F0034F503 /* Images.xcassets in Resources */,
-				2C7F94D81AF19BD8001AF719 /* GoogleService-Info.plist in Resources */,
+				2C85628D1B012BFD00F0B24B /* GoogleService-Info.plist in Resources */,
 				5F5A535B1ADE670C00F81DF0 /* Main.storyboard in Resources */,
 				5F9961081AE0CF4F0034F503 /* Icon@2x.png in Resources */,
 			);
@@ -325,8 +327,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C7F94D91AF1A0C2001AF719 /* GoogleService-Info.plist in Resources */,
+				2C85628F1B01391E00F0B24B /* Main.storyboard in Resources */,
 				5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */,
+				2C85628E1B012BFD00F0B24B /* GoogleService-Info.plist in Resources */,
 				5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */,
 				5F9961091AE0CF4F0034F503 /* Icon@2x.png in Resources */,
 			);
@@ -567,6 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = GcmExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -579,6 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = GcmExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
