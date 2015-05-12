@@ -12,6 +12,12 @@ Define the namespace and AdView layout that will show the banner.
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:id="@+id/content"
         android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/launch_second_activity_button"
+        android:text="Launch second activity (behind interstitial)"
+        android:layout_below="@id/content"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
