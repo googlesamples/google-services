@@ -98,4 +98,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 }
 // [END toggle_auth]
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
+}
 @end
