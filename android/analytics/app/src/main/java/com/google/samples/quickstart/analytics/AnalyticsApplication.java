@@ -37,7 +37,7 @@ public class AnalyticsApplication extends Application {
     if (mTracker == null) {
       GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
       analytics.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
-      mTracker = analytics.newTracker(R.xml.tracker);
+      mTracker = analytics.newTracker(R.xml.global_tracker);
     }
     return mTracker;
   }
