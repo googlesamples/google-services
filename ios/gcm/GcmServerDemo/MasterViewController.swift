@@ -21,55 +21,37 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
 
   // TODO(silvano): replace with prod URL when available
   let sendUrl = "https://jmt17.google.com/gcm/send"
+  let subscriptionTopic = "/topics/global"
 
   @IBOutlet weak var apiKeyTextField: NSTextField!
   @IBOutlet weak var regIdTextField: NSTextField!
   @IBOutlet weak var sendNotificationButton: NSButton!
   @IBOutlet weak var displayCurlButton: NSButton!
   @IBOutlet weak var curlCommandTextView: NSScrollView!
+  @IBOutlet weak var sendToTopicButton: NSButton!
 
   override func controlTextDidChange(obj: NSNotification) {
     // Length checks just to ensure that the text fields don't contain just a couple of chars
-    if apiKeyTextField.stringValue.utf16Count >= 30 &&
-        regIdTextField.stringValue.utf16Count >= 30{
-      sendNotificationButton.enabled = true
-      displayCurlButton.enabled = true
+    if apiKeyTextField.stringValue.utf16Count >= 30 {
+      sendToTopicButton.enabled = true
+      if regIdTextField.stringValue.utf16Count >= 30 {
+        sendNotificationButton.enabled = true
+        displayCurlButton.enabled = true
+      } else {
+        sendNotificationButton.enabled = false
+        displayCurlButton.enabled = false
+      }
     } else {
-      sendNotificationButton.enabled = false
-      displayCurlButton.enabled = false
+      sendToTopicButton.enabled = true
     }
   }
 
   @IBAction func didClickSendNotification(sender: NSButton) {
-    // Create the request.
-    var request = NSMutableURLRequest(URL: NSURL(string: sendUrl)!)
-    request.HTTPMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.setValue("key=\(apiKeyTextField.stringValue)", forHTTPHeaderField: "Authorization")
-    request.timeoutInterval = 60
-
-    // prepare the payload
-    let message = getMessage()
-    var jsonError:NSError?
-    let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
-    if (jsonError == nil) {
-      request.HTTPBody = jsonBody
-      NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {
-          (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-        if error != nil {
-          NSAlert(error: error).runModal()
-        } else {
-          println("Success! Response from the GCM server:")
-          println(response)
-        }
-      })
-    } else {
-      NSAlert(error: jsonError!).runModal()
-    }
+    sendMessage(regIdTextField.stringValue)
   }
 
   @IBAction func didClickDisplaycURL(sender: NSButton) {
-    let message = getMessage()
+    let message = getMessage(regIdTextField.stringValue)
     var jsonError:NSError?
     let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
     if (jsonError == nil) {
@@ -83,10 +65,42 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
     }
   }
 
-  func getMessage() -> NSDictionary {
-// [START notification_format]
-    return ["to": regIdTextField.stringValue, "notification": ["body": "Hello from GCM"]]
-// [END notification_format]
+  @IBAction func didClickSendToTopic(sender: NSButton) {
+    sendMessage(subscriptionTopic)
+  }
+
+  func sendMessage(to: String) {
+    // Create the request.
+    var request = NSMutableURLRequest(URL: NSURL(string: sendUrl)!)
+    request.HTTPMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.setValue("key=\(apiKeyTextField.stringValue)", forHTTPHeaderField: "Authorization")
+    request.timeoutInterval = 60
+
+    // prepare the payload
+    let message = getMessage(to)
+    var jsonError:NSError?
+    let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
+    if (jsonError == nil) {
+      request.HTTPBody = jsonBody
+      NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
+          completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        if error != nil {
+          NSAlert(error: error).runModal()
+        } else {
+          println("Success! Response from the GCM server:")
+          println(response)
+        }
+      })
+    } else {
+      NSAlert(error: jsonError!).runModal()
+    }
+  }
+
+  func getMessage(to: String) -> NSDictionary {
+  // [START notification_format]
+      return ["to": to, "notification": ["body": "Hello from GCM"]]
+  // [END notification_format]
   }
 
 }
