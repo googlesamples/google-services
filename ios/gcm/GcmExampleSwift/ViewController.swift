@@ -56,6 +56,10 @@ class ViewController: UIViewController {
     }
   }
 
+  override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return UIStatusBarStyle.LightContent
+  }
+
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }

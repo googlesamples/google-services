@@ -22,10 +22,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
 
   var window: UIWindow?
+
+  var connectedToGCM = false
+  var subscribedToTopic = false
   var gcmSenderID: String?
+  var registrationToken: String?
   var registrationOptions = [String: AnyObject]()
 
   let notificationKey = "onRegistrationCompleted"
+  let subscriptionTopic = "/topics/global"
 
   // [START register_for_remote_notifications]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
@@ -46,6 +51,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
     return true
   }
 
+  func subscribeToTopic() {
+    if(registrationToken != nil && connectedToGCM) {
+      GCMPubSub.sharedInstance().subscribeWithToken(self.registrationToken, topic: subscriptionTopic,
+        options: nil, handler: {(NSError error) -> Void in
+          if (error != nil) {
+            println("Subcription failed: \(error.localizedDescription)");
+          } else {
+            self.subscribedToTopic = true;
+            NSLog("Subscribed to \(self.subscriptionTopic)");
+          }
+      })
+    }
+  }
+
   // [START connect_gcm_service]
   func applicationDidBecomeActive( application: UIApplication) {
     GCMService.sharedInstance().connectWithHandler({
@@ -53,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
       if error != nil {
         println("Could not connect to GCM: \(error.localizedDescription)")
       } else {
+        self.connectedToGCM = true
         println("Connected to GCM")
       }
     })
@@ -62,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   // [START disconnect_gcm_service]
   func applicationDidEnterBackground(application: UIApplication) {
     GCMService.sharedInstance().disconnect()
+    self.connectedToGCM = false
   }
   // [END disconnect_gcm_service]
 
@@ -73,8 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
         GMSInstanceID.sharedInstance().startWithConfig(GMSInstanceIDConfig.defaultConfig())
         registrationOptions = [kGMSInstanceIDRegisterAPNSOption:deviceToken!,
           kGMSInstanceIDAPNSServerTypeSandboxOption:true]
-        GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID, scope: kGMSInstanceIDScopeGCM,
-            options: registrationOptions, handler: registrationHandler)
+        GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
+          scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
         // [END get_gcm_reg_token]
   }
 
@@ -102,6 +123,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
 
   func registrationHandler(registrationToken: String!, error: NSError!) {
     if (registrationToken != nil) {
+      self.registrationToken = registrationToken
+      GCMPubSub().subscribeWithToken(registrationToken, topic: subscriptionTopic, options: nil,
+          handler: { (NSError error) -> Void in
+        if error != nil {
+          println("Subscribed to \(self.subscriptionTopic)")
+        } else {
+          println("Subcription failed: \(error.localizedDescription)")
+        }
+      })
       println("Registration Token: \(registrationToken)")
       let userInfo = ["registrationToken": registrationToken]
       NSNotificationCenter.defaultCenter().postNotificationName(
@@ -116,8 +146,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
 
   func onTokenRefresh(updateID: Bool) {
     println("The GCM registration token has been invalidated.")
-    GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID, scope: kGMSInstanceIDScopeGCM,
-      options: registrationOptions, handler: registrationHandler)
+    GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
+        scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
   }
 
 }

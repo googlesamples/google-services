@@ -19,7 +19,12 @@
 @interface AppDelegate ()
 @property(nonatomic, strong) void (^registrationHandler)
     (NSString *registrationToken, NSError *error);
+@property(nonatomic, assign) BOOL connectedToGCM;
+@property(nonatomic, strong) NSString* registrationToken;
+@property(nonatomic, assign) BOOL subscribedToTopic;
 @end
+
+NSString *const SubscriptionTopic = @"/topics/global";
 
 @implementation AppDelegate
 
@@ -42,6 +47,7 @@
   __weak typeof(self) weakSelf = self;
   _registrationHandler = ^(NSString *registrationToken, NSError *error){
     if (registrationToken != nil) {
+      weakSelf.registrationToken = registrationToken;
       NSLog(@"Registration Token: %@", registrationToken);
       NSDictionary *userInfo = @{@"registrationToken" : registrationToken};
       [[NSNotificationCenter defaultCenter] postNotificationName: weakSelf.notificationKey
@@ -58,13 +64,34 @@
   return YES;
 }
 
+- (void)subscribeToTopic {
+  if (_registrationToken && _connectedToGCM) {
+    [[GCMPubSub sharedInstance] subscribeWithToken:_registrationToken
+                                             topic:SubscriptionTopic
+                                           options:nil
+                                           handler:^(NSError *error) {
+                                             if (error) {
+                                               NSLog(@"Subcription failed: %@",
+                                                     error.localizedDescription);
+                                             } else {
+                                               self.subscribedToTopic = true;
+                                               NSLog(@"Subscribed to %@", SubscriptionTopic);
+                                             }
+                                           }];
+  }
+}
+
 // [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
     if (error) {
       NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
     } else {
+      _connectedToGCM = true;
       NSLog(@"Connected to GCM");
+      if (_subscribedToTopic == NO) {
+        [self subscribeToTopic];
+      }
     }
   }];
 }
@@ -73,6 +100,8 @@
 // [START disconnect_gcm_service]
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   [[GCMService sharedInstance] disconnect];
+  _connectedToGCM = NO;
+
 }
 // [END disconnect_gcm_service]
 
