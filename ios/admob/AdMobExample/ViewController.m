@@ -22,14 +22,19 @@
 #import "ViewController.h"
 #import <Google/AdMob.h>
 
-@interface ViewController ()
+@interface ViewController () <GADInterstitialDelegate>
 
 /**
  * @property
  * A UIView subclass that displays ads capable of responding to user touch.
  */
-@property(nonatomic, strong) GADBannerView *bannerView;
-@property (weak, nonatomic) IBOutlet UIButton *interstitialButton;
+@property (weak, nonatomic) IBOutlet GADBannerView *bannerView;
+
+/**
+ * @property
+ * A UIView subclass that displays ads capable of responding to user touch.
+ */
+@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
@@ -38,22 +43,31 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.bannerView = [GGLContext sharedInstance].bannerView;
-  [self.bannerView setAdSize:kGADAdSizeSmartBannerPortrait];
-  self.bannerView.frame = CGRectMake(0,
-                                     self.view.frame.size.height -
-                                     self.bannerView.frame.size.height,
-                                     self.bannerView.frame.size.width,
-                                     self.bannerView.frame.size.height);
+  self.bannerView.adUnitID = [GGLContext sharedInstance].adUnitIDForBannerTest;
   self.bannerView.rootViewController = self;
-  [self.view addSubview:self.bannerView];
   [self.bannerView loadRequest:[GADRequest request]];
+
+  self.interstitial = [self createAndLoadInterstitial];
+
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [self.interstitialButton setEnabled:NO];
-    NSLog(@"GADInterstitial is a one time use object.");
+- (GADInterstitial *)createAndLoadInterstitial {
+  GADInterstitial *interstitial = [[GADInterstitial alloc] init];
+  interstitial.adUnitID = [GGLContext sharedInstance].adUnitIDForInterstitialTest;
+  interstitial.delegate = self;
+  [interstitial loadRequest:[GADRequest request]];
+  return interstitial;
 }
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+  self.interstitial = [self createAndLoadInterstitial];
+}
+
+- (IBAction)didTapInterstitialButton:(id)sender {
+  if ([self.interstitial isReady]) {
+    [self.interstitial presentFromRootViewController:self];
+  }
+}
+
 @end
 // [END gmp_banner_example]

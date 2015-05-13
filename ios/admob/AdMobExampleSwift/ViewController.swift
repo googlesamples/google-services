@@ -22,29 +22,38 @@ import UIKit
 
 // Makes ViewController available to Objc classes.
 @objc(ViewController)
-class ViewController: UIViewController {
+class ViewController: UIViewController, GADInterstitialDelegate {
     @IBOutlet weak var bannerView: GADBannerView!
-    @IBOutlet weak var interstitialButton: UIButton!
+    @IBOutlet var interstitial: GADInterstitial!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.bannerView = GGLContext.sharedInstance().bannerView
-        self.bannerView.adSize = kGADAdSizeSmartBannerPortrait
-        self.bannerView.frame = CGRectMake(0,
-                                           self.view.frame.size.height - self.bannerView.frame.size.height,
-                                           self.bannerView.frame.size.width,
-                                           self.bannerView.frame.size.height)
+        self.bannerView.adUnitID = GGLContext.sharedInstance().adUnitIDForBannerTest
         self.bannerView.rootViewController = self
-        self.view.addSubview(self.bannerView)
         self.bannerView.loadRequest(GADRequest())
+
+        self.interstitial = createAndLoadInterstitial()
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial()
+        interstitial.adUnitID = GGLContext.sharedInstance().adUnitIDForInterstitialTest
+        interstitial.delegate = self
+        interstitial.loadRequest(GADRequest())
+        return interstitial
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.interstitialButton.enabled = false
-        println("GADInterstitial is a one time use object.")
+    func interstitialDidDismissScreen(interstitial: GADInterstitial!) {
+        self.interstitial = createAndLoadInterstitial()
     }
 
+
+    @IBAction func didTapInterstitialButton(sender: AnyObject) {
+        if (self.interstitial.isReady) {
+            self.interstitial.presentFromRootViewController(self)
+        }
+    }
 }
 // [END gmp_banner_example]
 
