@@ -21,18 +21,17 @@ import UIKit
 class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
 // [END viewcontroller_interfaces]
   // [START viewcontroller_vars]
-  @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var signOutButton: UIButton!
   @IBOutlet weak var disconnectButton: UIButton!
   @IBOutlet weak var inviteButton: UIButton!
   @IBOutlet weak var statusText: UILabel!
   // [END viewcontroller_vars]
+  var popController:  SignInViewController!
 
   // [START viewdidload]
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(animated: Bool) {
     GIDSignIn.sharedInstance().delegate = self
-    statusText.text = "Initialized Swift demo"
+    GIDSignIn.sharedInstance().signInSilently()
     toggleAuthUI()
   }
   // [END viewdidload]
@@ -41,7 +40,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
   func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
     if (error == nil) {
       // User Successfully signed in.
-      statusText.text = "Signed in ID: \(user.userID)"
+      statusText.text = "Signed in as \(user.profile.name)"
       toggleAuthUI()
     } else {
       println("\(error.localizedDescription)")
@@ -64,7 +63,12 @@ class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
     statusText.text = "Disconnected"
     toggleAuthUI()
   }
+
+  func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+    toggleAuthUI()
+  }
   // [END disconnect_tapped]
+
 
   // [START invite_tapped]
   @IBAction func inviteTapped(sender: AnyObject) {
@@ -79,28 +83,32 @@ class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
 
   // [START toggle_auth]
   func toggleAuthUI() {
-    if (GIDSignIn.sharedInstance().hasAuthInKeychain()){
+    if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
       // Signed in
-      signInButton.enabled = false
       signOutButton.enabled = true
       disconnectButton.enabled = true
       inviteButton.enabled = true
     } else {
-      signInButton.enabled = true
       signOutButton.enabled = false
       disconnectButton.enabled = false
       inviteButton.enabled = false
+      self.performSegueWithIdentifier("SignedOutScreen", sender:self)
     }
   }
   // [END toggle_auth]
 
   // [START invite_finished]
   func inviteFinishedWithInvitations(invitationIds: [AnyObject]!, error: NSError!) {
-    if (error != nil){
+    if (error != nil) {
       println("Failed: " + error.localizedDescription)
-    }else{
+    } else {
       println("Invitations sent")
     }
   }
   // [END invite_finished]
+
+  // Sets the status bar to white.
+  override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return UIStatusBarStyle.LightContent
+  }
 }

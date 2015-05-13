@@ -10,6 +10,7 @@
 		1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D835D65B84E12DF53C5ADDCB /* libPods.a */; };
 		3DBFCF970AC4481BC6FB9222 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B5A4722417C2E158537DC8 /* libPods.a */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
+		4B1F2A361B01375C00F69A92 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F2A351B01375C00F69A92 /* SignInViewController.swift */; };
 		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */; };
 		4B5CBBFD1AE9DBF700D822CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */; };
@@ -29,6 +30,10 @@
 		4BC032EA1ACF33B70092326A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC032E91ACF33B70092326A /* ViewController.m */; };
 		4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EE1ACF33B70092326A /* Images.xcassets */; };
 		4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032F01ACF33B70092326A /* LaunchScreen.xib */; };
+		4BCF1C3C1AFBF6310039B15C /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF1C3B1AFBF6310039B15C /* appbg.png */; };
+		4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF1C3B1AFBF6310039B15C /* appbg.png */; };
+		4BCF1C3E1AFBF65D0039B15C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032E21ACF33B70092326A /* Info.plist */; };
+		4BCF1C421AFBFA8D0039B15C /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */; };
 		4BDB99D91ACF46E500C4DC2C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */; };
 		4BDB99DB1ACF46EC00C4DC2C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */; };
 		4BDB99DD1ACF46F400C4DC2C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DC1ACF46F400C4DC2C /* CoreLocation.framework */; };
@@ -39,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
+		4B1F2A351B01375C00F69A92 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4B5CBBFC1AE9DBF700D822CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B8759441AF17775007960B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4B97B2531AD7145E0036DD6C /* AppInvitesExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInvitesExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +62,9 @@
 		4BC032E91ACF33B70092326A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4BC032EE1ACF33B70092326A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4BC032F11ACF33B70092326A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4BCF1C3B1AFBF6310039B15C /* appbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbg.png; path = Images.xcassets/appbg.png; sourceTree = "<group>"; };
+		4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		4BCF1C431AFC01A40039B15C /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		4BD491861AD717C3002569B8 /* AppInvitesExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppInvitesExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -105,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				4B97B2581AD7145E0036DD6C /* AppDelegate.swift */,
+				4B1F2A351B01375C00F69A92 /* SignInViewController.swift */,
 				4B97B25A1AD7145E0036DD6C /* ViewController.swift */,
 				4B97B25F1AD7145E0036DD6C /* Images.xcassets */,
 				4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */,
@@ -148,6 +158,8 @@
 			children = (
 				4BC032E51ACF33B70092326A /* AppDelegate.h */,
 				4BC032E61ACF33B70092326A /* AppDelegate.m */,
+				4BCF1C431AFC01A40039B15C /* SignInViewController.h */,
+				4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */,
 				4BC032E81ACF33B70092326A /* ViewController.h */,
 				4BC032E91ACF33B70092326A /* ViewController.m */,
 				4BC032EE1ACF33B70092326A /* Images.xcassets */,
@@ -160,6 +172,7 @@
 		4BC032E11ACF33B70092326A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BCF1C3B1AFBF6310039B15C /* appbg.png */,
 				4B8759441AF17775007960B2 /* GoogleService-Info.plist */,
 				4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */,
 				4BC032E21ACF33B70092326A /* Info.plist */,
@@ -270,6 +283,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */,
+				4BCF1C3E1AFBF65D0039B15C /* Info.plist in Resources */,
 				4B8759461AF17C9E007960B2 /* GoogleService-Info.plist in Resources */,
 				4B5CBBFE1AE9DC0900D822CE /* Main.storyboard in Resources */,
 				4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */,
@@ -285,6 +300,7 @@
 				4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */,
 				4B8759451AF17775007960B2 /* GoogleService-Info.plist in Resources */,
 				4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */,
+				4BCF1C3C1AFBF6310039B15C /* appbg.png in Resources */,
 				4B5CBBFD1AE9DBF700D822CE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +377,7 @@
 			files = (
 				4B97B25B1AD7145E0036DD6C /* ViewController.swift in Sources */,
 				4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */,
+				4B1F2A361B01375C00F69A92 /* SignInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCF1C421AFBFA8D0039B15C /* SignInViewController.m in Sources */,
 				4BC032EA1ACF33B70092326A /* ViewController.m in Sources */,
 				4BC032E71ACF33B70092326A /* AppDelegate.m in Sources */,
 				4BC032E41ACF33B70092326A /* main.m in Sources */,
