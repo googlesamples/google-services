@@ -24,7 +24,8 @@
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
       (NSDictionary *)launchOptions {
-  [[GGLContext sharedInstance] configure];
+  NSError* errorMessage;
+  [[GGLContext sharedInstance] configureWithError:&errorMessage];
 
   // TODO: Remove after plus.login is no longer required.
   [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/plus.login"];

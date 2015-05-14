@@ -28,12 +28,6 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GINInviteDelega
     super.viewDidLoad()
 
     bgText.text = "App Invites\niOS demo"
-    if (signedInViewController == nil) {
-      let storyboard = UIStoryboard(name:"Main", bundle:nil)
-      signedInViewController =
-        storyboard.instantiateViewControllerWithIdentifier("SignedInViewController") as ViewController
-      self.signedInViewController.popController = self
-    }
     GIDSignIn.sharedInstance().delegate = self
     GIDSignIn.sharedInstance().signInSilently()
   }

@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START didfinishlaunching]
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-      GGLContext.sharedInstance().configure()
+      var configErr: NSError?
+      GGLContext.sharedInstance().configureWithError(&configErr)
       // Initialize sign-in
       GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login"]
       GINInvite.applicationDidFinishLaunching()
