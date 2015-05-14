@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       // Initialize sign-in
-      GGLContext.sharedInstance().configure()
+      var configureErr: NSError?
+      GGLContext.sharedInstance().configureWithError(&configureErr)
       return true
   }
   // [END didfinishlaunching]
