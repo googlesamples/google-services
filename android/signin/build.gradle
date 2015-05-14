@@ -3,10 +3,8 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            // TODO(ldenison): remove before shipping.
-            url 'https://android-devtools-staging.corp.google.com/no_crawl/greenhouse'
-        }
+        // TODO(ldenison): remove before shipping.
+        maven { url '../googleservices/'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
