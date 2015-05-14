@@ -22,7 +22,8 @@
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [[GGLContext sharedInstance] configure];
+  NSError* configureError;
+  [[GGLContext sharedInstance] configureWithError: &configureError];
 
   return YES;
 }
