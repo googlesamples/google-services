@@ -19,7 +19,6 @@
 #import <GoogleSignIn/GIDSignInButton.h>
 
 @interface ViewController : UIViewController
-@property UIViewController* popController;
 
 @end
 

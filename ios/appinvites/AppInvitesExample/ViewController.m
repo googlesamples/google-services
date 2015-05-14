@@ -15,7 +15,7 @@
 //
 
 #import "ViewController.h"
-#import <GINInvite/GINInvite.h>
+#import <Google/AppInvite.h>
 #import <GoogleSignIn/GIDGoogleUser.h>
 #import <GoogleSignIn/GIDProfileData.h>
 
@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusText;
 // [END viewcontroler_vars]
+@property (weak, nonatomic) id<GINInviteBuilder> inviteDialog;
 @end
 
 @implementation ViewController
@@ -54,13 +55,13 @@
                                        green:grayValue
                                         blue:grayValue
                                        alpha:1.0];
-  
+
   self.inviteButton.layer.cornerRadius = 3;
   self.inviteButton.layer.shadowRadius = 1;
   self.inviteButton.layer.shadowOffset = CGSizeMake(0, 0.5);
   self.inviteButton.layer.shadowColor = [UIColor blackColor].CGColor;
   self.inviteButton.layer.shadowOpacity = .7;
-  
+
   self.signOutButton.layer.borderWidth = .5;
   self.signOutButton.layer.borderColor = grayColor.CGColor;
   self.signOutButton.layer.cornerRadius = 2;
@@ -114,12 +115,12 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
 // [START invite_tapped]
 - (IBAction)inviteTapped:(id)sender {
-    id<GINInviteBuilder> inviteDialog = [GINInvite inviteDialog];
-    [inviteDialog setInviteDelegate: self];
-    [inviteDialog setMessage: @"message"];
-    [inviteDialog setTitle: @"title"];
-    [inviteDialog setDeepLink: @"message=yes"];
-    [inviteDialog open];
+  self.inviteDialog = [GINInvite inviteDialog];
+  [self.inviteDialog setInviteDelegate: self];
+  [self.inviteDialog setMessage: @"message"];
+  [self.inviteDialog setTitle: @"title"];
+  [self.inviteDialog setDeepLink: @"app_url"];
+  [self.inviteDialog open];
 }
 // [END invite_tapped]
 

@@ -32,7 +32,6 @@
 		4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032F01ACF33B70092326A /* LaunchScreen.xib */; };
 		4BCF1C3C1AFBF6310039B15C /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF1C3B1AFBF6310039B15C /* appbg.png */; };
 		4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF1C3B1AFBF6310039B15C /* appbg.png */; };
-		4BCF1C3E1AFBF65D0039B15C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032E21ACF33B70092326A /* Info.plist */; };
 		4BCF1C421AFBFA8D0039B15C /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF1C411AFBFA8D0039B15C /* SignInViewController.m */; };
 		4BDB99D91ACF46E500C4DC2C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99D81ACF46E500C4DC2C /* AddressBook.framework */; };
 		4BDB99DB1ACF46EC00C4DC2C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DA1ACF46EC00C4DC2C /* AssetsLibrary.framework */; };
@@ -251,7 +250,7 @@
 		4BC032D61ACF33B70092326A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
 					4BC032DD1ACF33B70092326A = {
@@ -284,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */,
-				4BCF1C3E1AFBF65D0039B15C /* Info.plist in Resources */,
 				4B8759461AF17C9E007960B2 /* GoogleService-Info.plist in Resources */,
 				4B5CBBFE1AE9DC0900D822CE /* Main.storyboard in Resources */,
 				4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */,

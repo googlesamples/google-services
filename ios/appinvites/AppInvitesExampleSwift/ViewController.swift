@@ -26,7 +26,6 @@ class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
   @IBOutlet weak var inviteButton: UIButton!
   @IBOutlet weak var statusText: UILabel!
   // [END viewcontroller_vars]
-  var popController:  SignInViewController!
 
   // [START viewdidload]
   override func viewWillAppear(animated: Bool) {
