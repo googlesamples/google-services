@@ -20,7 +20,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  var currentArticleId = String()
+  var currentDeepLink = String()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     return true
@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    openURL url: NSURL,
                    sourceApplication: String?,
                    annotation: AnyObject?) -> Bool {
-    var sanitizedURL = GSDDeepLink.handleDeepLink(url)
-    currentArticleId = sanitizedURL.lastPathComponent as String!
+    var sanitizedURL = GSPDeepLink.handleDeepLink(url)
+    currentDeepLink = sanitizedURL as String!
     return true;
   }
   // [END handle_link]
