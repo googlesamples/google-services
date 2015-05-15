@@ -4,7 +4,7 @@
 #pod 'GoogleDeveloperPlatform', '~> 0.0.4'
 
 source 'https://github.com/CocoaPods/Specs.git'
-source 'sso://cpdc-internal/spec'
+source 'https://cpdc-eap.googlesource.com/spec.git'
 platform :ios, '8.1'
 
 pod 'Google/Identity', '~> 0.0'
