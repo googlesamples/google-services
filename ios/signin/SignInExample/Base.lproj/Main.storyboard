@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDJ-Bc-8ku">
-                                <rect key="frame" x="0.0" y="570" width="414" height="134"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDJ-Bc-8ku">
+                                <rect key="frame" x="0.0" y="538" width="414" height="198"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWa-ii-5oh">
-                                        <rect key="frame" x="8" y="52" width="94" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWa-ii-5oh">
+                                        <rect key="frame" x="8" y="84" width="94" height="30"/>
                                         <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <state key="normal" title="Sign out">
@@ -32,8 +32,8 @@
                                             <action selector="didTapSignOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKN-9W-SNH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-kI-dga">
-                                        <rect key="frame" x="312" y="52" width="94" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-kI-dga">
+                                        <rect key="frame" x="312" y="84" width="94" height="30"/>
                                         <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="94" id="M3m-1M-ArK"/>
@@ -46,8 +46,8 @@
                                             <action selector="didTapDisconnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IY0-iR-fbZ"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
-                                        <rect key="frame" x="102" y="42" width="160" height="49"/>
+                                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
+                                        <rect key="frame" x="107" y="74" width="160" height="49"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XGN-Qm-TJZ" secondAttribute="height" multiplier="160:49" id="CS8-w7-K8r"/>
@@ -64,12 +64,13 @@
                                     <constraint firstAttribute="centerX" relation="lessThanOrEqual" secondItem="XGN-Qm-TJZ" secondAttribute="centerX" constant="25" id="SG1-x7-eS5"/>
                                     <constraint firstAttribute="trailing" secondItem="8OM-kI-dga" secondAttribute="trailing" constant="8" id="gVN-7n-RSp"/>
                                     <constraint firstAttribute="centerY" secondItem="8OM-kI-dga" secondAttribute="centerY" id="ld2-2U-vSw"/>
+                                    <constraint firstAttribute="height" constant="198" id="lym-7g-lbo"/>
                                     <constraint firstItem="eWa-ii-5oh" firstAttribute="height" secondItem="8OM-kI-dga" secondAttribute="height" id="uwp-Yn-EHu"/>
                                     <constraint firstItem="eWa-ii-5oh" firstAttribute="leading" secondItem="iDJ-Bc-8ku" secondAttribute="leading" constant="8" id="xAS-NZ-gvx"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Google Sign in iOS Demo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
-                                <rect key="frame" x="0.0" y="167" width="401" height="133.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Sign in iOS Demo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
+                                <rect key="frame" x="16" y="348" width="382" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -79,7 +80,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" image="appbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8v-V0-Tis">
-                                <rect key="frame" x="159" y="231.5" width="96" height="96"/>
+                                <rect key="frame" x="159" y="232" width="96" height="96"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
@@ -97,6 +98,9 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="c9Y-PN-e0N"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="9rR-Mo-S8v"/>
                             </mask>
                         </variation>
                     </view>
