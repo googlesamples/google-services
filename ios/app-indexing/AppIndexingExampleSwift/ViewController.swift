@@ -19,7 +19,7 @@ import UIKit
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-    @IBOutlet var articleIdLabel: UILabel!
+    @IBOutlet var deepLinkLabel: UILabel!
     
     // [START display_link]
     override func viewDidLoad() {
@@ -32,8 +32,8 @@ class ViewController: UIViewController {
     }
     
     func applicationBecameActive(notification: NSNotification){
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        articleIdLabel.text = appDelegate.currentArticleId
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        deepLinkLabel.text = appDelegate.currentDeepLink
     }
     // [END display_link]
 

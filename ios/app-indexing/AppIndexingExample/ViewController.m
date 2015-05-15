@@ -32,7 +32,8 @@
 
 - (void)applicationBecameActive:(NSNotification *)notification {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    self.articleIdLabel.text = appDelegate.currentArticleId;
+    self.deepLinkLabel.text = appDelegate.currentDeepLink;
+    
 }
 // [END display_link]
 
