@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 //  ViewController.h
-//  BannerExample
+//  AdMobExample
 //
 
 @import UIKit;

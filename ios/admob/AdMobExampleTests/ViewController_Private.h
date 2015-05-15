@@ -13,14 +13,14 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  AppDelegate.h
-//  AdMobExample
+//  ViewController_Private.h
+//  AdMobExample Tests
 //
 
-@import UIKit;
+#import "ViewController.h"
+#import <Google/AdMob.h>
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
-
-@property(strong, nonatomic) UIWindow *window;
-
+@interface ViewController ()
+@property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end

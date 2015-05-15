@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 //  AppDelegate.m
-//  BannerExample
+//  AdMobExample
 //
 
 // [START gmp_config]

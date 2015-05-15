@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cqw-rn-aGh"/>
                         <viewControllerLayoutGuide type="bottom" id="DOW-zM-5O6"/>
@@ -51,7 +51,7 @@
                     <navigationItem key="navigationItem" id="nMe-hm-jWd"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="bannerView" destination="K9X-9n-igV" id="utg-0w-uzF"/>
+                        <outlet property="bannerView" destination="K9X-9n-igV" id="sGa-l9-VFb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

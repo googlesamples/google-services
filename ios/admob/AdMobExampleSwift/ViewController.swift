@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 //  ViewController.swift
-//  BannerExample
+//  AdMobExampleSwift
 //
 
 // [START gmp_banner_example]
@@ -24,7 +24,7 @@ import UIKit
 @objc(ViewController)
 class ViewController: UIViewController, GADInterstitialDelegate {
   @IBOutlet weak var bannerView: GADBannerView!
-  @IBOutlet var interstitial: GADInterstitial!
+  var interstitial: GADInterstitial!
 
   override func viewDidLoad() {
     super.viewDidLoad()
