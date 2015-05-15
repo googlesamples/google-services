@@ -22,7 +22,6 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GINInviteDelega
 
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var bgText: UILabel!
-  var signedInViewController:  ViewController!
 
   override func viewDidLoad() {
     super.viewDidLoad()

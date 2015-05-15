@@ -17,10 +17,12 @@
 #import "SignInViewController.h"
 #import "ViewController.h"
 
+#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleSignIn/GIDSignInButton.h>
+
 @interface SignInViewController () <GIDSignInDelegate>
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UILabel *bgText;
-@property (weak, nonatomic) ViewController *signedInViewController;
 @end
 
 

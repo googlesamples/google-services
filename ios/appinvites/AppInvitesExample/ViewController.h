@@ -15,8 +15,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GoogleSignIn/GIDSignIn.h>
-#import <GoogleSignIn/GIDSignInButton.h>
 
 @interface ViewController : UIViewController
 
