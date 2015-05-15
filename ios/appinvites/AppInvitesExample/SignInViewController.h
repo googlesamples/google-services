@@ -14,8 +14,6 @@
 //  limitations under the License.
 //
 #import <UIKit/UIKit.h>
-#import <GoogleSignIn/GIDSignIn.h>
-#import <GoogleSignIn/GIDSignInButton.h>
 
 @interface SignInViewController: UIViewController
 

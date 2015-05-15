@@ -15,9 +15,12 @@
 //
 
 #import "ViewController.h"
+
 #import <Google/AppInvite.h>
 #import <GoogleSignIn/GIDGoogleUser.h>
 #import <GoogleSignIn/GIDProfileData.h>
+#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleSignIn/GIDSignInButton.h>
 
 // [START viewcontroller_interfaces]
 @interface ViewController () <GINInviteDelegate, GIDSignInDelegate>
