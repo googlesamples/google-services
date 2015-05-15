@@ -42,7 +42,7 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
         displayCurlButton.enabled = false
       }
     } else {
-      sendToTopicButton.enabled = true
+      sendToTopicButton.enabled = false
     }
   }
 

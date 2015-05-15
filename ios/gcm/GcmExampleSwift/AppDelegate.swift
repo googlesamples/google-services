@@ -35,7 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   // [START register_for_remote_notifications]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
       [NSObject: AnyObject]?) -> Bool {
-    GGLContext.sharedInstance().configure()
+    var configureError:NSError?
+    GGLContext.sharedInstance().configureWithError(&configureError)
+    if configureError != nil {
+      println("Error configuring the Google context: \(configureError)")
+    }
     gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
     var types: UIUserNotificationType = UIUserNotificationType.Badge |
         UIUserNotificationType.Alert |
@@ -112,6 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   func application( application: UIApplication,
     didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
       println("Notification received: \(userInfo)")
+      // [START ack_message_reception]
+      GCMService.sharedInstance().appDidReceiveMessage(userInfo);
+      // [END ack_message_reception]
   }
 
   func application(application: UIApplication,
