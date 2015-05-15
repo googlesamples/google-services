@@ -35,7 +35,11 @@
   navigationController.navigationBar.translucent = NO;
 
   // Use Google library to configure APIs
-  [[GGLContext sharedInstance] configure];
+  NSError *configureError;
+  [[GGLContext sharedInstance] configureWithError:&configureError];
+  if (configureError != nil) {
+    NSLog(@"Error configuring the Google context: %@", configureError);
+  }
   return YES;
 }
 // [END gmp_config]
