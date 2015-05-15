@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Initialize sign-in
       var configureErr: NSError?
       GGLContext.sharedInstance().configureWithError(&configureErr)
+      if configureErr != nil {
+        println("Error configuring the Google context: \(configureErr)")
+      }
       return true
   }
   // [END didfinishlaunching]
