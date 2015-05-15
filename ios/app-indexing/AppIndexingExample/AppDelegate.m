@@ -26,7 +26,7 @@
 // [START handle_link]
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    NSURL *sanitizedURL = [GSPDeepLink handleDeepLink:url];
+    NSURL *sanitizedURL = [GSDDeepLink handleDeepLink:url];
     self.currentArticleId = sanitizedURL.lastPathComponent;
     return true;
 }

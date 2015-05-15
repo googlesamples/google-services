@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    openURL url: NSURL,
                    sourceApplication: String?,
                    annotation: AnyObject?) -> Bool {
-    var sanitizedURL = GSPDeepLink.handleDeepLink(url)
+    var sanitizedURL = GSDDeepLink.handleDeepLink(url)
     currentArticleId = sanitizedURL.lastPathComponent as String!
     return true;
   }
