@@ -15,8 +15,6 @@
 		4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */; };
 		4B5CBBFD1AE9DBF700D822CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */; };
 		4B5CBBFE1AE9DC0900D822CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */; };
-		4B8759451AF17775007960B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B8759441AF17775007960B2 /* GoogleService-Info.plist */; };
-		4B8759461AF17C9E007960B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B8759441AF17775007960B2 /* GoogleService-Info.plist */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
 		4B97B25B1AD7145E0036DD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B25A1AD7145E0036DD6C /* ViewController.swift */; };
 		4BA30A161AE81F5A00E5CDE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */; };
@@ -45,9 +43,7 @@
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B1F2A351B01375C00F69A92 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4B5CBBFC1AE9DBF700D822CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4B8759441AF17775007960B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4B97B2531AD7145E0036DD6C /* AppInvitesExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInvitesExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B97B2571AD7145E0036DD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B97B2581AD7145E0036DD6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B97B25A1AD7145E0036DD6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B97B25F1AD7145E0036DD6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -125,7 +121,6 @@
 		4B97B2561AD7145E0036DD6C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B97B2571AD7145E0036DD6C /* Info.plist */,
 				4BD491861AD717C3002569B8 /* AppInvitesExampleSwift-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -172,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				4BCF1C3B1AFBF6310039B15C /* appbg.png */,
-				4B8759441AF17775007960B2 /* GoogleService-Info.plist */,
 				4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */,
 				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BC032E31ACF33B70092326A /* main.m */,
@@ -283,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */,
-				4B8759461AF17C9E007960B2 /* GoogleService-Info.plist in Resources */,
 				4B5CBBFE1AE9DC0900D822CE /* Main.storyboard in Resources */,
 				4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */,
 				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
@@ -296,7 +289,6 @@
 			files = (
 				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */,
-				4B8759451AF17775007960B2 /* GoogleService-Info.plist in Resources */,
 				4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */,
 				4BCF1C3C1AFBF6310039B15C /* appbg.png in Resources */,
 				4B5CBBFD1AE9DBF700D822CE /* Main.storyboard in Resources */,
