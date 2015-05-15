@@ -23,37 +23,37 @@ import UIKit
 // Makes ViewController available to Objc classes.
 @objc(ViewController)
 class ViewController: UIViewController, GADInterstitialDelegate {
-    @IBOutlet weak var bannerView: GADBannerView!
-    @IBOutlet var interstitial: GADInterstitial!
+  @IBOutlet weak var bannerView: GADBannerView!
+  @IBOutlet var interstitial: GADInterstitial!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        self.bannerView.adUnitID = GGLContext.sharedInstance().adUnitIDForBannerTest
-        self.bannerView.rootViewController = self
-        self.bannerView.loadRequest(GADRequest())
+    self.bannerView.adUnitID = GGLContext.sharedInstance().adUnitIDForBannerTest
+    self.bannerView.rootViewController = self
+    self.bannerView.loadRequest(GADRequest())
 
-        self.interstitial = createAndLoadInterstitial()
+    self.interstitial = createAndLoadInterstitial()
+  }
+
+  func createAndLoadInterstitial() -> GADInterstitial {
+    let interstitial = GADInterstitial()
+    interstitial.adUnitID = GGLContext.sharedInstance().adUnitIDForInterstitialTest
+    interstitial.delegate = self
+    interstitial.loadRequest(GADRequest())
+    return interstitial
+  }
+
+  func interstitialDidDismissScreen(interstitial: GADInterstitial!) {
+    self.interstitial = createAndLoadInterstitial()
+  }
+
+
+  @IBAction func didTapInterstitialButton(sender: AnyObject) {
+    if (self.interstitial.isReady) {
+      self.interstitial.presentFromRootViewController(self)
     }
-    
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial()
-        interstitial.adUnitID = GGLContext.sharedInstance().adUnitIDForInterstitialTest
-        interstitial.delegate = self
-        interstitial.loadRequest(GADRequest())
-        return interstitial
-    }
-
-    func interstitialDidDismissScreen(interstitial: GADInterstitial!) {
-        self.interstitial = createAndLoadInterstitial()
-    }
-
-
-    @IBAction func didTapInterstitialButton(sender: AnyObject) {
-        if (self.interstitial.isReady) {
-            self.interstitial.presentFromRootViewController(self)
-        }
-    }
+  }
 }
 // [END gmp_banner_example]
 

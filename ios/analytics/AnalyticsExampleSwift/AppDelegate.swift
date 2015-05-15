@@ -25,7 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START tracker_swift]
     // Configure tracker from GoogleService-Info.plist.
-    GGLContext.sharedInstance().configure()
+    var configureError:NSError?
+    GGLContext.sharedInstance().configureWithError(&configureError)
+    if configureError != nil {
+      println("Error configuring the Google context: \(configureError)")
+    }
 
     // Optional: configure GAI options.
     var gai = GAI.sharedInstance()

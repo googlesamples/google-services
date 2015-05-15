@@ -23,7 +23,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START tracker_objc]
   // Configure tracker from GoogleService-Info.plist.
-  [[GGLContext sharedInstance] configure];
+  NSError *configureError;
+  [[GGLContext sharedInstance] configureWithError:&configureError];
+  if (configureError != nil) {
+    NSLog(@"Error configuring the Google context: %@", configureError);
+  }
 
   // Optional: configure GAI options.
   GAI *gai = [GAI sharedInstance];
