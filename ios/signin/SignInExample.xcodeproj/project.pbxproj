@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15C5006B1AF2885000B8E1C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */; };
 		1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D835D65B84E12DF53C5ADDCB /* libPods.a */; };
 		3DBFCF970AC4481BC6FB9222 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B5A4722417C2E158537DC8 /* libPods.a */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B97B2611AD7145E0036DD6C /* LaunchScreen.xib */; };
 		4B5CDA8E1AFB062E00187D14 /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6041631AFAFF2500C00A2B /* appbg.png */; };
-		4B5CDA8F1AFB066000187D14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */; };
 		4B6041641AFAFF2500C00A2B /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6041631AFAFF2500C00A2B /* appbg.png */; };
 		4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EB1ACF33B70092326A /* Main.storyboard */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
@@ -40,7 +38,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B60415E1AFADF2F00C00A2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4B6041631AFAFF2500C00A2B /* appbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbg.png; path = Images.xcassets/appbg.png; sourceTree = "<group>"; };
@@ -50,7 +47,6 @@
 		4B97B25F1AD7145E0036DD6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B97B2621AD7145E0036DD6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4BC032DE1ACF33B70092326A /* SignInExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BC032E21ACF33B70092326A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC032E31ACF33B70092326A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BC032E51ACF33B70092326A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BC032E61ACF33B70092326A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,7 +115,6 @@
 		4B97B2561AD7145E0036DD6C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4BC032E21ACF33B70092326A /* Info.plist */,
 				4BD491861AD717C3002569B8 /* SignInExampleSwift-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -164,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				4B6041631AFAFF2500C00A2B /* appbg.png */,
-				15C5006A1AF2885000B8E1C3 /* GoogleService-Info.plist */,
 				4BC032EB1ACF33B70092326A /* Main.storyboard */,
 				4BC032E31ACF33B70092326A /* main.m */,
 			);
@@ -273,7 +267,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5CDA8F1AFB066000187D14 /* GoogleService-Info.plist in Resources */,
 				4B5CDA8E1AFB062E00187D14 /* appbg.png in Resources */,
 				4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */,
 				4B3329261AE04FA800327B83 /* LaunchScreen.xib in Resources */,
@@ -290,7 +283,6 @@
 				4BC032ED1ACF33B70092326A /* Main.storyboard in Resources */,
 				4BC032F21ACF33B70092326A /* LaunchScreen.xib in Resources */,
 				4BC032EF1ACF33B70092326A /* Images.xcassets in Resources */,
-				15C5006B1AF2885000B8E1C3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
