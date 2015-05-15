@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     func applicationBecameActive(notification: NSNotification){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         articleIdLabel.text = appDelegate.currentArticleId
     }
     // [END display_link]
