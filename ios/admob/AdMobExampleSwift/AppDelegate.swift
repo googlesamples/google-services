@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 //  AppDelegate.swift
-//  BannerExample
+//  AdMobExampleSwift
 //
 
 // [START gmp_config]

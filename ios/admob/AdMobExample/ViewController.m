@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 //  ViewController.m
-//  BannerExample
+//  AdMobExample
 //
 
 // [START gmp_banner_example]
@@ -28,7 +28,7 @@
  * @property
  * A UIView subclass that displays ads capable of responding to user touch.
  */
-@property (weak, nonatomic) IBOutlet GADBannerView *bannerView;
+@property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
 
 /**
  * @property
@@ -48,7 +48,6 @@
   [self.bannerView loadRequest:[GADRequest request]];
 
   self.interstitial = [self createAndLoadInterstitial];
-
 }
 
 - (GADInterstitial *)createAndLoadInterstitial {
