@@ -120,8 +120,19 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 - (IBAction)inviteTapped:(id)sender {
   self.inviteDialog = [GINInvite inviteDialog];
   [self.inviteDialog setInviteDelegate: self];
-  [self.inviteDialog setMessage: @"message"];
-  [self.inviteDialog setTitle: @"title"];
+
+  // NOTE: You must have the App Store ID set in your developer console project
+  // in order for invitations to successfully be sent.
+  NSString* message = [NSString stringWithFormat:@"Try this out!\n -%@",
+                       [[GIDSignIn sharedInstance] currentUser].profile.name];
+
+  // A message hint for the dialog. Note this manifests differently depending on the
+  // received invation type. For example, in an email invite this appears as the subject.
+  [self.inviteDialog setMessage: message];
+
+  // Title for the dialog, this is what the user sees before sending the invites.
+  [self.inviteDialog setTitle: @"App Invites Example"];
+
   [self.inviteDialog setDeepLink: @"app_url"];
   [self.inviteDialog open];
 }
