@@ -114,12 +114,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
         registrationKey, object: nil, userInfo: userInfo)
   }
 
+  // [START ack_message_reception]
   func application( application: UIApplication,
     didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
       println("Notification received: \(userInfo)")
-      // [START ack_message_reception]
       GCMService.sharedInstance().appDidReceiveMessage(userInfo);
-      // [END ack_message_reception]
+  // [END ack_message_reception]
       NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
           userInfo: userInfo)
   }
@@ -147,10 +147,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
     }
   }
 
+  // [START on_token_refresh]
   func onTokenRefresh(updateID: Bool) {
     println("The GCM registration token has been invalidated.")
     GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
         scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
   }
+  // [END on_token_refresh]
 
 }
