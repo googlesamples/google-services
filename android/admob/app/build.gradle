@@ -27,9 +27,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    // AppCompat
     compile 'com.android.support:appcompat-v7:22.1.0'
+
     // [START gradle_play_config]
-    compile 'com.google.android.gms:play-services:7.3.+'
+    compile 'com.google.android.gms:play-services:7.3.0'
     // [END gradle_play_config]
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.1'
