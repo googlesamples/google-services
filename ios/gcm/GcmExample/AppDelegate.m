@@ -136,18 +136,19 @@ NSString *const SubscriptionTopic = @"/topics/global";
                                                     userInfo:userInfo];
 }
 
+// [START ack_message_reception]
 - (void)application:(UIApplication *)application
     didReceiveRemoteNotification:(NSDictionary *)userInfo {
   NSLog(@"Notification received: %@", userInfo);
-  // [START ack_message_reception]
   [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-  // [END ack_message_reception]
+// [END ack_message_reception]
   [[NSNotificationCenter defaultCenter] postNotificationName:_messageKey
                                                       object:nil
                                                     userInfo:userInfo];
 
 }
 
+// [START on_token_refresh]
 - (void)onTokenRefresh:(BOOL)updateID {
   NSLog(@"The GCM registration token has been invalidated.");
   [[GMSInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
@@ -155,5 +156,6 @@ NSString *const SubscriptionTopic = @"/topics/global";
                                                     options:_registrationOptions
                                                     handler:_registrationHandler];
 }
+// [END on_token_refresh]
 
 @end
