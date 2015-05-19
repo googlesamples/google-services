@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.google.android.gms.samples.appinvite">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.google.android.gms.samples.appinvite.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" android:host="example.com" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.google.android.gms.samples.appinvite.DeepLinkActivity"
+            android:label="@string/app_name"
+            android:theme="@style/ThemeOverlay.MyDialogActivity">
+        </activity>
+
+        <!-- Required receiver to get broadcasts from the Play Store after application install -->
+        <!-- [START referral_receiver_xml] -->
+        <receiver
+            android:name="com.google.android.gms.samples.appinvite.ReferrerReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <!-- [END referral_receiver_xml] -->
+
+    </application>
+
+</manifest>
