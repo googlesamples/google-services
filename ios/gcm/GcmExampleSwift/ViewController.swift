@@ -26,7 +26,9 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRegistrationStatus:",
-        name: appDelegate.notificationKey, object: nil)
+        name: appDelegate.registrationKey, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "showReceivedMessage:",
+        name: appDelegate.messageKey, object: nil)
     registrationProgressing.hidesWhenStopped = true
     registrationProgressing.startAnimating()
   }
@@ -36,24 +38,34 @@ class ViewController: UIViewController {
     if let info = notification.userInfo as? Dictionary<String,String> {
       if let error = info["error"] {
         registeringLabel.text = "Error registering!"
-        let alert = UIAlertController(title: "Error registering with GCM", message: error,
-            preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
-        alert.addAction(dismissAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        showAlert("Error registering with GCM", message: error)
       } else if let registrationToken = info["registrationToken"] {
         registeringLabel.text = "Registered!"
         let message = "Check the xcode debug console for the registration token that you " +
         " can use with the demo server to send notifications to your device"
-        let success = UIAlertController(title: "Registration Successful!",
-          message: message, preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
-        success.addAction(dismissAction)
-        self.presentViewController(success, animated: true, completion: nil)
+        showAlert("Registration Successful!", message: message)
       }
     } else {
       println("Software failure. Guru meditation.")
     }
+  }
+
+  func showReceivedMessage(notification: NSNotification) {
+    if let info = notification.userInfo as? Dictionary<String,AnyObject> {
+      if let aps = info["aps"] as? Dictionary<String, String> {
+        showAlert("Message received", message: aps["alert"]!)
+      }
+    } else {
+      println("Software failure. Guru meditation.")
+    }
+  }
+
+  func showAlert(title:String, message:String) {
+    let alert = UIAlertController(title: title,
+      message: message, preferredStyle: .Alert)
+    let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+    alert.addAction(dismissAction)
+    self.presentViewController(alert, animated: true, completion: nil)
   }
 
   override func preferredStatusBarStyle() -> UIStatusBarStyle {

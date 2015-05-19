@@ -22,11 +22,14 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-  NSString *notificationKey = appDelegate.notificationKey;
-  [[NSNotificationCenter defaultCenter] addObserver: self
-                                           selector: @selector(updateRegistrationStatus:)
-                                               name: notificationKey
-                                             object: nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(updateRegistrationStatus:)
+                                               name:appDelegate.registrationKey
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(showReceivedMessage:)
+                                               name:appDelegate.messageKey
+                                             object:nil];
   _registrationProgressing.hidesWhenStopped = YES;
   [_registrationProgressing startAnimating];
 }
@@ -35,33 +38,32 @@
   [_registrationProgressing stopAnimating];
   if ([notification.userInfo objectForKey:@"error"]) {
     _registeringLabel.text = @"Error registering!";
-    UIAlertController *alert =
-        [UIAlertController alertControllerWithTitle: @"Error registering with GCM"
-                                            message: notification.userInfo[@"error"]
-                                     preferredStyle: UIAlertControllerStyleAlert];
-
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
-                                                            style: UIAlertActionStyleDestructive
-                                                          handler: nil];
-
-    [alert addAction: dismissAction];
-    [self presentViewController: alert animated: YES completion: nil];
+    [self showAlert:@"Error registering with GCM" withMessage:notification.userInfo[@"error"]];
   } else {
     _registeringLabel.text = @"Registered!";
     NSString *message = @"Check the xcode debug console for the registration token that you can"
         " use with the demo server to send notifications to your device";
-    UIAlertController *success =
-        [UIAlertController alertControllerWithTitle: @"Registration Successful"
-                                            message: message
-                                     preferredStyle: UIAlertControllerStyleAlert];
-
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle: @"Dismiss"
-                                                            style: UIAlertActionStyleDestructive
-                                                          handler: nil];
-
-    [success addAction: dismissAction];
-    [self presentViewController: success animated: YES completion: nil];
+    [self showAlert:@"Registration Successful" withMessage:message];
   };
+}
+
+- (void) showReceivedMessage:(NSNotification *) notification {
+  NSString *message = notification.userInfo[@"aps"][@"alert"];
+  [self showAlert:@"Message received" withMessage:message];
+}
+
+- (void)showAlert:(NSString *)title withMessage:(NSString *) message{
+  UIAlertController *alert =
+      [UIAlertController alertControllerWithTitle:title
+                                          message:message
+                                   preferredStyle:UIAlertControllerStyleAlert];
+
+  UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                          style:UIAlertActionStyleDestructive
+                                                        handler:nil];
+
+  [alert addAction:dismissAction];
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

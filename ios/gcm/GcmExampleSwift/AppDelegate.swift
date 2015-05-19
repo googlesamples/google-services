@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   var registrationToken: String?
   var registrationOptions = [String: AnyObject]()
 
-  let notificationKey = "onRegistrationCompleted"
+  let registrationKey = "onRegistrationCompleted"
+  let messageKey = "onMessageReceived"
   let subscriptionTopic = "/topics/global"
 
   // [START register_for_remote_notifications]
@@ -110,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   // [END receive_apns_token_error]
     let userInfo = ["error": error.localizedDescription]
     NSNotificationCenter.defaultCenter().postNotificationName(
-        notificationKey, object: nil, userInfo: userInfo)
+        registrationKey, object: nil, userInfo: userInfo)
   }
 
   func application( application: UIApplication,
@@ -119,13 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
       // [START ack_message_reception]
       GCMService.sharedInstance().appDidReceiveMessage(userInfo);
       // [END ack_message_reception]
-  }
-
-  func application(application: UIApplication,
-    didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
-    fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
-      println("Notification received: \(userInfo)")
-      handler(UIBackgroundFetchResult.NoData)
+      NSNotificationCenter.defaultCenter().postNotificationName(messageKey, object: nil,
+          userInfo: userInfo)
   }
 
   func registrationHandler(registrationToken: String!, error: NSError!) {
@@ -142,12 +138,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
       println("Registration Token: \(registrationToken)")
       let userInfo = ["registrationToken": registrationToken]
       NSNotificationCenter.defaultCenter().postNotificationName(
-        self.notificationKey, object: nil, userInfo: userInfo)
+        self.registrationKey, object: nil, userInfo: userInfo)
     } else {
       println("Registration to GCM failed with error: \(error.localizedDescription)")
       let userInfo = ["error": error.localizedDescription]
       NSNotificationCenter.defaultCenter().postNotificationName(
-        self.notificationKey, object: nil, userInfo: userInfo)
+        self.registrationKey, object: nil, userInfo: userInfo)
     }
   }
 
