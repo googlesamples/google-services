@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DE436F9581607A29C2B163F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D835D65B84E12DF53C5ADDCB /* libPods.a */; };
 		1AC1DFD6C47F1E0A3572E655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D835D65B84E12DF53C5ADDCB /* libPods.a */; };
 		3DBFCF970AC4481BC6FB9222 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B5A4722417C2E158537DC8 /* libPods.a */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
+		4B0E58871B0BD304001C1D06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B0E58861B0BD304001C1D06 /* GoogleService-Info.plist */; };
+		4B1A6C781B0A752100E1EDA2 /* AppInvitesExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */; };
 		4B1F2A361B01375C00F69A92 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F2A351B01375C00F69A92 /* SignInViewController.swift */; };
 		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
@@ -36,8 +39,22 @@
 		EF4BB4D81B05B454003A1AC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4B1A6C791B0A752100E1EDA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BC032D61ACF33B70092326A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BC032DD1ACF33B70092326A;
+			remoteInfo = AppInvitesExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
+		4B0E58861B0BD304001C1D06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4B1A6C731B0A752100E1EDA2 /* AppInvitesExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppInvitesExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1A6C761B0A752100E1EDA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInvitesExampleTests.m; sourceTree = "<group>"; };
 		4B1F2A351B01375C00F69A92 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4B5CBBFC1AE9DBF700D822CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B97B2531AD7145E0036DD6C /* AppInvitesExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInvitesExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +88,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4B1A6C701B0A752100E1EDA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DE436F9581607A29C2B163F /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B97B2501AD7145E0036DD6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,6 +127,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B1A6C741B0A752100E1EDA2 /* AppInvitesExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				4B1A6C771B0A752100E1EDA2 /* AppInvitesExampleTests.m */,
+				4B1A6C751B0A752100E1EDA2 /* Supporting Files */,
+			);
+			path = AppInvitesExampleTests;
+			sourceTree = "<group>";
+		};
+		4B1A6C751B0A752100E1EDA2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B0E58861B0BD304001C1D06 /* GoogleService-Info.plist */,
+				4B1A6C761B0A752100E1EDA2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4B97B2551AD7145E0036DD6C /* AppInvitesExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +172,7 @@
 				4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */,
 				4BC032E01ACF33B70092326A /* AppInvitesExample */,
 				4B97B2551AD7145E0036DD6C /* AppInvitesExampleSwift */,
+				4B1A6C741B0A752100E1EDA2 /* AppInvitesExampleTests */,
 				4BC032DF1ACF33B70092326A /* Products */,
 				A4BF5E1D769EC5D28AF80686 /* Pods */,
 				E27D599993EDB54E213FA076 /* Frameworks */,
@@ -140,6 +184,7 @@
 			children = (
 				4BC032DE1ACF33B70092326A /* AppInvitesExample.app */,
 				4B97B2531AD7145E0036DD6C /* AppInvitesExampleSwift.app */,
+				4B1A6C731B0A752100E1EDA2 /* AppInvitesExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +242,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4B1A6C721B0A752100E1EDA2 /* AppInvitesExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B1A6C7D1B0A752100E1EDA2 /* Build configuration list for PBXNativeTarget "AppInvitesExampleTests" */;
+			buildPhases = (
+				4CA603F3272C319C7394B407 /* Check Pods Manifest.lock */,
+				4B1A6C6F1B0A752100E1EDA2 /* Sources */,
+				4B1A6C701B0A752100E1EDA2 /* Frameworks */,
+				4B1A6C711B0A752100E1EDA2 /* Resources */,
+				ACF50F332A634BB47F442AC1 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4B1A6C7A1B0A752100E1EDA2 /* PBXTargetDependency */,
+			);
+			name = AppInvitesExampleTests;
+			productName = AppInvitesExampleTests;
+			productReference = 4B1A6C731B0A752100E1EDA2 /* AppInvitesExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4B97B2521AD7145E0036DD6C /* AppInvitesExampleSwift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B97B2721AD7145E0036DD6C /* Build configuration list for PBXNativeTarget "AppInvitesExampleSwift" */;
@@ -244,6 +309,10 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
+					4B1A6C721B0A752100E1EDA2 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 4BC032DD1ACF33B70092326A;
+					};
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -264,11 +333,20 @@
 			targets = (
 				4BC032DD1ACF33B70092326A /* AppInvitesExample */,
 				4B97B2521AD7145E0036DD6C /* AppInvitesExampleSwift */,
+				4B1A6C721B0A752100E1EDA2 /* AppInvitesExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4B1A6C711B0A752100E1EDA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B0E58871B0BD304001C1D06 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B97B2511AD7145E0036DD6C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -292,6 +370,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4CA603F3272C319C7394B407 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		7D1892432C462D89321BEF68 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +401,21 @@
 			showEnvVarsInLog = 0;
 		};
 		A0D3980984D22B5437080EB2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACF50F332A634BB47F442AC1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -355,6 +463,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4B1A6C6F1B0A752100E1EDA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B1A6C781B0A752100E1EDA2 /* AppInvitesExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B97B24F1AD7145E0036DD6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +493,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4B1A6C7A1B0A752100E1EDA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BC032DD1ACF33B70092326A /* AppInvitesExample */;
+			targetProxy = 4B1A6C791B0A752100E1EDA2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */ = {
@@ -406,6 +530,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4B1A6C7B1B0A752100E1EDA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AppInvitesExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppInvitesExample.app/AppInvitesExample";
+			};
+			name = Debug;
+		};
+		4B1A6C7C1B0A752100E1EDA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9014CA488BE26179B6105D3D /* Pods.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = AppInvitesExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppInvitesExample.app/AppInvitesExample";
+			};
+			name = Release;
+		};
 		4B97B2731AD7145E0036DD6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */;
@@ -551,6 +717,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4B1A6C7D1B0A752100E1EDA2 /* Build configuration list for PBXNativeTarget "AppInvitesExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B1A6C7B1B0A752100E1EDA2 /* Debug */,
+				4B1A6C7C1B0A752100E1EDA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4B97B2721AD7145E0036DD6C /* Build configuration list for PBXNativeTarget "AppInvitesExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
