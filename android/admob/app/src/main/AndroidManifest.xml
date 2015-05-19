@@ -33,7 +33,7 @@
         <!-- [END add_activity_config_changes] -->
         <activity
             android:name=".SecondActivity"
-            android:label="@string/title_second_activity"
+            android:label="@string/second_activity_title"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
