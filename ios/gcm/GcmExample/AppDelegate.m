@@ -94,9 +94,6 @@ NSString *const SubscriptionTopic = @"/topics/global";
     } else {
       _connectedToGCM = true;
       NSLog(@"Connected to GCM");
-      if (_subscribedToTopic == NO) {
-        [self subscribeToTopic];
-      }
     }
   }];
 }
@@ -150,7 +147,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 
 // [START on_token_refresh]
 - (void)onTokenRefresh:(BOOL)updateID {
-  NSLog(@"The GCM registration token has been invalidated.");
+  NSLog(@"The GCM registration token needs to be changed.");
   [[GMSInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                       scope:kGMSInstanceIDScopeGCM
                                                     options:_registrationOptions
