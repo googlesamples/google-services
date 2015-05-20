@@ -47,17 +47,17 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
   }
 
   @IBAction func didClickSendNotification(sender: NSButton) {
-    sendMessage(regIdTextField.stringValue)
+    sendMessage(getRegToken())
   }
 
   @IBAction func didClickDisplaycURL(sender: NSButton) {
-    let message = getMessage(regIdTextField.stringValue)
+    let message = getMessage(getRegToken())
     var jsonError:NSError?
     let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
     if (jsonError == nil) {
       let payload = NSString(data: jsonBody!, encoding: NSUTF8StringEncoding)
       let escapedPayload = payload?.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
-      let command = "curl --header \"Authorization: key=\(apiKeyTextField.stringValue)\"" +
+      let command = "curl --header \"Authorization: key=\(getApiKey())\"" +
       " --header Content-Type:\"application/json\" \(sendUrl) -d \"\(escapedPayload!)\""
       curlCommandTextView.documentView!.setString(command)
     } else {
@@ -74,7 +74,7 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
     var request = NSMutableURLRequest(URL: NSURL(string: sendUrl)!)
     request.HTTPMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.setValue("key=\(apiKeyTextField.stringValue)", forHTTPHeaderField: "Authorization")
+    request.setValue("key=\(getApiKey())", forHTTPHeaderField: "Authorization")
     request.timeoutInterval = 60
 
     // prepare the payload
@@ -101,6 +101,14 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
   // [START notification_format]
       return ["to": to, "notification": ["body": "Hello from GCM"]]
   // [END notification_format]
+  }
+
+  func getApiKey() -> String {
+    return apiKeyTextField.stringValue.stringByReplacingOccurrencesOfString("\n", withString: "")
+  }
+
+  func getRegToken() -> String {
+    return regIdTextField.stringValue.stringByReplacingOccurrencesOfString("\n", withString: "")
   }
 
 }
