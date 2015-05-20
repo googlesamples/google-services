@@ -37,8 +37,8 @@ class ViewController: UIViewController, GADInterstitialDelegate {
   }
 
   func createAndLoadInterstitial() -> GADInterstitial {
-    let interstitial = GADInterstitial()
-    interstitial.adUnitID = GGLContext.sharedInstance().adUnitIDForInterstitialTest
+    let interstitial =
+        GADInterstitial(adUnitID: GGLContext.sharedInstance().adUnitIDForInterstitialTest)
     interstitial.delegate = self
     interstitial.loadRequest(GADRequest())
     return interstitial
