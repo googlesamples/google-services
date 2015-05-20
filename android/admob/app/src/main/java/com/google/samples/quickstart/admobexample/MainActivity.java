@@ -45,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
         // [END load_banner_ad]
 
+        // [START instantiate_interstitial_ad]
         // Create an InterstitialAd object. This same object can be re-used whenever you want to
         // show an interstitial.
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        // [END instantiate_interstitial_ad]
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -58,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mLoadInterstitialButton = (Button) findViewById(R.id.launch_second_activity_button);
+        // [START display_interstitial_ad]
+        mLoadInterstitialButton = (Button) findViewById(R.id.load_interstitial_button);
         mLoadInterstitialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,17 +72,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        // [END display_interstitial_ad]
     }
 
     /**
      * Load a new interstitial ad asynchronously.
      */
+    // [START request_new_interstitial]
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
 
         mInterstitialAd.loadAd(adRequest);
     }
+    // [END request_new_interstitial]
 
     private void beginSecondActivity() {
         Intent intent = new Intent(this, SecondActivity.class);
