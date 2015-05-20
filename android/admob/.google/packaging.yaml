@@ -16,14 +16,13 @@ languages:    [Java]
 solutions:    [Mobile]
 
 # May be omitted if unpublished
-# TODO(gkal): Figure this out.
 # github:       google/actionbar-basics
 
 # Values: BEGINNER | INTERMEDIATE | ADVANCED | EXPERT
 level:        BEGINNER
 
 # Dimensions: 512x512, PNG fomrat
-#icon: screenshots/icon.png
+icon: app/src/main/res/drawable/ic_launcher_big.png
 
 # List of APIs that this sample should be listed under. Use authoritive,
 # names that are unique for the product in question. Examples:
