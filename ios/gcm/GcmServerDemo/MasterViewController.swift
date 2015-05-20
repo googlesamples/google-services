@@ -19,8 +19,7 @@ import Cocoa
 
 class MasterViewController: NSViewController, NSTextFieldDelegate {
 
-  // TODO(silvano): replace with prod URL when available
-  let sendUrl = "https://jmt17.google.com/gcm/send"
+  let sendUrl = "https://android.googleapis.com/gcm/send"
   let subscriptionTopic = "/topics/global"
 
   @IBOutlet weak var apiKeyTextField: NSTextField!
