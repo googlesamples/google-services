@@ -16,8 +16,6 @@
 
 import UIKit
 
-// TODO(silvano): remember to change the bundle identifier
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
 
