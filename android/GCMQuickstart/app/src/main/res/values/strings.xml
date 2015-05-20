@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">GCMQuickstart</string>
-    <string name="gcm_send_message">Please check logcat for the your token. Then use it to send GCM
-        message to this application.</string>
-    <string name="registering_message">Generating InstanceID token...</string>
-    <string name="token_error_message">Ensure that you have replaced the SENDER_ID. Do this via
-        config package import, or you can paste it in.</string>
-</resources>
