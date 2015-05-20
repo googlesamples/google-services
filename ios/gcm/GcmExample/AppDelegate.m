@@ -103,7 +103,6 @@ NSString *const SubscriptionTopic = @"/topics/global";
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   [[GCMService sharedInstance] disconnect];
   _connectedToGCM = NO;
-
 }
 // [END disconnect_gcm_service]
 
