@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
 
   // [START on_token_refresh]
   func onTokenRefresh(updateID: Bool) {
-    println("The GCM registration token has been invalidated.")
+    println("The GCM registration token needs to be changed.")
     GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
         scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
   }
