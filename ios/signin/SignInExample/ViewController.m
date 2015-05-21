@@ -58,6 +58,8 @@ didSignInForUser:(GIDGoogleUser *)user
 }
 // [END signin_handler]
 
+// This callback is triggered after the disconnect call that revokes data
+// access to the user's resources has completed.
 // [START disconnect_handler]
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user
@@ -68,6 +70,8 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 }
 // [END disconnect_handler]
 
+// Signs the user out of the application for scenarios such as switching
+// profiles.
 // [START signout_tapped]
 - (IBAction)didTapSignOut:(id)sender {
   [[GIDSignIn sharedInstance] signOut];
@@ -75,6 +79,9 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 }
 // [END signout_tapped]
 
+// Note: Disconnect revokes access to user data and should only be called in
+//     scenarios such as when the user deletes their account. More information
+//     on revocation can be found here: https://goo.gl/Gx7oEG.
 // [START disconnect_tapped]
 - (IBAction)didTapDisconnect:(id)sender {
   [[GIDSignIn sharedInstance] disconnect];
