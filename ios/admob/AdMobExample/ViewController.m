@@ -51,8 +51,8 @@
 }
 
 - (GADInterstitial *)createAndLoadInterstitial {
-  GADInterstitial *interstitial = [[GADInterstitial alloc] init];
-  interstitial.adUnitID = [GGLContext sharedInstance].adUnitIDForInterstitialTest;
+  GADInterstitial *interstitial = [[GADInterstitial alloc]
+      initWithAdUnitID:[GGLContext sharedInstance].adUnitIDForInterstitialTest];
   interstitial.delegate = self;
   [interstitial loadRequest:[GADRequest request]];
   return interstitial;
