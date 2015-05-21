@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="height" constant="50" id="iNt-Cj-6ba"/>
                                 </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" fixedFrame="YES" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="ZFE-D1-Nfy">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="ZFE-D1-Nfy">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
                                     <barButtonItem title="Google Mobile Ads Example" width="289" id="5Ne-2b-fi1">
@@ -50,8 +50,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="K9X-9n-igV" secondAttribute="centerX" id="663-fB-sia"/>
+                            <constraint firstItem="ZFE-D1-Nfy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7tT-Ta-9us"/>
                             <constraint firstItem="K9X-9n-igV" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottomMargin" id="MXX-D6-dCJ"/>
                             <constraint firstAttribute="centerX" secondItem="0lk-I0-H1V" secondAttribute="centerX" id="WYo-0p-5gK"/>
+                            <constraint firstAttribute="trailing" secondItem="ZFE-D1-Nfy" secondAttribute="trailing" id="pzG-xO-ZSe"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
