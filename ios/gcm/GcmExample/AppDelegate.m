@@ -31,6 +31,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 // [START register_for_remote_notifications]
 - (BOOL)application:(UIApplication *)application
       didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  // [START_EXCLUDE]
   _registrationKey = @"onRegistrationCompleted";
   _messageKey = @"onMessageReceived";
   NSError* configureError;
@@ -39,6 +40,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
     NSLog(@"Error configuring the Google context: %@", configureError);
   }
   _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
+  // [END_EXCLUDE]
   UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
   UIUserNotificationSettings *settings =
