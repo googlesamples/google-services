@@ -88,7 +88,7 @@
         <!--Patterns-->
         <scene sceneID="8gd-ga-mjo">
             <objects>
-                <tabBarController storyboardIdentifier="vc-patterns" title="Patterns" id="eeg-iu-cjG" customClass="PatternTabBarController" sceneMemberID="viewController">
+                <tabBarController title="Patterns" id="eeg-iu-cjG" customClass="PatternTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Analytics Quickstart" id="tic-du-7VP">
                         <connections>
                             <outlet property="rightBarButtonItem" destination="hCL-4j-2le" id="uhg-Y0-IYr"/>
