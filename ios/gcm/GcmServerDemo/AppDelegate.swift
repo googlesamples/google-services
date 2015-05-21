@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     masterViewController = MasterViewController(nibName: "MasterViewController", bundle: nil)
     window.contentView.addSubview(masterViewController.view)
-    masterViewController.view.frame = (window.contentView as NSView).bounds
+    masterViewController.view.frame = (window.contentView as! NSView).bounds
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
