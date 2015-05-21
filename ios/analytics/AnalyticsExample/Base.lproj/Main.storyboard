@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aUL-89-tJW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aUL-89-tJW">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--A-->
@@ -88,7 +88,7 @@
         <!--Patterns-->
         <scene sceneID="8gd-ga-mjo">
             <objects>
-                <tabBarController title="Patterns" id="eeg-iu-cjG" customClass="PatternTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="vc-patterns" title="Patterns" id="eeg-iu-cjG" customClass="PatternTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Analytics Quickstart" id="tic-du-7VP">
                         <connections>
                             <outlet property="rightBarButtonItem" destination="hCL-4j-2le" id="uhg-Y0-IYr"/>
