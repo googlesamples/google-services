@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRegistrationStatus:",
         name: appDelegate.registrationKey, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "showReceivedMessage:",
