@@ -37,7 +37,6 @@ public class RegistrationIntentService extends IntentService {
         super(TAG);
     }
 
-    // [START get_token]
     @Override
     protected void onHandleIntent(Intent intent) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -46,6 +45,7 @@ public class RegistrationIntentService extends IntentService {
             // In the (unlikely) event that multiple refresh operations occur simultaneously,
             // ensure that they are processed sequentially.
             synchronized (TAG) {
+                // [START get_token]
                 // Initially this call goes out to the network to retrieve the token, subsequent calls
                 // are local.
                 InstanceID instanceID = InstanceID.getInstance(this);
@@ -63,6 +63,7 @@ public class RegistrationIntentService extends IntentService {
                 // If the boolean is false you should send the token to your server, otherwise your
                 // server should have already received the token.
                 sharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true).apply();
+                // [END get_token]
             }
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);
@@ -70,13 +71,10 @@ public class RegistrationIntentService extends IntentService {
             // on a third-party server, this ensures that we'll attempt the update at a later time.
             sharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false).apply();
         }
-        // [BEGIN_EXCLUDE]
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(QuickstartPreferences.REGISTRATION_COMPLETE);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
-        // [END_EXCLUDE]
     }
-    // [END get_token]
 
     /**
      * Persist registration to third-party servers.
