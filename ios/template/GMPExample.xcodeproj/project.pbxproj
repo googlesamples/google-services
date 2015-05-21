@@ -20,7 +20,18 @@
 		5F99610B1AE0CF4F0034F503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961061AE0CF4F0034F503 /* Images.xcassets */; };
 		5F99610C1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
+		5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE055C1B0DAA090037B82F /* AppTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
+			remoteInfo = GMPExample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5F5A534C1ADE670C00F81DF0 /* GMPExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMPExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +49,8 @@
 		5F9961051AE0CF4F0034F503 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		5F9961061AE0CF4F0034F503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		5FDE05581B0DAA090037B82F /* GMPExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GMPExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDE055C1B0DAA090037B82F /* AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +68,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5FDE05551B0DAA090037B82F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,16 +83,19 @@
 			children = (
 				5F5A534E1ADE670C00F81DF0 /* GMPExample */,
 				5F5A537A1ADE67D500F81DF0 /* GMPExampleSwift */,
+				5FDE05591B0DAA090037B82F /* GMPExampleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		5F5A534D1ADE670C00F81DF0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				5F5A534C1ADE670C00F81DF0 /* GMPExample.app */,
 				5F5A53791ADE67D500F81DF0 /* GMPExampleSwift.app */,
+				5FDE05581B0DAA090037B82F /* GMPExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +151,14 @@
 			path = ../shared;
 			sourceTree = "<group>";
 		};
+		5FDE05591B0DAA090037B82F /* GMPExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				5FDE055C1B0DAA090037B82F /* AppTests.m */,
+			);
+			path = GMPExampleTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,6 +196,24 @@
 			productReference = 5F5A53791ADE67D500F81DF0 /* GMPExampleSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5FDE05571B0DAA090037B82F /* GMPExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "GMPExampleTests" */;
+			buildPhases = (
+				5FDE05541B0DAA090037B82F /* Sources */,
+				5FDE05551B0DAA090037B82F /* Frameworks */,
+				5FDE05561B0DAA090037B82F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5FDE055F1B0DAA090037B82F /* PBXTargetDependency */,
+			);
+			name = GMPExampleTests;
+			productName = GMPExampleTests;
+			productReference = 5FDE05581B0DAA090037B82F /* GMPExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -179,6 +228,10 @@
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
+					};
+					5FDE05571B0DAA090037B82F = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 5F5A534B1ADE670C00F81DF0;
 					};
 				};
 			};
@@ -197,6 +250,7 @@
 			targets = (
 				5F5A534B1ADE670C00F81DF0 /* GMPExample */,
 				5F5A53781ADE67D500F81DF0 /* GMPExampleSwift */,
+				5FDE05571B0DAA090037B82F /* GMPExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,6 +278,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5FDE05561B0DAA090037B82F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -246,7 +307,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5FDE05541B0DAA090037B82F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FDE055D1B0DAA090037B82F /* AppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5FDE055F1B0DAA090037B82F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A534B1ADE670C00F81DF0 /* GMPExample */;
+			targetProxy = 5FDE055E1B0DAA090037B82F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5F5A53591ADE670C00F81DF0 /* Main.storyboard */ = {
@@ -386,6 +463,55 @@
 			};
 			name = Release;
 		};
+		5FDE05601B0DAA090037B82F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					GMPExample,
+				);
+				INFOPLIST_FILE = GMPExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMPExample.app/GMPExample";
+			};
+			name = Debug;
+		};
+		5FDE05611B0DAA090037B82F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					GMPExample,
+				);
+				INFOPLIST_FILE = GMPExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMPExample.app/GMPExample";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,6 +541,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5FDE05621B0DAA090037B82F /* Build configuration list for PBXNativeTarget "GMPExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FDE05601B0DAA090037B82F /* Debug */,
+				5FDE05611B0DAA090037B82F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
