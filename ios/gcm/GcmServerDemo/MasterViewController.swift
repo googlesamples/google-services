@@ -31,9 +31,9 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
 
   override func controlTextDidChange(obj: NSNotification) {
     // Length checks just to ensure that the text fields don't contain just a couple of chars
-    if apiKeyTextField.stringValue.utf16Count >= 30 {
+    if count(apiKeyTextField.stringValue.utf16) >= 30 {
       sendToTopicButton.enabled = true
-      if regIdTextField.stringValue.utf16Count >= 30 {
+      if count(regIdTextField.stringValue.utf16) >= 30 {
         sendNotificationButton.enabled = true
         displayCurlButton.enabled = true
       } else {
