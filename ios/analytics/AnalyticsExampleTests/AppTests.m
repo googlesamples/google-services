@@ -23,10 +23,10 @@
 
 static NSString * const kSearchTerm = @": Sending hit(s) ";
 
-@interface AnalyticsExampleTests : XCTestCase
+@interface AppTests : XCTestCase
 @end
 
-@implementation AnalyticsExampleTests {
+@implementation AppTests {
   LogWrapper *_logWrapper;
   UITabBarController *_patternsController;
   GAI *_gai;

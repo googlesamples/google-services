@@ -73,8 +73,8 @@
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 		5FC04A7F1AF1DCAA00F787CA /* PatternTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04A7E1AF1DCAA00F787CA /* PatternTabBarController.m */; };
 		5FC04A811AF1DF8300F787CA /* PatternTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04A801AF1DF8300F787CA /* PatternTabBarController.swift */; };
-		5FC7AD871B0D4106004E3100 /* AnalyticsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7AD861B0D4106004E3100 /* AnalyticsExampleTests.m */; };
 		5FC7AD8E1B0D446A004E3100 /* LogWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */; };
+		5FDE05641B0DAD5C0037B82F /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE05631B0DAD5C0037B82F /* AppTests.m */; };
 		7C691A3717E3A2ACAA08E2BC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015473BF00CF94FE37903C76 /* libPods.a */; };
 		99C3977D32009FD348B1D6BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015473BF00CF94FE37903C76 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -137,10 +137,9 @@
 		5FC04A7E1AF1DCAA00F787CA /* PatternTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternTabBarController.m; sourceTree = "<group>"; };
 		5FC04A801AF1DF8300F787CA /* PatternTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternTabBarController.swift; sourceTree = "<group>"; };
 		5FC7AD821B0D4106004E3100 /* AnalyticsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FC7AD851B0D4106004E3100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FC7AD861B0D4106004E3100 /* AnalyticsExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsExampleTests.m; sourceTree = "<group>"; };
 		5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LogWrapper.mm; sourceTree = "<group>"; };
 		5FC7AD8F1B0D44B9004E3100 /* LogWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWrapper.h; sourceTree = "<group>"; };
+		5FDE05631B0DAD5C0037B82F /* AppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		8E083FEDD04CD62E5A34D032 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,20 +285,11 @@
 		5FC7AD831B0D4106004E3100 /* AnalyticsExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				5FDE05631B0DAD5C0037B82F /* AppTests.m */,
 				5FC7AD8D1B0D446A004E3100 /* LogWrapper.mm */,
 				5FC7AD8F1B0D44B9004E3100 /* LogWrapper.h */,
-				5FC7AD861B0D4106004E3100 /* AnalyticsExampleTests.m */,
-				5FC7AD841B0D4106004E3100 /* Supporting Files */,
 			);
 			path = AnalyticsExampleTests;
-			sourceTree = "<group>";
-		};
-		5FC7AD841B0D4106004E3100 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				5FC7AD851B0D4106004E3100 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		65DD086D0CC28632A2B0C455 /* Frameworks */ = {
@@ -623,7 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC7AD8E1B0D446A004E3100 /* LogWrapper.mm in Sources */,
-				5FC7AD871B0D4106004E3100 /* AnalyticsExampleTests.m in Sources */,
+				5FDE05641B0DAD5C0037B82F /* AppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,7 +783,18 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AnalyticsExampleTests/Info.plist;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/Google/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					AnalayticsExample,
+				);
+				INFOPLIST_FILE = AnalyticsExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -812,7 +813,18 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AnalyticsExampleTests/Info.plist;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/Google/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					AnalayticsExample,
+				);
+				INFOPLIST_FILE = AnalyticsExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -96,7 +96,7 @@ fi
 
 # >> Part 1: Copy GMPExample* to the new sample folder.
 echo "Copying to: ${OUT}"
-SUFFIXES=("" "Swift" ".xcodeproj/project.pbxproj")
+SUFFIXES=("" "Swift" "Tests" ".xcodeproj/project.pbxproj")
 for SUFFIX in "${SUFFIXES[@]}"; do
   TARGET="${OUT_PATH}/${DEST}${SUFFIX}"
   DIR=$(dirname "${TARGET}")
@@ -132,7 +132,7 @@ if [[ -n "${POD}" ]]; then
   echo "Including pod: $POD"
   echo "pod '$POD'" >> Podfile
 fi
-echo "link_with '${DEST}', '${DEST}Swift'" >> Podfile
+echo "link_with '${DEST}', '${DEST}Swift', '${DEST}Tests'" >> Podfile
 
 # Setup pods. This fetches the pods themselves, but they should be ignored by
 # version control anyway via the master .gitignore.
