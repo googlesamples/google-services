@@ -79,6 +79,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
       } else {
         self.connectedToGCM = true
         println("Connected to GCM")
+        // [START exclude]
+        self.subscribeToTopic()
+        // [END exclude]
       }
     })
   }
@@ -92,12 +95,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   // [END disconnect_gcm_service]
 
   // [START receive_apns_token]
-  func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken
-      deviceToken: NSData! ) {
+  func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
+      deviceToken: NSData ) {
   // [END receive_apns_token]
         // [START get_gcm_reg_token]
         GMSInstanceID.sharedInstance().startWithConfig(GMSInstanceIDConfig.defaultConfig())
-        registrationOptions = [kGMSInstanceIDRegisterAPNSOption:deviceToken!,
+        registrationOptions = [kGMSInstanceIDRegisterAPNSOption:deviceToken,
           kGMSInstanceIDAPNSServerTypeSandboxOption:true]
         GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
           scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
@@ -105,8 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   }
 
   // [START receive_apns_token_error]
-  func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError
-      error: NSError! ) {
+  func application( application: UIApplication, didFailToRegisterForRemoteNotificationsWithError
+      error: NSError ) {
     println("Registration for remote notification failed with error: \(error.localizedDescription)")
   // [END receive_apns_token_error]
     let userInfo = ["error": error.localizedDescription]
@@ -127,15 +130,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   func registrationHandler(registrationToken: String!, error: NSError!) {
     if (registrationToken != nil) {
       self.registrationToken = registrationToken
-      GCMPubSub().subscribeWithToken(registrationToken, topic: subscriptionTopic, options: nil,
-          handler: { (NSError error) -> Void in
-        if error != nil {
-          println("Subscribed to \(self.subscriptionTopic)")
-        } else {
-          println("Subcription failed: \(error.localizedDescription)")
-        }
-      })
       println("Registration Token: \(registrationToken)")
+      // [START exclude]
+      self.subscribeToTopic()
+      // [END exclude]
       let userInfo = ["registrationToken": registrationToken]
       NSNotificationCenter.defaultCenter().postNotificationName(
         self.registrationKey, object: nil, userInfo: userInfo)

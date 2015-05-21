@@ -56,6 +56,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
     if (registrationToken != nil) {
       weakSelf.registrationToken = registrationToken;
       NSLog(@"Registration Token: %@", registrationToken);
+      [weakSelf subscribeToTopic];
       NSDictionary *userInfo = @{@"registrationToken":registrationToken};
       [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
                                                           object:nil
@@ -96,6 +97,9 @@ NSString *const SubscriptionTopic = @"/topics/global";
     } else {
       _connectedToGCM = true;
       NSLog(@"Connected to GCM");
+      // [START exclude]
+      [self subscribeToTopic];
+      // [END exclude]
     }
   }];
 }
