@@ -34,12 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   // [START register_for_remote_notifications]
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:
       [NSObject: AnyObject]?) -> Bool {
+    // [START_EXCLUDE]
     var configureError:NSError?
     GGLContext.sharedInstance().configureWithError(&configureError)
     if configureError != nil {
       println("Error configuring the Google context: \(configureError)")
     }
     gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
+    // [END_EXCLUDE]
     var types: UIUserNotificationType = UIUserNotificationType.Badge |
         UIUserNotificationType.Alert |
         UIUserNotificationType.Sound
