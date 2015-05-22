@@ -18,7 +18,7 @@
 #import <GoogleSignIn/GIDProfileData.h>
 
 // [START viewcontroller_interfaces]
-@interface ViewController () <GIDSignInDelegate>
+@interface ViewController () <GIDSignInDelegate, GIDSignInUIDelegate>
 // [END viewcontroller_interfaces]
 
 // [START viewcontroller_vars]
@@ -38,6 +38,7 @@
 
   // TODO(developer) Configure the sign-in button look/feel
   [GIDSignIn sharedInstance].delegate = self;
+  [GIDSignIn sharedInstance].uiDelegate = self;
 
   // Uncomment to automatically sign in the user.
   [[GIDSignIn sharedInstance] signInSilently];
