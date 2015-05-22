@@ -24,6 +24,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmPubSub;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
@@ -49,9 +50,9 @@ public class RegistrationIntentService extends IntentService {
                 // Initially this call goes out to the network to retrieve the token, subsequent calls
                 // are local.
                 InstanceID instanceID = InstanceID.getInstance(this);
-                String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId), "GCM", null);
+                String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
+                        GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 Log.i(TAG, "GCM Registration Token: " + token);
-                // TODO(trevorjohns): Replace with GoogleCloudMessaging.INSTANCE_ID_SCOPE
 
                 // TODO: Implement this method to send any registration to your app's servers.
                 sendRegistrationToServer(token);
@@ -59,9 +60,9 @@ public class RegistrationIntentService extends IntentService {
                 // Subscribe to topic channels
                 subscribeTopics(token);
 
-                // You should store a boolean that the generated token has been sent to your server.
-                // If the boolean is false you should send the token to your server, otherwise your
-                // server should have already received the token.
+                // You should store a boolean that indicates whether the generated token has been
+                // sent to your server. If the boolean is false, send the token to your server,
+                // otherwise your server should have already received the token.
                 sharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, true).apply();
                 // [END get_token]
             }
