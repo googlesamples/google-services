@@ -61,7 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
       GCMPubSub.sharedInstance().subscribeWithToken(self.registrationToken, topic: subscriptionTopic,
         options: nil, handler: {(NSError error) -> Void in
           if (error != nil) {
-            println("Subcription failed: \(error.localizedDescription)");
+            if error.code == 3001 {
+              println("Already subscribed to \(self.subscriptionTopic)")
+            } else {
+              println("Subscription failed: \(error.localizedDescription)");
+            }
           } else {
             self.subscribedToTopic = true;
             NSLog("Subscribed to \(self.subscriptionTopic)");

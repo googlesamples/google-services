@@ -79,8 +79,13 @@ NSString *const SubscriptionTopic = @"/topics/global";
                                            options:nil
                                            handler:^(NSError *error) {
                                              if (error) {
-                                               NSLog(@"Subcription failed: %@",
-                                                     error.localizedDescription);
+                                               if (error.code == 3001) {
+                                                 NSLog(@"Already subscribed to %@",
+                                                       SubscriptionTopic);
+                                               } else {
+                                                 NSLog(@"Subscription failed: %@",
+                                                       error.localizedDescription);
+                                               }
                                              } else {
                                                self.subscribedToTopic = true;
                                                NSLog(@"Subscribed to %@", SubscriptionTopic);
@@ -92,7 +97,6 @@ NSString *const SubscriptionTopic = @"/topics/global";
 // [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-    NSLog(@"calling the handler");
     if (error) {
       NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
     } else {
