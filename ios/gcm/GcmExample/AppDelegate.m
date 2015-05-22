@@ -92,6 +92,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 // [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+    NSLog(@"calling the handler");
     if (error) {
       NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
     } else {
@@ -117,11 +118,11 @@ NSString *const SubscriptionTopic = @"/topics/global";
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // [END receive_apns_token]
   // [START get_gcm_reg_token]
-  [[GMSInstanceID sharedInstance] startWithConfig:[GMSInstanceIDConfig defaultConfig]];
-  _registrationOptions = @{kGMSInstanceIDRegisterAPNSOption:deviceToken,
-                           kGMSInstanceIDAPNSServerTypeSandboxOption:@YES};
-  [[GMSInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                      scope:kGMSInstanceIDScopeGCM
+  [[GGLInstanceID sharedInstance] startWithConfig:[GGLInstanceIDConfig defaultConfig]];
+  _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
+                           kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
+  [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
+                                                      scope:kGGLInstanceIDScopeGCM
                                                     options:_registrationOptions
                                                     handler:_registrationHandler];
   // [END get_gcm_reg_token]
@@ -151,10 +152,10 @@ NSString *const SubscriptionTopic = @"/topics/global";
 }
 
 // [START on_token_refresh]
-- (void)onTokenRefresh:(BOOL)updateID {
+- (void)onTokenRefresh {
   NSLog(@"The GCM registration token needs to be changed.");
-  [[GMSInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                      scope:kGMSInstanceIDScopeGCM
+  [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
+                                                      scope:kGGLInstanceIDScopeGCM
                                                     options:_registrationOptions
                                                     handler:_registrationHandler];
 }
