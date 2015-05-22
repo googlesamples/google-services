@@ -18,7 +18,7 @@ import UIKit
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
 // [START viewcontroller_interfaces]
-class ViewController: UIViewController, GIDSignInDelegate {
+class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 // [END viewcontroller_interfaces]
   // [START viewcontroller_vars]
   @IBOutlet weak var signInButton: GIDSignInButton!
@@ -31,6 +31,7 @@ class ViewController: UIViewController, GIDSignInDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     GIDSignIn.sharedInstance().delegate = self
+    GIDSignIn.sharedInstance().uiDelegate = self
     statusText.text = "Initialized Swift app..."
     toggleAuthUI()
   }
