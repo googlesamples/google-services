@@ -1,6 +1,6 @@
 source 'https://cpdc-eap.googlesource.com/spec.git'
 
 platform :ios, '7.0'
-pod 'Google/SignIn', '~> 1.0.0'
+pod 'Google', '~>1.0.5'
 
 link_with 'SignInExample', 'SignInExampleSwift'
