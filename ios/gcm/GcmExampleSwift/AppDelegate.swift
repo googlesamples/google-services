@@ -17,7 +17,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
 
   var window: UIWindow?
 
@@ -99,11 +99,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
       deviceToken: NSData ) {
   // [END receive_apns_token]
         // [START get_gcm_reg_token]
-        GMSInstanceID.sharedInstance().startWithConfig(GMSInstanceIDConfig.defaultConfig())
-        registrationOptions = [kGMSInstanceIDRegisterAPNSOption:deviceToken,
-          kGMSInstanceIDAPNSServerTypeSandboxOption:true]
-        GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
-          scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
+        GGLInstanceID.sharedInstance().startWithConfig(GGLInstanceIDConfig.defaultConfig())
+        registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken,
+          kGGLInstanceIDAPNSServerTypeSandboxOption:true]
+        GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
+          scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
         // [END get_gcm_reg_token]
   }
 
@@ -146,10 +146,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GMSInstanceIDDelegate {
   }
 
   // [START on_token_refresh]
-  func onTokenRefresh(updateID: Bool) {
+  func onTokenRefresh() {
     println("The GCM registration token needs to be changed.")
-    GMSInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
-        scope: kGMSInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
+    GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
+        scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
   }
   // [END on_token_refresh]
 
