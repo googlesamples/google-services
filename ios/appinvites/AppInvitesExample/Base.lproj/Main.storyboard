@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Bold.ttf">
@@ -29,7 +30,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status text should go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text should go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
                                 <rect key="frame" x="100" y="132" width="213" height="24"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                 <color key="textColor" red="0.42352944612503052" green="0.42352944612503052" blue="0.42352944612503052" alpha="1" colorSpace="deviceRGB"/>
@@ -164,11 +165,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-Ee-6nd">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="scaleToFill" image="appbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="KRj-rT-qAd">
+                                <rect key="frame" x="157" y="203" width="100" height="108"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="O0p-7h-Mu3"/>
+                                    <constraint firstAttribute="width" secondItem="KRj-rT-qAd" secondAttribute="height" multiplier="122:131" id="cYR-Hg-hu1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Invites" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymW-I7-0N5">
+                                <rect key="frame" x="16" y="316" width="382" height="95"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="37"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-Ee-6nd">
                                 <rect key="frame" x="0.0" y="581" width="414" height="155"/>
                                 <subviews>
-                                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
-                                        <rect key="frame" x="109" y="53" width="156" height="49"/>
+                                    <view contentMode="center" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGN-Qm-TJZ" customClass="GIDSignInButton">
+                                        <rect key="frame" x="129" y="53" width="156" height="49"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XGN-Qm-TJZ" secondAttribute="height" multiplier="16:5" id="4Ub-Vn-8zM"/>
@@ -179,39 +193,36 @@
                                 <color key="backgroundColor" red="0.12156863510608673" green="0.19607844948768616" blue="0.21568629145622253" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="XGN-Qm-TJZ" secondAttribute="centerY" id="7R1-Ic-XhD"/>
-                                    <constraint firstAttribute="width" secondItem="fgQ-Ee-6nd" secondAttribute="height" multiplier="400:150" id="DOb-Zn-Vi5"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="fgQ-Ee-6nd" secondAttribute="height" multiplier="400:150" id="DOb-Zn-Vi5"/>
                                     <constraint firstAttribute="centerY" secondItem="XGN-Qm-TJZ" secondAttribute="centerY" id="HDB-h4-rNU"/>
-                                    <constraint firstAttribute="centerX" secondItem="XGN-Qm-TJZ" secondAttribute="centerX" constant="20" id="dlW-Bn-lBA"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="fgQ-Ee-6nd" secondAttribute="height" multiplier="2:1" id="PLG-94-fdd"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" secondItem="XGN-Qm-TJZ" secondAttribute="height" multiplier="2" priority="900" id="byd-iE-whL"/>
+                                    <constraint firstAttribute="centerX" secondItem="XGN-Qm-TJZ" secondAttribute="centerX" id="dlW-Bn-lBA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="fgQ-Ee-6nd" secondAttribute="height" multiplier="320:100" id="usG-4x-mDI"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="DOb-Zn-Vi5"/>
+                                        <exclude reference="PLG-94-fdd"/>
                                         <exclude reference="7R1-Ic-XhD"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="scaleToFill" misplaced="YES" image="appbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="KRj-rT-qAd">
-                                <rect key="frame" x="157" y="196" width="100" height="108"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="O0p-7h-Mu3"/>
-                                    <constraint firstAttribute="width" secondItem="KRj-rT-qAd" secondAttribute="height" multiplier="122:131" id="cYR-Hg-hu1"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="App Invites" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymW-I7-0N5">
-                                <rect key="frame" x="114" y="344" width="187" height="49"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="37"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.23137256503105164" green="0.35686275362968445" blue="0.38431376218795776" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="ymW-I7-0N5" secondAttribute="centerY" id="2aY-gP-jlh"/>
+                            <constraint firstAttribute="centerY" secondItem="ymW-I7-0N5" secondAttribute="centerY" constant="5" id="2aY-gP-jlh"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="leading" secondItem="P23-48-bEt" secondAttribute="leadingMargin" id="7Dx-kp-fHk"/>
                             <constraint firstItem="2e1-c4-ykl" firstAttribute="top" secondItem="fgQ-Ee-6nd" secondAttribute="bottom" id="8cd-Bc-3gO"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KRj-rT-qAd" secondAttribute="bottom" constant="100" id="P9R-p4-l9e"/>
                             <constraint firstItem="fgQ-Ee-6nd" firstAttribute="width" secondItem="P23-48-bEt" secondAttribute="width" id="QAg-e0-ehu"/>
+                            <constraint firstItem="fgQ-Ee-6nd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ymW-I7-0N5" secondAttribute="bottom" constant="10" id="SAF-AY-Qzw"/>
                             <constraint firstAttribute="centerX" secondItem="ymW-I7-0N5" secondAttribute="centerX" id="Tdh-Yd-lCv"/>
                             <constraint firstAttribute="centerX" secondItem="fgQ-Ee-6nd" secondAttribute="centerX" id="hmy-mz-Il5"/>
                             <constraint firstAttribute="centerX" secondItem="KRj-rT-qAd" secondAttribute="centerX" id="i7h-uf-WoR"/>
-                            <constraint firstItem="ymW-I7-0N5" firstAttribute="top" secondItem="KRj-rT-qAd" secondAttribute="bottom" constant="40" id="mE9-rU-YqQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ymW-I7-0N5" secondAttribute="trailing" id="jFI-V4-8uZ"/>
+                            <constraint firstItem="KRj-rT-qAd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1vJ-LG-LIa" secondAttribute="bottom" constant="2" id="lMm-Sa-9Eu"/>
+                            <constraint firstItem="ymW-I7-0N5" firstAttribute="top" relation="lessThanOrEqual" secondItem="KRj-rT-qAd" secondAttribute="bottom" constant="5" id="mE9-rU-YqQ"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
