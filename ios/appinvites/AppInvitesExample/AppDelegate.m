@@ -32,6 +32,7 @@
 
   // TODO: Remove after plus.login is no longer required.
   [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/plus.login"];
+  [GIDSignIn sharedInstance].allowsSignInWithWebView = NO;
 
   [GINInvite applicationDidFinishLaunching];
   return YES;
