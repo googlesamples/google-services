@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.android.quickstart'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 22

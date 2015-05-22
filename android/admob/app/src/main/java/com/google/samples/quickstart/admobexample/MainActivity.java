@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         // Create an InterstitialAd object. This same object can be re-used whenever you want to
         // show an interstitial.
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        mInterstitialAd.setAdUnitId(getString(R.string.test_interstitial_ad_unit_id));
         // [END instantiate_interstitial_ad]
 
         mInterstitialAd.setAdListener(new AdListener() {
