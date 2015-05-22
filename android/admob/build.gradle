@@ -3,7 +3,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url 'https://android-devtools-staging.corp.google.com/no_crawl/greenhouse'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
