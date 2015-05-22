@@ -27,7 +27,7 @@
 			<string>google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.YOUR_CLIENT_ID</string>
+				<string>YOUR_REVERSED_CLIENT_ID</string>
 			</array>
 		</dict>
 		<dict>
