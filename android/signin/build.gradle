@@ -3,13 +3,10 @@
 buildscript {
     repositories {
         jcenter()
-        // TODO(ldenison): remove before shipping.
-        maven { url '../googleservices/'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
-        // TODO(ldenison): This will be renamed 'quickstart' to 'googleservices'.
-        classpath 'com.google.android.quickstart:quickstart:1.0'
+        classpath 'com.google.gms:google-services:1.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
