@@ -102,9 +102,9 @@ NSString *const SubscriptionTopic = @"/topics/global";
     } else {
       _connectedToGCM = true;
       NSLog(@"Connected to GCM");
-      // [START exclude]
+      // [START_EXCLUDE]
       [self subscribeToTopic];
-      // [END exclude]
+      // [END_EXCLUDE]
     }
   }];
 }
@@ -113,7 +113,9 @@ NSString *const SubscriptionTopic = @"/topics/global";
 // [START disconnect_gcm_service]
 - (void)applicationDidEnterBackground:(UIApplication *)application {
   [[GCMService sharedInstance] disconnect];
+  // [START_EXCLUDE]
   _connectedToGCM = NO;
+  // [END_EXCLUDE]
 }
 // [END disconnect_gcm_service]
 
