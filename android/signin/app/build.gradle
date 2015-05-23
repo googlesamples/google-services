@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
-// TODO(ldenison): This will be renamed 'quickstart' to 'googleservices'.
-apply plugin: 'com.google.android.quickstart'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 22
