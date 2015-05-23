@@ -1,5 +1,3 @@
-source 'https://cpdc-eap.googlesource.com/spec.git'
-
 platform :ios, '7.0'
 pod 'Google/AdMob', '~> 1.0.0'
 

@@ -1,6 +1,3 @@
-#### Remove
-source 'https://cpdc-eap.googlesource.com/spec.git'
-#### End remove
 # GcmExample
 platform :ios, '7.0'
 link_with 'GcmExample', 'GcmExampleSwift'
