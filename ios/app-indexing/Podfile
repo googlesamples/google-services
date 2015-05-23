@@ -1,5 +1,4 @@
 # AppIndexingExample
-source 'https://cpdc-eap.googlesource.com/spec.git'
 platform :ios, '7.0'
 pod 'GoogleAppIndexing', '~> 1.0.0'
 link_with 'AppIndexingExample', 'AppIndexingExampleSwift'

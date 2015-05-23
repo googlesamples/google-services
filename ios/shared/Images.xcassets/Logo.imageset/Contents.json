@@ -6,6 +6,14 @@
       "filename" : "FriendlyPing-Logo.png"
     },
     {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "iphone",
       "scale" : "1x"
     },

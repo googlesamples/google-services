@@ -1,6 +1,3 @@
-# source 'https://cpdc-eap.googlesource.com/spec.git'
-source 'sso://cpdc-eap/spec.git'
-
 # AnalyticsExample
 platform :ios, '7.0'
 pod 'Google/Analytics'
