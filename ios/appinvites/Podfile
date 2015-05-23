@@ -1,4 +1,4 @@
 platform :ios, '7.0'
-pod 'Google', '~> 1.0.5'
+pod 'Google/AppInvite', '~> 1.0.0'
 
 link_with 'AppInvitesExample', 'AppInvitesExampleSwift', 'AppInvitesExampleTests'
