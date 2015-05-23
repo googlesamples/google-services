@@ -83,9 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
       } else {
         self.connectedToGCM = true
         println("Connected to GCM")
-        // [START exclude]
+        // [START_EXCLUDE]
         self.subscribeToTopic()
-        // [END exclude]
+        // [END_EXCLUDE]
       }
     })
   }
@@ -94,7 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
   // [START disconnect_gcm_service]
   func applicationDidEnterBackground(application: UIApplication) {
     GCMService.sharedInstance().disconnect()
+    // [START_EXCLUDE]
     self.connectedToGCM = false
+    // [END_EXCLUDE]
   }
   // [END disconnect_gcm_service]
 
@@ -135,9 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
     if (registrationToken != nil) {
       self.registrationToken = registrationToken
       println("Registration Token: \(registrationToken)")
-      // [START exclude]
       self.subscribeToTopic()
-      // [END exclude]
       let userInfo = ["registrationToken": registrationToken]
       NSNotificationCenter.defaultCenter().postNotificationName(
         self.registrationKey, object: nil, userInfo: userInfo)
