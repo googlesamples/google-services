@@ -45,27 +45,31 @@ public class MainActivity extends AppCompatActivity implements
     // Local Broadcast receiver for receiving invites
     private BroadcastReceiver mDeepLinkReceiver = null;
 
+    // [START on_create]
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // [START_EXCLUDE]
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
         // Invite button click listener
         findViewById(R.id.invite_button).setOnClickListener(this);
+        // [END_EXCLUDE]
 
-        // Launch deep link, if appropriate
         if (savedInstanceState == null) {
-            // First launch of this activity
+            // No savedInstanceState, so it is the first launch of this activity
             Intent intent = getIntent();
             if (AppInviteReferral.hasReferral(intent)) {
                 // In this case the referral data is in the intent launching the MainActivity,
-                // which means this user already had the app installed. We do not have to register
-                // the Broadcast Receiver to listen for Play Store Install information
+                // which means this user already had the app installed. We do not have to
+                // register the Broadcast Receiver to listen for Play Store Install information
                 launchDeepLinkActivity(intent);
             }
         }
     }
+    // [END on_create]
 
+    // [START on_start_on_stop]
     @Override
     protected void onStart() {
         super.onStart();
@@ -77,15 +81,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onStop();
         unregisterDeepLinkReceiver();
     }
-
-    /**
-     * Launch DeepLinkActivity with an intent containing App Invite information
-     */
-    private void launchDeepLinkActivity(Intent intent) {
-        Log.d(TAG, "launchDeepLinkActivity:" + intent);
-        Intent newIntent = new Intent(intent).setClass(this, DeepLinkActivity.class);
-        startActivity(newIntent);
-    }
+    // [END on_start_on_stop]
 
     /**
      * User has clicked the 'Invite' button, launch the invitation UI with the proper
@@ -101,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements
     }
     // [END on_invite_clicked]
 
+    // [START on_activity_result]
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -120,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
     }
+    // [END on_activity_result]
 
     private void showMessage(String msg) {
         ViewGroup container = (ViewGroup) findViewById(R.id.snackbar_layout);
@@ -143,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements
      * for the notification immediately in onStart. The Play Store broadcast should be very soon
      * after the app is first opened, so this receiver should trigger soon after start
      */
+    // [START register_unregister_launch]
     private void registerDeepLinkReceiver() {
         // Create local Broadcast receiver that starts DeepLinkActivity when a deep link
         // is found
@@ -165,5 +164,15 @@ public class MainActivity extends AppCompatActivity implements
             LocalBroadcastManager.getInstance(this).unregisterReceiver(mDeepLinkReceiver);
         }
     }
+
+    /**
+     * Launch DeepLinkActivity with an intent containing App Invite information
+     */
+    private void launchDeepLinkActivity(Intent intent) {
+        Log.d(TAG, "launchDeepLinkActivity:" + intent);
+        Intent newIntent = new Intent(intent).setClass(this, DeepLinkActivity.class);
+        startActivity(newIntent);
+    }
+    // [END register_unregister_launch]
 }
 
