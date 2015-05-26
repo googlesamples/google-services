@@ -28,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if configureError != nil {
         println("Error configuring the Google context: \(configureError)")
       }      // Initialize sign-in
-      GIDSignIn.sharedInstance().allowsSignInWithWebView = false
-      GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login"]
       GINInvite.applicationDidFinishLaunching()
       return true
   }

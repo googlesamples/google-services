@@ -18,16 +18,17 @@ import UIKit
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(SignInViewController)
 
-class SignInViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
+class SignInViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate, GIDSignInUIDelegate {
 
   @IBOutlet weak var signInButton: GIDSignInButton!
   @IBOutlet weak var bgText: UILabel!
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
 
     bgText.text = "App Invites\niOS demo"
     GIDSignIn.sharedInstance().delegate = self
+    GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()
   }
 
