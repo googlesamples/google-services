@@ -31,7 +31,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.0'
 
     // [START gradle_play_config]
-    compile 'com.google.android.gms:play-services:7.3.0'
+    compile 'com.google.android.gms:play-services-base:7.5.0'
+    compile 'com.google.android.gms:play-services-ads:7.5.0'
     // [END gradle_play_config]
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.1'
