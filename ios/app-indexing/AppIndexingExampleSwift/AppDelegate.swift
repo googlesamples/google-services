@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    openURL url: NSURL,
                    sourceApplication: String?,
                    annotation: AnyObject?) -> Bool {
-    var sanitizedURL = GSPDeepLink.handleDeepLink(url)
-    currentDeepLink = sanitizedURL as String!
+    var sanitizedURL = GSDDeepLink.handleDeepLink(url)
+    currentDeepLink = sanitizedURL.absoluteString!
     return true;
   }
   // [END handle_link]
