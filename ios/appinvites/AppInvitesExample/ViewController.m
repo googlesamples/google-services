@@ -32,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusText;
 // [END viewcontroler_vars]
-@property (weak, nonatomic) id<GINInviteBuilder> inviteDialog;
+@property (strong, nonatomic) id<GINInviteBuilder> inviteDialog;
 @end
 
 @implementation ViewController
@@ -132,7 +132,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
   // Title for the dialog, this is what the user sees before sending the invites.
   [self.inviteDialog setTitle: @"App Invites Example"];
-
   [self.inviteDialog setDeepLink: @"app_url"];
   [self.inviteDialog open];
 }
