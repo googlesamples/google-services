@@ -20,7 +20,7 @@
 #import <GoogleSignIn/GIDSignIn.h>
 #import <GoogleSignIn/GIDSignInButton.h>
 
-@interface SignInViewController () <GIDSignInDelegate>
+@interface SignInViewController () <GIDSignInDelegate, GIDSignInUIDelegate>
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UILabel *bgText;
 @end
@@ -28,12 +28,13 @@
 
 @implementation SignInViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear: animated];
 
   self.bgText.text = @"App Invites\niOS demo";
 
   // Sign the user in automatically
+  [GIDSignIn sharedInstance].uiDelegate = self;
   [[GIDSignIn sharedInstance] signInSilently];
 
   // TODO(developer) Configure the sign-in button look/feel
