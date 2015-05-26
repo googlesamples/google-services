@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jqF-xI-3wl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jqF-xI-3wl">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--App Indexing Example-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="App Indexing Example" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -45,25 +45,12 @@
                             <constraint firstItem="guy-rd-SdL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="35" id="ykq-Zd-VFx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zgm-Gp-J65">
-                        <connections>
-                            <outlet property="titleView" destination="nct-Ex-hHe" id="emX-Os-T1W"/>
-                        </connections>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="App Indexing Example" id="zgm-Gp-J65"/>
                     <connections>
                         <outlet property="deepLinkLabel" destination="guy-rd-SdL" id="pIC-K7-vaK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="nct-Ex-hHe">
-                    <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="KAN-vA-91y">
-                            <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
-                        </imageView>
-                    </subviews>
-                </view>
             </objects>
         </scene>
         <!--Navigation Controller-->
@@ -88,7 +75,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="369" height="64"/>
         <image name="Watermark" width="1024" height="646"/>
     </resources>
 </document>
