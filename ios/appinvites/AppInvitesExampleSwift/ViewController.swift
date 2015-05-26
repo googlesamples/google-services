@@ -18,7 +18,7 @@ import UIKit
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
 // [START viewcontroller_interfaces]
-class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
+class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, GINInviteDelegate {
 // [END viewcontroller_interfaces]
   // [START viewcontroller_vars]
   @IBOutlet weak var signOutButton: UIButton!
@@ -30,6 +30,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GINInviteDelegate {
   // [START viewdidload]
   override func viewWillAppear(animated: Bool) {
     GIDSignIn.sharedInstance().delegate = self
+    GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()
     toggleAuthUI()
   }
