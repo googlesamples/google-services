@@ -23,7 +23,7 @@
 #import <GoogleSignIn/GIDSignInButton.h>
 
 // [START viewcontroller_interfaces]
-@interface ViewController () <GINInviteDelegate, GIDSignInDelegate>
+@interface ViewController () <GINInviteDelegate, GIDSignInDelegate, GIDSignInUIDelegate>
 // [END viewcontroller_interfaces]
 // [START viewcontroller_vars]
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
@@ -43,6 +43,7 @@
 
   // TODO(developer) Configure the sign-in button look/feel
   [GIDSignIn sharedInstance].delegate = self;
+  [GIDSignIn sharedInstance].uiDelegate = self;
 
   // Sign in automatically.
   [[GIDSignIn sharedInstance] signInSilently];

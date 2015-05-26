@@ -30,9 +30,6 @@
     NSLog(@"Error configuring the Google context: %@", configureError);
   }
 
-  [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/plus.login"];
-  [GIDSignIn sharedInstance].allowsSignInWithWebView = NO;
-
   [GINInvite applicationDidFinishLaunching];
   return YES;
 }
