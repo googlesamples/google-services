@@ -24,9 +24,7 @@ import UIKit
 @objc(ViewController)
 class ViewController: UIViewController, GADInterstitialDelegate {
   @IBOutlet weak var bannerView: GADBannerView!
-  // [START_EXCLUDE]
   var interstitial: GADInterstitial!
-  // [END_EXCLUDE]
 
   override func viewDidLoad() {
     super.viewDidLoad()
