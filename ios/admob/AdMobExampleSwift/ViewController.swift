@@ -24,7 +24,9 @@ import UIKit
 @objc(ViewController)
 class ViewController: UIViewController, GADInterstitialDelegate {
   @IBOutlet weak var bannerView: GADBannerView!
+  // [START_EXCLUDE]
   var interstitial: GADInterstitial!
+  // [END_EXCLUDE]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,7 +34,9 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     self.bannerView.adUnitID = GGLContext.sharedInstance().adUnitIDForBannerTest
     self.bannerView.rootViewController = self
     self.bannerView.loadRequest(GADRequest())
+    // [END gmp_banner_example]
 
+    // [START gmp_interstitial_example]
     self.interstitial = createAndLoadInterstitial()
   }
 
@@ -55,5 +59,4 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
   }
 }
-// [END gmp_banner_example]
-
+// [END gmp_interstitial_example]
