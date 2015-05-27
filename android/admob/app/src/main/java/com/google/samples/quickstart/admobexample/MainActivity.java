@@ -20,20 +20,24 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import com.google.android.gms.ads.AdListener;
 // [SNIPPET load_banner_ad]
 // Load an ad into the AdView.
 // [START load_banner_ad]
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+// [START_EXCLUDE]
 import com.google.android.gms.ads.InterstitialAd;
+// [END_EXCLUDE]
 
 
 public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
+    // [START_EXCLUDE]
     private InterstitialAd mInterstitialAd;
     private Button mLoadInterstitialButton;
+    // [END_EXCLUDE]
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd.setAdUnitId(getString(R.string.test_interstitial_ad_unit_id));
         // [END instantiate_interstitial_ad]
 
+        // [START create_interstitial_ad_listener]
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
@@ -59,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 beginSecondActivity();
             }
         });
+        // [END create_interstitial_ad_listener]
 
         // [START display_interstitial_ad]
         mLoadInterstitialButton = (Button) findViewById(R.id.load_interstitial_button);
