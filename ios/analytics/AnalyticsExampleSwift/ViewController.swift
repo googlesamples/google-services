@@ -28,13 +28,13 @@ class ViewController: UIViewController {
     // GoogleService-Info.plist by the `GGLContext` in the AppDelegate.
     // If you're copying this to an app just using Analytics, you'll
     // need to configure your tracking ID here.
-    // [START screen_view_event_swift]
+    // [START screen_view_hit_swift]
     var tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: name)
 
     var builder = GAIDictionaryBuilder.createScreenView()
     tracker.send(builder.build() as [NSObject : AnyObject])
-    // [END screen_view_event_swift]
+    // [END screen_view_hit_swift]
   }
 
 }
