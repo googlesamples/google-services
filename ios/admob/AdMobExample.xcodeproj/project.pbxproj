@@ -11,8 +11,12 @@
 		1048165C1B067ACD00139095 /* AdMobExampleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1021DD351B0518E40018763B /* AdMobExampleSwiftTests.swift */; };
 		1048165E1B068A0300139095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2419787E6B00411520 /* Main.storyboard */; };
 		104816601B068FC100139095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B41ADDA93F00344065 /* ViewController.swift */; };
-		104816621B0690AA00139095 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104816611B0690AA00139095 /* LaunchScreen.xib */; };
-		104816631B069BEA00139095 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104816611B0690AA00139095 /* LaunchScreen.xib */; };
+		105414A11B163EB20006C828 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1054149E1B163EB20006C828 /* Icon@2x.png */; };
+		105414A21B163EB20006C828 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1054149E1B163EB20006C828 /* Icon@2x.png */; };
+		105414A31B163EB20006C828 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1054149F1B163EB20006C828 /* Images.xcassets */; };
+		105414A41B163EB20006C828 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1054149F1B163EB20006C828 /* Images.xcassets */; };
+		105414A51B163EB20006C828 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105414A01B163EB20006C828 /* LaunchScreen.xib */; };
+		105414A61B163EB20006C828 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105414A01B163EB20006C828 /* LaunchScreen.xib */; };
 		105919B71ADDA97D00344065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2419787E6B00411520 /* Main.storyboard */; };
 		105919B91ADDAA5900344065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B31ADDA93F00344065 /* AppDelegate.swift */; };
 		105919BA1ADDAA5D00344065 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B41ADDA93F00344065 /* ViewController.swift */; };
@@ -53,7 +57,9 @@
 		1021DD311B0518E40018763B /* AdMobExampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1021DD341B0518E40018763B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1021DD351B0518E40018763B /* AdMobExampleSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleSwiftTests.swift; sourceTree = "<group>"; };
-		104816611B0690AA00139095 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		1054149E1B163EB20006C828 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../shared/Icon@2x.png"; sourceTree = "<group>"; };
+		1054149F1B163EB20006C828 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../shared/Images.xcassets; sourceTree = "<group>"; };
+		105414A01B163EB20006C828 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../shared/LaunchScreen.xib; sourceTree = "<group>"; };
 		1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1059198D1ADDA8F700344065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105919B01ADDA92E00344065 /* AdMobExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdMobExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -208,8 +214,10 @@
 		CF86EE1919787E6B00411520 /* AdMobExample */ = {
 			isa = PBXGroup;
 			children = (
+				1054149E1B163EB20006C828 /* Icon@2x.png */,
+				1054149F1B163EB20006C828 /* Images.xcassets */,
+				105414A01B163EB20006C828 /* LaunchScreen.xib */,
 				CF86EE2419787E6B00411520 /* Main.storyboard */,
-				104816611B0690AA00139095 /* LaunchScreen.xib */,
 				CF86EE1E19787E6B00411520 /* AppDelegate.h */,
 				CF86EE1F19787E6B00411520 /* AppDelegate.m */,
 				CF86EE2119787E6B00411520 /* ViewController.h */,
@@ -376,8 +384,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104816631B069BEA00139095 /* LaunchScreen.xib in Resources */,
+				105414A61B163EB20006C828 /* LaunchScreen.xib in Resources */,
 				105919B71ADDA97D00344065 /* Main.storyboard in Resources */,
+				105414A41B163EB20006C828 /* Images.xcassets in Resources */,
+				105414A21B163EB20006C828 /* Icon@2x.png in Resources */,
 				10AA98DF1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,8 +396,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104816621B0690AA00139095 /* LaunchScreen.xib in Resources */,
+				105414A51B163EB20006C828 /* LaunchScreen.xib in Resources */,
 				CF86EE2619787E6B00411520 /* Main.storyboard in Resources */,
+				105414A31B163EB20006C828 /* Images.xcassets in Resources */,
+				105414A11B163EB20006C828 /* Icon@2x.png in Resources */,
 				10AA98DE1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
