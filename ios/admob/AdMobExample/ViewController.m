@@ -18,7 +18,6 @@
 //
 
 // [START gmp_banner_example]
-
 #import "ViewController.h"
 #import <Google/AdMob.h>
 
@@ -29,12 +28,13 @@
  * A UIView subclass that displays ads capable of responding to user touch.
  */
 @property(nonatomic, weak) IBOutlet GADBannerView *bannerView;
-
+// [START_EXCLUDE]
 /**
  * @property
  * A UIView subclass that displays ads capable of responding to user touch.
  */
 @property(nonatomic, strong) GADInterstitial *interstitial;
+// [END_EXCLUDE]
 
 @end
 
@@ -46,7 +46,9 @@
   self.bannerView.adUnitID = [GGLContext sharedInstance].adUnitIDForBannerTest;
   self.bannerView.rootViewController = self;
   [self.bannerView loadRequest:[GADRequest request]];
+  // [END gmp_banner_example]
 
+  // [START gmp_interstitial_example]
   self.interstitial = [self createAndLoadInterstitial];
 }
 
@@ -69,4 +71,4 @@
 }
 
 @end
-// [END gmp_banner_example]
+// [END gmp_interstitial_example]
