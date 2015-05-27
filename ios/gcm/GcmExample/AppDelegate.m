@@ -34,6 +34,8 @@ NSString *const SubscriptionTopic = @"/topics/global";
   // [START_EXCLUDE]
   _registrationKey = @"onRegistrationCompleted";
   _messageKey = @"onMessageReceived";
+  // Configure the Google context: parses the GoogleService-Info.plist, and initializes
+  // the services that have entries in the file
   NSError* configureError;
   [[GGLContext sharedInstance] configureWithError:&configureError];
   if (configureError != nil) {
@@ -41,6 +43,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
   }
   _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
   // [END_EXCLUDE]
+  // Register for remote notifications
   UIUserNotificationType allNotificationTypes =
       (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
   UIUserNotificationSettings *settings =
@@ -52,6 +55,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
   [[GCMService sharedInstance] startWithConfig:[GCMConfig defaultConfig]];
   // [END start_gcm_service]
   __weak typeof(self) weakSelf = self;
+  // Handler for registration token request
   _registrationHandler = ^(NSString *registrationToken, NSError *error){
     if (registrationToken != nil) {
       weakSelf.registrationToken = registrationToken;
@@ -73,12 +77,15 @@ NSString *const SubscriptionTopic = @"/topics/global";
 }
 
 - (void)subscribeToTopic {
+  // If the app has a registration token and is connected to GCM, proceed to subscribe to the
+  // topic
   if (_registrationToken && _connectedToGCM) {
     [[GCMPubSub sharedInstance] subscribeWithToken:_registrationToken
                                              topic:SubscriptionTopic
                                            options:nil
                                            handler:^(NSError *error) {
                                              if (error) {
+                                               // Treat the "already subscribed" error more gently
                                                if (error.code == 3001) {
                                                  NSLog(@"Already subscribed to %@",
                                                        SubscriptionTopic);
@@ -96,6 +103,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 
 // [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+  // Connect to the GCM server to receive non-APNS notifications
   [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
     if (error) {
       NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
@@ -124,6 +132,8 @@ NSString *const SubscriptionTopic = @"/topics/global";
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // [END receive_apns_token]
   // [START get_gcm_reg_token]
+  // Start the GGLInstanceID shared instance with the default config and request a registration
+  // token to enable reception of notifications
   [[GGLInstanceID sharedInstance] startWithConfig:[GGLInstanceIDConfig defaultConfig]];
   _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
                            kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
@@ -149,16 +159,36 @@ NSString *const SubscriptionTopic = @"/topics/global";
 - (void)application:(UIApplication *)application
     didReceiveRemoteNotification:(NSDictionary *)userInfo {
   NSLog(@"Notification received: %@", userInfo);
+  // This works only if the app started the GCM service
   [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-// [END ack_message_reception]
+  // Handle the received message
+  // [START_EXCLUDE]
   [[NSNotificationCenter defaultCenter] postNotificationName:_messageKey
                                                       object:nil
                                                     userInfo:userInfo];
-
+  // [END_EXCLUDE]
 }
+
+- (void)application:(UIApplication *)application
+    didReceiveRemoteNotification:(NSDictionary *)userInfo
+    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
+  NSLog(@"Notification received: %@", userInfo);
+  // This works only if the app started the GCM service
+  [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
+  // Handle the received message
+  // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
+  // [START_EXCLUDE]
+  [[NSNotificationCenter defaultCenter] postNotificationName:_messageKey
+                                                      object:nil
+                                                    userInfo:userInfo];
+  handler(UIBackgroundFetchResultNoData);
+  // [END_EXCLUDE]
+}
+// [END ack_message_reception]
 
 // [START on_token_refresh]
 - (void)onTokenRefresh {
+  // A rotation of the registration tokens is happening, so the app needs to request a new token.
   NSLog(@"The GCM registration token needs to be changed.");
   [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                       scope:kGGLInstanceIDScopeGCM
