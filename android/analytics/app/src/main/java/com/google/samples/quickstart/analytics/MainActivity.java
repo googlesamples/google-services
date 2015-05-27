@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     mViewPager = (ViewPager) findViewById(R.id.pager);
     mViewPager.setAdapter(mImagePagerAdapter);
 
-    // When the visible image changes, send a new visible event.
+    // When the visible image changes, send a screen view hit.
     mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
       @Override
       public void onPageSelected(int position) {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    // Send initial screen event.
+    // Send initial screen screen view hit.
     sendScreenImageName();
   }
 
@@ -133,17 +133,17 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * Record a screen view event for the visible {@link ImageFragment} displayed
+   * Record a screen view hit for the visible {@link ImageFragment} displayed
    * inside {@link FragmentPagerAdapter}.
    */
   private void sendScreenImageName() {
     String name = getCurrentImageTitle();
 
-    // [START screen_view_event]
+    // [START screen_view_hit]
     Log.i(TAG, "Setting screen name: " + name);
     mTracker.setScreenName("Image~" + name);
     mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    // [END screen_view_event]
+    // [END screen_view_hit]
   }
 
   /**
