@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.0"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "com.google.developers.app_indexing.quickstart"
@@ -20,5 +20,6 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-appindexing:6.5.87'
+    compile 'com.google.android.gms:play-services-base:7.5.0'
+    compile 'com.google.android.gms:play-services-appindexing:7.5.0'
 }
