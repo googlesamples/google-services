@@ -1,31 +1,24 @@
-Google AdMob Quickstart
-=======================
+Google App Indexing Quickstart
+==============================
 
-The Google AdMob iOS quickstart demonstrates how to display an interstitial ad and a simple banner ad.  GADBannerView is used to display a banner ad and GADInterstitial is used to display the interstitial ad.
+The Google App Indexing iOS quickstart demonstrates how to help get your app found in Google Search.  GSDDeepLink is used to handle deep links.
 
 Introduction
 ------------
 
-- [Read more about Google AdMob](https://developers.google.com/admob/)
+- [Read more about Google App Indexing](https://developers.google.com/app-indexing/)
 
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/admob/ios/start) to set up your project.
+- Open the App Indexing project.
 - Run the sample on your iOS device or emulator.
-- The running sample displays a test banner ad and a test interstitial add.
-
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
-
-Screenshots
------------
-![Screenshot](Screenshot/admob-sample.png)
+- The running sample handles incoming deep links.
 
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/admob
-- [Developer forum](groups.google.com/group/google-admob-ads-sdk)
+- Stack Overflow: http://stackoverflow.com/questions/tagged/google-search-platform
 
 If you've found an error in this sample, please file an issue:
 https://github.com/googlesamples/google-services/issues

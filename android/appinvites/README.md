@@ -1,31 +1,26 @@
-Google AdMob Quickstart
-=======================
+Google App Invites Quickstart
+=============================
 
-The Google AdMob iOS quickstart demonstrates how to display an interstitial ad and a simple banner ad.  GADBannerView is used to display a banner ad and GADInterstitial is used to display the interstitial ad.
+The Google App Invites Android quickstart demonstrates how to enable your users to share your app with people they know.  AppInviteInvitation is used to send an invitation and AppInviteReferral is used to handle incoming invitations.
 
 Introduction
 ------------
 
-- [Read more about Google AdMob](https://developers.google.com/admob/)
+- [Read more about Google App Invites](https://developers.google.com/app-invites/)
 
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/admob/ios/start) to set up your project.
-- Run the sample on your iOS device or emulator.
-- The running sample displays a test banner ad and a test interstitial add.
-
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+- Follow the [quickstart guide](https://developers.google.com/app-invites/android/guides/start) to set up your project in Android Studio.
+- Run the sample on your Android device or emulator.
+- The running allows you to send and receive app invites.
 
 Screenshots
 -----------
-![Screenshot](Screenshot/admob-sample.png)
+![Screenshot](app/src/main/app-invites-sample.png)
 
 Support
 -------
-
-- Stack Overflow: http://stackoverflow.com/questions/tagged/admob
-- [Developer forum](groups.google.com/group/google-admob-ads-sdk)
 
 If you've found an error in this sample, please file an issue:
 https://github.com/googlesamples/google-services/issues

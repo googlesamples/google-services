@@ -1,32 +1,32 @@
-Sample Title
-============
+Google AdMob Quickstart
+=======================
 
-Google AdMob Android Quickstart Sample
+The Google AdMob Android quickstart demonstrates how to display an interstitial ad and a simple banner ad.  AdRequest and AdView are used to display a banner ad and InterstitialAd is used to display the interstitial ad.
 
 Introduction
 ------------
 
-Pre-requisites
---------------
-
-<!--These should be learning materials, not software requirements; samples
-    should be entirely self-contained. Format as URLs in a list.-->
-- [Example](http://github.com/googlesamples/example)
+- [Read more about Google AdMob](https://developers.google.com/admob/)
 
 Getting Started
 ---------------
 
+- Follow the [quickstart guide](https://developers.google.com/admob/android/start) to set up your project in Android Studio.
+- Run the sample on your Android device or emulator.
+- The running sample displays a test banner ad and a test interstitial add.
+
 Screenshots
 -----------
+![Screenshot](app/src/main/admob-sample.png)
 
 Support
 -------
 
-- Google+ Community: https://plus.google.com/communities/<...>
-- Stack Overflow: http://stackoverflow.com/questions/tagged/<...>
+- Stack Overflow: http://stackoverflow.com/questions/tagged/admob
+- [Developer forum](groups.google.com/group/google-admob-ads-sdk)
 
 If you've found an error in this sample, please file an issue:
-https://github.com/googlesamples/<...>/issues
+https://github.com/googlesamples/google-services/issues
 
 Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request through GitHub.
@@ -34,7 +34,7 @@ submitting a pull request through GitHub.
 License
 -------
 
-Copyright 2014 Google, Inc.
+Copyright 2015 Google, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for
