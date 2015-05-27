@@ -1,31 +1,30 @@
 Google Cloud Messaging Quickstart
 =================================
 
-Google Cloud Messaging Android Quickstart app demonstrates registering
-an Android app for GCM and handling the receipt of a GCM message.
-InstanceID allows easy registration while GcmReceiver and
-GcmListenerService provide simple means of receiving and handling
-messages.
+Google Cloud Messaging iOS Quickstart app demonstrates registering
+an iOS app for GCM messages.
 
 Introduction
 ------------
 
-- [Read more about Google Cloud Messaging](https://developers.google.com/cloud-messaging/)
+- [Read more about Google Cloud Messaging](https://developers.google.com/gcm/)
 
 Getting Started
 ---------------
 
 - Follow the [quickstart guide](https://developers.google.com/cloud-messaging/)
-  to set up your project in Android Studio.
-- Run the sample on your Android device.
-- Update API_KEY in GcmSender.java, with API key from your project.
-- Run the terminal command to send GCM message to your device.
-- A notification containing the GCM message should be displayed on the
-  device.
+  to set up your project in XCode.
+- Run sample on your iOS device.
+- Run included GcmServerDemo.
+- Fill in the apiKey field in GcmServerDemo with the API key from your project.
+- Click "Send notification" button.
+- A notification is be received by your device.
+
+Note: You will need Swift 1.2 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
-![Screenshot](app/src/main/gcm-sample.png)
+![Screenshot](Screenshot/gcm-sample.png)
 
 Support
 -------
