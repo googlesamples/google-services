@@ -19,7 +19,6 @@
 
 // [START gmp_config]
 #import "AppDelegate.h"
-#import "ViewController.h"
 #import <Google/Core.h>
 
 @interface AppDelegate ()
@@ -29,11 +28,6 @@
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  ViewController *homeViewController = [[ViewController alloc] init];
-  UINavigationController *navigationController =
-      [[UINavigationController alloc] initWithRootViewController:homeViewController];
-  navigationController.navigationBar.translucent = NO;
-
   // Use Google library to configure APIs
   NSError *configureError;
   [[GGLContext sharedInstance] configureWithError:&configureError];
