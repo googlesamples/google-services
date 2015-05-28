@@ -1,31 +1,28 @@
-Google AdMob Quickstart
-=======================
+Google Sign-In Quickstart
+=========================
 
-The Google AdMob iOS quickstart demonstrates how to display an interstitial ad and a simple banner ad.  GADBannerView is used to display a banner ad and GADInterstitial is used to display the interstitial ad.
+The Google Sign-In Android quickstart demonstrates how to authenticate a user with GoogleApiClient.
 
 Introduction
 ------------
 
-- [Read more about Google AdMob](https://developers.google.com/admob/)
+- [Read more about Google Sign-In](https://developers.google.com/identity/sign-in/)
 
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/admob/ios/start) to set up your project.
-- Run the sample on your iOS device or emulator.
-- The running sample displays a test banner ad and a test interstitial add.
-
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+- Follow the [quickstart guide](https://developers.google.com/identity/sign-in/android/start) to set up your project in Android Studio.
+- Run the sample on your Android device or emulator.
+- The running sample allows Google accounts on the device to sign-in.
 
 Screenshots
 -----------
-![Screenshot](Screenshot/admob-sample.png)
+![Screenshot](app/src/main/sign-in-sample.png)
 
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/admob
-- [Developer forum](groups.google.com/group/google-admob-ads-sdk)
+- Stack Overflow: http://stackoverflow.com/questions/tagged/google-oauth
 
 If you've found an error in this sample, please file an issue:
 https://github.com/googlesamples/google-services/issues
