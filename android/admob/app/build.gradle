@@ -37,8 +37,4 @@ dependencies {
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.1'
     androidTestCompile 'com.android.support.test:runner:0.2'
-    // TODO (gkal): Figure out whether to use this, or to use 22.0.0 with ActionBarActivity before launch.
-    // Needed to force test apk to build with 22.1.0 instead of 22.0.0.
-    // 22.1.0 Has support for AppCompactActivity (which is now recommended in quickstart style guide
-    androidTestCompile 'com.android.support:support-annotations:22.1.0'
 }
