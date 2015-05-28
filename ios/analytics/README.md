@@ -1,5 +1,5 @@
 Google Analytics Quickstart
-=======================
+===========================
 
 Google Analytics iOS Quickstart app demonstrates collecting
 app usage analytics via the defaultTracker available from GAI.
@@ -13,7 +13,8 @@ Introduction
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://devsite.googleplex.com/analytics/devguides/collection/mobile/) to set up your project in XCode.
+- Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/mobile/)
+  to set up your project in XCode.
 - Run the sample on your iOS device or emulator.
 - Swipe between images to register screen views.
 - View collected analytics via [Google Analytics](https://www.google.com/analytics/web).

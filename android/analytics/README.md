@@ -1,5 +1,5 @@
 Google Analytics Quickstart
-=======================
+===========================
 
 Google Analytics Android Quickstart app demonstrates collecting
 app usage analytics via [Tracker](https://developer.android.com/reference/com/google/android/gms/analytics/Tracker.html)
@@ -14,7 +14,8 @@ Introduction
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://devsite.googleplex.com/analytics/devguides/collection/mobile/) to set up your project in Android Studio.
+- Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/mobile/)
+  to set up your project in Android Studio.
 - Run the sample on your Android device or emulator.
 - Swipe between images to register screen views.
 - View collected analytics via [Google Analytics](https://www.google.com/analytics/web).
