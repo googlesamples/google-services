@@ -1,7 +1,9 @@
 Google AdMob Quickstart
 =======================
 
-The Google AdMob iOS quickstart demonstrates how to display an interstitial ad and a simple banner ad.  GADBannerView is used to display a banner ad and GADInterstitial is used to display the interstitial ad.
+The Google AdMob iOS quickstart demonstrates how to display an interstitial ad and a simple banner 
+ad.  GADBannerView is used to display a banner ad and GADInterstitial is used to display the 
+interstitial ad.
 
 Introduction
 ------------
