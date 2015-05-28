@@ -1,7 +1,8 @@
 Google App Invites Quickstart
 =============================
 
-The Google App Invites iOS quickstart demonstrates how to enable your users to share your app with people they know.  GINInviteBuilder is used to send an invitation.
+The Google App Invites iOS quickstart demonstrates how to enable your users to share your app with 
+people they know.  GINInviteBuilder is used to send an invitation.
 
 Introduction
 ------------

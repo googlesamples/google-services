@@ -1,7 +1,8 @@
 Google App Indexing Quickstart
 ==============================
 
-The Google App Indexing iOS quickstart demonstrates how to help get your app found in Google Search.  GSDDeepLink is used to handle deep links.
+The Google App Indexing iOS quickstart demonstrates how to help get your app found in Google Search.
+GSDDeepLink is used to handle deep links.
 
 Introduction
 ------------
