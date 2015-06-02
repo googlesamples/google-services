@@ -1,26 +1,27 @@
 Google Cloud Messaging Quickstart
 =================================
 
-Google Cloud Messaging iOS Quickstart app demonstrates registering
-an iOS app for GCM messages.
+The Google Cloud Messaging iOS Quickstart app demonstrates how to connect
+an iOS app to GCM and how to receive messages.
 
 Introduction
 ------------
 
-- [Read more about Google Cloud Messaging](https://developers.google.com/gcm/)
+- [Read more about Google Cloud Messaging](https://developers.google.com/cloud-messaging/).
 
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/cloud-messaging/)
+- Follow the [quickstart guide](https://developers.google.com/cloud-messaging/ios/start)
   to set up your project in XCode.
-- Run sample on your iOS device.
-- Run included GcmServerDemo.
-- Fill in the apiKey field in GcmServerDemo with the API key from your project.
-- Click "Send notification" button.
-- A notification is be received by your device.
+- Run the sample on your iOS device.
+- Run the included GcmServerDemo.
+- Insert the API key from your project in the *apiKey* text field of the GcmServerDemo app.
+- Insert the registration token that the sample app has printed in the XCode debug console in the
+*RegistrationToken* text field of the GcmServerDemo app.
+- Click the *Send notification* button. A notification will be sent to your device.
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+Note: You need Swift 1.2 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
