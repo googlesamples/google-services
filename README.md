@@ -1,7 +1,7 @@
 # Google APIs for Mobile: Quickstarts 
 
 A collection of quickstart samples demonstrating the Google APIs for 
-[https://developers.google.com/android](Android) and [https://developers.google.com/ios](iOS).
+[Android](https://developers.google.com/android) and [iOS](https://developers.google.com/ios).
 
 ## How to make contributions?
 Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md)
