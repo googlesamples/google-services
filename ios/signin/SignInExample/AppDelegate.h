@@ -15,10 +15,14 @@
 //
 
 #import <UIKit/UIKit.h>
+// [START signin_import]
+#import <Google/SignIn.h>
+// [END signin_import]
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+// [START appdelegate_interfaces]
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
+// [END appdelegate_interfaces]
 
 @property (strong, nonatomic) UIWindow *window;
 
 @end
-
