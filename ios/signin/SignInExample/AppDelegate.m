@@ -15,18 +15,19 @@
 //
 
 #import "AppDelegate.h"
-#import <Google/SignIn.h>
 
 @implementation AppDelegate
 
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application
-      didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSError* configureError;
   [[GGLContext sharedInstance] configureWithError: &configureError];
   if (configureError != nil) {
     NSLog(@"Error configuring the Google context: %@", configureError);
   }
+
+  [GIDSignIn sharedInstance].delegate = self;
 
   return YES;
 }
@@ -42,5 +43,39 @@
                                     annotation:annotation];
 }
 // [END openurl]
+
+// [START signin_handler]
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+  // Perform any operations on signed in user here.
+  // [START_EXCLUDE]
+  NSDictionary *statusText = @{@"statusText":
+                                 [NSString stringWithFormat:@"Signed in user: %@",
+                                  user.profile.name]};
+  [[NSNotificationCenter defaultCenter]
+   postNotificationName:@"ToggleAuthUINotification"
+   object:nil
+   userInfo:statusText];
+  // [END_EXCLUDE]
+}
+// [END signin_handler]
+
+// This callback is triggered after the disconnect call that revokes data
+// access to the user's resources has completed.
+// [START disconnect_handler]
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+  // Perform any operations when the user disconnects from app here.
+  // [START_EXCLUDE]
+  NSDictionary *statusText = @{@"statusText": @"Disconnected user" };
+  [[NSNotificationCenter defaultCenter]
+   postNotificationName:@"ToggleAuthUINotification"
+   object:nil
+   userInfo:statusText];
+  // [END_EXCLUDE]
+}
+// [END disconnect_handler]
 
 @end

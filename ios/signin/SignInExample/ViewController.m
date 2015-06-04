@@ -14,21 +14,6 @@
 //  limitations under the License.
 //
 #import "ViewController.h"
-#import <GoogleSignIn/GIDGoogleUser.h>
-#import <GoogleSignIn/GIDProfileData.h>
-
-// [START viewcontroller_interfaces]
-@interface ViewController () <GIDSignInDelegate, GIDSignInUIDelegate>
-// [END viewcontroller_interfaces]
-
-// [START viewcontroller_vars]
-@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
-@property (weak, nonatomic) IBOutlet UIButton *signOutButton;
-@property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
-@property (weak, nonatomic) IBOutlet UILabel *statusText;
-// [END viewcontroller_vars]
-
-@end
 
 @implementation ViewController
 
@@ -37,46 +22,32 @@
   [super viewDidLoad];
 
   // TODO(developer) Configure the sign-in button look/feel
-  [GIDSignIn sharedInstance].delegate = self;
+
   [GIDSignIn sharedInstance].uiDelegate = self;
 
   // Uncomment to automatically sign in the user.
-  [[GIDSignIn sharedInstance] signInSilently];
-  [self toggleAuthUI];
+  //[[GIDSignIn sharedInstance] signInSilently];
+  // [START_EXCLUDE silent]
+  [[NSNotificationCenter defaultCenter]
+      addObserver:self
+         selector:@selector(receiveToggleAuthUINotification:)
+             name:@"ToggleAuthUINotification"
+           object:nil];
 
+  [self toggleAuthUI];
   [self statusText].text = @"Google Sign in\niOS Demo";
+  // [END_EXCLUDE]
 }
 // [END viewdidload]
-
-// [START signin_handler]
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-  // Perform any operations on signed in user here.
-  self.statusText.text = [NSString stringWithFormat:@"Signed in user: %@",
-                          user.profile.name];
-  [self toggleAuthUI];
-}
-// [END signin_handler]
-
-// This callback is triggered after the disconnect call that revokes data
-// access to the user's resources has completed.
-// [START disconnect_handler]
-- (void)signIn:(GIDSignIn *)signIn
-didDisconnectWithUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-  // Perform any operations when the user disconnects from app here.
-  self.statusText.text = @"Disconnected user";
-  [self toggleAuthUI];
-}
-// [END disconnect_handler]
 
 // Signs the user out of the application for scenarios such as switching
 // profiles.
 // [START signout_tapped]
 - (IBAction)didTapSignOut:(id)sender {
   [[GIDSignIn sharedInstance] signOut];
+  // [START_EXCLUDE silent]
   [self toggleAuthUI];
+  // [END_EXCLUDE]
 }
 // [END signout_tapped]
 
@@ -108,5 +79,20 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
   return UIStatusBarStyleLightContent;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter]
+      removeObserver:self
+                name:@"ToggleAuthUINotification"
+              object:nil];
+
+}
+
+- (void) receiveToggleAuthUINotification:(NSNotification *) notification {
+  if ([[notification name] isEqualToString:@"ToggleAuthUINotification"]) {
+    [self toggleAuthUI];
+    self.statusText.text = [notification userInfo][@"statusText"];
+  }
 }
 @end

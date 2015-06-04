@@ -16,7 +16,9 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+// [START appdelegate_interfaces]
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+// [END appdelegate_interfaces]
   var window: UIWindow?
 
   // [START didfinishlaunching]
@@ -28,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if configureErr != nil {
         println("Error configuring the Google context: \(configureErr)")
       }
+
+      GIDSignIn.sharedInstance().delegate = self
+
       return true
   }
   // [END didfinishlaunching]
@@ -35,8 +40,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // [START openurl]
   func application(application: UIApplication,
     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-      return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+      return GIDSignIn.sharedInstance().handleURL(url,
+          sourceApplication: sourceApplication,
+          annotation: annotation)
   }
   // [END openurl]
-}
 
+  // [START signin_handler]
+  func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+    withError error: NSError!) {
+      if (error == nil) {
+        // Perform any operations on signed in user here.
+        // [START_EXCLUDE]
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            "ToggleAuthUINotification",
+            object: nil,
+            userInfo: ["statusText": "Signed in user:\n\(user.profile.name)"])
+        // [END_EXCLUDE]
+      } else {
+        println("\(error.localizedDescription)")
+        // [START_EXCLUDE silent]
+        NSNotificationCenter.defaultCenter().postNotificationName(
+          "ToggleAuthUINotification", object: nil, userInfo: nil)
+        // [END_EXCLUDE]
+      }
+  }
+  // [END signin_handler]
+
+  // [START disconnect_handler]
+  func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+    withError error: NSError!) {
+      // Perform any operations when the user disconnects from app here.
+      // [START_EXCLUDE]
+      NSNotificationCenter.defaultCenter().postNotificationName(
+          "ToggleAuthUINotification",
+          object: nil,
+          userInfo: ["statusText": "User has disconnected."])
+      // [END_EXCLUDE]
+  }
+  // [END disconnect_handler]
+
+}
