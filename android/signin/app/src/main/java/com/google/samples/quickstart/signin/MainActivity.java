@@ -55,13 +55,15 @@ public class MainActivity extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
 
     /* View to display current status (signed-in, signed-out, disconnected, etc) */
-    private TextView mStatus;
+    private TextView mStatusTextView;
 
+    // [START resolution_variables]
     /* Is there a ConnectionResult resolution in progress? */
     private boolean mIsResolving = false;
 
     /* Should we automatically resolve ConnectionResults when possible? */
     private boolean mShouldResolve = false;
+    // [END resolution_variables]
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setEnabled(false);
 
         // Set up view instances
-        mStatus = (TextView) findViewById(R.id.status);
+        mStatusTextView = (TextView) findViewById(R.id.status);
 
         // [START create_google_api_client]
         // Build GoogleApiClient with access to basic profile
@@ -105,20 +107,28 @@ public class MainActivity extends AppCompatActivity implements
         if (isSignedIn) {
             // Show signed-in user's name
             String name = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient).getDisplayName();
-            mStatus.setText(getString(R.string.signed_in_fmt, name));
+            mStatusTextView.setText(getString(R.string.signed_in_fmt, name));
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
             // Show signed-out message
-            mStatus.setText(R.string.signed_out);
+            mStatusTextView.setText(R.string.signed_out);
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setEnabled(true);
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
+    }
+
+    private void showSignedInUI() {
+        updateUI(true);
+    }
+
+    private void showSignedOutUI() {
+        updateUI(false);
     }
 
     // [START on_start_on_stop]
@@ -140,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_IS_RESOLVING, mIsResolving);
-        outState.putBoolean(KEY_SHOULD_RESOLVE, mIsResolving);
+        outState.putBoolean(KEY_SHOULD_RESOLVE, mShouldResolve);
     }
     // [END on_save_instance_state]
 
@@ -151,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
 
         if (requestCode == RC_SIGN_IN) {
-            // If the error resolution was not successful we should not resolve further errors.
+            // If the error resolution was not successful we should not resolve further.
             if (resultCode != RESULT_OK) {
                 mShouldResolve = false;
             }
@@ -162,16 +172,19 @@ public class MainActivity extends AppCompatActivity implements
     }
     // [END on_activity_result]
 
+    // [START on_connected]
     @Override
     public void onConnected(Bundle bundle) {
         // onConnected indicates that an account was selected on the device, that the selected
         // account has granted any requested permissions to our app and that we were able to
         // establish a service connection to Google Play services.
         Log.d(TAG, "onConnected:" + bundle);
+        mShouldResolve = false;
 
         // Show the signed-in UI
-        updateUI(true);
+        showSignedInUI();
     }
+    // [END on_connected]
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -206,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         } else {
             // Show the signed-out UI
-            updateUI(false);
+            showSignedOutUI();
         }
     }
     // [END on_connection_failed]
@@ -222,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements
                         @Override
                         public void onCancel(DialogInterface dialog) {
                             mShouldResolve = false;
-                            updateUI(false);
+                            showSignedOutUI();
                         }
                     }).show();
         } else {
@@ -231,45 +244,63 @@ public class MainActivity extends AppCompatActivity implements
             Toast.makeText(this, errorString, Toast.LENGTH_SHORT).show();
 
             mShouldResolve = false;
-            updateUI(false);
+            showSignedOutUI();
         }
     }
 
+    // [START on_click]
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
-                // User clicked the sign-in button, so begin the sign-in process and automatically
-                // attempt to resolve any errors that occur.
-                mStatus.setText(R.string.signing_in);
-                // [START sign_in_clicked]
-                mShouldResolve = true;
-                mGoogleApiClient.connect();
-                // [END sign_in_clicked]
+                onSignInClicked();
                 break;
             case R.id.sign_out_button:
-                // Clear the default account so that GoogleApiClient will not automatically
-                // connect in the future.
-                // [START sign_out_clicked]
-                if (mGoogleApiClient.isConnected()) {
-                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-                    mGoogleApiClient.disconnect();
-                }
-                // [END sign_out_clicked]
-                updateUI(false);
+                onSignOutClicked();
                 break;
             case R.id.disconnect_button:
-                // Revoke all granted permissions and clear the default account.  The user will have
-                // to pass the consent screen to sign in again.
-                // [START disconnect_clicked]
-                if (mGoogleApiClient.isConnected()) {
-                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-                    Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
-                    mGoogleApiClient.disconnect();
-                }
-                // [END disconnect_clicked]
-                updateUI(false);
+                onDisconnectClicked();
                 break;
         }
     }
+    // [END on_click]
+
+    // [START on_sign_in_clicked]
+    private void onSignInClicked() {
+        // User clicked the sign-in button, so begin the sign-in process and automatically
+        // attempt to resolve any errors that occur.
+        mShouldResolve = true;
+        mGoogleApiClient.connect();
+
+        // Show a message to the user that we are signing in.
+        mStatusTextView.setText(R.string.signing_in);
+    }
+    // [END on_sign_in_clicked]
+
+    // [START on_sign_out_clicked]
+    private void onSignOutClicked() {
+        // Clear the default account so that GoogleApiClient will not automatically
+        // connect in the future.
+        if (mGoogleApiClient.isConnected()) {
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+        }
+
+        showSignedOutUI();
+    }
+    // [END on_sign_out_clicked]
+
+    // [START on_disconnect_clicked]
+    private void onDisconnectClicked() {
+        // Revoke all granted permissions and clear the default account.  The user will have
+        // to pass the consent screen to sign in again.
+        if (mGoogleApiClient.isConnected()) {
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+        }
+
+        showSignedOutUI();
+    }
+    // [END on_disconnect_clicked]
 }
