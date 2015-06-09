@@ -25,9 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       var configureError:NSError?
       GGLContext.sharedInstance().configureWithError(&configureError)
-      if configureError != nil {
-        println("Error configuring the Google context: \(configureError)")
-      }      // Initialize sign-in
+      assert(configureError == nil, "Error configuring Google services: \(configureError)")
+      // Initialize sign-in
       GINInvite.applicationDidFinishLaunching()
       return true
   }

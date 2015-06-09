@@ -31,9 +31,7 @@
   // Use Google library to configure APIs
   NSError *configureError;
   [[GGLContext sharedInstance] configureWithError:&configureError];
-  if (configureError != nil) {
-    NSLog(@"Error configuring the Google context: %@", configureError);
-  }
+  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
   return YES;
 }
 // [END gmp_config]

@@ -39,9 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
     // the services that have entries in the file
     var configureError:NSError?
     GGLContext.sharedInstance().configureWithError(&configureError)
-    if configureError != nil {
-      println("Error configuring the Google context: \(configureError)")
-    }
+    assert(configureError == nil, "Error configuring Google services: \(configureError)")
     gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
     // [END_EXCLUDE]
     // Register for remote notifications
