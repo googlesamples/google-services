@@ -38,9 +38,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
   // the services that have entries in the file
   NSError* configureError;
   [[GGLContext sharedInstance] configureWithError:&configureError];
-  if (configureError != nil) {
-    NSLog(@"Error configuring the Google context: %@", configureError);
-  }
+  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
   _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
   // [END_EXCLUDE]
   // Register for remote notifications

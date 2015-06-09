@@ -25,9 +25,7 @@
   // Configure tracker from GoogleService-Info.plist.
   NSError *configureError;
   [[GGLContext sharedInstance] configureWithError:&configureError];
-  if (configureError != nil) {
-    NSLog(@"Error configuring the Google context: %@", configureError);
-  }
+  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
 
   // Optional: configure GAI options.
   GAI *gai = [GAI sharedInstance];

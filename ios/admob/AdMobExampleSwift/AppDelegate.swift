@@ -30,9 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var configureError:NSError?
     // Use Google library to configure APIs
     GGLContext.sharedInstance().configureWithError(&configureError)
-    if configureError != nil {
-      println("Error configuring the Google context: \(configureError)")
-    }
+    assert(configureError == nil, "Error configuring Google services: \(configureError)")
     return true
   }
 // [END gmp_config]

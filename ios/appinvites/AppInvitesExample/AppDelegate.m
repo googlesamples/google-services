@@ -20,15 +20,12 @@
 
 @implementation AppDelegate
 
-//#error Replace the values here and remove this line to run the sample.
 // [START didfinishlaunching]
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
       (NSDictionary *)launchOptions {
   NSError* configureError;
   [[GGLContext sharedInstance] configureWithError:&configureError];
-  if (configureError != nil) {
-    NSLog(@"Error configuring the Google context: %@", configureError);
-  }
+  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
 
   [GINInvite applicationDidFinishLaunching];
   return YES;
