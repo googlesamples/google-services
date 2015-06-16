@@ -42,15 +42,15 @@ NSString *const SubscriptionTopic = @"/topics/global";
     NSLog(@"Error configuring the Google context: %@", configureError);
   }
   _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
-  // [END_EXCLUDE]
   // Register for remote notifications
-  if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1){
-    //iOS 7.1 or earlier
+  if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+    // iOS 7.1 or earlier
     UIRemoteNotificationType allNotificationTypes =
         (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
     [application registerForRemoteNotificationTypes:allNotificationTypes];
-  }else{
-    //iOS 8 or later
+  } else {
+    // iOS 8 or later
+    // [END_EXCLUDE]
     UIUserNotificationType allNotificationTypes =
         (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
     UIUserNotificationSettings *settings =

@@ -53,16 +53,15 @@
 }
 
 - (void)showAlert:(NSString *)title withMessage:(NSString *) message{
-  if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1){
-    //iOS 7.1 or earlier
+  if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+    // iOS 7.1 or earlier
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:message
                                                    delegate:nil
                                           cancelButtonTitle:@"Dismiss"
                                           otherButtonTitles:nil];
     [alert show];
-
-  }else{
+  } else {
     //iOS 8 or later
     UIAlertController *alert =
         [UIAlertController alertControllerWithTitle:title
