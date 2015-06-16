@@ -53,17 +53,29 @@
 }
 
 - (void)showAlert:(NSString *)title withMessage:(NSString *) message{
-  UIAlertController *alert =
-      [UIAlertController alertControllerWithTitle:title
-                                          message:message
-                                   preferredStyle:UIAlertControllerStyleAlert];
+  if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1){
+    //iOS 7.1 or earlier
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Dismiss"
+                                          otherButtonTitles:nil];
+    [alert show];
 
-  UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss"
-                                                          style:UIAlertActionStyleDestructive
-                                                        handler:nil];
+  }else{
+    //iOS 8 or later
+    UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:title
+                                            message:message
+                                     preferredStyle:UIAlertControllerStyleAlert];
 
-  [alert addAction:dismissAction];
-  [self presentViewController:alert animated:YES completion:nil];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:nil];
+
+    [alert addAction:dismissAction];
+    [self presentViewController:alert animated:YES completion:nil];
+  }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

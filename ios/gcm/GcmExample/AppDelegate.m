@@ -44,12 +44,20 @@ NSString *const SubscriptionTopic = @"/topics/global";
   _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
   // [END_EXCLUDE]
   // Register for remote notifications
-  UIUserNotificationType allNotificationTypes =
-      (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-  UIUserNotificationSettings *settings =
-      [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-  [[UIApplication sharedApplication] registerForRemoteNotifications];
+  if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1){
+    //iOS 7.1 or earlier
+    UIRemoteNotificationType allNotificationTypes =
+        (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+    [application registerForRemoteNotificationTypes:allNotificationTypes];
+  }else{
+    //iOS 8 or later
+    UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+  }
   // [END register_for_remote_notifications]
   // [START start_gcm_service]
   [[GCMService sharedInstance] startWithConfig:[GCMConfig defaultConfig]];
