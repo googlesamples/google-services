@@ -43,7 +43,7 @@ import static org.junit.Assert.assertThat;
 public class UiAutomatorTest {
 
     private static final long LAUNCH_TIMEOUT = 5000;
-    private static final long UI_TIMEOUT = 2500;
+    private static final long UI_TIMEOUT = 5000;
 
     private static final String APP_PACKAGE = MainActivity.class.getPackage().getName();
 
