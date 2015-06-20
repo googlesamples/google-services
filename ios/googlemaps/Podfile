@@ -1,4 +1,4 @@
 # GoogleMapsExample
 platform :ios, '7.0'
-pod 'GoogleMaps'
+pod 'Google/Maps'
 link_with 'GoogleMapsExample', 'GoogleMapsExampleSwift', 'GoogleMapsExampleTests'

@@ -15,7 +15,6 @@
 //
 
 import UIKit
-import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // TODO: replace following line with GMSServices.provideAPIKey("Insert_API_Key_Here")
-    GMSServices.provideAPIKey("AIzaSyCnrIHQWY1xOmZEIu7MDX74M-zQMUQdRmk")
+    var configureError:NSError?
+    GGLContext.sharedInstance().configureWithError(&configureError)
+    assert(configureError == nil, "Error configuring Google services: \(configureError)")
     return true
   }
 

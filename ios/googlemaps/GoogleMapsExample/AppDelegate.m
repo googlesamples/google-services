@@ -15,14 +15,15 @@
 //
 
 #import "AppDelegate.h"
-@import GoogleMaps;
+#import <Google/Core.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // TODO: replace the following line with GGL magic
-  [GMSServices provideAPIKey:@"AIzaSyDkZg-ILjoOGDeeguOTIw8xU0JRt9vkgpY"];
+  NSError *configureError;
+  [[GGLContext sharedInstance] configureWithError:&configureError];
+  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
   return YES;
 }
 
