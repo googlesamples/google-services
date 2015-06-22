@@ -105,12 +105,12 @@ public class MainActivity extends AppCompatActivity implements
 
         if (requestCode == REQUEST_INVITE) {
             if (resultCode == RESULT_OK) {
-                // Check how many invitations were sent and show message to the user
+                // Check how many invitations were sent and log a message
                 // The ids array contains the unique invitation ids for each invitation sent
                 // (one for each contact select by the user). You can use these for analytics
                 // as the ID will be consistent on the sending and receiving devices.
                 String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
-                showMessage(getString(R.string.sent_invitations_fmt, ids.length));
+                Log.d(TAG, getString(R.string.sent_invitations_fmt, ids.length));
             } else {
                 // Sending failed or it was canceled, show failure message to the user
                 showMessage(getString(R.string.send_failed));
