@@ -47,10 +47,14 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   // Perform any operations on signed in user here.
+  NSString *userId = user.userId;                  // For client-side use only!
+  NSString *idToken = user.authentication.idToken; // Safe to send to the server
+  NSString *name = user.profile.name;
+  NSString *email = user.profile.email;
   // [START_EXCLUDE]
   NSDictionary *statusText = @{@"statusText":
                                  [NSString stringWithFormat:@"Signed in user: %@",
-                                  user.profile.name]};
+                                  name]};
   [[NSNotificationCenter defaultCenter]
    postNotificationName:@"ToggleAuthUINotification"
    object:nil
