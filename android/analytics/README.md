@@ -14,7 +14,7 @@ Introduction
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/mobile/)
+- Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/android/v4/start)
   to set up your project in Android Studio.
 - Run the sample on your Android device or emulator.
 - Swipe between images to register screen views.
