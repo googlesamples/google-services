@@ -20,6 +20,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
+  var kTrackingID = "YOUR_TRACKING_ID"
+  
   // [START didfinishlaunching]
   func application(application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       assert(configureError == nil, "Error configuring Google services: \(configureError)")
       // Initialize sign-in
       GINInvite.applicationDidFinishLaunching()
+      
+      if (kTrackingID != "YOUR_TRACKING_ID") {
+        GINInvite.setGoogleAnalyticsTrackingId(kTrackingID)
+      }
       return true
   }
   // [END didfinishlaunching]
