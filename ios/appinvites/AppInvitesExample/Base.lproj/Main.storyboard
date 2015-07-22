@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rbt-Hj-hbd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rbt-Hj-hbd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -30,7 +30,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text should go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status text should go here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
                                 <rect key="frame" x="100" y="132" width="213" height="24"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                 <color key="textColor" red="0.42352944612503052" green="0.42352944612503052" blue="0.42352944612503052" alpha="1" colorSpace="deviceRGB"/>
@@ -93,7 +93,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dn4-vt-WTK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBr-Zn-mFw">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBr-Zn-mFw">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="21"/>
                                         <color key="backgroundColor" red="0.21568629145622253" green="0.27843138575553894" blue="0.30588236451148987" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
@@ -101,7 +101,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Invites iOS Demo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSm-on-cRp">
-                                        <rect key="frame" x="72" y="29" width="270" height="34"/>
+                                        <rect key="frame" x="72.5" y="29" width="269.5" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -115,7 +115,7 @@
                                     <constraint firstItem="eSm-on-cRp" firstAttribute="top" secondItem="OBr-Zn-mFw" secondAttribute="bottom" constant="8" id="Vsq-Qr-wGj"/>
                                     <constraint firstItem="OBr-Zn-mFw" firstAttribute="top" secondItem="Dn4-vt-WTK" secondAttribute="top" id="hAb-gc-Qbq"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="iOE-Do-yrS"/>
-                                    <constraint firstAttribute="centerX" secondItem="OBr-Zn-mFw" secondAttribute="centerX" id="w7R-A4-TBL"/>
+                                    <constraint firstAttribute="centerX" relation="lessThanOrEqual" secondItem="OBr-Zn-mFw" secondAttribute="centerX" id="w7R-A4-TBL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -132,7 +132,6 @@
                             <constraint firstItem="eWa-ii-5oh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="XJ8-oW-Ss4"/>
                             <constraint firstItem="Dn4-vt-WTK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="dqx-ud-ENL"/>
                             <constraint firstAttribute="centerX" secondItem="iIa-Wp-vTk" secondAttribute="centerX" id="gFx-iq-bKp"/>
-                            <constraint firstAttribute="centerX" secondItem="Dn4-vt-WTK" secondAttribute="centerX" id="kbt-sZ-h5p"/>
                             <constraint firstAttribute="centerX" secondItem="BJZ-79-K2W" secondAttribute="centerX" id="uBk-4g-DiD"/>
                             <constraint firstItem="eWa-ii-5oh" firstAttribute="width" secondItem="8OM-kI-dga" secondAttribute="width" id="vr1-8o-cmD"/>
                         </constraints>
