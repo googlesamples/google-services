@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
 
             // Define a title for your current page, shown in autocompletion UI
             final String TITLE = "Sample Article";
-            final Uri APP_URI = Uri.parse("android-app://com.google.developers.app-indexing.quickstart/http/www.example.com/articles/" + articleId);
+            final Uri APP_URI = Uri.parse("android-app://com.google.developers.app_indexing.quickstart/http/www.example.com/articles/" + articleId);
             final Uri WEB_URL = Uri.parse("http://www.example.com/articles/" + articleId);
 
             // Call the App Indexing API view method
