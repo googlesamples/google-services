@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_IS_RESOLVING, mIsResolving);
-        outState.putBoolean(KEY_SHOULD_RESOLVE, mIsResolving);
+        outState.putBoolean(KEY_SHOULD_RESOLVE, mShouldResolve);
     }
     // [END on_save_instance_state]
 
