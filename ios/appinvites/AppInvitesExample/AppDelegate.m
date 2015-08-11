@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import <Google/AppInvite.h>
 
+static NSString* kTrackingID = @"YOUR_TRACKING_ID";
 
 @implementation AppDelegate
 
@@ -28,9 +29,14 @@
   NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
 
   [GINInvite applicationDidFinishLaunching];
+
+  if ([kTrackingID compare:@"YOUR_TRACKING_ID"] != NSOrderedSame) {
+    [GINInvite setGoogleAnalyticsTrackingId: kTrackingID];
+  }
   return YES;
 }
 // [END didfinishlaunching]
+
 
 // [START openurl]
 - (BOOL)application:(UIApplication *)application
@@ -48,7 +54,7 @@
     NSString *message =
         [NSString stringWithFormat:@"Deep link from %@ \nInvite ID: %@\nApp URL: %@\nMatch Type:%@",
             sourceApplication, invite.inviteId, invite.deepLink, matchType];
-    
+
     [[[UIAlertView alloc] initWithTitle:@"Deep-link Data"
                                 message:message
                                delegate:nil
