@@ -208,7 +208,7 @@ NSString *const SubscriptionTopic = @"/topics/global";
 }
 // [END on_token_refresh]
 
-// [START receiver_callbacks]
+// [START upstream_callbacks]
 - (void)willSendDataMessageWithID:(NSString *)messageID error:(NSError *)error {
   if (error) {
     // Failed to send the message.
@@ -220,12 +220,12 @@ NSString *const SubscriptionTopic = @"/topics/global";
 - (void)didSendDataMessageWithID:(NSString *)messageID {
   // Did successfully send message identified by messageID
 }
+// [END upstream_callbacks]
 
 - (void)didDeleteMessagesOnServer {
   // Some messages sent to this device were deleted on the GCM server before reception, likely
   // because the TTL expired. The client should notify the app server of this, so that the app
   // server can resend those messages.
 }
-// [END receiver_callbacks]
 
 @end

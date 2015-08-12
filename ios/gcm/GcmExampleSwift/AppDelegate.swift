@@ -189,7 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
   }
   // [END on_token_refresh]
 
-  // [START receiver_callbacks]
+  // [START upstream_callbacks]
   func willSendDataMessageWithID(messageID: String!, error: NSError!) {
     if (error != nil) {
       // Failed to send the message.
@@ -201,12 +201,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
   func didSendDataMessageWithID(messageID: String!) {
     // Did successfully send message identified by messageID
   }
+  // [END upstream_callbacks]
 
   func didDeleteMessagesOnServer() {
     // Some messages sent to this device were deleted on the GCM server before reception, likely
     // because the TTL expired. The client should notify the app server of this, so that the app
     // server can resend those messages.
   }
-  // [END receiver_callbacks]
 
 }
