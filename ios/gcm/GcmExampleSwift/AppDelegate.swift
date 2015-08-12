@@ -17,7 +17,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate {
 
   var window: UIWindow?
 
@@ -52,7 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
     application.registerForRemoteNotifications()
   // [END register_for_remote_notifications]
   // [START start_gcm_service]
-    GCMService.sharedInstance().startWithConfig(GCMConfig.defaultConfig())
+    var gcmConfig = GCMConfig.defaultConfig()
+    gcmConfig.receiverDelegate = self
+    GCMService.sharedInstance().startWithConfig(gcmConfig)
   // [END start_gcm_service]
     return true
   }
@@ -110,9 +112,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
       deviceToken: NSData ) {
   // [END receive_apns_token]
         // [START get_gcm_reg_token]
-        // Start the GGLInstanceID shared instance with the default config and request a registration
+        // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
+        var instanceIDConfig = GGLInstanceIDConfig.defaultConfig()
+        instanceIDConfig.delegate = self
+        // Start the GGLInstanceID shared instance with that config and request a registration
         // token to enable reception of notifications
-        GGLInstanceID.sharedInstance().startWithConfig(GGLInstanceIDConfig.defaultConfig())
+        GGLInstanceID.sharedInstance().startWithConfig(instanceIDConfig)
         registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken,
           kGGLInstanceIDAPNSServerTypeSandboxOption:true]
         GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity(gcmSenderID,
@@ -183,5 +188,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate {
         scope: kGGLInstanceIDScopeGCM, options: registrationOptions, handler: registrationHandler)
   }
   // [END on_token_refresh]
+
+  // [START upstream_callbacks]
+  func willSendDataMessageWithID(messageID: String!, error: NSError!) {
+    if (error != nil) {
+      // Failed to send the message.
+    } else {
+      // Will send message, you can save the messageID to track the message
+    }
+  }
+
+  func didSendDataMessageWithID(messageID: String!) {
+    // Did successfully send message identified by messageID
+  }
+  // [END upstream_callbacks]
+
+  func didDeleteMessagesOnServer() {
+    // Some messages sent to this device were deleted on the GCM server before reception, likely
+    // because the TTL expired. The client should notify the app server of this, so that the app
+    // server can resend those messages.
+  }
 
 }
