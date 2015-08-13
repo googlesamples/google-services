@@ -39,14 +39,14 @@ class ViewController: UIViewController {
       if let error = info["error"] {
         registeringLabel.text = "Error registering!"
         showAlert("Error registering with GCM", message: error)
-      } else if let registrationToken = info["registrationToken"] {
+      } else if let _ = info["registrationToken"] {
         registeringLabel.text = "Registered!"
         let message = "Check the xcode debug console for the registration token that you " +
         " can use with the demo server to send notifications to your device"
         showAlert("Registration Successful!", message: message)
       }
     } else {
-      println("Software failure. Guru meditation.")
+      print("Software failure. Guru meditation.")
     }
   }
 
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         showAlert("Message received", message: aps["alert"]!)
       }
     } else {
-      println("Software failure. Guru meditation.")
+      print("Software failure. Guru meditation.")
     }
   }
 
