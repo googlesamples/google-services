@@ -33,7 +33,8 @@
 
   NSString *title = [NSString stringWithFormat:@"Share: %@",
                      self.selectedViewController.title];
-  NSString *message = @"Share is not implemented in this quickstart";
+  NSString *message =
+      @"Share event sent to Analytics; actual share not implemented in this quickstart";
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                   message:message
                                                  delegate:nil

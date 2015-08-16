@@ -32,7 +32,7 @@ class PatternTabBarController: UITabBarController {
     // [END custom_event_swift]
 
     var title = "Share: \(self.selectedViewController!.title!)"
-    var message = "Share is not implemented in this quickstart"
+    var message = "Share event sent to Analytics; actual share not implemented in this quickstart"
     var alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok")
     alert.show()
   }
