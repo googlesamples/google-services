@@ -46,6 +46,13 @@ public class MyGcmListenerService extends GcmListenerService {
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
+        if (from.startsWith("/topics/")) {
+            // message received from some topic.
+        } else {
+            // normal downstream message.
+        }
+
+        // [START_EXCLUDE]
         /**
          * Production applications would usually process the message here.
          * Eg: - Syncing with server.
@@ -58,6 +65,7 @@ public class MyGcmListenerService extends GcmListenerService {
          * that a message was received.
          */
         sendNotification(message);
+        // [END_EXCLUDE]
     }
     // [END receive_message]
 
