@@ -32,6 +32,7 @@ import java.io.IOException;
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
+    private static final Object LOCK_OBJECT = new Object();
     private static final String[] TOPICS = {"global"};
 
     public RegistrationIntentService() {
@@ -45,7 +46,7 @@ public class RegistrationIntentService extends IntentService {
         try {
             // In the (unlikely) event that multiple refresh operations occur simultaneously,
             // ensure that they are processed sequentially.
-            synchronized (TAG) {
+            synchronized (LOCK_OBJECT) {
                 // [START register_for_gcm]
                 // Initially this call goes out to the network to retrieve the token, subsequent calls
                 // are local.
