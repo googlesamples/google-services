@@ -7,3 +7,4 @@ build/
 *.apk
 *.aar
 *.zip
+google-services.json
