@@ -1,4 +1,0 @@
-# PlacesExample
-platform :ios, '7.0'
-pod 'GoogleMaps'
-link_with 'PlacesExample', 'PlacesExampleSwift', 'PlacesExampleTests'

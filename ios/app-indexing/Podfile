@@ -1,4 +1,4 @@
 # AppIndexingExample
 platform :ios, '7.0'
-pod 'GoogleAppIndexing', '~> 1.0.0'
+pod 'GoogleAppIndexing'
 link_with 'AppIndexingExample', 'AppIndexingExampleSwift'
