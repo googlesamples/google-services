@@ -20,6 +20,5 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-base:7.8.0'
     compile 'com.google.android.gms:play-services-appindexing:7.8.0'
 }
