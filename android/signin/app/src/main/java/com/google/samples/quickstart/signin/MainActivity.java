@@ -32,6 +32,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
 
 /**
@@ -104,8 +105,14 @@ public class MainActivity extends AppCompatActivity implements
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
             // Show signed-in user's name
-            String name = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient).getDisplayName();
-            mStatus.setText(getString(R.string.signed_in_fmt, name));
+            Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+            if (currentPerson != null) {
+                String name = currentPerson.getDisplayName();
+                mStatus.setText(getString(R.string.signed_in_fmt, name));
+            } else {
+                Log.w(TAG, getString(R.string.error_null_person));
+                mStatus.setText(getString(R.string.signed_in_err));
+            }
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
