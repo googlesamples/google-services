@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
 
     /* View to display current status (signed-in, signed-out, disconnected, etc) */
-    private TextView mStatusTextView;
+    private TextView mStatus;
 
     // [START resolution_variables]
     /* Is there a ConnectionResult resolution in progress? */
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setEnabled(false);
 
         // Set up view instances
-        mStatusTextView = (TextView) findViewById(R.id.status);
+        mStatus = (TextView) findViewById(R.id.status);
 
         // [START create_google_api_client]
         // Build GoogleApiClient with access to basic profile
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
             // Show signed-out message
-            mStatusTextView.setText(R.string.signed_out);
+            mStatus.setText(R.string.signed_out);
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setEnabled(true);
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements
         mGoogleApiClient.connect();
 
         // Show a message to the user that we are signing in.
-        mStatusTextView.setText(R.string.signing_in);
+        mStatus.setText(R.string.signing_in);
     }
     // [END on_sign_in_clicked]
 
