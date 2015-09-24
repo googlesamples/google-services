@@ -21,7 +21,7 @@ Getting Started
 *RegistrationToken* text field of the GcmServerDemo app.
 - Click the *Send notification* button. A notification will be sent to your device.
 
-Note: You need Swift 1.2 to run the Swift version of this quickstart.
+Note: You need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------

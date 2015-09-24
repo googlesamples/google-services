@@ -31,9 +31,9 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
 
   override func controlTextDidChange(obj: NSNotification) {
     // Length checks just to ensure that the text fields don't contain just a couple of chars
-    if count(apiKeyTextField.stringValue.utf16) >= 30 {
+    if (apiKeyTextField.stringValue.utf16.count) >= 30 {
       sendToTopicButton.enabled = true
-      if count(regIdTextField.stringValue.utf16) >= 30 {
+      if (regIdTextField.stringValue.utf16.count) >= 30 {
         sendNotificationButton.enabled = true
         displayCurlButton.enabled = true
       } else {
@@ -51,16 +51,16 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
 
   @IBAction func didClickDisplaycURL(sender: NSButton) {
     let message = getMessage(getRegToken())
-    var jsonError:NSError?
-    let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
-    if (jsonError == nil) {
-      let payload = NSString(data: jsonBody!, encoding: NSUTF8StringEncoding)
+    var jsonBody: NSData
+    do {
+      jsonBody = try NSJSONSerialization.dataWithJSONObject(message, options: [])
+      let payload = NSString(data: jsonBody, encoding: NSUTF8StringEncoding)
       let escapedPayload = payload?.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
       let command = "curl --header \"Authorization: key=\(getApiKey())\"" +
       " --header Content-Type:\"application/json\" \(sendUrl) -d \"\(escapedPayload!)\""
       curlCommandTextView.documentView!.setString(command)
-    } else {
-      NSAlert(error: jsonError!).runModal()
+    } catch let error as NSError {
+      NSAlert(error: error).runModal()
     }
   }
 
@@ -70,7 +70,7 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
 
   func sendMessage(to: String) {
     // Create the request.
-    var request = NSMutableURLRequest(URL: NSURL(string: sendUrl)!)
+    let request = NSMutableURLRequest(URL: NSURL(string: sendUrl)!)
     request.HTTPMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue("key=\(getApiKey())", forHTTPHeaderField: "Authorization")
@@ -78,22 +78,23 @@ class MasterViewController: NSViewController, NSTextFieldDelegate {
 
     // prepare the payload
     let message = getMessage(to)
-    var jsonError:NSError?
-    let jsonBody = NSJSONSerialization.dataWithJSONObject(message, options: nil, error: &jsonError)
-    if (jsonError == nil) {
-      request.HTTPBody = jsonBody
+    let jsonBody: NSData?
+    do {
+      jsonBody = try NSJSONSerialization.dataWithJSONObject(message, options: [])
+      request.HTTPBody = jsonBody!
       NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
-          completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-        if error != nil {
-          NSAlert(error: error).runModal()
-        } else {
-          println("Success! Response from the GCM server:")
-          println(response)
-        }
+        completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+          if error != nil {
+            NSAlert(error: error!).runModal()
+          } else {
+            print("Success! Response from the GCM server:")
+            print(response)
+          }
       })
-    } else {
-      NSAlert(error: jsonError!).runModal()
+    } catch let error as NSError {
+      NSAlert(error: error).runModal()
     }
+
   }
 
   func getMessage(to: String) -> NSDictionary {

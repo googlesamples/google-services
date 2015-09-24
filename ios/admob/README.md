@@ -17,7 +17,7 @@ Getting Started
 - Run the sample on your iOS device or emulator.
 - The running sample displays a test banner ad and a test interstitial add.
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
