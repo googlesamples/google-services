@@ -33,7 +33,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.android.support:design:23.0.0'
 
-    compile 'com.google.android.gms:play-services-appinvite:7.8.0'
+    compile 'com.google.android.gms:play-services-appinvite:8.1.0'
 
     // UiAutomatorTesting
     androidTestCompile 'com.android.support.test:runner:0.3'

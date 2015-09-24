@@ -4,3 +4,6 @@ Pods/
 Podfile.lock
 xcuserdata/
 *.xcworkspace/
+
+# Android
+google-services.json
