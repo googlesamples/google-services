@@ -19,7 +19,7 @@ Getting Started
 - Swipe between images to register screen views.
 - View collected analytics via [Google Analytics](https://www.google.com/analytics/web).
 
-Note: You will need Swift 1.2 to run the Swift version of this quickstart.
+Note: You will need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------

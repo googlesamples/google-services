@@ -61,11 +61,18 @@ class ViewController: UIViewController {
   }
 
   func showAlert(title:String, message:String) {
-    let alert = UIAlertController(title: title,
-      message: message, preferredStyle: .Alert)
-    let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
-    alert.addAction(dismissAction)
-    self.presentViewController(alert, animated: true, completion: nil)
+    if #available(iOS 8.0, *) {
+      let alert = UIAlertController(title: title,
+          message: message, preferredStyle: .Alert)
+      let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+      alert.addAction(dismissAction)
+      self.presentViewController(alert, animated: true, completion: nil)
+    } else {
+        // Fallback on earlier versions
+      let alert = UIAlertView.init(title: title, message: message, delegate: nil,
+          cancelButtonTitle: "Dismiss")
+      alert.show()
+    }
   }
 
   override func preferredStatusBarStyle() -> UIStatusBarStyle {

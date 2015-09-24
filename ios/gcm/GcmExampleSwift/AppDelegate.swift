@@ -43,13 +43,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     gcmSenderID = GGLContext.sharedInstance().configuration.gcmSenderID
     // [END_EXCLUDE]
     // Register for remote notifications
-    let settings: UIUserNotificationSettings =
-        UIUserNotificationSettings( forTypes: [.Alert, .Badge, .Sound], categories: nil )
-    application.registerUserNotificationSettings( settings )
-    application.registerForRemoteNotifications()
+    if #available(iOS 8.0, *) {
+      let settings: UIUserNotificationSettings =
+          UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+      application.registerUserNotificationSettings(settings)
+      application.registerForRemoteNotifications()
+    } else {
+      // Fallback
+      let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+      application.registerForRemoteNotificationTypes(types)
+    }
+
   // [END register_for_remote_notifications]
   // [START start_gcm_service]
-    var gcmConfig = GCMConfig.defaultConfig()
+    let gcmConfig = GCMConfig.defaultConfig()
     gcmConfig.receiverDelegate = self
     GCMService.sharedInstance().startWithConfig(gcmConfig)
   // [END start_gcm_service]
@@ -110,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
   // [END receive_apns_token]
         // [START get_gcm_reg_token]
         // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
-        var instanceIDConfig = GGLInstanceIDConfig.defaultConfig()
+        let instanceIDConfig = GGLInstanceIDConfig.defaultConfig()
         instanceIDConfig.delegate = self
         // Start the GGLInstanceID shared instance with that config and request a registration
         // token to enable reception of notifications
