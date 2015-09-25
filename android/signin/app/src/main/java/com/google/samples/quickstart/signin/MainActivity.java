@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -232,26 +232,27 @@ public class MainActivity extends AppCompatActivity implements
     // [END on_connection_failed]
 
     private void showErrorDialog(ConnectionResult connectionResult) {
-        int errorCode = connectionResult.getErrorCode();
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
 
-        if (GooglePlayServicesUtil.isUserRecoverableError(errorCode)) {
-            // Show the default Google Play services error dialog which may still start an intent
-            // on our behalf if the user can resolve the issue.
-            GooglePlayServicesUtil.getErrorDialog(errorCode, this, RC_SIGN_IN,
-                    new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialog) {
-                            mShouldResolve = false;
-                            showSignedOutUI();
-                        }
-                    }).show();
-        } else {
-            // No default Google Play Services error, display a message to the user.
-            String errorString = getString(R.string.play_services_error_fmt, errorCode);
-            Toast.makeText(this, errorString, Toast.LENGTH_SHORT).show();
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, RC_SIGN_IN,
+                        new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                mShouldResolve = false;
+                                showSignedOutUI();
+                            }
+                        }).show();
+            } else {
+                Log.w(TAG, "Google Play Services Error:" + connectionResult);
+                String errorString = apiAvailability.getErrorString(resultCode);
+                Toast.makeText(this, errorString, Toast.LENGTH_SHORT).show();
 
-            mShouldResolve = false;
-            showSignedOutUI();
+                mShouldResolve = false;
+                showSignedOutUI();
+            }
         }
     }
 
