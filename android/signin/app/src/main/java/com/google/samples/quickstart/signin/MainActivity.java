@@ -15,10 +15,16 @@
  */
 package com.google.samples.quickstart.signin;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -40,13 +46,17 @@ import com.google.android.gms.plus.model.people.Person;
  */
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,
+        ActivityCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "MainActivity";
 
     /* RequestCode for resolutions involving sign-in */
-    private static final int RC_SIGN_IN = 9001;
+    private static final int RC_SIGN_IN = 1;
+
+    /* RequestCode for resolutions to get GET_ACCOUNTS permission on M */
+    private static final int RC_PERM_GET_ACCOUNTS = 2;
 
     /* Keys for persisting instance variables in savedInstanceState */
     private static final String KEY_IS_RESOLVING = "is_resolving";
@@ -100,18 +110,27 @@ public class MainActivity extends AppCompatActivity implements
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
                 .addScope(new Scope(Scopes.PROFILE))
+                .addScope(new Scope(Scopes.EMAIL))
                 .build();
         // [END create_google_api_client]
     }
 
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
-            // Show signed-in user's name
             Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
             if (currentPerson != null) {
+                // Show signed-in user's name
                 String name = currentPerson.getDisplayName();
                 mStatus.setText(getString(R.string.signed_in_fmt, name));
+
+                // Show users' email address (which requires GET_ACCOUNTS permission)
+                if (checkAccountsPermission()) {
+                    String currentAccount = Plus.AccountApi.getAccountName(mGoogleApiClient);
+                    ((TextView) findViewById(R.id.email)).setText(currentAccount);
+                }
             } else {
+                // If getCurrentPerson returns null there is generally some error with the
+                // configuration of the application (invalid Client ID, Plus API not enabled, etc).
                 Log.w(TAG, getString(R.string.error_null_person));
                 mStatus.setText(getString(R.string.signed_in_err));
             }
@@ -120,13 +139,49 @@ public class MainActivity extends AppCompatActivity implements
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
-            // Show signed-out message
+            // Show signed-out message and clear email field
             mStatus.setText(R.string.signed_out);
+            ((TextView) findViewById(R.id.email)).setText("");
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setEnabled(true);
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * Check if we have the GET_ACCOUNTS permission and request it if we do not.
+     * @return true if we have the permission, false if we do not.
+     */
+    private boolean checkAccountsPermission() {
+        final String perm = Manifest.permission.GET_ACCOUNTS;
+        int permissionCheck = ContextCompat.checkSelfPermission(this, perm);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            // We have the permission
+            return true;
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, perm)) {
+            // Need to show permission rationale, display a snackbar and then request
+            // the permission again when the snackbar is dismissed.
+            Snackbar.make(findViewById(R.id.main_layout),
+                    R.string.contacts_permission_rationale,
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Request the permission again.
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{perm},
+                                    RC_PERM_GET_ACCOUNTS);
+                        }
+                    }).show();
+            return false;
+        } else {
+            // No explanation needed, we can request the permission.
+            ActivityCompat.requestPermissions(this,
+                    new String[]{perm},
+                    RC_PERM_GET_ACCOUNTS);
+            return false;
         }
     }
 
@@ -178,6 +233,20 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
     // [END on_activity_result]
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        Log.d(TAG, "onRequestPermissionsResult:" + requestCode);
+        if (requestCode == RC_PERM_GET_ACCOUNTS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showSignedInUI();
+            } else {
+                Log.d(TAG, "GET_ACCOUNTS Permission Denied.");
+            }
+        }
+    }
 
     // [START on_connected]
     @Override
