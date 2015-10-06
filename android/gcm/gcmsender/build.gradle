@@ -3,9 +3,14 @@ apply plugin: 'application'
 mainClassName = "gcm.play.android.samples.com.gcmsender.GcmSender"
 
 run {
-    if(project.hasProperty('args')) {
-        args project.args.split(',')
+    def params = []
+    if (project.hasProperty('msg')) {
+        params.add(project.msg)
+        if (project.hasProperty('to')) {
+            params.add(project.to)
+        }
     }
+    args params
 }
 
 dependencies {

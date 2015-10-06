@@ -32,19 +32,19 @@ public class GcmSender {
 
     public static void main(String[] args) {
         if (args.length < 1 || args.length > 2 || args[0] == null) {
-            System.err.println("usage: ./gradlew run -Pargs=\"MESSAGE[,DEVICE_TOKEN]\"");
+            System.err.println("usage: ./gradlew run -Pmsg=\"MESSAGE\" [-Pto=\"DEVICE_TOKEN\"]");
             System.err.println("");
             System.err.println("Specify a test message to broadcast via GCM. If a device's GCM registration token is\n" +
                     "specified, the message will only be sent to that device. Otherwise, the message \n" +
                     "will be sent to all devices subscribed to the \"global\" topic.");
             System.err.println("");
             System.err.println("Example (Broadcast):\n" +
-                    "On Windows:   .\\gradlew.bat run -Pargs=\"<Your_Message>\"\n" +
-                    "On Linux/Mac: ./gradlew run -Pargs=\"<Your_Message>\"");
+                    "On Windows:   .\\gradlew.bat run -Pmsg=\"<Your_Message>\"\n" +
+                    "On Linux/Mac: ./gradlew run -Pmsg=\"<Your_Message>\"");
             System.err.println("");
             System.err.println("Example (Unicast):\n" +
-                    "On Windows:   .\\gradlew.bat run -Pargs=\"<Your_Message>,<Your_Token>\"\n" +
-                    "On Linux/Mac: ./gradlew run -Pargs=\"<Your_Message>,<Your_Token>\"");
+                    "On Windows:   .\\gradlew.bat run -Pmsg=\"<Your_Message>\" -Pto=\"<Your_Token>\"\n" +
+                    "On Linux/Mac: ./gradlew run -Pmsg=\"<Your_Message>\" -Pto=\"<Your_Token>\"");
             System.exit(1);
         }
         try {
