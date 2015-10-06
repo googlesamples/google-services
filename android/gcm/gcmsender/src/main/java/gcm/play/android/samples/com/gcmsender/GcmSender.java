@@ -32,7 +32,7 @@ public class GcmSender {
 
     public static void main(String[] args) {
         if (args.length < 1 || args.length > 2 || args[0] == null) {
-            System.err.println("usage: ./gradlew run -Pmsg=\"MESSAGE\" [-Pto=\"DEVICE_TOKEN]\"]");
+            System.err.println("usage: ./gradlew run -Pmsg=\"MESSAGE\" [-Pto=\"DEVICE_TOKEN\"]");
             System.err.println("");
             System.err.println("Specify a test message to broadcast via GCM. If a device's GCM registration token is\n" +
                     "specified, the message will only be sent to that device. Otherwise, the message \n" +
