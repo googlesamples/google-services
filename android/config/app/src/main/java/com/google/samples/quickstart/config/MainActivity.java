@@ -49,16 +49,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void onConnected(Bundle connectionHint) {
         Log.i(TAG, "onConnected");
-
+        // [START fetch_config_request]
         ConfigApi.FetchConfigRequest request = new ConfigApi.FetchConfigRequest.Builder()
                 .addCustomVariable("build", "dev")
                 .build();
+        // [END fetch_config_request]
+        // [START fetch_config_callback]
         Config.ConfigApi.fetchConfig(mClient, request)
                 .setResultCallback(new ResultCallback<ConfigApi.FetchConfigResult>() {
                     @Override
                     public void onResult(ConfigApi.FetchConfigResult fetchConfigResult) {
                         Log.i(TAG, "onResult");
-                        int statusCode = fetchConfigResult.getStatus().getStatusCode();
                         if (fetchConfigResult.getStatus().isSuccess()) {
                             long price = 100;
                             boolean isPromo =
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         }
                     }
                 });
+                // [END fetch_config_callback]
     }
 
     @Override
