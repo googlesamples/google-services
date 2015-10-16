@@ -11,8 +11,6 @@
 		1048165C1B067ACD00139095 /* AdMobExampleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1021DD351B0518E40018763B /* AdMobExampleSwiftTests.swift */; };
 		1048165E1B068A0300139095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF86EE2419787E6B00411520 /* Main.storyboard */; };
 		104816601B068FC100139095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105919B41ADDA93F00344065 /* ViewController.swift */; };
-		105414A11B163EB20006C828 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1054149E1B163EB20006C828 /* Icon@2x.png */; };
-		105414A21B163EB20006C828 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1054149E1B163EB20006C828 /* Icon@2x.png */; };
 		105414A31B163EB20006C828 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1054149F1B163EB20006C828 /* Images.xcassets */; };
 		105414A41B163EB20006C828 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1054149F1B163EB20006C828 /* Images.xcassets */; };
 		105414A51B163EB20006C828 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105414A01B163EB20006C828 /* LaunchScreen.xib */; };
@@ -57,7 +55,6 @@
 		1021DD311B0518E40018763B /* AdMobExampleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdMobExampleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1021DD341B0518E40018763B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1021DD351B0518E40018763B /* AdMobExampleSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobExampleSwiftTests.swift; sourceTree = "<group>"; };
-		1054149E1B163EB20006C828 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../shared/Icon@2x.png"; sourceTree = "<group>"; };
 		1054149F1B163EB20006C828 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../shared/Images.xcassets; sourceTree = "<group>"; };
 		105414A01B163EB20006C828 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../shared/LaunchScreen.xib; sourceTree = "<group>"; };
 		1059198A1ADDA8F700344065 /* AdMobExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdMobExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,7 +211,6 @@
 		CF86EE1919787E6B00411520 /* AdMobExample */ = {
 			isa = PBXGroup;
 			children = (
-				1054149E1B163EB20006C828 /* Icon@2x.png */,
 				1054149F1B163EB20006C828 /* Images.xcassets */,
 				105414A01B163EB20006C828 /* LaunchScreen.xib */,
 				CF86EE2419787E6B00411520 /* Main.storyboard */,
@@ -388,7 +384,6 @@
 				105414A61B163EB20006C828 /* LaunchScreen.xib in Resources */,
 				105919B71ADDA97D00344065 /* Main.storyboard in Resources */,
 				105414A41B163EB20006C828 /* Images.xcassets in Resources */,
-				105414A21B163EB20006C828 /* Icon@2x.png in Resources */,
 				10AA98DF1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,7 +395,6 @@
 				105414A51B163EB20006C828 /* LaunchScreen.xib in Resources */,
 				CF86EE2619787E6B00411520 /* Main.storyboard in Resources */,
 				105414A31B163EB20006C828 /* Images.xcassets in Resources */,
-				105414A11B163EB20006C828 /* Icon@2x.png in Resources */,
 				10AA98DE1AFD4D2200A178B1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

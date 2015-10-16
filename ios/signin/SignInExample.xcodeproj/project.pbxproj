@@ -30,14 +30,12 @@
 		4BDB99DF1ACF46FA00C4DC2C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99DE1ACF46FA00C4DC2C /* CoreMotion.framework */; };
 		4BDB99E11ACF470F00C4DC2C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E01ACF470F00C4DC2C /* MessageUI.framework */; };
 		4BDB99E31ACF472000C4DC2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */; };
-		EF6EAC2A1B0A738400227264 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC271B0A738400227264 /* Icon@2x.png */; };
 		EF6EAC2B1B0A738400227264 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC281B0A738400227264 /* Images.xcassets */; };
 		EF6EAC2C1B0A738400227264 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC291B0A738400227264 /* LaunchScreen.xib */; };
 		EF6EAC311B0A771900227264 /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC301B0A771900227264 /* appbg.png */; };
 		EF6EAC321B0A771900227264 /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC301B0A771900227264 /* appbg.png */; };
 		EF6EAC331B0A77E100227264 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC291B0A738400227264 /* LaunchScreen.xib */; };
 		EF6EAC341B0A77E400227264 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC281B0A738400227264 /* Images.xcassets */; };
-		EF6EAC351B0A77E700227264 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC271B0A738400227264 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +63,6 @@
 		D835D65B84E12DF53C5ADDCB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8B5A4722417C2E158537DC8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6EAC211B0A719400227264 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF6EAC271B0A738400227264 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		EF6EAC281B0A738400227264 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EF6EAC291B0A738400227264 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		EF6EAC301B0A771900227264 /* appbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbg.png; sourceTree = "<group>"; };
@@ -192,7 +189,6 @@
 		EF6EAC261B0A738400227264 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				EF6EAC271B0A738400227264 /* Icon@2x.png */,
 				EF6EAC281B0A738400227264 /* Images.xcassets */,
 				EF6EAC291B0A738400227264 /* LaunchScreen.xib */,
 			);
@@ -281,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF6EAC331B0A77E100227264 /* LaunchScreen.xib in Resources */,
-				EF6EAC351B0A77E700227264 /* Icon@2x.png in Resources */,
 				EF6EAC341B0A77E400227264 /* Images.xcassets in Resources */,
 				4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */,
 				EF6EAC321B0A771900227264 /* appbg.png in Resources */,
@@ -295,7 +290,6 @@
 			files = (
 				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				EF6EAC311B0A771900227264 /* appbg.png in Resources */,
-				EF6EAC2A1B0A738400227264 /* Icon@2x.png in Resources */,
 				EF6EAC2B1B0A738400227264 /* Images.xcassets in Resources */,
 				EF6EAC2C1B0A738400227264 /* LaunchScreen.xib in Resources */,
 				4BC032ED1ACF33B70092326A /* Main.storyboard in Resources */,
