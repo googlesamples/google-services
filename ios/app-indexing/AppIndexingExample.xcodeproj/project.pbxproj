@@ -201,6 +201,7 @@
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {

@@ -36,8 +36,6 @@
 		4BDB99E11ACF470F00C4DC2C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E01ACF470F00C4DC2C /* MessageUI.framework */; };
 		4BDB99E31ACF472000C4DC2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB99E21ACF472000C4DC2C /* SystemConfiguration.framework */; };
 		EF4BB4D81B05B454003A1AC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CBBFB1AE9DBF700D822CE /* Main.storyboard */; };
-		EFB291FF1B0F1F430021C8AC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB291FC1B0F1F430021C8AC /* Icon@2x.png */; };
-		EFB292001B0F1F430021C8AC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB291FC1B0F1F430021C8AC /* Icon@2x.png */; };
 		EFB292011B0F1F430021C8AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB291FD1B0F1F430021C8AC /* Images.xcassets */; };
 		EFB292021B0F1F430021C8AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB291FD1B0F1F430021C8AC /* Images.xcassets */; };
 		EFB292031B0F1F430021C8AC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB291FE1B0F1F430021C8AC /* LaunchScreen.xib */; };
@@ -89,7 +87,6 @@
 		B0D404FBAC5C1B0D891CD002 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D835D65B84E12DF53C5ADDCB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8B5A4722417C2E158537DC8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFB291FC1B0F1F430021C8AC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		EFB291FD1B0F1F430021C8AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EFB291FE1B0F1F430021C8AC /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,7 +245,6 @@
 		EFB291FB1B0F1F430021C8AC /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				EFB291FC1B0F1F430021C8AC /* Icon@2x.png */,
 				EFB291FD1B0F1F430021C8AC /* Images.xcassets */,
 				EFB291FE1B0F1F430021C8AC /* LaunchScreen.xib */,
 			);
@@ -372,7 +368,6 @@
 				EFB292041B0F1F430021C8AC /* LaunchScreen.xib in Resources */,
 				4BCF1C3D1AFBF65D0039B15C /* appbg.png in Resources */,
 				EFB292021B0F1F430021C8AC /* Images.xcassets in Resources */,
-				EFB292001B0F1F430021C8AC /* Icon@2x.png in Resources */,
 				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +377,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4BB4D81B05B454003A1AC6 /* Main.storyboard in Resources */,
-				EFB291FF1B0F1F430021C8AC /* Icon@2x.png in Resources */,
 				EFB292011B0F1F430021C8AC /* Images.xcassets in Resources */,
 				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				EFB292031B0F1F430021C8AC /* LaunchScreen.xib in Resources */,
