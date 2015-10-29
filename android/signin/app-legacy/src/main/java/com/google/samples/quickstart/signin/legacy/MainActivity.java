@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.samples.quickstart.signin;
+package com.google.samples.quickstart.signin.legacy;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -39,11 +39,19 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
+import com.google.samples.quickstart.signin.R;
 
 
 /**
- * Minimal activity demonstrating basic Google Sign-In.
+ * ~~~~~~~~~~~~~~~~~~~ WARNING ~~~~~~~~~~~~~~~~~~~~~~~
+ * ===================================================
+ * This class is DEPRECATED. While it will continue to
+ * work, see {@code SignInActivity} for best practices
+ * when using Google Sign In with Google Play Services
+ * 8.3.0 or greater.
+ * ===================================================
  */
+@Deprecated
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback,
@@ -126,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements
                 // Show users' email address (which requires GET_ACCOUNTS permission)
                 if (checkAccountsPermission()) {
                     String currentAccount = Plus.AccountApi.getAccountName(mGoogleApiClient);
-                    ((TextView) findViewById(R.id.email)).setText(currentAccount);
+                    ((TextView) findViewById(R.id.detail)).setText(currentAccount);
                 }
             } else {
                 // If getCurrentPerson returns null there is generally some error with the
@@ -141,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             // Show signed-out message and clear email field
             mStatus.setText(R.string.signed_out);
-            ((TextView) findViewById(R.id.email)).setText("");
+            ((TextView) findViewById(R.id.detail)).setText("");
 
             // Set button visibility
             findViewById(R.id.sign_in_button).setEnabled(true);
