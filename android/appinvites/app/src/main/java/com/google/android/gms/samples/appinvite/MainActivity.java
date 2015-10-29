@@ -16,34 +16,34 @@
 
 package com.google.android.gms.samples.appinvite;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
-import com.google.android.gms.appinvite.AppInviteReferral;
+import com.google.android.gms.appinvite.AppInviteInvitationResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 
 /**
  * Main Activity for sending App Invites and launching the DeepLinkActivity when an
  * App Invite is received.
  */
 public class MainActivity extends AppCompatActivity implements
+        GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_INVITE = 0;
 
-    // Local Broadcast receiver for receiving invites
-    private BroadcastReceiver mDeepLinkReceiver = null;
+    private GoogleApiClient mGoogleApiClient;
 
     // [START on_create]
     @Override
@@ -56,32 +56,35 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.invite_button).setOnClickListener(this);
         // [END_EXCLUDE]
 
-        if (savedInstanceState == null) {
-            // No savedInstanceState, so it is the first launch of this activity
-            Intent intent = getIntent();
-            if (AppInviteReferral.hasReferral(intent)) {
-                // In this case the referral data is in the intent launching the MainActivity,
-                // which means this user already had the app installed. We do not have to
-                // register the Broadcast Receiver to listen for Play Store Install information
-                launchDeepLinkActivity(intent);
-            }
-        }
+        // Create an auto-managed GoogleApiClient with acccess to App Invites.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(AppInvite.API)
+                .enableAutoManage(this, this)
+                .build();
+
+        // Check for App Invite invitations and launch deep-link activity if possible.
+        // Requires that an Activity is registered in AndroidManifest.xml to handle
+        // deep-link URLs.
+        boolean autoLaunchDeepLink = true;
+        AppInvite.AppInviteApi.getInvitation(mGoogleApiClient, this, autoLaunchDeepLink)
+                .setResultCallback(
+                        new ResultCallback<AppInviteInvitationResult>() {
+                            @Override
+                            public void onResult(AppInviteInvitationResult result) {
+                                Log.d(TAG, "getInvitation:onResult:" + result.getStatus());
+                                // Because autoLaunchDeepLink = true we don't have to do anything
+                                // here, but we could set that to false and manually choose
+                                // an Activity to launch to handle the deep link here.
+                            }
+                        });
     }
     // [END on_create]
 
-    // [START on_start_on_stop]
     @Override
-    protected void onStart() {
-        super.onStart();
-        registerDeepLinkReceiver();
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.d(TAG, "onConnectionFailed:" + connectionResult);
+        showMessage(getString(R.string.google_play_services_error));
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterDeepLinkReceiver();
-    }
-    // [END on_start_on_stop]
 
     /**
      * User has clicked the 'Invite' button, launch the invitation UI with the proper
@@ -134,47 +137,5 @@ public class MainActivity extends AppCompatActivity implements
                 break;
         }
     }
-
-    /**
-     * There are two broadcast receivers in this application.  The first is ReferrerReceiver, it
-     * is a global receiver declared in the manifest.  It receives broadcasts from the Play Store
-     * and then broadcasts messages to the local broadcast receiver, which is registered here.
-     * Since the broadcast is asynchronous, it can occur after the app has started, so register
-     * for the notification immediately in onStart. The Play Store broadcast should be very soon
-     * after the app is first opened, so this receiver should trigger soon after start
-     */
-    // [START register_unregister_launch]
-    private void registerDeepLinkReceiver() {
-        // Create local Broadcast receiver that starts DeepLinkActivity when a deep link
-        // is found
-        mDeepLinkReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (AppInviteReferral.hasReferral(intent)) {
-                    launchDeepLinkActivity(intent);
-                }
-            }
-        };
-
-        IntentFilter intentFilter = new IntentFilter(getString(R.string.action_deep_link));
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                mDeepLinkReceiver, intentFilter);
-    }
-
-    private void unregisterDeepLinkReceiver() {
-        if (mDeepLinkReceiver != null) {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(mDeepLinkReceiver);
-        }
-    }
-
-    /**
-     * Launch DeepLinkActivity with an intent containing App Invite information
-     */
-    private void launchDeepLinkActivity(Intent intent) {
-        Log.d(TAG, "launchDeepLinkActivity:" + intent);
-        Intent newIntent = new Intent(intent).setClass(this, DeepLinkActivity.class);
-        startActivity(newIntent);
-    }
-    // [END register_unregister_launch]
 }
 
