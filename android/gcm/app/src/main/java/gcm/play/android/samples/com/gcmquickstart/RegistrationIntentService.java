@@ -46,10 +46,10 @@ public class RegistrationIntentService extends IntentService {
             // [START register_for_gcm]
             // Initially this call goes out to the network to retrieve the token, subsequent calls
             // are local.
-            // [START get_token]
-            InstanceID instanceID = InstanceID.getInstance(this);
             // R.string.gcm_defaultSenderId (the Sender ID) is typically derived from google-services.json.
             // See https://developers.google.com/cloud-messaging/android/start for details on this file.
+            // [START get_token]
+            InstanceID instanceID = InstanceID.getInstance(this);
             String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             // [END get_token]
