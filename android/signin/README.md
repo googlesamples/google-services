@@ -22,7 +22,7 @@ Screenshots
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/google-oauth
+- Stack Overflow: http://stackoverflow.com/questions/tagged/google-identity
 
 If you've found an error in this sample, please file an issue:
 https://github.com/googlesamples/google-services/issues
