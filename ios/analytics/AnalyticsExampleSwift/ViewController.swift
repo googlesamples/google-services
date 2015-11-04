@@ -20,7 +20,7 @@ import UIKit
 class ViewController: UIViewController {
 
   override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(true)
+    super.viewWillAppear(animated)
 
     var name = "Pattern~\(self.title!)"
 
