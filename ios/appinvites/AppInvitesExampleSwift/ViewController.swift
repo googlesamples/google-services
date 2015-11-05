@@ -43,7 +43,7 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
       statusText.text = "Signed in as \(user.profile.name)"
       toggleAuthUI()
     } else {
-      println("\(error.localizedDescription)")
+      print("\(error.localizedDescription)")
       toggleAuthUI()
     }
   }
@@ -100,9 +100,9 @@ class ViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate, 
   // [START invite_finished]
   func inviteFinishedWithInvitations(invitationIds: [AnyObject]!, error: NSError!) {
     if (error != nil) {
-      println("Failed: " + error.localizedDescription)
+      print("Failed: " + error.localizedDescription)
     } else {
-      println("Invitations sent")
+      print("Invitations sent")
     }
   }
   // [END invite_finished]
