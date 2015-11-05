@@ -25,14 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     return true
   }
-    
+
   // [START handle_link]
-  func application(application: UIApplication,
-                   openURL url: NSURL,
-                   sourceApplication: String?,
-                   annotation: AnyObject?) -> Bool {
-    var sanitizedURL = GSDDeepLink.handleDeepLink(url)
-    currentDeepLink = sanitizedURL.absoluteString!
+  func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+    let sanitizedURL = GSDDeepLink.handleDeepLink(url)
+    currentDeepLink = sanitizedURL.absoluteString
     return true;
   }
   // [END handle_link]
