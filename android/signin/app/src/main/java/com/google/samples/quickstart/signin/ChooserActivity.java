@@ -21,12 +21,14 @@ public class ChooserActivity extends AppCompatActivity implements AdapterView.On
 
     private static final Class[] CLASSES = new Class[]{
             SignInActivity.class,
+            SignInActivityWithDrive.class,
             IdTokenActivity.class,
             ServerAuthCodeActivity.class
     };
 
     private static final int[] DESCRIPTION_IDS = new int[] {
             R.string.desc_sign_in_activity,
+            R.string.desc_sign_in_activity_scopes,
             R.string.desc_id_token_activity,
             R.string.desc_auth_code_activity
     };
