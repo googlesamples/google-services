@@ -23,7 +23,11 @@
             android:label="@string/name_sign_in_activity"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity">
         </activity>
-
+        <activity
+            android:name="com.google.samples.quickstart.signin.SignInActivityWithDrive"
+            android:label="@string/name_sign_in_activity"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
+        </activity>
         <activity
             android:name="com.google.samples.quickstart.signin.IdTokenActivity"
             android:label="@string/name_id_token_activity"
