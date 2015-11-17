@@ -33,6 +33,7 @@
     <!-- Activity Names and Descriptions -->
     <string name="name_sign_in_activity">SignInActivity</string>
     <string name="desc_sign_in_activity">Signing in, signing out, and revoking access.</string>
+    <string name="desc_sign_in_activity_scopes">Signing in, signing out, and revoking access with Google Drive permissions.</string>
     <string name="name_id_token_activity">IdTokenActivity</string>
     <string name="desc_id_token_activity">Retrieving an ID Token for the user.</string>
     <string name="desc_auth_code_activity">Demonstrate retrieving an auth code for authorizing your server.</string>
