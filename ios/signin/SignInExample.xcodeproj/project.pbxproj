@@ -36,6 +36,7 @@
 		EF6EAC321B0A771900227264 /* appbg.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC301B0A771900227264 /* appbg.png */; };
 		EF6EAC331B0A77E100227264 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC291B0A738400227264 /* LaunchScreen.xib */; };
 		EF6EAC341B0A77E400227264 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6EAC281B0A738400227264 /* Images.xcassets */; };
+		EF8983C61C0D13FD003619BB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8983C51C0D13FD003619BB /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		EF6EAC281B0A738400227264 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EF6EAC291B0A738400227264 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		EF6EAC301B0A771900227264 /* appbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbg.png; sourceTree = "<group>"; };
+		EF8983C51C0D13FD003619BB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		4BC032D51ACF33B70092326A = {
 			isa = PBXGroup;
 			children = (
+				EF8983C51C0D13FD003619BB /* Default-568h@2x.png */,
 				4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */,
 				4BC032E01ACF33B70092326A /* SignInExample */,
 				4B97B2551AD7145E0036DD6C /* SignInExampleSwift */,
@@ -208,6 +211,7 @@
 				4B97B2511AD7145E0036DD6C /* Resources */,
 				C3F9B86A3BF6EEA0CFBB41E6 /* Copy Pods Resources */,
 				4B97B2501AD7145E0036DD6C /* Frameworks */,
+				233FF64C22B703F83C447DDD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -227,6 +231,7 @@
 				4BC032DC1ACF33B70092326A /* Resources */,
 				A0D3980984D22B5437080EB2 /* Copy Pods Resources */,
 				4BC032DB1ACF33B70092326A /* Frameworks */,
+				9CA10CD84D5EB2B05F2B2A02 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,6 +286,7 @@
 				4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */,
 				EF6EAC321B0A771900227264 /* appbg.png in Resources */,
 				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
+				EF8983C61C0D13FD003619BB /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +305,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		233FF64C22B703F83C447DDD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7D1892432C462D89321BEF68 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +333,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9CA10CD84D5EB2B05F2B2A02 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A0D3980984D22B5437080EB2 /* Copy Pods Resources */ = {

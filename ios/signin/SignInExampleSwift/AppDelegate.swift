@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
   // [START openurl]
   func application(application: UIApplication,
-    openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
       return GIDSignIn.sharedInstance().handleURL(url,
           sourceApplication: sourceApplication,
           annotation: annotation)
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             userInfo: ["statusText": "Signed in user:\n\(name)"])
         // [END_EXCLUDE]
       } else {
-        println("\(error.localizedDescription)")
+        print("\(error.localizedDescription)")
         // [START_EXCLUDE silent]
         NSNotificationCenter.defaultCenter().postNotificationName(
           "ToggleAuthUINotification", object: nil, userInfo: nil)

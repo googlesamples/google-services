@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -68,11 +68,15 @@
                                     <constraint firstItem="eWa-ii-5oh" firstAttribute="leading" secondItem="iDJ-Bc-8ku" secondAttribute="leading" constant="8" id="xAS-NZ-gvx"/>
                                 </constraints>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" image="appbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8v-V0-Tis">
-                                <rect key="frame" x="159" y="231" width="96" height="96"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="appbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8v-V0-Tis">
+                                <rect key="frame" x="171" y="236" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="ELn-kw-U5W"/>
+                                    <constraint firstAttribute="height" constant="72" id="f9r-eu-8uC"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Sign in iOS Demo" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-79-K2W">
-                                <rect key="frame" x="16" y="347" width="382" height="41"/>
+                                <rect key="frame" x="20" y="328" width="374" height="82"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -83,6 +87,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.41176474089999998" green="0.48627454040000001" blue="0.5411764979" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iDJ-Bc-8ku" secondAttribute="trailing" id="2op-p7-RbP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iDJ-Bc-8ku" secondAttribute="bottom" id="7UR-uC-Lux"/>
@@ -118,6 +123,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="appbg.png" width="96" height="96"/>
+        <image name="appbg.png" width="144" height="144"/>
     </resources>
 </document>
