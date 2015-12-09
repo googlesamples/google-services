@@ -23,6 +23,14 @@ Getting Started
 - A notification containing the GCM message should be displayed on the
   device.
 
+NOTE
+----
+
+The GcmSender module in this project is emulating a server for the purposes of
+this sample, but it's not meant to serve as an example for a production app
+server. For information on GCM server implementaion
+see [About GCM Connection Server](https://developers.google.com/cloud-messaging/server)
+
 Screenshots
 -----------
 ![Screenshot](app/src/main/gcm-sample.png)
