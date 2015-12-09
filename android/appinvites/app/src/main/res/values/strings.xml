@@ -17,6 +17,7 @@
     <string name="invitation_deep_link">http://example.com/offer/five_dollar_offer</string>
     <string name="invitation_custom_image">https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png</string>
     <string name="invitation_cta">Install!</string>
+    <string name="invitation_subject">Try this great app!</string>
 
     <string name="deep_link_fmt" formatted="false">Deep Link: %s</string>
     <string name="invitation_id_fmt" formatted="false">Invitation ID: %s</string>
@@ -26,4 +27,5 @@
     <string name="invite_dialog_title">You got an invitation!</string>
 
     <string name="google_play_services_error">Google Play Services Error</string>
+    <string name="custom_invite">Custom Invite</string>
 </resources>

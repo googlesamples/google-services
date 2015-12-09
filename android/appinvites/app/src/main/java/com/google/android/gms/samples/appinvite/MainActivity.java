@@ -33,7 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 
 /**
- * Main Activity for sending App Invites and launching the DeepLinkActivity when an
+ * Main Activity for sending App Invites and launchings the DeepLinkActivity when an
  * App Invite is received.
  */
 public class MainActivity extends AppCompatActivity implements
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // Invite button click listener
         findViewById(R.id.invite_button).setOnClickListener(this);
+        findViewById(R.id.custom_invite_button).setOnClickListener(this);
         // [END_EXCLUDE]
 
         // Create an auto-managed GoogleApiClient with acccess to App Invites.
@@ -102,6 +103,31 @@ public class MainActivity extends AppCompatActivity implements
     }
     // [END on_invite_clicked]
 
+    /**
+     * User has clicked the 'Custom Invite' button, launch the invitation UI but pass in
+     * a custom HTML body and subject for email invites.
+     */
+    // [START on_custom_invite_clicked]
+    private void onCustomInviteClicked() {
+        // When using the setEmailHtmlContent method, you must also set a subject using the
+        // setEmailSubject message and you may not use either setCustomImage or setCallToActionText
+        // in conjunction with the setEmailHtmlContent method.
+        //
+        // The "%%APPINVITE_LINK_PLACEHOLDER%%" token is replaced by the invitation server
+        // with the custom invitation deep link based on the other parameters you provide.
+        Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+                .setMessage(getString(R.string.invitation_message))
+                .setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))
+                .setEmailHtmlContent("<html><body>" +
+                        "<h1>App Invites</h1>" +
+                        "<a href=\"%%APPINVITE_LINK_PLACEHOLDER%%\">Install Now!</a>" +
+                        "<body></html>")
+                .setEmailSubject(getString(R.string.invitation_subject))
+                .build();
+        startActivityForResult(intent, REQUEST_INVITE);
+    }
+    // [END on_custom_invite_clicked]
+
     // [START on_activity_result]
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -134,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements
         switch (view.getId()) {
             case R.id.invite_button:
                 onInviteClicked();
+                break;
+            case R.id.custom_invite_button:
+                onCustomInviteClicked();
                 break;
         }
     }
