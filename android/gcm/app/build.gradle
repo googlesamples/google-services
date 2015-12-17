@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 23
@@ -27,7 +26,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.google.android.gms:play-services-gcm:8.3.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
 
     compile 'com.android.support:appcompat-v7:23.0.0'
 
@@ -36,3 +35,5 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.2'
     androidTestCompile 'com.android.support:support-annotations:23.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

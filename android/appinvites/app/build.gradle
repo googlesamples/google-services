@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 23
@@ -33,7 +32,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
 
-    compile 'com.google.android.gms:play-services-appinvite:8.3.0'
+    compile 'com.google.android.gms:play-services-appinvite:8.4.0'
 
     // UiAutomatorTesting
     androidTestCompile 'com.android.support.test:runner:0.3'
@@ -41,3 +40,5 @@ dependencies {
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
     androidTestCompile 'com.android.support:support-annotations:23.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
