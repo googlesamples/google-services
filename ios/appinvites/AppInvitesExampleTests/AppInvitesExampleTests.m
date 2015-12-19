@@ -13,12 +13,12 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
+
+
+@interface AppInvitesExampleTests : XCTestCase
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import <Google/AppInvite.h>
-
-@interface AppInvitesExampleTests : XCTestCase
-
 @end
 
 @implementation AppInvitesExampleTests
