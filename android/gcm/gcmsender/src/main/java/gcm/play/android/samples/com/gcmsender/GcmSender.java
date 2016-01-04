@@ -17,7 +17,6 @@
 package gcm.play.android.samples.com.gcmsender;
 
 import org.apache.commons.io.IOUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -31,7 +30,7 @@ import java.net.URL;
 // but it's not meant to serve as an example for a production app server.
 // This class should also not be included in the client (Android) applicaiton
 // since it includes the server's API key. For information on GCM server
-// implementaion see: https://developers.google.com/cloud-messaging/server
+// implementation see: https://developers.google.com/cloud-messaging/server
 public class GcmSender {
 
     public static final String API_KEY = "API_KEY";
