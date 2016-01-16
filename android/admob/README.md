@@ -13,7 +13,7 @@ Getting Started
 
 - Follow the [quickstart guide](https://developers.google.com/admob/android/start) to set up your project in Android Studio.
 - Run the sample on your Android device or emulator.
-- The running sample displays a test banner ad and a test interstitial add.
+- The running sample displays a test banner ad and a test interstitial ad.
 
 Screenshots
 -----------
