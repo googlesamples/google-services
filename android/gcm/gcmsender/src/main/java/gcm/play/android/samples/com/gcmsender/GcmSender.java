@@ -28,7 +28,7 @@ import java.net.URL;
 // NOTE:
 // This class emulates a server for the purposes of this sample,
 // but it's not meant to serve as an example for a production app server.
-// This class should also not be included in the client (Android) applicaiton
+// This class should also not be included in the client (Android) application
 // since it includes the server's API key. For information on GCM server
 // implementation see: https://developers.google.com/cloud-messaging/server
 public class GcmSender {
