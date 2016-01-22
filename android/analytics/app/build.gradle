@@ -24,11 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.android.support:support-v4:23.0.0'
 
-    // [START gms_compile]
     compile 'com.google.android.gms:play-services-analytics:8.4.0'
-    // [END gms_compile]
 }
 
-// [START gms_plugin]
 apply plugin: 'com.google.gms.google-services'
-// [END gms_plugin]
