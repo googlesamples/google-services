@@ -27,24 +27,23 @@ android {
 
     // Resolve dependency differences between app and tests
     configurations.all {
-        resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
+        resolutionStrategy.force 'com.android.support:support-annotations:23.1.1'
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
 
     // Dependency for Google Sign-In
     compile 'com.google.android.gms:play-services-auth:8.4.0'
 
     // UiAutomatorTesting
-    androidTestCompile 'com.android.support.test:runner:0.2'
-    androidTestCompile 'com.android.support.test:rules:0.2'
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.0'
-    androidTestCompile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    androidTestCompile 'com.android.support:support-annotations:23.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
-
