@@ -1,4 +1,6 @@
 platform :ios, '7.0'
 pod 'Google/AdMob'
-
-link_with 'AdMobExample', 'AdMobExampleSwift', 'AdMobExample Tests', 'AdMobExampleSwift Tests'
+target 'AdMobExample'
+target 'AdMobExampleSwift'
+target 'AdMobExampleTests'
+target 'AdMobExampleSwiftTests'
