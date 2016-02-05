@@ -1,4 +1,5 @@
 platform :ios, '7.0'
 pod 'Google/AppInvite'
-
-link_with 'AppInvitesExample', 'AppInvitesExampleSwift', 'AppInvitesExampleTests'
+target 'AppInvitesExample'
+target 'AppInvitesExampleSwift'
+target 'AppInvitesExampleTests'
