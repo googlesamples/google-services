@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
    * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each image.
    * This uses a {@link FragmentPagerAdapter}, which keeps every loaded fragment in memory.
    */
+  @SuppressWarnings("FieldCanBeLocal")
   private ImagePagerAdapter mImagePagerAdapter;
 
   /**
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     mViewPager.setAdapter(mImagePagerAdapter);
 
     // When the visible image changes, send a screen view hit.
-    mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+    mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
       @Override
       public void onPageSelected(int position) {
         sendScreenImageName();
