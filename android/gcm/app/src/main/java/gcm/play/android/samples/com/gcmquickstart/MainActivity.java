@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ProgressBar mRegistrationProgressBar;
     private TextView mInformationTextView;
+    private boolean isReceiverRegistered;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
         };
         mInformationTextView = (TextView) findViewById(R.id.informationTextView);
 
+        // Registering BroadcastReceiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+
+        isReceiverRegistered =true;
+
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
             Intent intent = new Intent(this, RegistrationIntentService.class);
@@ -74,13 +81,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+
     }
 
     @Override
     protected void onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        if(isReceiverRegistered) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+            isReceiverRegistered =false;
+        }
         super.onPause();
     }
 
