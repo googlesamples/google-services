@@ -28,12 +28,12 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
 
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
 
     // Testing dependencies
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
-    androidTestCompile 'com.android.support:support-annotations:23.1.1'
+    androidTestCompile 'com.android.support:support-annotations:23.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:support-v4:23.2.0'
 
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
