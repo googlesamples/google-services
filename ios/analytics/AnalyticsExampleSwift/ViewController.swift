@@ -22,17 +22,17 @@ class ViewController: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(true)
 
-    var name = "Pattern~\(self.title!)"
+    let name = "Pattern~\(self.title!)"
 
     // The UA-XXXXX-Y tracker ID is loaded automatically from the
     // GoogleService-Info.plist by the `GGLContext` in the AppDelegate.
     // If you're copying this to an app just using Analytics, you'll
     // need to configure your tracking ID here.
     // [START screen_view_hit_swift]
-    var tracker = GAI.sharedInstance().defaultTracker
+    let tracker = GAI.sharedInstance().defaultTracker
     tracker.set(kGAIScreenName, value: name)
 
-    var builder = GAIDictionaryBuilder.createScreenView()
+    let builder = GAIDictionaryBuilder.createScreenView()
     tracker.send(builder.build() as [NSObject : AnyObject])
     // [END screen_view_hit_swift]
   }

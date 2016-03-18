@@ -19,7 +19,7 @@
 
 // [START gmp_banner_example]
 #import "ViewController.h"
-#import <Google/AdMob.h>
+@import Google.AdMob;
 
 @interface ViewController () <GADInterstitialDelegate>
 

@@ -1,5 +1,10 @@
 # GcmExample
 platform :ios, '7.0'
 pod 'Google/CloudMessaging'
-target 'GcmExample'
-target 'GcmExampleSwift'
+
+# If using CocoaPods 1.0.0+, use the new target syntax.
+#target 'GcmExample'
+#target 'GcmExampleSwift'
+
+# and delete the link_with command.
+link_with 'GcmExample', 'GcmExampleSwift'

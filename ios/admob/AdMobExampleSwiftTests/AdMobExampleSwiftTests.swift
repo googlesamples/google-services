@@ -30,7 +30,7 @@ class AdMobExampleSwiftTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))
+    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))
     vcToTest = storyboard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
     let view = vcToTest.view
   }

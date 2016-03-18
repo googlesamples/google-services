@@ -26,14 +26,14 @@ class PatternTabBarController: UITabBarController {
 
   @IBAction func didTapShare(sender: AnyObject) {
     // [START custom_event_swift]
-    var tracker = GAI.sharedInstance().defaultTracker
-    var event = GAIDictionaryBuilder.createEventWithCategory("Action", action: "Share", label: nil, value: nil)
+    let tracker = GAI.sharedInstance().defaultTracker
+    let event = GAIDictionaryBuilder.createEventWithCategory("Action", action: "Share", label: nil, value: nil)
     tracker.send(event.build() as [NSObject : AnyObject])
     // [END custom_event_swift]
 
-    var title = "Share: \(self.selectedViewController!.title!)"
-    var message = "Share event sent to Analytics; actual share not implemented in this quickstart"
-    var alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok")
+    let title = "Share: \(self.selectedViewController!.title!)"
+    let message = "Share event sent to Analytics; actual share not implemented in this quickstart"
+    let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok")
     alert.show()
   }
 

@@ -68,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
     // topic
     if(registrationToken != nil && connectedToGCM) {
       GCMPubSub.sharedInstance().subscribeWithToken(self.registrationToken, topic: subscriptionTopic,
-        options: nil, handler: {(NSError error) -> Void in
-          if (error != nil) {
+      options: nil, handler: {(error:NSError?) -> Void in
+          if let error = error {
             // Treat the "already subscribed" error more gently
             if error.code == 3001 {
               print("Already subscribed to \(self.subscriptionTopic)")
@@ -87,9 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GGLInstanceIDDelegate, GC
   // [START connect_gcm_service]
   func applicationDidBecomeActive( application: UIApplication) {
     // Connect to the GCM server to receive non-APNS notifications
-    GCMService.sharedInstance().connectWithHandler({
-        (NSError error) -> Void in
-      if error != nil {
+    GCMService.sharedInstance().connectWithHandler({(error:NSError?) -> Void in
+      if let error = error {
         print("Could not connect to GCM: \(error.localizedDescription)")
       } else {
         self.connectedToGCM = true

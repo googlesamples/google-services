@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   // [START openurl]
   func application(application: UIApplication,
-    openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
       let invite = GINInvite.handleURL(url, sourceApplication:sourceApplication, annotation:annotation)
 
       if (invite != nil) {
