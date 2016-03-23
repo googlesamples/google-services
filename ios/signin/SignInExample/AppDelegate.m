@@ -49,12 +49,14 @@ didSignInForUser:(GIDGoogleUser *)user
   // Perform any operations on signed in user here.
   NSString *userId = user.userID;                  // For client-side use only!
   NSString *idToken = user.authentication.idToken; // Safe to send to the server
-  NSString *name = user.profile.name;
+  NSString *fullName = user.profile.name;
+  NSString *givenName = user.profile.givenName;
+  NSString *familyName = user.profile.familyName;
   NSString *email = user.profile.email;
   // [START_EXCLUDE]
   NSDictionary *statusText = @{@"statusText":
                                  [NSString stringWithFormat:@"Signed in user: %@",
-                                  name]};
+                                  fullName]};
   [[NSNotificationCenter defaultCenter]
    postNotificationName:@"ToggleAuthUINotification"
    object:nil
