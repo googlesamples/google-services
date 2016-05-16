@@ -30,16 +30,6 @@
 				<string>YOUR_REVERSED_CLIENT_ID</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>google</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.google.samples.quickstart.SignInExample</string>
-			</array>
-		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

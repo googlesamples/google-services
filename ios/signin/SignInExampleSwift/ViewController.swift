@@ -40,7 +40,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
     // TODO(developer) Configure the sign-in button look/feel
     // [START_EXCLUDE]
     NSNotificationCenter.defaultCenter().addObserver(self,
-        selector: "receiveToggleAuthUINotification:",
+        selector: #selector(ViewController.receiveToggleAuthUINotification(_:)),
         name: "ToggleAuthUINotification",
         object: nil)
 

@@ -1,9 +1,5 @@
 platform :ios, '7.0'
 pod 'Google/SignIn'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-#target 'SignInExample'
-#target 'SignInExampleSwift'
-
-# and delete the link_with command.
-link_with 'SignInExample', 'SignInExampleSwift'
+target 'SignInExample'
+target 'SignInExampleSwift'

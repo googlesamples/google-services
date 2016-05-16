@@ -2,10 +2,6 @@
 platform :ios, '7.0'
 pod 'Google/Analytics'
 
-# If using CocoaPods 1.0.0+, use the new target syntax.
-# target 'AnalyticsExample'
-# target 'AnalyticsExampleSwift'
-# target 'AnalyticsExampleTests'
-
-# and delete the link_with command.
-link_with 'AnalyticsExample', 'AnalyticsExampleSwift', 'AnalyticsExampleTests'
+target 'AnalyticsExample'
+target 'AnalyticsExampleSwift'
+target 'AnalyticsExampleTests'
