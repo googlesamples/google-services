@@ -25,10 +25,12 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRegistrationStatus:",
-        name: appDelegate.registrationKey, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "showReceivedMessage:",
-        name: appDelegate.messageKey, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self,
+                                                     selector: #selector(ViewController.updateRegistrationStatus(_:)),
+                                                     name: appDelegate.registrationKey, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self,
+                                                     selector: #selector(ViewController.showReceivedMessage(_:)),
+                                                     name: appDelegate.messageKey, object: nil)
     registrationProgressing.hidesWhenStopped = true
     registrationProgressing.startAnimating()
   }
