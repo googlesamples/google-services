@@ -37,7 +37,7 @@ dependencies {
     compile 'com.android.support:design:24.0.0'
 
     // Dependency for Google Sign-In
-    compile 'com.google.android.gms:play-services-plus:8.3.0'
+    compile 'com.google.android.gms:play-services-plus:9.2.0'
 
     // UiAutomatorTesting
     androidTestCompile 'com.android.support.test:runner:0.5'
