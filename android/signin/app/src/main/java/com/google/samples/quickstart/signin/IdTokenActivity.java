@@ -2,6 +2,7 @@ package com.google.samples.quickstart.signin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -9,11 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
@@ -64,12 +65,50 @@ public class IdTokenActivity extends AppCompatActivity implements
                 .build();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshIdToken();
+    }
+
     private void getIdToken() {
         // Show an account picker to let the user choose a Google account from the device.
         // If the GoogleSignInOptions only asks for IDToken and/or profile and/or email then no
         // consent screen will be shown here.
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GET_TOKEN);
+    }
+
+    private void refreshIdToken() {
+        OptionalPendingResult<GoogleSignInResult> opr =
+                Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+
+        if (opr.isDone()) {
+            // Users cached credentials are valid, GoogleSignInResult containing ID token
+            // is available immediately.
+            GoogleSignInResult result = opr.get();
+            handleSignInResult(result);
+        } else {
+            // If the user has not previously signed in on this device or the sign-in has expired,
+            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
+            // single sign-on will occur in this branch.
+            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
+                @Override
+                public void onResult(@NonNull GoogleSignInResult result) {
+                    handleSignInResult(result);
+                }
+            });
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            String idToken = result.getSignInAccount().getIdToken();
+            mIdTokenTextView.setText(getString(R.string.id_token_fmt, idToken));
+            updateUI(true);
+        } else {
+            updateUI(false);
+        }
     }
 
     private void signOut() {
@@ -104,20 +143,12 @@ public class IdTokenActivity extends AppCompatActivity implements
             Log.d(TAG, "onActivityResult:GET_TOKEN:success:" + result.getStatus().isSuccess());
 
             if (result.isSuccess()) {
-                GoogleSignInAccount acct = result.getSignInAccount();
-                String idToken = acct.getIdToken();
-
-                // Show signed-in UI.
-                Log.d(TAG, "idToken:" + idToken);
-                mIdTokenTextView.setText(getString(R.string.id_token_fmt, idToken));
-                updateUI(true);
-
-                // TODO(user): send token to server and validate server-side
-            } else {
-                // Show signed-out UI.
-                updateUI(false);
+                String idToken = result.getSignInAccount().getIdToken();
+                // TODO(developer): send token to server and validate
             }
             // [END get_id_token]
+
+            handleSignInResult(result);
         }
     }
 
