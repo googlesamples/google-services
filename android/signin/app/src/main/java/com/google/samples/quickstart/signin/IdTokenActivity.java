@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class IdTokenActivity extends AppCompatActivity implements
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mIdTokenTextView;
+    private Button mRefreshButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,11 +40,14 @@ public class IdTokenActivity extends AppCompatActivity implements
 
         // Views
         mIdTokenTextView = (TextView) findViewById(R.id.detail);
+        mRefreshButton = (Button) findViewById(R.id.button_optional_action);
+        mRefreshButton.setText(R.string.refresh_token);
 
         // Button click listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+        mRefreshButton.setOnClickListener(this);
 
         // For sample only: make sure there is a valid server client ID.
         validateServerClientID();
@@ -65,12 +70,6 @@ public class IdTokenActivity extends AppCompatActivity implements
                 .build();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        refreshIdToken();
-    }
-
     private void getIdToken() {
         // Show an account picker to let the user choose a Google account from the device.
         // If the GoogleSignInOptions only asks for IDToken and/or profile and/or email then no
@@ -85,13 +84,14 @@ public class IdTokenActivity extends AppCompatActivity implements
 
         if (opr.isDone()) {
             // Users cached credentials are valid, GoogleSignInResult containing ID token
-            // is available immediately.
+            // is available immediately. This likely means the current ID token is already
+            // fresh and can be sent to your server.
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
         } else {
             // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
-            // single sign-on will occur in this branch.
+            // this asynchronous branch will attempt to sign in the user silently and get a valid
+            // ID token. Cross-device single sign on will occur in this branch.
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
                 @Override
                 public void onResult(@NonNull GoogleSignInResult result) {
@@ -165,12 +165,14 @@ public class IdTokenActivity extends AppCompatActivity implements
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+            mRefreshButton.setVisibility(View.VISIBLE);
         } else {
             ((TextView) findViewById(R.id.status)).setText(R.string.signed_out);
             mIdTokenTextView.setText(getString(R.string.id_token_fmt, "null"));
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+            mRefreshButton.setVisibility(View.GONE);
         }
     }
 
@@ -200,6 +202,9 @@ public class IdTokenActivity extends AppCompatActivity implements
                 break;
             case R.id.disconnect_button:
                 revokeAccess();
+                break;
+            case R.id.button_optional_action:
+                refreshIdToken();
                 break;
         }
     }
