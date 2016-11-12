@@ -1,7 +1,7 @@
 Google Sign-In Quickstart
 =========================
 
-The Google Sign-In Android quickstart demonstrates how to authenticate a user with GPPSignIn.
+The Google Sign-In iOS quickstart demonstrates how to authenticate a user with GPPSignIn.
 
 Introduction
 ------------
