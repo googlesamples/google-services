@@ -26,7 +26,7 @@
  * Returns any lines (as NSString instances) written since LogWrapper was created, or the last
  * call to this method. This may return a nil/empty array if nothing was written.
  */
-- (NSArray *)lines;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *lines;
 
 @end
 

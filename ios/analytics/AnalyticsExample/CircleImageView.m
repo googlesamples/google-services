@@ -25,7 +25,7 @@
   return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super initWithCoder:aDecoder])) {
     [self sharedInit];
   }
@@ -34,12 +34,12 @@
 
 - (void)sharedInit {
   self.backgroundColor = [UIColor whiteColor];
-  [super setContentMode:UIViewContentModeCenter];
+  super.contentMode = UIViewContentModeCenter;
 
-  CALayer *layer = [super layer];
+  CALayer *layer = super.layer;
   layer.shadowOffset = CGSizeMake(0, 2);
   layer.shadowOpacity = 0.25;
-  layer.shadowColor = [[UIColor grayColor] CGColor];
+  layer.shadowColor = [UIColor grayColor].CGColor;
   layer.shadowRadius = 4.0;
   layer.shadowOffset = CGSizeMake(0, 2);
 }

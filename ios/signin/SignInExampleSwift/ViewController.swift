@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 import UIKit
+import GoogleSignIn
 
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
@@ -39,9 +40,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
 
     // TODO(developer) Configure the sign-in button look/feel
     // [START_EXCLUDE]
-    NSNotificationCenter.defaultCenter().addObserver(self,
+    NotificationCenter.default.addObserver(self,
         selector: #selector(ViewController.receiveToggleAuthUINotification(_:)),
-        name: "ToggleAuthUINotification",
+        name: NSNotification.Name(rawValue: "ToggleAuthUINotification"),
         object: nil)
 
     statusText.text = "Initialized Swift app..."
@@ -51,7 +52,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
   // [END viewdidload]
 
   // [START signout_tapped]
-  @IBAction func didTapSignOut(sender: AnyObject) {
+  @IBAction func didTapSignOut(_ sender: AnyObject) {
     GIDSignIn.sharedInstance().signOut()
     // [START_EXCLUDE silent]
     statusText.text = "Signed out."
@@ -61,7 +62,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
   // [END signout_tapped]
 
   // [START disconnect_tapped]
-  @IBAction func didTapDisconnect(sender: AnyObject) {
+  @IBAction func didTapDisconnect(_ sender: AnyObject) {
     GIDSignIn.sharedInstance().disconnect()
     // [START_EXCLUDE silent]
     statusText.text = "Disconnecting."
@@ -71,37 +72,36 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
 
   // [START toggle_auth]
   func toggleAuthUI() {
-    if (GIDSignIn.sharedInstance().hasAuthInKeychain()){
+    if GIDSignIn.sharedInstance().hasAuthInKeychain() {
       // Signed in
-      signInButton.hidden = true
-      signOutButton.hidden = false
-      disconnectButton.hidden = false
+      signInButton.isHidden = true
+      signOutButton.isHidden = false
+      disconnectButton.isHidden = false
     } else {
-      signInButton.hidden = false
-      signOutButton.hidden = true
-      disconnectButton.hidden = true
+      signInButton.isHidden = false
+      signOutButton.isHidden = true
+      disconnectButton.isHidden = true
       statusText.text = "Google Sign in\niOS Demo"
     }
   }
   // [END toggle_auth]
 
-  override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return UIStatusBarStyle.LightContent
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return UIStatusBarStyle.lightContent
   }
 
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self,
-        name: "ToggleAuthUINotification",
+    NotificationCenter.default.removeObserver(self,
+        name: NSNotification.Name(rawValue: "ToggleAuthUINotification"),
         object: nil)
   }
 
-  @objc func receiveToggleAuthUINotification(notification: NSNotification) {
-    if (notification.name == "ToggleAuthUINotification") {
+  @objc func receiveToggleAuthUINotification(_ notification: NSNotification) {
+    if notification.name.rawValue == "ToggleAuthUINotification" {
       self.toggleAuthUI()
       if notification.userInfo != nil {
-        let userInfo:Dictionary<String,String!> =
-            notification.userInfo as! Dictionary<String,String!>
-        self.statusText.text = userInfo["statusText"]
+        guard let userInfo = notification.userInfo as? [String:String] else { return }
+        self.statusText.text = userInfo["statusText"]!
       }
     }
   }
