@@ -1,4 +1,5 @@
 # GcmExample
+use_frameworks!
 platform :ios, '7.0'
 pod 'Google/CloudMessaging'
 

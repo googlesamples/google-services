@@ -58,7 +58,7 @@
     return nil;
   }
 
-  NSString *allData = [NSString stringWithUTF8String:(const char *)[data bytes]];
+  NSString *allData = @((const char *)data.bytes);
   return [allData componentsSeparatedByString:@"\n"];
 }
 

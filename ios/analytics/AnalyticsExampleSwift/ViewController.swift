@@ -19,7 +19,7 @@ import UIKit
 @objc(ViewController)  // match the ObjC symbol name inside Storyboard
 class ViewController: UIViewController {
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
 
     let name = "Pattern~\(self.title!)"
@@ -29,10 +29,10 @@ class ViewController: UIViewController {
     // If you're copying this to an app just using Analytics, you'll
     // need to configure your tracking ID here.
     // [START screen_view_hit_swift]
-    let tracker = GAI.sharedInstance().defaultTracker
+    guard let tracker = GAI.sharedInstance().defaultTracker else { return }
     tracker.set(kGAIScreenName, value: name)
 
-    let builder = GAIDictionaryBuilder.createScreenView()
+    guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
     tracker.send(builder.build() as [NSObject : AnyObject])
     // [END screen_view_hit_swift]
   }

@@ -24,10 +24,10 @@ import Foundation
 @objc(PatternTabBarController)  // match the ObjC symbol name inside Storyboard
 class PatternTabBarController: UITabBarController {
 
-  @IBAction func didTapShare(sender: AnyObject) {
+  @IBAction func didTapShare(_ sender: AnyObject) {
     // [START custom_event_swift]
-    let tracker = GAI.sharedInstance().defaultTracker
-    let event = GAIDictionaryBuilder.createEventWithCategory("Action", action: "Share", label: nil, value: nil)
+    guard let tracker = GAI.sharedInstance().defaultTracker else { return }
+    guard let event = GAIDictionaryBuilder.createEvent(withCategory: "Action", action: "Share", label: nil, value: nil) else { return }
     tracker.send(event.build() as [NSObject : AnyObject])
     // [END custom_event_swift]
 

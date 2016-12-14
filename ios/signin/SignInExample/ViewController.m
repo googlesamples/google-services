@@ -35,7 +35,7 @@
            object:nil];
 
   [self toggleAuthUI];
-  [self statusText].text = @"Google Sign in\niOS Demo";
+  self.statusText.text = @"Google Sign in\niOS Demo";
   // [END_EXCLUDE]
 }
 // [END viewdidload]
@@ -64,7 +64,7 @@
 - (void)toggleAuthUI {
   if ([GIDSignIn sharedInstance].currentUser.authentication == nil) {
     // Not signed in
-    [self statusText].text = @"Google Sign in\niOS Demo";
+    self.statusText.text = @"Google Sign in\niOS Demo";
     self.signInButton.hidden = NO;
     self.signOutButton.hidden = YES;
     self.disconnectButton.hidden = YES;
@@ -100,9 +100,9 @@
 }
 
 - (void) receiveToggleAuthUINotification:(NSNotification *) notification {
-  if ([[notification name] isEqualToString:@"ToggleAuthUINotification"]) {
+  if ([notification.name isEqualToString:@"ToggleAuthUINotification"]) {
     [self toggleAuthUI];
-    self.statusText.text = [notification userInfo][@"statusText"];
+    self.statusText.text = notification.userInfo[@"statusText"];
   }
 }
 @end

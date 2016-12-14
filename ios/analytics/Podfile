@@ -1,4 +1,6 @@
 # AnalyticsExample
+
+use_frameworks!
 platform :ios, '7.0'
 pod 'Google/Analytics'
 

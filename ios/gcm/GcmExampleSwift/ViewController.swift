@@ -24,20 +24,20 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    NSNotificationCenter.defaultCenter().addObserver(self,
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    NotificationCenter.default.addObserver(self,
                                                      selector: #selector(ViewController.updateRegistrationStatus(_:)),
-                                                     name: appDelegate.registrationKey, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self,
+                                                     name: NSNotification.Name(rawValue: appDelegate.registrationKey), object: nil)
+    NotificationCenter.default.addObserver(self,
                                                      selector: #selector(ViewController.showReceivedMessage(_:)),
-                                                     name: appDelegate.messageKey, object: nil)
+                                                     name: NSNotification.Name(rawValue: appDelegate.messageKey), object: nil)
     registrationProgressing.hidesWhenStopped = true
     registrationProgressing.startAnimating()
   }
 
-  func updateRegistrationStatus(notification: NSNotification) {
+  func updateRegistrationStatus(_ notification: Notification) {
     registrationProgressing.stopAnimating()
-    if let info = notification.userInfo as? Dictionary<String,String> {
+    if let info = notification.userInfo as? [String:String] {
       if let error = info["error"] {
         registeringLabel.text = "Error registering!"
         showAlert("Error registering with GCM", message: error)
@@ -52,9 +52,9 @@ class ViewController: UIViewController {
     }
   }
 
-  func showReceivedMessage(notification: NSNotification) {
-    if let info = notification.userInfo as? Dictionary<String,AnyObject> {
-      if let aps = info["aps"] as? Dictionary<String, String> {
+  func showReceivedMessage(_ notification: Notification) {
+    if let info = notification.userInfo as? [String:AnyObject] {
+      if let aps = info["aps"] as? [String:String] {
         showAlert("Message received", message: aps["alert"]!)
       }
     } else {
@@ -62,13 +62,13 @@ class ViewController: UIViewController {
     }
   }
 
-  func showAlert(title:String, message:String) {
+  func showAlert(_ title: String, message: String) {
     if #available(iOS 8.0, *) {
       let alert = UIAlertController(title: title,
-          message: message, preferredStyle: .Alert)
-      let dismissAction = UIAlertAction(title: "Dismiss", style: .Destructive, handler: nil)
+          message: message, preferredStyle: .alert)
+      let dismissAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
       alert.addAction(dismissAction)
-      self.presentViewController(alert, animated: true, completion: nil)
+      self.present(alert, animated: true, completion: nil)
     } else {
         // Fallback on earlier versions
       let alert = UIAlertView.init(title: title, message: message, delegate: nil,
@@ -77,11 +77,11 @@ class ViewController: UIViewController {
     }
   }
 
-  override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return UIStatusBarStyle.LightContent
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return UIStatusBarStyle.lightContent
   }
 
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
   }
 }
