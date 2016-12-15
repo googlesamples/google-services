@@ -1,6 +1,6 @@
 require 'xcodeproj'
 sample = ARGV[0]
-project_path = "#{sample}/#{sample}Example.xcodeproj"
+project_path = "#{sample}Example.xcodeproj"
 project = Xcodeproj::Project.open(project_path)
 
 # Add a file to the project in the main group
