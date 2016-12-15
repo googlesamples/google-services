@@ -24,8 +24,8 @@ before_install:
   - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
   - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.samples.'$SAMPLE'Example/;}' GoogleService-Info.plist
   - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' "$SAMPLE"Example/Info.plist
-  - cd -
   - gem install xcodeproj
-  - ruby ios/info_script.rb $SAMPLE
+  - ruby ../info_script.rb $SAMPLE
+  - cd -
 
 script: ios/test.sh
