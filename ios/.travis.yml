@@ -1,0 +1,31 @@
+osx_image: xcode8.2
+language: objective-c
+cache:
+  - bundler
+  - cocoapods
+
+podfile: analytics/Podfile
+env: SAMPLE=Analytics
+
+matrix:
+  include:
+  - podfile: gcm/Podfile
+    env: SAMPLE=Gcm
+  - podfile: signin/Podfile
+    env: SAMPLE=SignIn
+
+rvm: 2.3.1
+before_install:
+  - gem uninstall cocoapods -a
+  - gem install cocoapods -v '1.1.1'
+  - gem install xcpretty
+  - cd $SAMPLE
+  - pod install --repo-update
+  - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.samples.'$SAMPLE'Example/;}' GoogleService-Info.plist
+  - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' "$SAMPLE"Example/Info.plist
+  - cd -
+  - gem install xcodeproj
+  - ruby info_script.rb $SAMPLE
+
+script: ./test.sh
