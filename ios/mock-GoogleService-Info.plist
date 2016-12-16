@@ -5,7 +5,7 @@
 	<key>BASE</key>		
  	<dict>		
  		<key>BUNDLE_ID</key>		
- 		<string>id</string>		
+ 		<string>com.google.samples.quickstart.AnalyticsExample</string>		
  		<key>GOOGLE_APP_ID</key>		
  		<string>1:1015367374593:ios:2faf13965ff7b485</string>		
  		<key>PLIST_VERSION</key>		
