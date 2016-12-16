@@ -7,7 +7,7 @@
  		<key>BUNDLE_ID</key>		
  		<string>id</string>		
  		<key>GOOGLE_APP_ID</key>		
- 		<string>1:123456789000:ios:f1bf012572b04063</string>		
+ 		<string>1:1015367374593:ios:2faf13965ff7b485</string>		
  		<key>PLIST_VERSION</key>		
  		<string>2</string>		
  	</dict>		
@@ -26,7 +26,7 @@
 		<key>IS_ENABLED</key>		
 		<true/>		
 		<key>TRACKING_ID</key>		
-		<string>UA-12345678-8</string>		
+		<string>UA-62466735-8</string>		
 	</dict>		
 	<key>APP_INVITES_SERVICE</key>		
 	<dict>		
