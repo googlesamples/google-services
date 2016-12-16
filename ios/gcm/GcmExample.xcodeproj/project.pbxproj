@@ -595,7 +595,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GcmExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.GcmExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -610,7 +610,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GcmExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.GcmExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -625,7 +625,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/GcmExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.GcmExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -641,7 +641,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/GcmExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.GcmExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -658,6 +658,7 @@
 				10A034CB1E039F9100A667F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C6749DE1AE9975A00F9AB0A /* Build configuration list for PBXNativeTarget "GcmServerDemo" */ = {
 			isa = XCConfigurationList;
