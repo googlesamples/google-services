@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1024C2F01C93009800945A88 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024C2EF1C93009800945A88 /* SafariServices.framework */; };
 		1024C2F11C9300A500945A88 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024C2EF1C93009800945A88 /* SafariServices.framework */; };
+		10A034B81E039F1900A667F0 /* SignInExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A034B71E039F1900A667F0 /* SignInExampleTests.m */; };
 		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EB1ACF33B70092326A /* Main.storyboard */; };
@@ -39,8 +40,21 @@
 		EF8983C61C0D13FD003619BB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8983C51C0D13FD003619BB /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		10A034BA1E039F1900A667F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BC032D61ACF33B70092326A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BC032DD1ACF33B70092326A;
+			remoteInfo = SignInExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1024C2EF1C93009800945A88 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		10A034B51E039F1900A667F0 /* SignInExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10A034B71E039F1900A667F0 /* SignInExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInExampleTests.m; sourceTree = "<group>"; };
+		10A034B91E039F1900A667F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B60415E1AFADF2F00C00A2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4B97B2531AD7145E0036DD6C /* SignInExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +81,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		10A034B21E039F1900A667F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B97B2501AD7145E0036DD6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -98,6 +119,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10A034B61E039F1900A667F0 /* SignInExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				10A034B71E039F1900A667F0 /* SignInExampleTests.m */,
+				10A034B91E039F1900A667F0 /* Info.plist */,
+			);
+			path = SignInExampleTests;
+			sourceTree = "<group>";
+		};
 		4B97B2551AD7145E0036DD6C /* SignInExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +153,7 @@
 				4BC032E01ACF33B70092326A /* SignInExample */,
 				4B97B2551AD7145E0036DD6C /* SignInExampleSwift */,
 				EF6EAC261B0A738400227264 /* shared */,
+				10A034B61E039F1900A667F0 /* SignInExampleTests */,
 				4BC032DF1ACF33B70092326A /* Products */,
 				E27D599993EDB54E213FA076 /* Frameworks */,
 			);
@@ -133,6 +164,7 @@
 			children = (
 				4BC032DE1ACF33B70092326A /* SignInExample.app */,
 				4B97B2531AD7145E0036DD6C /* SignInExampleSwift.app */,
+				10A034B51E039F1900A667F0 /* SignInExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +219,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		10A034B41E039F1900A667F0 /* SignInExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10A034BE1E039F1900A667F0 /* Build configuration list for PBXNativeTarget "SignInExampleTests" */;
+			buildPhases = (
+				10A034B11E039F1900A667F0 /* Sources */,
+				10A034B21E039F1900A667F0 /* Frameworks */,
+				10A034B31E039F1900A667F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10A034BB1E039F1900A667F0 /* PBXTargetDependency */,
+			);
+			name = SignInExampleTests;
+			productName = SignInExampleTests;
+			productReference = 10A034B51E039F1900A667F0 /* SignInExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4B97B2521AD7145E0036DD6C /* SignInExampleSwift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B97B2721AD7145E0036DD6C /* Build configuration list for PBXNativeTarget "SignInExampleSwift" */;
@@ -231,11 +281,18 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
+					10A034B41E039F1900A667F0 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Manual;
+						TestTargetID = 4BC032DD1ACF33B70092326A;
+					};
 					4B97B2521AD7145E0036DD6C = {
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 					4BC032DD1ACF33B70092326A = {
 						CreatedOnToolsVersion = 6.2;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -254,11 +311,19 @@
 			targets = (
 				4BC032DD1ACF33B70092326A /* SignInExample */,
 				4B97B2521AD7145E0036DD6C /* SignInExampleSwift */,
+				10A034B41E039F1900A667F0 /* SignInExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		10A034B31E039F1900A667F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B97B2511AD7145E0036DD6C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +352,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		10A034B11E039F1900A667F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10A034B81E039F1900A667F0 /* SignInExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B97B24F1AD7145E0036DD6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +381,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		10A034BB1E039F1900A667F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BC032DD1ACF33B70092326A /* SignInExample */;
+			targetProxy = 10A034BA1E039F1900A667F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4BC032EB1ACF33B70092326A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -321,11 +402,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		10A034BC1E039F1900A667F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SignInExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.SignInExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SignInExample.app/SignInExample";
+			};
+			name = Debug;
+		};
+		10A034BD1E039F1900A667F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SignInExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.SignInExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SignInExample.app/SignInExample";
+			};
+			name = Release;
+		};
 		4B97B2731AD7145E0036DD6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = SignInExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -350,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = SignInExampleSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -459,6 +576,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = SignInExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -472,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = SignInExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -484,6 +603,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		10A034BE1E039F1900A667F0 /* Build configuration list for PBXNativeTarget "SignInExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A034BC1E039F1900A667F0 /* Debug */,
+				10A034BD1E039F1900A667F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4B97B2721AD7145E0036DD6C /* Build configuration list for PBXNativeTarget "SignInExampleSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10A034C61E039F9100A667F0 /* GcmExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A034C51E039F9100A667F0 /* GcmExampleTests.m */; };
 		2C6749C81AE9975A00F9AB0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6749C71AE9975A00F9AB0A /* AppDelegate.swift */; };
 		2C6749CA1AE9975A00F9AB0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C6749C91AE9975A00F9AB0A /* Images.xcassets */; };
 		2C6749CD1AE9975A00F9AB0A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6749CB1AE9975A00F9AB0A /* MainMenu.xib */; };
@@ -25,7 +26,20 @@
 		5F99610D1AE0CF4F0034F503 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F9961071AE0CF4F0034F503 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		10A034C81E039F9100A667F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A534B1ADE670C00F81DF0;
+			remoteInfo = GcmExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		10A034C31E039F9100A667F0 /* GcmExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GcmExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10A034C51E039F9100A667F0 /* GcmExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GcmExampleTests.m; sourceTree = "<group>"; };
+		10A034C71E039F9100A667F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C6749C31AE9975A00F9AB0A /* GcmServerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GcmServerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6749C61AE9975A00F9AB0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C6749C71AE9975A00F9AB0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		10A034C01E039F9100A667F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C6749C01AE9975A00F9AB0A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10A034C41E039F9100A667F0 /* GcmExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				10A034C51E039F9100A667F0 /* GcmExampleTests.m */,
+				10A034C71E039F9100A667F0 /* Info.plist */,
+			);
+			path = GcmExampleTests;
+			sourceTree = "<group>";
+		};
 		2C6749C41AE9975A00F9AB0A /* GcmServerDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +130,7 @@
 				5F5A534E1ADE670C00F81DF0 /* GcmExample */,
 				5F5A537A1ADE67D500F81DF0 /* GcmExampleSwift */,
 				2C6749C41AE9975A00F9AB0A /* GcmServerDemo */,
+				10A034C41E039F9100A667F0 /* GcmExampleTests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				5F9961041AE0CF4F0034F503 /* Shared */,
 			);
@@ -111,6 +142,7 @@
 				5F5A534C1ADE670C00F81DF0 /* GcmExample.app */,
 				5F5A53791ADE67D500F81DF0 /* GcmExampleSwift.app */,
 				2C6749C31AE9975A00F9AB0A /* GcmServerDemo.app */,
+				10A034C31E039F9100A667F0 /* GcmExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +199,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		10A034C21E039F9100A667F0 /* GcmExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10A034CC1E039F9100A667F0 /* Build configuration list for PBXNativeTarget "GcmExampleTests" */;
+			buildPhases = (
+				10A034BF1E039F9100A667F0 /* Sources */,
+				10A034C01E039F9100A667F0 /* Frameworks */,
+				10A034C11E039F9100A667F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10A034C91E039F9100A667F0 /* PBXTargetDependency */,
+			);
+			name = GcmExampleTests;
+			productName = GcmExampleTests;
+			productReference = 10A034C31E039F9100A667F0 /* GcmExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2C6749C21AE9975A00F9AB0A /* GcmServerDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C6749DE1AE9975A00F9AB0A /* Build configuration list for PBXNativeTarget "GcmServerDemo" */;
@@ -228,18 +278,23 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
+					10A034C21E039F9100A667F0 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Manual;
+						TestTargetID = 5F5A534B1ADE670C00F81DF0;
+					};
 					2C6749C21AE9975A00F9AB0A = {
 						CreatedOnToolsVersion = 6.2;
 					};
 					5F5A534B1ADE670C00F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 					5F5A53781ADE67D500F81DF0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = EQHXZ8M8AV;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -259,11 +314,19 @@
 				5F5A534B1ADE670C00F81DF0 /* GcmExample */,
 				5F5A53781ADE67D500F81DF0 /* GcmExampleSwift */,
 				2C6749C21AE9975A00F9AB0A /* GcmServerDemo */,
+				10A034C21E039F9100A667F0 /* GcmExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		10A034C11E039F9100A667F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C6749C11AE9975A00F9AB0A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +360,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		10A034BF1E039F9100A667F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10A034C61E039F9100A667F0 /* GcmExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C6749BF1AE9975A00F9AB0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,6 +398,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		10A034C91E039F9100A667F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A534B1ADE670C00F81DF0 /* GcmExample */;
+			targetProxy = 10A034C81E039F9100A667F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2C6749CB1AE9975A00F9AB0A /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
@@ -347,6 +426,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		10A034CA1E039F9100A667F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = GcmExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.GcmExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GcmExample.app/GcmExample";
+			};
+			name = Debug;
+		};
+		10A034CB1E039F9100A667F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = GcmExampleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.samples.GcmExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GcmExample.app/GcmExample";
+			};
+			name = Release;
+		};
 		2C6749DA1AE9975A00F9AB0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -478,6 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GcmExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
@@ -492,6 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GcmExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
@@ -506,6 +622,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/GcmExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
@@ -521,6 +638,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/GcmExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.samples.quickstart.gcm;
@@ -533,6 +651,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		10A034CC1E039F9100A667F0 /* Build configuration list for PBXNativeTarget "GcmExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A034CA1E039F9100A667F0 /* Debug */,
+				10A034CB1E039F9100A667F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		2C6749DE1AE9975A00F9AB0A /* Build configuration list for PBXNativeTarget "GcmServerDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
