@@ -9,7 +9,6 @@ set -o pipefail && xcodebuild \
   test \
   ONLY_ACTIVE_ARCH=YES \
   CODE_SIGNING_REQUIRED=NO\
-  | xcpretty
   
 RESULT=$?
 if [ $RESULT == 65 ]; then
