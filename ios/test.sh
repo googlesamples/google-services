@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -o pipefail && xcodebuild \
-  -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
+  -workspace ios/${SAMPLE}/${SAMPLE}Example.xcworkspace \
   -scheme ${SAMPLE}Example \
   -sdk iphonesimulator \
   -destination 'platform=iOS Simulator,name=iPhone 7' \
@@ -15,7 +15,7 @@ RESULT=$?
 if [ $RESULT == 65 ]; then
   echo "xcodebuild exited with 65, retrying"
   set -o pipefail && xcodebuild \
-    -workspace ${SAMPLE}/${SAMPLE}Example.xcworkspace \
+    -workspace ios/${SAMPLE}/${SAMPLE}Example.xcworkspace \
     -scheme ${SAMPLE}Example \
     -sdk iphonesimulator \
     -destination 'platform=iOS Simulator,name=iPhone 7' \
