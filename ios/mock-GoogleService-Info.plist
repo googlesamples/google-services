@@ -1,47 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>		
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">		
-<plist version="1.0">		
-<dict>		
-	<key>BASE</key>		
- 	<dict>		
- 		<key>BUNDLE_ID</key>		
- 		<string>id</string>		
- 		<key>GOOGLE_APP_ID</key>		
- 		<string>1:1015367374593:ios:2faf13965ff7b485</string>		
- 		<key>PLIST_VERSION</key>		
- 		<string>2</string>		
- 	</dict>		
-	<key>MEASUREMENT_SERVICE</key>		
-	<dict>		
-		<key>IS_ENABLED</key>		
-		<true/>		
-	</dict>		
-	<key>ADS_SERVICE</key>		
-	<dict>		
-		<key>IS_ENABLED</key>		
-		<false/>		
-	</dict>		
-	<key>ANALYTICS_SERVICE</key>		
-	<dict>		
-		<key>IS_ENABLED</key>		
-		<true/>		
-		<key>TRACKING_ID</key>		
-		<string>UA-62466735-8</string>		
-	</dict>		
-	<key>APP_INVITES_SERVICE</key>		
-	<dict>		
-		<key>IS_ENABLED</key>		
-		<false/>		
-	</dict>		
-	<key>CLOUD_MESSAGING_SERVICE</key>		
-	<dict>		
-		<key>IS_ENABLED</key>		
-		<true/>		
-	</dict>		
-	<key>SIGNIN_SERVICE</key>		
-	<dict>		
-		<key>IS_ENABLED</key>		
-		<true/>		
-	</dict>		
-</dict>		
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>TRACKING_ID</key>
+	<string>UA-32913442-1</string>
+	<key>CLIENT_ID</key>
+	<string>381751789022-aukrotqhkfb3qhtr91i3rmnb4urc628l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.381751789022-aukrotqhkfb3qhtr91i3rmnb4urc628l</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.google.samples.quickstart.SignInExample</string>
+	<key>GCM_SENDER_ID</key>
+	<string>489500461815</string>
+	<key>PROJECT_ID</key>
+	<string>default-demo-app-2a349</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<true/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:381751789022:ios:6fbd6c0efa1b97a8</string>
+</dict>
 </plist>
