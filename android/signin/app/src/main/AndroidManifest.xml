@@ -40,6 +40,12 @@
             android:theme="@style/ThemeOverlay.MyNoTitleActivity">
         </activity>
 
+        <activity
+            android:name="com.google.samples.quickstart.signin.RestApiActivity"
+            android:label="@string/name_rest_activity"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
+        </activity>
+
     </application>
 
 </manifest>

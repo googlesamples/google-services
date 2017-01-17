@@ -35,10 +35,19 @@
     <string name="name_sign_in_activity">SignInActivity</string>
     <string name="desc_sign_in_activity">Signing in, signing out, and revoking access.</string>
     <string name="desc_sign_in_activity_scopes">Signing in, signing out, and revoking access with Google Drive permissions.</string>
+
     <string name="name_id_token_activity">IdTokenActivity</string>
     <string name="desc_id_token_activity">Retrieving an ID Token for the user.</string>
+
     <string name="desc_auth_code_activity">Demonstrate retrieving an auth code for authorizing your server.</string>
     <string name="name_auth_code_activity">ServerAuthCodeActivity</string>
+
+    <string name="desc_rest_activity">Demonstrate using Google Sign In with a Google REST API</string>
+    <string name="name_rest_activity">RestApiActivity</string>
+
+    <!-- Messages for the Rest API activity -->
+    <string name="connections_fmt">Connections: %1$s</string>
+    <string name="msg_contacts_failed">Get contacts failed.</string>
 
     <!-- TODO(user): replace with your real server client ID -->
     <!-- Server Client ID.  This should be a valid Web OAuth 2.0 Client ID obtained
