@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                
+                 //start listening to gcm messages after successfull registration
+                Intent intent1 = new Intent(MainActivity.this,MyGcmListenerService.class);
+                startService(intent1);
                 mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(context);
