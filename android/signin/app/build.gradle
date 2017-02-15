@@ -37,7 +37,7 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
 
     // Dependency for Google Sign-In
-    compile 'com.google.android.gms:play-services-auth:10.0.1'
+    compile 'com.google.android.gms:play-services-auth:10.2.0'
 
     // Dependencies for the REST API example
     compile 'com.google.api-client:google-api-client:1.22.0'
