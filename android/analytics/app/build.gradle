@@ -24,7 +24,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
 
     // [START gms_compile]
-    compile 'com.google.android.gms:play-services-analytics:10.2.0'
+    compile 'com.google.android.gms:play-services-analytics:10.2.1'
     // [END gms_compile]
 }
 
