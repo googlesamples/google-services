@@ -7,3 +7,6 @@ xcuserdata/
 
 # Android
 google-services.json
+
+# work products
+*.apk
