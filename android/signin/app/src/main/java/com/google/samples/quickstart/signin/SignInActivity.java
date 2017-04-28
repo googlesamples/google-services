@@ -100,8 +100,7 @@ public class SignInActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        hideProgressDialog();//To hide {@link ProgressDialog} which comes into view unnecessarily,
-        // after successful login.
+        hideProgressDialog();
     }
 
     // [START onActivityResult]
@@ -178,8 +177,7 @@ public class SignInActivity extends AppCompatActivity implements
     protected void onStop() {
         super.onStop();
         if (mProgressDialog != null) {
-            mProgressDialog.dismiss();// to avoid  WindowLeaked issue. This happens when a hidden
-            // {@link ProgressDialog} is present but activity is being destroyed.
+            mProgressDialog.dismiss();
         }
     }
 
