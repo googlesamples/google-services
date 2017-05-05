@@ -22,15 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START tracker_objc]
-  // Configure tracker from GoogleService-Info.plist.
-  NSError *configureError;
-  [[GGLContext sharedInstance] configureWithError:&configureError];
-  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-
-  // Optional: configure GAI options.
   GAI *gai = [GAI sharedInstance];
-  gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-  gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+  [gai trackerWithTrackingId:@"YOUR_TRACKING_ID"];
+
+  // Optional: automatically report uncaught exceptions.
+  gai.trackUncaughtExceptions = YES;
+
+  // Optional: set Logger to VERBOSE for debug information.
+  // Remove before app release.
+  gai.logger.logLevel = kGAILogLevelVerbose;
   // [END tracker_objc]
 
   // Set a white background so that patterns are showcased.
