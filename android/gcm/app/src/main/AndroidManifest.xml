@@ -43,6 +43,11 @@
             </intent-filter>
         </service>
         <!-- [END gcm_listener] -->
+		<!-- Included Intent Service used to get gcm registration id-->
+		<service
+            android:name="gcm.play.android.samples.com.gcmquickstart.RegistrationIntentService"
+            android:exported="false">
+        </service>
         <!-- [START instanceId_listener] -->
         <service
             android:name="gcm.play.android.samples.com.gcmquickstart.MyInstanceIDListenerService"
