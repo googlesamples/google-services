@@ -16,6 +16,8 @@ Getting Started
 
 - Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/android/v4/start)
   to set up your project in Android Studio.
+  - Make sure to replace `ga_trackingId` in `res/xml/global_tracker.xml`
+    with your Google Analytics tracking ID.
 - Run the sample on your Android device or emulator.
 - Swipe between images to register screen views.
 - View collected analytics via [Google Analytics](https://www.google.com/analytics/web).
