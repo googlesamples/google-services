@@ -16,21 +16,24 @@
 
 package com.google.samples.quickstart.analytics;
 
-import java.util.Locale;
-
 import android.content.Intent;
+import android.content.res.XmlResourceParser;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+
+import java.util.Locale;
 
 /**
  * Activity which displays numerous background images that may be viewed. These background images
@@ -67,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    // Make sure global_tracker.xml is configured
+    if (!checkConfiguration()) {
+      View contentView = findViewById(android.R.id.content);
+      Snackbar.make(contentView, R.string.bad_config, Snackbar.LENGTH_INDEFINITE).show();
+    }
 
     // [START shared_tracker]
     // Obtain the shared Tracker instance.
@@ -145,6 +154,39 @@ public class MainActivity extends AppCompatActivity {
     mTracker.setScreenName("Image~" + name);
     mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     // [END screen_view_hit]
+  }
+
+  /**
+   * Check to make sure global_tracker.xml was configured correctly (this function only needed
+   * for sample apps).
+   */
+  private boolean checkConfiguration() {
+    XmlResourceParser parser = getResources().getXml(R.xml.global_tracker);
+
+    boolean foundTag = false;
+    try {
+      while (parser.getEventType() != XmlResourceParser.END_DOCUMENT) {
+        if (parser.getEventType() == XmlResourceParser.START_TAG) {
+          String tagName = parser.getName();
+          String nameAttr = parser.getAttributeValue(null, "name");
+
+          foundTag = "string".equals(tagName) && "ga_trackingId".equals(nameAttr);
+        }
+
+        if (parser.getEventType() == XmlResourceParser.TEXT) {
+          if (foundTag && parser.getText().contains("REPLACE_ME")) {
+            return false;
+          }
+        }
+
+        parser.next();
+      }
+    } catch (Exception e) {
+      Log.w(TAG, "checkConfiguration", e);
+      return false;
+    }
+
+    return true;
   }
 
   /**

@@ -19,4 +19,6 @@ specific language governing permissions and limitations under the License.
     <string name="pattern3_title">C</string>
     <string name="pattern4_title">D</string>
     <string name="menu_share">Share</string>
+
+    <string name="bad_config">Please configure global_tracker.xml, see README.</string>
 </resources>
