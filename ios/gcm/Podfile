@@ -1,9 +1,0 @@
-# GcmExample
-use_frameworks!
-platform :ios, '7.0'
-pod 'Google/CloudMessaging'
-
-target 'GcmExample' do
-end
-target 'GcmExampleSwift' do
-end
