@@ -1,6 +1,6 @@
 use_frameworks!
 platform :ios, '7.0'
-pod 'Google/SignIn'
+pod 'GoogleSignIn'
 
 target 'SignInExample' do
 end

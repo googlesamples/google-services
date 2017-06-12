@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 import UIKit
-import Google
 import GoogleSignIn
 
 @UIApplicationMain
@@ -28,10 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   func application(_ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       // Initialize sign-in
-      var configureError: NSError?
-      GGLContext.sharedInstance().configureWithError(&configureError)
-      assert(configureError == nil, "Error configuring Google services: \(configureError)")
-
+      GIDSignIn.sharedInstance().clientID = "YOUR_CLIENT_ID"
       GIDSignIn.sharedInstance().delegate = self
 
       return true
