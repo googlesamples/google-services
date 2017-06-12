@@ -2,7 +2,7 @@
 
 use_frameworks!
 platform :ios, '7.0'
-pod 'GoogleAnalytics'
+pod 'Google/Analytics'
 
 target 'AnalyticsExample' do
 end

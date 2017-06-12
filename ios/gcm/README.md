@@ -1,34 +1,36 @@
-Google Analytics Quickstart
-===========================
+Google Cloud Messaging Quickstart
+=================================
 
-Google Analytics iOS Quickstart app demonstrates collecting
-app usage analytics via the defaultTracker available from GAI.
-GAIDictionaryBuilder is used to build tracked events.
+The Google Cloud Messaging iOS Quickstart app demonstrates how to connect
+an iOS app to GCM and how to receive messages.
 
 Introduction
 ------------
 
-- [Read more about Google Analytics](https://developers.google.com/analytics/)
+- [Read more about Google Cloud Messaging](https://developers.google.com/cloud-messaging/).
 
 Getting Started
 ---------------
 
-- Follow the [quickstart guide](https://developers.google.com/analytics/devguides/collection/mobile/)
+- Follow the [quickstart guide](https://developers.google.com/cloud-messaging/ios/start)
   to set up your project in XCode.
-- Run the sample on your iOS device or emulator.
-- Swipe between images to register screen views.
-- View collected analytics via [Google Analytics](https://www.google.com/analytics/web).
+- Run the sample on your iOS device.
+- Run the included GcmServerDemo.
+- Insert the API key from your project in the *apiKey* text field of the GcmServerDemo app.
+- Insert the registration token that the sample app has printed in the XCode debug console in the
+*RegistrationToken* text field of the GcmServerDemo app.
+- Click the *Send notification* button. A notification will be sent to your device.
 
-Note: You will need Swift 2.0 to run the Swift version of this quickstart.
+Note: You need Swift 2.0 to run the Swift version of this quickstart.
 
 Screenshots
 -----------
-![Screenshot](Screenshot/analytics-sample.png)
+![Screenshot](Screenshot/gcm-sample.png)
 
 Support
 -------
 
-- Stack Overflow: http://stackoverflow.com/questions/tagged/google-analytics
+- Stack Overflow: http://stackoverflow.com/questions/tagged/google-cloud-messaging
 
 If you've found an error in this sample, please file an issue:
 https://github.com/googlesamples/google-services/issues

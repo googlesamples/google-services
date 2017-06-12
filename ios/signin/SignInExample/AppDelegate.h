@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 // [START signin_import]
-@import GoogleSignIn;
+#import <Google/SignIn.h>
 // [END signin_import]
 
 // [START appdelegate_interfaces]

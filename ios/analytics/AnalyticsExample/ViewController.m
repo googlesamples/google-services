@@ -16,10 +16,7 @@
 
 #import "ViewController.h"
 
-#import <GoogleAnalytics/GAI.h>
-#import <GoogleAnalytics/GAIDictionaryBuilder.h>
-#import <GoogleAnalytics/GAIFields.h>
-
+#import <Google/Analytics.h>
 
 @implementation ViewController
 

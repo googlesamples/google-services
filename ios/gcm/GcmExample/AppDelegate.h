@@ -13,7 +13,16 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
 
-#import <Google/Analytics.h>
+#import <Google/CloudMessaging.h>
+#import <UIKit/UIKit.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate>
+
+@property(nonatomic, strong) UIWindow *window;
+@property(nonatomic, readonly, strong) NSString *registrationKey;
+@property(nonatomic, readonly, strong) NSString *messageKey;
+@property(nonatomic, readonly, strong) NSString *gcmSenderID;
+@property(nonatomic, readonly, strong) NSDictionary *registrationOptions;
+
+@end

@@ -9,6 +9,8 @@ env: SAMPLE=Analytics
 
 matrix:
   include:
+  - podfile: ios/gcm/Podfile
+    env: SAMPLE=Gcm
   - podfile: ios/signin/Podfile
     env: SAMPLE=SignIn
 
@@ -19,6 +21,8 @@ before_install:
   - gem install xcpretty
   - cd ios/$SAMPLE
   - pod install --repo-update
+  - cp ../mock-GoogleService-Info.plist ./GoogleService-Info.plist
+  - sed -i '' '/<key>BUNDLE_ID</{n;s/id/com.google.samples.quickstart.'$SAMPLE'Example/;}' GoogleService-Info.plist
   - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' "$SAMPLE"Example/Info.plist
   - gem install xcodeproj
   - ruby ../info_script.rb $SAMPLE

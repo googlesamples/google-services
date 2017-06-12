@@ -13,7 +13,12 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
 
-#import <Google/Analytics.h>
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+
+int main(int argc, char * argv[]) {
+  @autoreleasepool {
+      return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+  }
+}

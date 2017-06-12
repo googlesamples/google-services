@@ -16,8 +16,7 @@
 
 #import "AppDelegate.h"
 
-
-#import <GoogleAnalytics/GAI.h>
+#import <Google/Analytics.h>
 
 @implementation AppDelegate
 
