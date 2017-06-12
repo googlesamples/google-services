@@ -16,7 +16,8 @@
 
 #import "PatternTabBarController.h"
 
-#import <Google/Analytics.h>
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
 
 @implementation PatternTabBarController
 
