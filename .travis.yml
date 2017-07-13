@@ -1,4 +1,4 @@
-osx_image: xcode8.1
+osx_image: xcode8.3
 language: objective-c
 cache:
   - bundler
@@ -14,11 +14,11 @@ matrix:
 
 rvm: 2.3.1
 before_install:
-  - gem uninstall cocoapods -a
-  - gem install cocoapods -v '1.1.1'
-  - gem install xcpretty
+  - open -a "simulator" --args -CurrentDeviceUDID F60B87EC-8969-41A7-90ED-D0826ECC32DB
   - cd ios/$SAMPLE
-  - pod install --repo-update
+  - bundle install
+  - gem install xcpretty
+  - bundle exec pod install --repo-update
   - sed -i '' 's/YOUR_REVERSED_CLIENT_ID/com.googleusercontent.apps.123456789000-hjugbg6ud799v4c49dim8ce2usclthar/' "$SAMPLE"Example/Info.plist
   - cd -
 
