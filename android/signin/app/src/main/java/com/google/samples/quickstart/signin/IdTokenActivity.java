@@ -39,8 +39,8 @@ public class IdTokenActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         // Views
-        mIdTokenTextView = (TextView) findViewById(R.id.detail);
-        mRefreshButton = (Button) findViewById(R.id.button_optional_action);
+        mIdTokenTextView = findViewById(R.id.detail);
+        mRefreshButton = findViewById(R.id.button_optional_action);
         mRefreshButton.setText(R.string.refresh_token);
 
         // Button click listeners

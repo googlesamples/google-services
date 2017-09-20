@@ -40,7 +40,7 @@ public class SignInActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         // Views
-        mStatusTextView = (TextView) findViewById(R.id.status);
+        mStatusTextView = findViewById(R.id.status);
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity implements
 
         // [START customize_button]
         // Set the dimensions of the sign-in button.
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+        SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         // [END customize_button]
     }

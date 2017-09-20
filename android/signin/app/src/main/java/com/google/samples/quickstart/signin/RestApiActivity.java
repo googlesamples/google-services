@@ -29,7 +29,7 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecovera
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.people.v1.People;
+import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
 
@@ -82,8 +82,8 @@ public class RestApiActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         // Views
-        mStatusTextView = (TextView) findViewById(R.id.status);
-        mDetailTextView = (TextView) findViewById(R.id.detail);
+        mStatusTextView = findViewById(R.id.status);
+        mDetailTextView = findViewById(R.id.detail);
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -114,7 +114,7 @@ public class RestApiActivity extends AppCompatActivity implements
         // Show a standard Google Sign In button. If your application does not rely on Google Sign
         // In for authentication you could replace this with a "Get Google Contacts" button
         // or similar.
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+        SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
     }
 
@@ -285,7 +285,7 @@ public class RestApiActivity extends AppCompatActivity implements
                         Collections.singleton(CONTACTS_SCOPE));
                 credential.setSelectedAccount(params[0]);
 
-                People service = new People.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
+                PeopleService service = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
                         .setApplicationName("Google Sign In Quickstart")
                         .build();
 
@@ -293,6 +293,7 @@ public class RestApiActivity extends AppCompatActivity implements
                         .people()
                         .connections()
                         .list("people/me")
+                        .setPersonFields("names,emailAddresses")
                         .execute();
 
                 return connectionsResponse.getConnections();
