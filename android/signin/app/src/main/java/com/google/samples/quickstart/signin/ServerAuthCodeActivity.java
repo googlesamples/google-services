@@ -39,7 +39,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         // Views
-        mAuthCodeTextView = (TextView) findViewById(R.id.detail);
+        mAuthCodeTextView = findViewById(R.id.detail);
 
         // Button click listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
