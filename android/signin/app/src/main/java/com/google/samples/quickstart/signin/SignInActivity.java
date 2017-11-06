@@ -68,6 +68,7 @@ public class SignInActivity extends AppCompatActivity implements
         // Set the dimensions of the sign-in button.
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
         // [END customize_button]
     }
 
