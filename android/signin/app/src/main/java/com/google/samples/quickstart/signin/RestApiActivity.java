@@ -2,27 +2,27 @@ package com.google.samples.quickstart.signin;
 
 import android.accounts.Account;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -34,12 +34,13 @@ import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * Activity to demonstrate using the Google Sign In API with a Google API that uses the Google
- * Java Client Library rather than a Google Play services API. See {@link GetContactsTask}
+ * Java Client Library rather than a Google Play services API. See {@link #getContacts()}
  * for how to access the People API using this method.
  *
  * In order to use this Activity you must enable the People API on your project. Visit the following
@@ -47,7 +48,6 @@ import java.util.List;
  * https://console.developers.google.com/apis/api/people.googleapis.com/overview?project=YOUR_PROJECT_ID
  */
 public class RestApiActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
     private static final String TAG = "RestApiActivity";
@@ -68,7 +68,7 @@ public class RestApiActivity extends AppCompatActivity implements
     // Global instance of the JSON factory
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInClient mGoogleSignInClient;
 
     private Account mAccount;
 
@@ -104,12 +104,7 @@ public class RestApiActivity extends AppCompatActivity implements
                 .requestEmail()
                 .build();
 
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-        // options specified by gso.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         // Show a standard Google Sign In button. If your application does not rely on Google Sign
         // In for authentication you could replace this with a "Get Google Contacts" button
@@ -122,25 +117,12 @@ public class RestApiActivity extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
+        // Check if the user is already signed in and all required scopes are granted
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (GoogleSignIn.hasPermissions(account, new Scope(CONTACTS_SCOPE))) {
+            updateUI(account);
         } else {
-            // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
-            // single sign-on will occur in this branch.
-            showProgressDialog();
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(GoogleSignInResult googleSignInResult) {
-                    hideProgressDialog();
-                    handleSignInResult(googleSignInResult);
-                }
-            });
+            updateUI(null);
         }
     }
 
@@ -156,8 +138,8 @@ public class RestApiActivity extends AppCompatActivity implements
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
         }
 
         // Handling a user-recoverable auth exception
@@ -171,7 +153,7 @@ public class RestApiActivity extends AppCompatActivity implements
     }
 
     private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -179,36 +161,34 @@ public class RestApiActivity extends AppCompatActivity implements
         // Signing out clears the current authentication state and resets the default user,
         // this should be used to "switch users" without fully un-linking the user's google
         // account from your application.
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        updateUI(false);
-                    }
-                });
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateUI(null);
+            }
+        });
     }
 
-    private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
-        if (result.isSuccess()) {
-            // Get the account from the sign in result
-            GoogleSignInAccount account = result.getSignInAccount();
+    private void handleSignInResult(@NonNull Task<GoogleSignInAccount> completedTask) {
+        Log.d(TAG, "handleSignInResult:" + completedTask.isSuccessful());
 
-            // Signed in successfully, show authenticated UI.
-            mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
-            updateUI(true);
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            updateUI(account);
 
             // Store the account from the result
             mAccount = account.getAccount();
 
             // Asynchronously access the People API for the account
             getContacts();
-        } else {
+        } catch (ApiException e) {
+            Log.w(TAG, "handleSignInResult:error", e);
+
             // Clear the local account
             mAccount = null;
 
             // Signed out, show unauthenticated UI.
-            updateUI(false);
+            updateUI(null);
         }
     }
 
@@ -218,13 +198,43 @@ public class RestApiActivity extends AppCompatActivity implements
             return;
         }
 
-        new GetContactsTask().execute(mAccount);
+        showProgressDialog();
+        new GetContactsTask(this).execute(mAccount);
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.w(TAG, "onConnectionFailed:" + connectionResult);
+    protected void onConnectionsLoadFinished(@Nullable List<Person> connections) {
+        hideProgressDialog();
+
+        if (connections == null) {
+            Log.d(TAG, "getContacts:connections: null");
+            mDetailTextView.setText(getString(R.string.connections_fmt, "None"));
+            return;
+        }
+
+        Log.d(TAG, "getContacts:connections: size=" + connections.size());
+
+        // Get names of all connections
+        StringBuilder msg = new StringBuilder();
+        for (int i = 0; i < connections.size(); i++) {
+            Person person = connections.get(i);
+            if (person.getNames() != null && person.getNames().size() > 0) {
+                msg.append(person.getNames().get(0).getDisplayName());
+
+                if (i < connections.size() - 1) {
+                    msg.append(",");
+                }
+            }
+        }
+
+        // Display names
+        mDetailTextView.setText(getString(R.string.connections_fmt, msg.toString()));
     }
+
+    protected void onRecoverableAuthException(UserRecoverableAuthIOException recoverableException) {
+        Log.w(TAG, "onRecoverableAuthException", recoverableException);
+        startActivityForResult(recoverableException.getIntent(), RC_RECOVERABLE);
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -254,8 +264,10 @@ public class RestApiActivity extends AppCompatActivity implements
         }
     }
 
-    private void updateUI(boolean signedIn) {
-        if (signedIn) {
+    private void updateUI(@Nullable GoogleSignInAccount account) {
+        if (account != null) {
+            mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
+
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
@@ -267,23 +279,26 @@ public class RestApiActivity extends AppCompatActivity implements
         }
     }
 
-    /**
-     * AsyncTask that uses the credentials from Google Sign In to access the People API.
-     */
-    private class GetContactsTask extends AsyncTask<Account, Void, List<Person>> {
+    private static class GetContactsTask extends AsyncTask<Account, Void, List<Person>> {
 
-        @Override
-        protected void onPreExecute() {
-            showProgressDialog();
+        private WeakReference<RestApiActivity> mActivityRef;
+
+        public GetContactsTask(RestApiActivity activity) {
+            mActivityRef = new WeakReference<>(activity);
         }
 
         @Override
-        protected List<Person> doInBackground(Account... params) {
+        protected List<Person> doInBackground(Account... accounts) {
+            if (mActivityRef.get() == null) {
+                return null;
+            }
+
+            Context context = mActivityRef.get().getApplicationContext();
             try {
                 GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(
-                        RestApiActivity.this,
+                        context,
                         Collections.singleton(CONTACTS_SCOPE));
-                credential.setSelectedAccount(params[0]);
+                credential.setSelectedAccount(accounts[0]);
 
                 PeopleService service = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
                         .setApplicationName("Google Sign In Quickstart")
@@ -297,9 +312,11 @@ public class RestApiActivity extends AppCompatActivity implements
                         .execute();
 
                 return connectionsResponse.getConnections();
-            } catch (UserRecoverableAuthIOException userRecoverableException) {
-                Log.w(TAG, "getContacts:recoverable exception", userRecoverableException);
-                startActivityForResult(userRecoverableException.getIntent(), RC_RECOVERABLE);
+
+            } catch (UserRecoverableAuthIOException recoverableException) {
+                if (mActivityRef.get() != null) {
+                    mActivityRef.get().onRecoverableAuthException(recoverableException);
+                }
             } catch (IOException e) {
                 Log.w(TAG, "getContacts:exception", e);
             }
@@ -308,33 +325,11 @@ public class RestApiActivity extends AppCompatActivity implements
         }
 
         @Override
-        protected void onPostExecute(List<Person> connections) {
-            hideProgressDialog();
-
-            if (connections != null) {
-                Log.d(TAG, "getContacts:connections: size=" + connections.size());
-
-                // Get names of all connections
-                StringBuilder msg = new StringBuilder();
-                for (int i = 0; i < connections.size(); i++) {
-                    Person person = connections.get(i);
-                    if (person.getNames() != null && person.getNames().size() > 0) {
-                        msg.append(person.getNames().get(0).getDisplayName());
-
-                        if (i < connections.size() - 1) {
-                            msg.append(",");
-                        }
-                    }
-                }
-
-                // Display names
-                mDetailTextView.setText(getString(R.string.connections_fmt, msg.toString()));
-            } else {
-                Log.d(TAG, "getContacts:connections: null");
-                mDetailTextView.setText(getString(R.string.connections_fmt, "None"));
+        protected void onPostExecute(List<Person> people) {
+            super.onPostExecute(people);
+            if (mActivityRef.get() != null) {
+                mActivityRef.get().onConnectionsLoadFinished(people);
             }
         }
     }
-
-
 }

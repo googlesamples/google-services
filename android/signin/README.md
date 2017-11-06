@@ -1,7 +1,7 @@
 Google Sign-In Quickstart
 =========================
 
-The Google Sign-In Android quickstart demonstrates how to authenticate a user with GoogleApiClient.
+The Google Sign-In Android quickstart demonstrates how to authenticate a user with GoogleSignInClient.
 
 Introduction
 ------------

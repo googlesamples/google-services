@@ -2,35 +2,35 @@ package com.google.samples.quickstart.signin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 /**
  * Demonstrates retrieving an offline access one-time code for the current Google user, which
  * can be exchanged by your server for an access token and refresh token.
  */
 public class ServerAuthCodeActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
     public static final String TAG = "ServerAuthCodeActivity";
     private static final int RC_GET_AUTH_CODE = 9003;
 
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInClient mGoogleSignInClient;
     private TextView mAuthCodeTextView;
 
     @Override
@@ -65,11 +65,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                 .build();
         // [END configure_signin]
 
-        // Build GoogleAPIClient with the Google Sign-In API and the above options.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     private void getAuthCode() {
@@ -77,28 +73,25 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
         // token.  Otherwise, only get an access token if a refresh token has been previously
         // retrieved.  Getting a new access token for an existing grant does not require
         // user consent.
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_GET_AUTH_CODE);
     }
 
     private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        Log.d(TAG, "signOut:onResult:" + status);
-                        updateUI(false);
-                    }
-                });
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateUI(null);
+            }
+        });
     }
 
     private void revokeAccess() {
-        Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
+        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
                     @Override
-                    public void onResult(Status status) {
-                        Log.d(TAG, "revokeAccess:onResult:" + status);
-                        updateUI(false);
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
                     }
                 });
     }
@@ -109,40 +102,33 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_GET_AUTH_CODE) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            Log.d(TAG, "onActivityResult:GET_AUTH_CODE:success:" + result.getStatus().isSuccess());
+            // [START get_auth_code]
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                String authCode = account.getServerAuthCode();
 
-            if (result.isSuccess()) {
-                // [START get_auth_code]
-                GoogleSignInAccount acct = result.getSignInAccount();
-                String authCode = acct.getServerAuthCode();
+                // Show signed-un UI
+                updateUI(account);
 
-                // Show signed-in UI.
-                mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, authCode));
-                updateUI(true);
-
-                // TODO(user): send code to server and exchange for access/refresh/ID tokens.
-                // [END get_auth_code]
-            } else {
-                // Show signed-out UI.
-                updateUI(false);
+                // TODO(developer): send code to server and exchange for access/refresh/ID tokens
+            } catch (ApiException e) {
+                Log.w(TAG, "Sign-in failed", e);
+                updateUI(null);
             }
+            // [END get_auth_code]
         }
     }
 
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
-    }
-
-    private void updateUI(boolean signedIn) {
-        if (signedIn) {
+    private void updateUI(@Nullable GoogleSignInAccount account) {
+        if (account != null) {
             ((TextView) findViewById(R.id.status)).setText(R.string.signed_in);
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+
+            String authCode = account.getServerAuthCode();
+            mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, authCode));
         } else {
             ((TextView) findViewById(R.id.status)).setText(R.string.signed_out);
             mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, "null"));

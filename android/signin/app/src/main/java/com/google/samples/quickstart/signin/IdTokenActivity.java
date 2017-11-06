@@ -3,6 +3,7 @@ package com.google.samples.quickstart.signin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,26 +11,24 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 /**
  * Demonstrates retrieving an ID token for the current Google user.
  */
 public class IdTokenActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
     private static final String TAG = "IdTokenActivity";
     private static final int RC_GET_TOKEN = 9002;
 
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInClient mGoogleSignInClient;
     private TextView mIdTokenTextView;
     private Button mRefreshButton;
 
@@ -64,71 +63,64 @@ public class IdTokenActivity extends AppCompatActivity implements
         // [END configure_signin]
 
         // Build GoogleAPIClient with the Google Sign-In API and the above options.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     private void getIdToken() {
         // Show an account picker to let the user choose a Google account from the device.
         // If the GoogleSignInOptions only asks for IDToken and/or profile and/or email then no
         // consent screen will be shown here.
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_GET_TOKEN);
     }
 
     private void refreshIdToken() {
-        OptionalPendingResult<GoogleSignInResult> opr =
-                Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-
-        if (opr.isDone()) {
-            // Users cached credentials are valid, GoogleSignInResult containing ID token
-            // is available immediately. This likely means the current ID token is already
-            // fresh and can be sent to your server.
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently and get a valid
-            // ID token. Cross-device single sign on will occur in this branch.
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult result) {
-                    handleSignInResult(result);
-                }
-            });
-        }
-    }
-
-    private void handleSignInResult(GoogleSignInResult result) {
-        if (result.isSuccess()) {
-            String idToken = result.getSignInAccount().getIdToken();
-            mIdTokenTextView.setText(getString(R.string.id_token_fmt, idToken));
-            updateUI(true);
-        } else {
-            updateUI(false);
-        }
-    }
-
-    private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
+        // Attempt to silently refresh the GoogleSignInAccount. If the GoogleSignInAccount
+        // already has a valid token this method may complete immediately.
+        //
+        // If the user has not previously signed in on this device or the sign-in has expired,
+        // this asynchronous branch will attempt to sign in the user silently and get a valid
+        // ID token. Cross-device single sign on will occur in this branch.
+        mGoogleSignInClient.silentSignIn()
+                .addOnCompleteListener(this, new OnCompleteListener<GoogleSignInAccount>() {
                     @Override
-                    public void onResult(Status status) {
-                        Log.d(TAG, "signOut:onResult:" + status);
-                        updateUI(false);
+                    public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                        handleSignInResult(task);
                     }
                 });
     }
 
+    // [START handle_sign_in_result]
+    private void handleSignInResult(@NonNull Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            String idToken = account.getIdToken();
+
+            // TODO(developer): send ID Token to server and validate
+
+            updateUI(account);
+        } catch (ApiException e) {
+            Log.w(TAG, "handleSignInResult:error", e);
+            updateUI(null);
+        }
+    }
+    // [END handle_sign_in_result]
+
+    private void signOut() {
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                updateUI(null);
+            }
+        });
+    }
+
     private void revokeAccess() {
-        Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
+        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
                     @Override
-                    public void onResult(Status status) {
-                        Log.d(TAG, "revokeAccess:onResult:" + status);
-                        updateUI(false);
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
                     }
                 });
     }
@@ -139,29 +131,20 @@ public class IdTokenActivity extends AppCompatActivity implements
 
         if (requestCode == RC_GET_TOKEN) {
             // [START get_id_token]
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            Log.d(TAG, "onActivityResult:GET_TOKEN:success:" + result.getStatus().isSuccess());
-
-            if (result.isSuccess()) {
-                String idToken = result.getSignInAccount().getIdToken();
-                // TODO(developer): send token to server and validate
-            }
+            // This task is always completed immediately, there is no need to attach an
+            // asynchronous listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
             // [END get_id_token]
-
-            handleSignInResult(result);
         }
     }
 
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
-    }
-
-    private void updateUI(boolean signedIn) {
-        if (signedIn) {
+    private void updateUI(@Nullable GoogleSignInAccount account) {
+        if (account != null) {
             ((TextView) findViewById(R.id.status)).setText(R.string.signed_in);
+
+            String idToken = account.getIdToken();
+            mIdTokenTextView.setText(getString(R.string.id_token_fmt, idToken));
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);

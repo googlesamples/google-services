@@ -23,17 +23,6 @@ level:        BEGINNER
 # Dimensions: 512x512, PNG fomrat
 icon: app/src/main/res/drawable/ic_launcher_big.png
 
-# List of APIs that this sample should be listed under. Use authoritive,
-# names that are unique for the product in question. Examples:
-#
-# Android -    android:<class-name>
-# App Engine - gae-java:<class name>
-#              gae-python:<package>
-# Web Services - ws:<name of API from Cloud Console>
-apiRefs:
-    - android:com.google.android.gms.common.api.GoogleApiClient
-    - android:com.google.android.gms.plus.Plusl
-
 # Default: apache2. May be omitted for most samples.
 # Alternatives: apache2-android (for AOSP)
 license: apache2
