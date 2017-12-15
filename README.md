@@ -6,5 +6,4 @@ A collection of quickstart samples demonstrating the Google APIs for
 ## How to make contributions?
 Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## License
-See [LICENSE](LICENSE)
+[![Build Status](https://travis-ci.org/googlesamples/google-services.svg?branch=master)](https://travis-ci.org/googlesamples/google-services)
