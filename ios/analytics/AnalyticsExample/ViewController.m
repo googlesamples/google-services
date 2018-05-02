@@ -16,10 +16,11 @@
 
 #import "ViewController.h"
 
+// [START screen_view_hit_imports_objc]
 #import <GoogleAnalytics/GAI.h>
 #import <GoogleAnalytics/GAIDictionaryBuilder.h>
 #import <GoogleAnalytics/GAIFields.h>
-
+// [END screen_view_hit_imports_objc]
 
 @implementation ViewController
 
