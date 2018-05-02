@@ -16,6 +16,8 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+// [START screen_view_hit_imports_swift]
 #import <GoogleAnalytics/GAI.h>
 #import <GoogleAnalytics/GAIDictionaryBuilder.h>
 #import <GoogleAnalytics/GAIFields.h>
+// [END screen_view_hit_imports_swift]
