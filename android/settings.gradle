@@ -1,0 +1,1 @@
+include ':analytics:app', ':gcm:app', ':signin:app'
