@@ -12,8 +12,9 @@ matrix:
   - podfile: ios/signin/Podfile
     env: SAMPLE=SignIn
 
-rvm: 2.3.1
+rvm: 2.6.0
 before_install:
+  - gem install bundler
   - open -a "simulator" --args -CurrentDeviceUDID F60B87EC-8969-41A7-90ED-D0826ECC32DB
   - cd ios/$SAMPLE
   - bundle install
