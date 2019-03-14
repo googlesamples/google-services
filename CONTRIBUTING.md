@@ -38,7 +38,7 @@ accept your pull requests.
 1. Sign a Contributor License Agreement, if you have not yet done so (see
    details above).
 1. Create your own repo for your app following this naming convention:
-    * mirror-{app-name}-{language or plaform}
+    * mirror-{app-name}-{language or platform}
     * apps: quickstart, photohunt-server, photohunt-client
     * example:  mirror-quickstart-android
     * For multi-language apps, concatenate the primary languages like this:
