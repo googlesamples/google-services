@@ -156,7 +156,6 @@
 				10A034B61E039F1900A667F0 /* SignInExampleTests */,
 				4BC032DF1ACF33B70092326A /* Products */,
 				E27D599993EDB54E213FA076 /* Frameworks */,
-				72A0AD6FEF1A09A1A7F1472D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,13 +190,6 @@
 				4BC032E31ACF33B70092326A /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		72A0AD6FEF1A09A1A7F1472D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		E27D599993EDB54E213FA076 /* Frameworks */ = {
