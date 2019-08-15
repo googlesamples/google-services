@@ -1,4 +1,4 @@
-osx_image: xcode8.3
+osx_image: xcode10.3
 language: objective-c
 cache:
   - bundler
@@ -14,8 +14,6 @@ matrix:
 
 rvm: 2.6.0
 before_install:
-  - gem install bundler
-  - open -a "simulator" --args -CurrentDeviceUDID F60B87EC-8969-41A7-90ED-D0826ECC32DB
   - cd ios/$SAMPLE
   - bundle install
   - gem install xcpretty
