@@ -21,12 +21,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // TODO(developer) Configure the sign-in button look/feel
+  [GIDSignIn sharedInstance].presentingViewController = self;
 
-  [GIDSignIn sharedInstance].uiDelegate = self;
+  // Automatically sign in the user.
+  [[GIDSignIn sharedInstance] restorePreviousSignIn];
 
-  // Uncomment to automatically sign in the user.
-  //[[GIDSignIn sharedInstance] signInSilently];
   // [START_EXCLUDE silent]
   [[NSNotificationCenter defaultCenter]
       addObserver:self

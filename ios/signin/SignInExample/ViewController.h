@@ -18,7 +18,7 @@
 @import GoogleSignIn;
 
 // [START viewcontroller_interfaces]
-@interface ViewController : UIViewController <GIDSignInUIDelegate>
+@interface ViewController : UIViewController
 // [END viewcontroller_interfaces]
 
 // [START viewcontroller_vars]

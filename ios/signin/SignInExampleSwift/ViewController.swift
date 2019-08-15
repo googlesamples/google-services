@@ -19,7 +19,7 @@ import GoogleSignIn
 // Match the ObjC symbol name inside Main.storyboard.
 @objc(ViewController)
 // [START viewcontroller_interfaces]
-class ViewController: UIViewController, GIDSignInUIDelegate {
+class ViewController: UIViewController {
 // [END viewcontroller_interfaces]
 
   // [START viewcontroller_vars]
@@ -33,12 +33,11 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    GIDSignIn.sharedInstance().uiDelegate = self
+    GIDSignIn.sharedInstance()?.presentingViewController = self
 
-    // Uncomment to automatically sign in the user.
-    //GIDSignIn.sharedInstance().signInSilently()
+    // Automatically sign in the user.
+    GIDSignIn.sharedInstance()?.restorePreviousSignIn()
 
-    // TODO(developer) Configure the sign-in button look/feel
     // [START_EXCLUDE]
     NotificationCenter.default.addObserver(self,
         selector: #selector(ViewController.receiveToggleAuthUINotification(_:)),
@@ -72,7 +71,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
 
   // [START toggle_auth]
   func toggleAuthUI() {
-    if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+    if let _ = GIDSignIn.sharedInstance()?.currentUser?.authentication {
       // Signed in
       signInButton.isHidden = true
       signOutButton.isHidden = false

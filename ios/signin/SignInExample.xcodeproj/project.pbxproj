@@ -156,6 +156,7 @@
 				10A034B61E039F1900A667F0 /* SignInExampleTests */,
 				4BC032DF1ACF33B70092326A /* Products */,
 				E27D599993EDB54E213FA076 /* Frameworks */,
+				72A0AD6FEF1A09A1A7F1472D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,6 +191,13 @@
 				4BC032E31ACF33B70092326A /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72A0AD6FEF1A09A1A7F1472D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		E27D599993EDB54E213FA076 /* Frameworks */ = {
@@ -301,6 +309,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -456,7 +465,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -479,7 +488,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
@@ -610,6 +619,7 @@
 				10A034BD1E039F1900A667F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B97B2721AD7145E0036DD6C /* Build configuration list for PBXNativeTarget "SignInExampleSwift" */ = {
 			isa = XCConfigurationList;
