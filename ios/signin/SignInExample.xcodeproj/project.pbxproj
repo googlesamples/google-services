@@ -10,8 +10,6 @@
 		1024C2F01C93009800945A88 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024C2EF1C93009800945A88 /* SafariServices.framework */; };
 		1024C2F11C9300A500945A88 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1024C2EF1C93009800945A88 /* SafariServices.framework */; };
 		10A034B81E039F1900A667F0 /* SignInExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A034B71E039F1900A667F0 /* SignInExampleTests.m */; };
-		4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
-		4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */; };
 		4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC032EB1ACF33B70092326A /* Main.storyboard */; };
 		4B97B2591AD7145E0036DD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B2581AD7145E0036DD6C /* AppDelegate.swift */; };
 		4B97B25B1AD7145E0036DD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97B25A1AD7145E0036DD6C /* ViewController.swift */; };
@@ -55,7 +53,6 @@
 		10A034B51E039F1900A667F0 /* SignInExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignInExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10A034B71E039F1900A667F0 /* SignInExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInExampleTests.m; sourceTree = "<group>"; };
 		10A034B91E039F1900A667F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		4B60415E1AFADF2F00C00A2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4B97B2531AD7145E0036DD6C /* SignInExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignInExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B97B2581AD7145E0036DD6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				EF8983C51C0D13FD003619BB /* Default-568h@2x.png */,
-				4B0CAF3F1ACF72EB006FC636 /* GoogleSignIn.bundle */,
 				4BC032E01ACF33B70092326A /* SignInExample */,
 				4B97B2551AD7145E0036DD6C /* SignInExampleSwift */,
 				EF6EAC261B0A738400227264 /* shared */,
@@ -333,7 +329,6 @@
 				EF6EAC341B0A77E400227264 /* Images.xcassets in Resources */,
 				4B87B3DA1AEAECB800945BE8 /* Main.storyboard in Resources */,
 				EF6EAC321B0A771900227264 /* appbg.png in Resources */,
-				4B3329241AE04F9500327B83 /* GoogleSignIn.bundle in Resources */,
 				EF8983C61C0D13FD003619BB /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +337,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0CAF401ACF72EB006FC636 /* GoogleSignIn.bundle in Resources */,
 				EF6EAC311B0A771900227264 /* appbg.png in Resources */,
 				EF6EAC2B1B0A738400227264 /* Images.xcassets in Resources */,
 				EF6EAC2C1B0A738400227264 /* LaunchScreen.xib in Resources */,
