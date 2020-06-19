@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_navigation_item_run"
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="@string/navigationMenuRun" />
+
+    <item
+        android:id="@+id/bottom_navigation_item_map"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/navigationMenuMap" />
+
+    <item
+        android:id="@+id/bottom_navigation_item_profile"
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="@string/navigationMenuMe"/>
+
+</menu>
