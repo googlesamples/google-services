@@ -25,6 +25,21 @@ class RunFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var pauseOffset = 0L
+    private var isWorking = false
+
+    private fun startStopTimer(runBtn: Button, chronometer : Chronometer) {
+        isWorking = if (!isWorking) {
+            chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
+            chronometer.start()
+            true
+        } else {
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
+            chronometer.stop()
+            false
+        }
+        runBtn.setText(if (!isWorking) R.string.start else R.string.stop)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,24 +81,12 @@ class RunFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val chronometer = view.findViewById<Chronometer>(R.id.chronometer)
         val runBtn = view.findViewById<Button>(R.id.run_btn)
-        var pauseOffset = 0L
 
-//        chronometer.format = "00:00:00"
-        runBtn.setOnClickListener (object : View.OnClickListener{
-            var isWorking = false
-            override fun onClick(v: View) {
-                isWorking = if (!isWorking) {
-                    chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
-                    chronometer.start()
-                    true
-                } else {
-                    pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
-                    chronometer.stop()
-                    false
-                }
-                run_btn.setText(if (!isWorking) R.string.start else R.string.stop)
-            }
-        })
+        runBtn.setOnClickListener {
+            startStopTimer(runBtn, chronometer)
+        }
 
     }
+
+
 }

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable
 class MainActivity : AppCompatActivity() {
 
   lateinit var runFragment: RunFragment
-  lateinit var mapFragment: MapFragment
+  lateinit var mapsFragment: MapsFragment
   lateinit var meFragment: MeFragment
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.bottom_navigation_item_map -> {
-          mapFragment = MapFragment()
+          mapsFragment = MapsFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_layout, mapFragment)
+            .replace(R.id.fragment_layout, mapsFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
         }
