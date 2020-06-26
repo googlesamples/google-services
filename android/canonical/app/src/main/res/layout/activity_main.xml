@@ -16,7 +16,7 @@
       app:menu="@menu/bottom_navigation_menu" />
 
   <FrameLayout
-      android:id="@+id/fragment_layout"
+      android:id="@+id/fragment_container"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"

@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Chronometer
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
+import com.google.samples.quickstart.canonical.databinding.FragmentRunBinding
 import kotlinx.android.synthetic.main.fragment_run.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,7 +35,7 @@ class RunFragment : Fragment() {
     private var isWorking = false
     private var fragmentPauseStartTime = 0L
 
-    private fun startStopTimer(runBtn: Button, chronometer : Chronometer) {
+    private fun startStopTimer(chronometer : Chronometer) {
         isWorking = if (!isWorking) {
             chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
             chronometer.start()
@@ -46,7 +49,6 @@ class RunFragment : Fragment() {
             stopwatchViewModel.setWorkingStatus(false)
             false
         }
-        runBtn.setText(if (!isWorking) R.string.start else R.string.stop)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,8 +71,10 @@ class RunFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_run, container, false)
+        val binding : FragmentRunBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_run, container, false)
+        binding.lifecycleOwner = this
+        binding.stopwatchViewModel = stopwatchViewModel
+        return binding.root
     }
 
     companion object {
@@ -99,7 +103,7 @@ class RunFragment : Fragment() {
         val runBtn = view.findViewById<Button>(R.id.run_btn)
 
         runBtn.setOnClickListener {
-            startStopTimer(runBtn, chronometer)
+            startStopTimer(chronometer)
         }
 
     }
