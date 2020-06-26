@@ -8,10 +8,12 @@ import android.location.Location
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -34,13 +36,30 @@ class MapsFragment : Fragment() {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                // If request is cancelled, the result arrays are empty.
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    setUpMap()
+                } else {
+                    // Explain to the user that the feature is unavailable because
+                    // the features requires a permission that the user has denied.
+                }
+                return
+            }
+            else -> {
+                // Ignore all other requests.
+            }
+        }
+    }
+
     private fun setUpMap() {
-        if (ActivityCompat.checkSelfPermission(context as Activity,
+        if (checkSelfPermission(context as Activity,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(context as Activity,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-            val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-            mapFragment?.getMapAsync(callback)
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
             return
         }
 
@@ -54,7 +73,6 @@ class MapsFragment : Fragment() {
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
                 map.addMarker(MarkerOptions().position(currentLatLng).title("My location"))
                 map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng))
-                println("****************** %f %f **************\n".format(location.latitude, location.longitude))
             }
         }
     }

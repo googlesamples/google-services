@@ -2,14 +2,15 @@ package com.google.samples.quickstart.canonical
 
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Chronometer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_run.*
-import org.jetbrains.annotations.Nullable
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,17 +26,24 @@ class RunFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var stopwatchViewModel: StopwatchView
     private var pauseOffset = 0L
     private var isWorking = false
+    private var fragmentPauseStartTime = 0L
 
     private fun startStopTimer(runBtn: Button, chronometer : Chronometer) {
         isWorking = if (!isWorking) {
             chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
             chronometer.start()
+            chronometer.showContextMenu()
+            stopwatchViewModel.setWorkingStatus(true)
             true
         } else {
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
             chronometer.stop()
+            stopwatchViewModel.setPauseOffset(SystemClock.elapsedRealtime() - chronometer.base)
+            stopwatchViewModel.setWorkingStatus(false)
             false
         }
         runBtn.setText(if (!isWorking) R.string.start else R.string.stop)
@@ -47,6 +55,14 @@ class RunFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        stopwatchViewModel = activity?.run {
+            ViewModelProviders.of(this)[StopwatchView::class.java]
+        } ?: throw Exception("Null Activity")
+
+        pauseOffset = stopwatchViewModel.pauseOffset.value!!
+        isWorking = stopwatchViewModel.isWorking.value!!
+        fragmentPauseStartTime = stopwatchViewModel.fragmentPauseStartTime.value!!
     }
 
     override fun onCreateView(
@@ -88,5 +104,24 @@ class RunFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isWorking) {
+            chronometer?.base = fragmentPauseStartTime - pauseOffset
+            chronometer?.start()
+        } else {
+            chronometer?.base = SystemClock.elapsedRealtime() - pauseOffset
+            chronometer?.stop()
+        }
+    }
 
+    override fun onPause() {
+        super.onPause()
+        if (isWorking) {
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
+            fragmentPauseStartTime = SystemClock.elapsedRealtime()
+            stopwatchViewModel.setPauseOffset(pauseOffset)
+            stopwatchViewModel.setFragmentPauseStartTime(fragmentPauseStartTime)
+        }
+    }
 }

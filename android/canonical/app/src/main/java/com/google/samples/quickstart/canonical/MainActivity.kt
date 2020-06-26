@@ -1,20 +1,39 @@
 package com.google.samples.quickstart.canonical
 
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Chronometer
-import android.widget.Toast
+import android.util.Log
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.jetbrains.annotations.Nullable
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class StopwatchView : ViewModel(){
+
+  var pauseOffset = MutableLiveData<Long>(0L)
+  var isWorking = MutableLiveData<Boolean>(false)
+  var fragmentPauseStartTime = MutableLiveData<Long>(0L)
+
+  fun setPauseOffset(pause_offset_value:Long){
+    pauseOffset.value = pause_offset_value
+  }
+
+  fun setWorkingStatus(working_status:Boolean){
+    isWorking.value = working_status
+  }
+
+  fun setFragmentPauseStartTime(fragment_pause_start_time:Long){
+    fragmentPauseStartTime.value = fragment_pause_start_time
+  }
+}
 
 class MainActivity : AppCompatActivity() {
 
-  lateinit var runFragment: RunFragment
-  lateinit var mapsFragment: MapsFragment
-  lateinit var meFragment: MeFragment
+  private lateinit var runFragment: RunFragment
+  private lateinit var mapsFragment: MapsFragment
+  private lateinit var meFragment: MeFragment
+
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
