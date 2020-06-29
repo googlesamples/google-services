@@ -1,3 +1,11 @@
 <resources>
-  <string name="app_name">Summer 2020</string>
+    <string name="app_name">Summer 2020</string>
+    <string name="navigation_menu_run">Run</string>
+    <string name="navigation_menu_map">Map</string>
+    <string name="navigation_menu_me">Me</string>
+    <string name="hello_blank_fragment">This is Run fragment</string>
+    <string name="stop">Stop Timer</string>
+    <string name="start">Start Timer</string>
+    <string name="working">Started</string>
+    <string name="stopped">Stopped</string>
 </resources>
