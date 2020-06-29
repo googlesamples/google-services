@@ -6,7 +6,7 @@
     <data>
         <variable
             name="stopwatchViewModel"
-            type="com.google.samples.quickstart.canonical.StopwatchView" />
+            type="com.google.samples.quickstart.canonical.StopwatchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

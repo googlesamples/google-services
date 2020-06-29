@@ -3,7 +3,7 @@ package com.google.samples.quickstart.canonical
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class StopwatchView : ViewModel() {
+class StopwatchViewModel : ViewModel() {
 
     var pauseOffset = MutableLiveData<Long>(0L)
     var isWorking = MutableLiveData<Boolean>(false)

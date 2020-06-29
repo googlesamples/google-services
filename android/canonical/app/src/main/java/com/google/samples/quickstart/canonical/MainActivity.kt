@@ -7,16 +7,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var runFragment: RunFragment
-  private lateinit var mapsFragment: MapsFragment
-  private lateinit var meFragment: MeFragment
-
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    runFragment = RunFragment()
+    val runFragment = RunFragment()
     supportFragmentManager
       .beginTransaction()
       .replace(R.id.fragment_container, runFragment)
@@ -28,7 +23,7 @@ class MainActivity : AppCompatActivity() {
       when (item.itemId) {
 
         R.id.bottom_navigation_item_run -> {
-          runFragment = RunFragment()
+          val runFragment = RunFragment()
           supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, runFragment)
@@ -38,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.bottom_navigation_item_map -> {
-          mapsFragment = MapsFragment()
+          val mapsFragment = MapsFragment()
           supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, mapsFragment)
@@ -48,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.bottom_navigation_item_profile -> {
-          meFragment = MeFragment()
+          val meFragment = MeFragment()
           supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, meFragment)
