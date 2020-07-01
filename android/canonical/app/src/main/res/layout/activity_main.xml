@@ -19,32 +19,19 @@
       android:id="@+id/fragment_container"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:measureAllChildren="true"
       app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
       app:layout_constraintTop_toTopOf="parent">
 
-      <androidx.constraintlayout.widget.ConstraintLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          tools:context=".MainActivity">
-
-          <FrameLayout
-              android:id="@+id/autocomplete_view"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              app:layout_constraintTop_toTopOf="parent"/>
-
-          <FrameLayout
-              android:id="@+id/content_view"
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
-
-      </androidx.constraintlayout.widget.ConstraintLayout>
-
   </FrameLayout>
+    <FrameLayout
+        android:id="@+id/autocomplete_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="true"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

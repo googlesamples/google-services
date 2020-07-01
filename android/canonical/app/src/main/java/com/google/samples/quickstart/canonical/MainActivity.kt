@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     val runFragment = RunFragment()
     supportFragmentManager
       .beginTransaction()
-      .replace(R.id.content_view, runFragment)
+      .replace(R.id.fragment_container, runFragment)
       .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
       .commit()
 
@@ -25,41 +25,42 @@ class MainActivity : AppCompatActivity() {
       when (item.itemId) {
 
         R.id.bottom_navigation_item_run -> {
-          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_view)
+          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_container)
           autocompleteFrameLayout.visibility = View.INVISIBLE
 
           val runFragment = RunFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.content_view, runFragment)
+            .replace(R.id.fragment_container, runFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
         }
 
         R.id.bottom_navigation_item_map -> {
-          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_view)
+          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_container)
           autocompleteFrameLayout.visibility = View.VISIBLE
+          autocompleteFrameLayout.bringToFront()
 
           val mapsFragment = MapsFragment()
           val autocompleteFragment = AutocompleteFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.content_view, mapsFragment)
-            .replace(R.id.autocomplete_view, autocompleteFragment)
+            .replace(R.id.fragment_container, mapsFragment)
+            .replace(R.id.autocomplete_container, autocompleteFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
         }
 
         R.id.bottom_navigation_item_profile -> {
-          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_view)
+          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_container)
           autocompleteFrameLayout.visibility = View.INVISIBLE
 
           val meFragment = MeFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.content_view, meFragment)
+            .replace(R.id.fragment_container, meFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
