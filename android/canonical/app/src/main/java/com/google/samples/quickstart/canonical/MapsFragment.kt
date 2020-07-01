@@ -7,10 +7,12 @@ import android.location.Location
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.checkSelfPermission
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -20,6 +22,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 
 class MapsFragment : Fragment() {
 
@@ -27,8 +32,10 @@ class MapsFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
 
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val TAG = "MapsFragment"
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -69,6 +76,8 @@ class MapsFragment : Fragment() {
                 map.addMarker(MarkerOptions().position(currentLatLng).title("My location"))
                 map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng))
             }
+        }.addOnFailureListener() {
+            e -> Log.i(TAG, "failed getting location")
         }
     }
 
@@ -99,7 +108,28 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(mapReadyCallback)
+        val mapFragment: SupportMapFragment = SupportMapFragment.newInstance()
+        val autoCompleteFragment : AutocompleteSupportFragment = AutocompleteSupportFragment.newInstance()
+        val fragmentTransaction = childFragmentManager.beginTransaction()
+        mapFragment.getMapAsync(mapReadyCallback)
+
+        // Copied From the doc
+        // Specify the types of place data to return.
+        autoCompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+        // Set up a PlaceSelectionListener to handle the response.
+        autoCompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: ${place.name}, ${place.id}")
+            }
+
+            override fun onError(status: Status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: $status")
+            }
+        })
+        fragmentTransaction.add(R.id.map_fragment, mapFragment)
+        fragmentTransaction.add(R.id.autocomplete_fragment, autoCompleteFragment)
+        fragmentTransaction.commit()
     }
 }
