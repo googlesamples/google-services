@@ -23,15 +23,5 @@
       app:layout_constraintTop_toTopOf="parent">
 
   </FrameLayout>
-    <FrameLayout
-        android:id="@+id/autocomplete_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:measureAllChildren="true"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

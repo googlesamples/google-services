@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity() {
       when (item.itemId) {
 
         R.id.bottom_navigation_item_run -> {
-          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_container)
-          autocompleteFrameLayout.visibility = View.INVISIBLE
-
           val runFragment = RunFragment()
           supportFragmentManager
             .beginTransaction()
@@ -38,25 +35,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.bottom_navigation_item_map -> {
-          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_container)
-          autocompleteFrameLayout.visibility = View.VISIBLE
-          autocompleteFrameLayout.bringToFront()
-
           val mapsFragment = MapsFragment()
-          val autocompleteFragment = AutocompleteFragment()
           supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, mapsFragment)
-            .replace(R.id.autocomplete_container, autocompleteFragment)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
         }
 
         R.id.bottom_navigation_item_profile -> {
-          val autocompleteFrameLayout : FrameLayout = findViewById(R.id.autocomplete_container)
-          autocompleteFrameLayout.visibility = View.INVISIBLE
-
           val meFragment = MeFragment()
           supportFragmentManager
             .beginTransaction()
