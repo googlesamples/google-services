@@ -41,8 +41,10 @@ class MapsFragment : Fragment() {
     private lateinit var autocompleteLayout : LinearLayout
     private lateinit var targetLatLng : LatLng
     private lateinit var targetName : String
+    private lateinit var autocompleteFragment : AutocompleteSupportFragment
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
+
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -74,9 +76,8 @@ class MapsFragment : Fragment() {
     }
 
     private fun setPlacesSearchBias() {
-        val autocompleteFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         // Search nearby result
-        currentLatLng?.let{
+        currentLatLng?.let {
             Log.i(TAG, "currentLatLng")
             autocompleteFragment.setLocationBias(
                 RectangularBounds.newInstance(
@@ -95,18 +96,24 @@ class MapsFragment : Fragment() {
 
         // Add and adjust the position of MyLocation button.
         map.isMyLocationEnabled = true
-        map.setPadding(0,(1.5 * autocompleteLayout.height).toInt(),0,0)
+        map.setPadding(0,(getString(R.string.padding_ratio).toFloat() * autocompleteLayout.height).toInt(),0,0)
 
         fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
             // Got last known location. In some rare situations this can be null.
-            if (location != null) {
+            location?.let {
                 lastLocation = location
                 currentLatLng = LatLng(location.latitude, location.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                    currentLatLng,
+                    getString(R.string.zoom_value).toFloat()
+                ))
                 map.addMarker(MarkerOptions()
                             .position(currentLatLng!!)
-                            .title("My location"))
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
+                            .title(getString(R.string.my_location_title)))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    currentLatLng,
+                    getString(R.string.zoom_value).toFloat()
+                ))
                 setPlacesSearchBias()
             }
         }
@@ -146,7 +153,10 @@ class MapsFragment : Fragment() {
 
     private val searchPlacesCallback = OnMapReadyCallback { map ->
         targetMarker?.remove()
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(targetLatLng, 14f))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+            targetLatLng,
+            getString(R.string.zoom_value).toFloat()
+        ))
         targetMarker = map.addMarker(MarkerOptions()
                                 .position(targetLatLng)
                                 .title(targetName)
@@ -167,7 +177,7 @@ class MapsFragment : Fragment() {
         initPlaces()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
-        val autocompleteFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        autocompleteFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteLayout = view.findViewById(R.id.autocomplete_linearLayout)
         mapFragment.getMapAsync(mapReadyCallback)
 

@@ -8,4 +8,5 @@
     <string name="start">Start Timer</string>
     <string name="working">Started</string>
     <string name="stopped">Stopped</string>
+    <string name="my_location_title">My location</string>
 </resources>
