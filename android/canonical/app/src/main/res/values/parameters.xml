@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="zoom_value" format="float" type="dimen">14.0</item>
-    <item name="padding_ratio" format="float" type="dimen">1.3</item>
-</resources>

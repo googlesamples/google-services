@@ -44,6 +44,9 @@ class MapsFragment : Fragment() {
     private lateinit var autocompleteFragment : AutocompleteSupportFragment
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
+    private val zoomValue = 14f
+    private val paddingRatio = 1.5
+    private val fragmentTag = "Mapfragment"
 
 
     companion object {
@@ -95,8 +98,8 @@ class MapsFragment : Fragment() {
 
         // Add and adjust the position of MyLocation button.
         map.isMyLocationEnabled = true
-        map.setPadding(0, (resources.getFloat(R.dimen.padding_ratio) * autocompleteLayout.height).toInt(),0,0)
-
+        map.setPadding(0, (paddingRatio * autocompleteLayout.height).toInt(),0,0)
+        
         fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
             // Got last known location. In some rare situations this can be null.
             location?.let {
@@ -104,14 +107,14 @@ class MapsFragment : Fragment() {
                 currentLatLng = LatLng(location.latitude, location.longitude)
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     currentLatLng,
-                    resources.getFloat(R.dimen.zoom_value)
+                    zoomValue
                 ))
                 map.addMarker(MarkerOptions()
                             .position(currentLatLng!!)
                             .title(getString(R.string.my_location_title)))
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                     currentLatLng,
-                    resources.getFloat(R.dimen.zoom_value)
+                    zoomValue
                 ))
                 setPlacesSearchBias()
             } ?: run{
@@ -130,7 +133,7 @@ class MapsFragment : Fragment() {
             }
 
             override fun onError(status: Status) {
-                Log.e("Mapfragment", "An error occurred: $status")
+                Log.e(fragmentTag, "An error occurred: $status")
             }
         })
     }
@@ -149,14 +152,13 @@ class MapsFragment : Fragment() {
         map = googleMap
         map.uiSettings.isZoomControlsEnabled = true
         setUpMap()
-
     }
 
     private val searchPlacesCallback = OnMapReadyCallback { map ->
         targetMarker?.remove()
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
             targetLatLng,
-            resources.getFloat(R.dimen.zoom_value)
+            zoomValue
         ))
         targetMarker = map.addMarker(MarkerOptions()
                                 .position(targetLatLng)
