@@ -2,7 +2,6 @@ package com.google.samples.quickstart.canonical
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.fragment.app.Fragment
@@ -13,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -78,7 +78,6 @@ class MapsFragment : Fragment() {
     private fun setPlacesSearchBias() {
         // Search nearby result
         currentLatLng?.let {
-            Log.i(TAG, "currentLatLng")
             autocompleteFragment.setLocationBias(
                 RectangularBounds.newInstance(
                     LatLng(currentLatLng!!.latitude - 1, currentLatLng!!.longitude - 1),
@@ -96,7 +95,7 @@ class MapsFragment : Fragment() {
 
         // Add and adjust the position of MyLocation button.
         map.isMyLocationEnabled = true
-        map.setPadding(0,(getString(R.string.padding_ratio).toFloat() * autocompleteLayout.height).toInt(),0,0)
+        map.setPadding(0, (resources.getFloat(R.dimen.padding_ratio) * autocompleteLayout.height).toInt(),0,0)
 
         fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
             // Got last known location. In some rare situations this can be null.
@@ -105,16 +104,18 @@ class MapsFragment : Fragment() {
                 currentLatLng = LatLng(location.latitude, location.longitude)
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     currentLatLng,
-                    getString(R.string.zoom_value).toFloat()
+                    resources.getFloat(R.dimen.zoom_value)
                 ))
                 map.addMarker(MarkerOptions()
                             .position(currentLatLng!!)
                             .title(getString(R.string.my_location_title)))
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                     currentLatLng,
-                    getString(R.string.zoom_value).toFloat()
+                    resources.getFloat(R.dimen.zoom_value)
                 ))
                 setPlacesSearchBias()
+            } ?: run{
+                Toast.makeText(context, getString(R.string.cannot_access_location), Toast.LENGTH_SHORT)
             }
         }
     }
@@ -129,7 +130,7 @@ class MapsFragment : Fragment() {
             }
 
             override fun onError(status: Status) {
-                Log.e(TAG, "An error occurred: $status")
+                Log.e("Mapfragment", "An error occurred: $status")
             }
         })
     }
@@ -155,7 +156,7 @@ class MapsFragment : Fragment() {
         targetMarker?.remove()
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
             targetLatLng,
-            getString(R.string.zoom_value).toFloat()
+            resources.getFloat(R.dimen.zoom_value)
         ))
         targetMarker = map.addMarker(MarkerOptions()
                                 .position(targetLatLng)
