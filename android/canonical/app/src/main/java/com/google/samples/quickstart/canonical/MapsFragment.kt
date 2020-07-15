@@ -7,28 +7,49 @@ import android.location.Location
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.common.api.Status
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.RectangularBounds
+import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 
 class MapsFragment : Fragment() {
 
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
-
+    private lateinit var placesClient : PlacesClient
+    private lateinit var autocompleteLayout : LinearLayout
+    private lateinit var targetLatLng : LatLng
+    private lateinit var targetName : String
+    private lateinit var autocompleteFragment : AutocompleteSupportFragment
+    private var currentLatLng : LatLng? = null
+    private var targetMarker : Marker? = null
+    
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val ZOOM_VALUE = 14f
+        private const val PADDING_RATIO = 1.5
+        private const val FRAGMENT_TAG = "Mapfragment"
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -51,6 +72,22 @@ class MapsFragment : Fragment() {
         }
     }
 
+    private fun initPlaces() {
+        context?.let { Places.initialize(it, getString(R.string.google_maps_key)) }
+        placesClient = context?.let { Places.createClient(it) }!!
+    }
+
+    private fun setPlacesSearchBias() {
+        // Search nearby result
+        currentLatLng?.let {
+            autocompleteFragment.setLocationBias(
+                RectangularBounds.newInstance(
+                    LatLng(currentLatLng!!.latitude - 1, currentLatLng!!.longitude - 1),
+                    LatLng(currentLatLng!!.latitude + 1, currentLatLng!!.longitude + 1)
+                ))
+        }
+    }
+
     private fun setUpMap() {
         if (checkSelfPermission(context as Activity,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -58,18 +95,46 @@ class MapsFragment : Fragment() {
             return
         }
 
+        // Add and adjust the position of MyLocation button.
         map.isMyLocationEnabled = true
-
+        map.setPadding(0, (PADDING_RATIO * autocompleteLayout.height).toInt(),0,0)
+        
         fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
             // Got last known location. In some rare situations this can be null.
-            if (location != null) {
+            location?.let {
                 lastLocation = location
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
-                map.addMarker(MarkerOptions().position(currentLatLng).title("My location"))
-                map.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng))
+                currentLatLng = LatLng(location.latitude, location.longitude)
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                    currentLatLng,
+                    ZOOM_VALUE
+                ))
+                map.addMarker(MarkerOptions()
+                            .position(currentLatLng!!)
+                            .title(getString(R.string.my_location_title)))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    currentLatLng,
+                    ZOOM_VALUE
+                ))
+                setPlacesSearchBias()
+            } ?: run{
+                Toast.makeText(context, getString(R.string.cannot_access_location), Toast.LENGTH_SHORT)
             }
         }
+    }
+
+    private fun setUpAutocomplete(autocompleteFragment : AutocompleteSupportFragment, mapFragment : SupportMapFragment) {
+        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG))
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                targetLatLng = place.latLng!!
+                targetName = place.name.toString()
+                mapFragment.getMapAsync(searchPlacesCallback)
+            }
+
+            override fun onError(status: Status) {
+                Log.e(FRAGMENT_TAG, "An error occurred: $status")
+            }
+        })
     }
 
 
@@ -88,6 +153,18 @@ class MapsFragment : Fragment() {
         setUpMap()
     }
 
+    private val searchPlacesCallback = OnMapReadyCallback { map ->
+        targetMarker?.remove()
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+            targetLatLng,
+            ZOOM_VALUE
+        ))
+        targetMarker = map.addMarker(MarkerOptions()
+                                .position(targetLatLng)
+                                .title(targetName)
+                                .draggable(true))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -99,7 +176,13 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(mapReadyCallback)
+        initPlaces()
+
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
+        autocompleteFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        autocompleteLayout = view.findViewById(R.id.autocomplete_linearLayout)
+        mapFragment.getMapAsync(mapReadyCallback)
+
+        setUpAutocomplete(autocompleteFragment, mapFragment)
     }
 }
