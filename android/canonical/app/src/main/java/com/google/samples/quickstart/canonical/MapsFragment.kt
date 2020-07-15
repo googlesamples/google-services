@@ -44,13 +44,13 @@ class MapsFragment : Fragment() {
     private lateinit var autocompleteFragment : AutocompleteSupportFragment
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
-    private val zoomValue = 14f
-    private val paddingRatio = 1.5
-    private val fragmentTag = "Mapfragment"
 
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val ZOOM_VALUE = 14f
+        private const val PADDING_RATIO = 1.5
+        private const val FRAGMENT_TAG = "Mapfragment"
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -98,7 +98,7 @@ class MapsFragment : Fragment() {
 
         // Add and adjust the position of MyLocation button.
         map.isMyLocationEnabled = true
-        map.setPadding(0, (paddingRatio * autocompleteLayout.height).toInt(),0,0)
+        map.setPadding(0, (PADDING_RATIO * autocompleteLayout.height).toInt(),0,0)
         
         fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
             // Got last known location. In some rare situations this can be null.
@@ -107,14 +107,14 @@ class MapsFragment : Fragment() {
                 currentLatLng = LatLng(location.latitude, location.longitude)
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     currentLatLng,
-                    zoomValue
+                    ZOOM_VALUE
                 ))
                 map.addMarker(MarkerOptions()
                             .position(currentLatLng!!)
                             .title(getString(R.string.my_location_title)))
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                     currentLatLng,
-                    zoomValue
+                    ZOOM_VALUE
                 ))
                 setPlacesSearchBias()
             } ?: run{
@@ -133,7 +133,7 @@ class MapsFragment : Fragment() {
             }
 
             override fun onError(status: Status) {
-                Log.e(fragmentTag, "An error occurred: $status")
+                Log.e(FRAGMENT_TAG, "An error occurred: $status")
             }
         })
     }
@@ -158,7 +158,7 @@ class MapsFragment : Fragment() {
         targetMarker?.remove()
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
             targetLatLng,
-            zoomValue
+            ZOOM_VALUE
         ))
         targetMarker = map.addMarker(MarkerOptions()
                                 .position(targetLatLng)
