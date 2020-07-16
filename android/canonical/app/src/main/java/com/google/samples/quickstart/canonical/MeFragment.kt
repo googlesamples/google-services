@@ -1,11 +1,15 @@
 package com.google.samples.quickstart.canonical
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +25,8 @@ class MeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var mAuth : FirebaseAuth
+    private lateinit var mGoogleSignInClient : GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +40,11 @@ class MeFragment : Fragment() {
 //            .requestIdToken(getString(R.string.default_web_client_id))
 //            .requestEmail()
 //            .build()
-
+//
+//        mGoogleSignInClient = GoogleSignIn.getClient(this.context!!, gso)
+//        mAuth = FirebaseAuth.getInstance()
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +52,16 @@ class MeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_me, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val account = GoogleSignIn.getLastSignedInAccount(this.context)
+        account?.let {
+            Log.i("MeFragment", "No login")
+        } ?.run {
+            Log.i("MeFragment", "Already login")
+        }
     }
 
     companion object {
