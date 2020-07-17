@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "558666181231",
+    "firebase_url": "https://pivotal-nebula-281103.firebaseio.com",
+    "project_id": "pivotal-nebula-281103",
+    "storage_bucket": "pivotal-nebula-281103.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558666181231:android:ace62cb2b3bd45e4a3fb9a",
+        "android_client_info": {
+          "package_name": "com.google.samples.quickstart.canonical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558666181231-ts5q1e04oha2g1m7km4jonff5s6fe1qk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.samples.quickstart.canonical",
+            "certificate_hash": "cf9e073a08e94150b32d4c6e5004a5e26a647287"
+          }
+        },
+        {
+          "client_id": "558666181231-bt85k6hb4mfeuri817m7o2n1m96a3shh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "THIS IS PRIVATE. USING YOUR OWN API KEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558666181231-bt85k6hb4mfeuri817m7o2n1m96a3shh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
