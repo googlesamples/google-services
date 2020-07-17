@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private const val meTag = "MeFragment"
+
 
 /**
  * A simple [Fragment] subclass.
@@ -50,7 +50,7 @@ class MeFragment : Fragment() {
         logoutButton.setOnClickListener {
             // Sign out both Google account and Firebase
             FirebaseAuth.getInstance().signOut()
-            (activity as MainActivity).mGoogleSignInClient.signOut().addOnCompleteListener {
+            (activity as MainActivity).googleSignInClient.signOut().addOnCompleteListener {
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -62,10 +62,10 @@ class MeFragment : Fragment() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this.context)
         account?.let {
-            Log.i(meTag, "Already login")
+            Log.i(ME_TAG, "Already login")
             view?.findViewById<TextView>(R.id.textView)?.text = account.displayName
         } ?.run {
-            Log.i(meTag, "No login")
+            Log.i(ME_TAG, "No login")
         }
     }
 
@@ -79,6 +79,9 @@ class MeFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment MeFragment.
          */
+
+        private const val ME_TAG = "MeFragment"
+
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

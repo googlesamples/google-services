@@ -15,10 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class MainActivity : AppCompatActivity() {
-  lateinit var mGoogleSignInClient: GoogleSignInClient
+  lateinit var googleSignInClient: GoogleSignInClient
   private lateinit var auth: FirebaseAuth
-  private val tag = "MainActivity-Login"
-  private val firebaseTag = "MainActivity-Login"
 
   private fun googleSignInInit() {
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -26,12 +24,12 @@ class MainActivity : AppCompatActivity() {
       .requestEmail()
       .build()
 
-    mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+    googleSignInClient = GoogleSignIn.getClient(this, gso)
   }
 
   private fun signIn() {
     auth = FirebaseAuth.getInstance()
-    val signInIntent = mGoogleSignInClient.signInIntent
+    val signInIntent = googleSignInClient.signInIntent
     startActivityForResult(signInIntent, RC_SIGN_IN)
   }
 
@@ -46,16 +44,16 @@ class MainActivity : AppCompatActivity() {
         try {
           // Google Sign In was successful, authenticate with Firebase
           val account = task.getResult(ApiException::class.java)!!
-          Log.d(tag, "firebaseAuthWithGoogle:" + account.id)
+          Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
           firebaseAuthWithGoogle(account.idToken!!)
           setContentView(R.layout.activity_main)
           setupNavigationBar()
         } catch (e: ApiException) {
           // Google Sign In failed
-          Log.w(tag, "Google sign in failed", e)
+          Log.w(TAG, "Google sign in failed", e)
         }
       } else {
-        Log.w(tag, "Google sign in unsuccessful")
+        Log.w(TAG, "Google sign in unsuccessful")
       }
 
     }
@@ -69,12 +67,12 @@ class MainActivity : AppCompatActivity() {
       .addOnCompleteListener(this) { task ->
         if (task.isSuccessful) {
           // Firebase Sign in success, update UI with the signed-in user's information
-          Log.d(firebaseTag, "signInWithCredential:success")
+          Log.d(FIREBASE_TAG, "signInWithCredential:success")
           val user = auth.currentUser
-          Log.d(firebaseTag, "signed-in user's Email:" + user!!.email)
+          Log.d(FIREBASE_TAG, "signed-in user's Email:" + user!!.email)
         } else {
           // If sign in fails, log a message to the user.
-          Log.w(firebaseTag, "signInWithCredential:failure", task.exception)
+          Log.w(FIREBASE_TAG, "signInWithCredential:failure", task.exception)
         }
       }
   }
@@ -152,6 +150,8 @@ class MainActivity : AppCompatActivity() {
 
   companion object {
     private const val RC_SIGN_IN = 0
+    private const val TAG = "MainActivity-Login"
+    private const val FIREBASE_TAG = "MainAct-firebase-Login"
   }
 
 

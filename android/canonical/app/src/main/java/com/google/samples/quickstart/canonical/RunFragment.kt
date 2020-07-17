@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Chronometer
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -50,6 +49,8 @@ class RunFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+//        stopwatchVM = StopwatchViewModel()
 
         stopwatchVM = activity?.run {
             ViewModelProviders.of(this)[StopwatchViewModel::class.java]
