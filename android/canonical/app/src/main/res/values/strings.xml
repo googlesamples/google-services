@@ -10,4 +10,5 @@
     <string name="stopped">Stopped</string>
     <string name="my_location_title">My location</string>
     <string name="cannot_access_location">Cannot access location now. Please Try later</string>
+    <string name="logout_button_text">Logout</string>
 </resources>

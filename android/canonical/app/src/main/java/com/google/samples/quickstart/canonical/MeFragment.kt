@@ -1,20 +1,20 @@
 package com.google.samples.quickstart.canonical
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val meTag = "MeFragment"
 
 /**
  * A simple [Fragment] subclass.
@@ -25,8 +25,6 @@ class MeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var mAuth : FirebaseAuth
-    private lateinit var mGoogleSignInClient : GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +32,6 @@ class MeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-//        // Configure Google Sign In
-//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestIdToken(getString(R.string.default_web_client_id))
-//            .requestEmail()
-//            .build()
-//
-//        mGoogleSignInClient = GoogleSignIn.getClient(this.context!!, gso)
-//        mAuth = FirebaseAuth.getInstance()
     }
 
 
@@ -54,15 +43,32 @@ class MeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_me, container, false)
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val logoutButton : Button = view.findViewById(R.id.logout_button)
+        logoutButton.setOnClickListener {
+            // Sign out both Google account and Firebase
+            FirebaseAuth.getInstance().signOut()
+            (activity as MainActivity).mGoogleSignInClient.signOut().addOnCompleteListener {
+                val intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this.context)
         account?.let {
-            Log.i("MeFragment", "No login")
+            Log.i(meTag, "Already login")
+            view?.findViewById<TextView>(R.id.textView)?.text = account.displayName
         } ?.run {
-            Log.i("MeFragment", "Already login")
+            Log.i(meTag, "No login")
         }
     }
+
 
     companion object {
         /**
