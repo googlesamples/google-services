@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.bottom_navigation_item_map -> {
-//          val mapsFragment = MapsFragment()
           supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, MapsFragment())
