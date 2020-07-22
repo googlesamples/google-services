@@ -49,7 +49,6 @@ class RunFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
         stopwatchVM = activity?.run {
             ViewModelProviders.of(this)[StopwatchViewModel::class.java]
         } ?: throw Exception("Null Activity")
