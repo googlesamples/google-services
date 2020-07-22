@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.firebase.auth.FirebaseAuth
+import androidx.lifecycle.ViewModelProviders
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 
 /**
  * A simple [Fragment] subclass.
@@ -25,6 +23,7 @@ class MeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var signInVM : SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +31,11 @@ class MeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        signInVM = activity?.run {
+            ViewModelProviders.of(this)[SignInViewModel::class.java]
+        } ?: throw Exception("Null Activity")
+
     }
 
 
@@ -49,24 +53,14 @@ class MeFragment : Fragment() {
         val logoutButton : Button = view.findViewById(R.id.logout_button)
         logoutButton.setOnClickListener {
             // Sign out both Google account and Firebase
-            FirebaseAuth.getInstance().signOut()
-            (activity as MainActivity).googleSignInClient.signOut().addOnCompleteListener {
+            signInVM.signOut()?.addOnCompleteListener {
                 val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             }
         }
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(this.context)
-        account?.let {
-            Log.i(ME_TAG, "Already login")
-            view?.findViewById<TextView>(R.id.textView)?.text = account.displayName
-        } ?.run {
-            Log.i(ME_TAG, "No login")
-        }
+        // update UI
+        view.findViewById<TextView>(R.id.textView)?.text = signInVM.getFirebaseAuth().currentUser?.email
     }
 
 
