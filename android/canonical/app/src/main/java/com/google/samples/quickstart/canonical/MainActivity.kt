@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -70,24 +69,27 @@ class MainActivity : AppCompatActivity() {
   override fun onStart() {
     super.onStart()
 
-    val account = GoogleSignIn.getLastSignedInAccount(this)
-    account?.let {
-      Log.d(TAG, "Already login")
-    } ?: run {
-      Log.d(TAG, "No login. Update UI")
-      findViewById<ConstraintLayout>(R.id.main_activity_view).removeAllViews()
+    when (signInVM.isLogIn()) {
+      true -> {
+        Log.d(MAIN_ACTIVITY_TAG, "Already login")
+      }
 
-      supportFragmentManager
-        .beginTransaction()
-        .replace(R.id.main_activity_view, LoginFragment())
-        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        .commit()
+      false -> {
+        Log.d(MAIN_ACTIVITY_TAG, "No login. Update UI")
+        findViewById<ConstraintLayout>(R.id.main_activity_view).removeAllViews()
+
+        supportFragmentManager
+          .beginTransaction()
+          .replace(R.id.main_activity_view, LoginFragment())
+          .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+          .commit()
+      }
     }
   }
 
 
   companion object {
-    private const val TAG = "MainActivity"
+    const val MAIN_ACTIVITY_TAG = "MainActivity"
   }
 
 }

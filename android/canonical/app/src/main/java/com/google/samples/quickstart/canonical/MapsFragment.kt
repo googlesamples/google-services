@@ -44,13 +44,7 @@ class MapsFragment : Fragment() {
     private lateinit var autocompleteFragment : AutocompleteSupportFragment
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
-    
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-        private const val ZOOM_VALUE = 14f
-        private const val PADDING_RATIO = 1.5
-        private const val FRAGMENT_TAG = "Mapfragment"
-    }
+
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
@@ -99,27 +93,33 @@ class MapsFragment : Fragment() {
         map.isMyLocationEnabled = true
         map.setPadding(0, (PADDING_RATIO * autocompleteLayout.height).toInt(),0,0)
         
-        fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
             // Got last known location. In some rare situations this can be null.
-            location?.let {
-                lastLocation = location
-                currentLatLng = LatLng(location.latitude, location.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    currentLatLng,
-                    ZOOM_VALUE
-                ))
-                map.addMarker(MarkerOptions()
-                            .position(currentLatLng!!)
-                            .title(getString(R.string.my_location_title)))
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                    currentLatLng,
-                    ZOOM_VALUE
-                ))
-                setPlacesSearchBias()
-            } ?: run{
-                Toast.makeText(context, getString(R.string.cannot_access_location), Toast.LENGTH_SHORT)
+                location?.let {
+                    Log.d(MAP_FRAGMENT_TAG, "Locating Success ${location.latitude}, ${location.longitude}")
+                    lastLocation = location
+                    currentLatLng = LatLng(location.latitude, location.longitude)
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        currentLatLng,
+                        ZOOM_VALUE
+                    ))
+                    map.addMarker(MarkerOptions()
+                                .position(currentLatLng!!)
+                                .title(getString(R.string.my_location_title)))
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                        currentLatLng,
+                        ZOOM_VALUE
+                    ))
+                    setPlacesSearchBias()
+                } ?: run{
+                    Log.d(MAP_FRAGMENT_TAG, "Locating Failed")
+                    Toast.makeText(context, getString(R.string.cannot_access_location), Toast.LENGTH_SHORT)
+                }
             }
-        }
+            .addOnFailureListener {
+                Log.d(MAP_FRAGMENT_TAG, "fusedLocationClient.lastLocation Failed")
+            }
     }
 
     private fun setUpAutocomplete(autocompleteFragment : AutocompleteSupportFragment, mapFragment : SupportMapFragment) {
@@ -132,7 +132,7 @@ class MapsFragment : Fragment() {
             }
 
             override fun onError(status: Status) {
-                Log.e(FRAGMENT_TAG, "An error occurred: $status")
+                Log.e(MAP_FRAGMENT_TAG, "An error occurred: $status")
             }
         })
     }
@@ -184,5 +184,12 @@ class MapsFragment : Fragment() {
         mapFragment.getMapAsync(mapReadyCallback)
 
         setUpAutocomplete(autocompleteFragment, mapFragment)
+    }
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val ZOOM_VALUE = 14f
+        private const val PADDING_RATIO = 1.5
+        private const val MAP_FRAGMENT_TAG = "Mapfragment"
     }
 }
