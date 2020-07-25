@@ -51,7 +51,7 @@ class MapsFragment : Fragment() {
         private const val PADDING_RATIO = 1.5
         private const val FRAGMENT_TAG = "Mapfragment"
     }
-    
+
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
