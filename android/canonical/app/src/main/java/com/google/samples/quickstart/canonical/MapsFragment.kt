@@ -44,7 +44,7 @@ class MapsFragment : Fragment() {
     private lateinit var autocompleteFragment : AutocompleteSupportFragment
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
-
+  
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val ZOOM_VALUE = 14f
