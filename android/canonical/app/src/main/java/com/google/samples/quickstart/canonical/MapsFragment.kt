@@ -45,6 +45,12 @@ class MapsFragment : Fragment() {
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
 
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val ZOOM_VALUE = 14f
+        private const val PADDING_RATIO = 1.5
+        private const val MAP_FRAGMENT_TAG = "Mapfragment"
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
@@ -184,12 +190,5 @@ class MapsFragment : Fragment() {
         mapFragment.getMapAsync(mapReadyCallback)
 
         setUpAutocomplete(autocompleteFragment, mapFragment)
-    }
-
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-        private const val ZOOM_VALUE = 14f
-        private const val PADDING_RATIO = 1.5
-        private const val MAP_FRAGMENT_TAG = "Mapfragment"
     }
 }
