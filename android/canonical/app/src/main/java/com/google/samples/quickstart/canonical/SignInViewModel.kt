@@ -3,6 +3,7 @@ package com.google.samples.quickstart.canonical
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -10,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 
@@ -19,12 +21,25 @@ class SignInViewModel : ViewModel() {
     private lateinit var context: Context
     private lateinit var activity: MainActivity
 
+    data class CurFirebaseUser(
+        var firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser,
+        var isLogin: Boolean = firebaseUser?.let { true } ?: run{ false }
+    )
+
+    private var curFirebaseUser = MutableLiveData<CurFirebaseUser>()
+    init {
+        Log.i(SIGN_IN_FRAGMENT_TAG, "init")
+        curFirebaseUser.value = CurFirebaseUser()
+    }
+
+
     private fun googleSignOut(): Task<Void>? {
         return googleSignInClient.signOut()
     }
 
     private fun firebaseSignOut() {
         FirebaseAuth.getInstance().signOut()
+        curFirebaseUser.value!!.isLogin = false
     }
 
     private fun googleSignInInit() {
@@ -53,8 +68,9 @@ class SignInViewModel : ViewModel() {
                 if (task.isSuccessful) {
                     // Firebase Sign in success, update UI with the signed-in user's information
                     Log.d(SIGN_IN_FRAGMENT_TAG, "firebase signInWithCredential:success")
-                    val user = auth.currentUser
-                    Log.d(SIGN_IN_FRAGMENT_TAG, "firebase signed-in user's Email:" + user!!.email)
+                    Log.d(SIGN_IN_FRAGMENT_TAG, "firebase signed-in user's Email:" + auth.currentUser!!.email)
+                    curFirebaseUser.value!!.firebaseUser = auth.currentUser
+                    curFirebaseUser.value!!.isLogin = true
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     context.startActivity(intent)
@@ -85,12 +101,12 @@ class SignInViewModel : ViewModel() {
         }
     }
 
-    fun getGoogleSignInClient(): GoogleSignInClient {
-        return googleSignInClient
+    fun getFirebaseAuthCurUser(): FirebaseUser? {
+        return auth.currentUser
     }
 
-    fun getFirebaseAuth(): FirebaseAuth {
-        return auth
+    fun getSignInIntent(): Intent {
+        return googleSignInClient.signInIntent
     }
 
     private fun setResources(activityContext: Context, activityMain: MainActivity) {
@@ -105,7 +121,7 @@ class SignInViewModel : ViewModel() {
     }
 
     fun isLogIn(): Boolean {
-        return auth.currentUser != null
+        return curFirebaseUser.value!!.isLogin
     }
 
     fun signOut(): Task<Void>? {

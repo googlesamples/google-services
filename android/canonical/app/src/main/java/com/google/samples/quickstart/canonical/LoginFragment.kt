@@ -15,7 +15,7 @@ class LoginFragment : Fragment() {
     private val signInVM: SignInViewModel by activityViewModels()
 
     private fun signIn() {
-        val signInIntent = signInVM.getGoogleSignInClient().signInIntent
+        val signInIntent = signInVM.getSignInIntent()
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 

@@ -44,7 +44,7 @@ class MeFragment : Fragment() {
             }
         }
         // update UI
-        view.findViewById<TextView>(R.id.textView)?.text = signInVM.getFirebaseAuth().currentUser?.email
+        view.findViewById<TextView>(R.id.textView)?.text = signInVM.getFirebaseAuthCurUser()?.email
     }
 
 
