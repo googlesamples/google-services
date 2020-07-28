@@ -10,18 +10,34 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MeFragment : Fragment() {
 
     private val signInVM: SignInViewModel by activityViewModels()
+    private lateinit var observer : Observer<Boolean>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Add login status change listener
+        observer = Observer {
+            when (it) {
+                true -> {
+                    Log.d(ME_TAG, "firebaseUser is not null")
+                }
+
+                false -> {
+                    Log.d(ME_TAG, "firebaseUser is null")
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                }
+            }
+        }
+        // set LifeCycle owner with MeFragment. Observe will be destroyed when MeFragment is destroyed
+        signInVM.getFirebaseAuthLogStatusLiveData().observe(this, observer)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,43 +47,18 @@ class MeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_me, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val logoutButton : Button = view.findViewById(R.id.logout_button)
         logoutButton.setOnClickListener {
             // Sign out both Google account and Firebase
-            signInVM.signOut()?.addOnCompleteListener {
-                val intent = Intent(context, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-            }
+            signInVM.signOut()
         }
         // update UI
         view.findViewById<TextView>(R.id.textView)?.text = signInVM.getFirebaseAuthCurUser()?.email
     }
 
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MeFragment.
-         */
-
         private const val ME_TAG = "MeFragment"
-
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

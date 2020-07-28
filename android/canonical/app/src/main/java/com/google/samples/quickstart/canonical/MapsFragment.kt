@@ -119,7 +119,7 @@ class MapsFragment : Fragment() {
                 setPlacesSearchBias()
             } ?: run{
                 Log.d(FRAGMENT_TAG, "Locating Failed")
-                Toast.makeText(context, getString(R.string.cannot_access_location), Toast.LENGTH_LONG)
+                Toast.makeText(this.context, getString(R.string.cannot_access_location), Toast.LENGTH_LONG).show()
             }
         }
     }

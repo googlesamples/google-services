@@ -3,15 +3,14 @@ package com.google.samples.quickstart.canonical
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var signInVM : SignInViewModel
-
+  private val signInVM : SignInViewModel by viewModels()
 
   private fun setupNavigationBar() {
     supportFragmentManager
@@ -59,10 +58,8 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-
-    signInVM = ViewModelProviders.of(this)[SignInViewModel::class.java]
-    signInVM.signInInit(this, this)
-
+    Log.d(MAIN_ACTIVITY_TAG, "onCreate")
+    signInVM.signInVMInit(this, this)
     setupNavigationBar()
   }
 
@@ -76,8 +73,8 @@ class MainActivity : AppCompatActivity() {
 
       false -> {
         Log.d(MAIN_ACTIVITY_TAG, "No login. Update UI")
+//        signInVM.signInAccountInit()
         findViewById<ConstraintLayout>(R.id.main_activity_view).removeAllViews()
-
         supportFragmentManager
           .beginTransaction()
           .replace(R.id.main_activity_view, LoginFragment())
@@ -86,7 +83,6 @@ class MainActivity : AppCompatActivity() {
       }
     }
   }
-
 
   companion object {
     const val MAIN_ACTIVITY_TAG = "MainActivity"

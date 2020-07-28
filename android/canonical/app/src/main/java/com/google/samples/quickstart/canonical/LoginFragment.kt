@@ -8,7 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.google.android.gms.common.SignInButton
+import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_FAIL
+import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL
+import com.google.samples.quickstart.canonical.SignInViewModel.Companion.GOOGLE_SIGN_IN_UNSUCCESSFUL
 
 class LoginFragment : Fragment() {
 
@@ -41,6 +45,25 @@ class LoginFragment : Fragment() {
         // No other requestCode, ignore it.
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Add login status change listener
+        signInVM.getFirebaseAuthLogStatusLiveData().observe(this, Observer {
+            when (it) {
+                true -> {
+                    Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is not null")
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                }
+
+                false -> {
+                    Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is null")
+                }
+            }
+        })
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -56,9 +79,6 @@ class LoginFragment : Fragment() {
 
     companion object {
         const val RC_SIGN_IN = 0
-        const val GOOGLE_SIGN_IN_UNSUCCESSFUL = 1
-        const val FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL = 2
-        const val FIREBASE_AUTH_WITH_GOOGLE_FAIL = 3
         const val LOGIN_FRAGMENT_TAG = "Login fragment"
     }
 }
