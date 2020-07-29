@@ -44,7 +44,7 @@ class MapsFragment : Fragment() {
     private lateinit var autocompleteFragment : AutocompleteSupportFragment
     private var currentLatLng : LatLng? = null
     private var targetMarker : Marker? = null
-    
+  
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val ZOOM_VALUE = 14f
@@ -99,9 +99,10 @@ class MapsFragment : Fragment() {
         map.isMyLocationEnabled = true
         map.setPadding(0, (PADDING_RATIO * autocompleteLayout.height).toInt(),0,0)
         
-        fusedLocationClient.lastLocation.addOnSuccessListener(this.activity as Activity) { location ->
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             // Got last known location. In some rare situations this can be null.
             location?.let {
+                Log.d(FRAGMENT_TAG, "Locating Success ${location.latitude}, ${location.longitude}")
                 lastLocation = location
                 currentLatLng = LatLng(location.latitude, location.longitude)
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(
@@ -117,7 +118,8 @@ class MapsFragment : Fragment() {
                 ))
                 setPlacesSearchBias()
             } ?: run{
-                Toast.makeText(context, getString(R.string.cannot_access_location), Toast.LENGTH_SHORT)
+                Log.d(FRAGMENT_TAG, "Locating Failed")
+                Toast.makeText(this.context, getString(R.string.cannot_access_location), Toast.LENGTH_LONG).show()
             }
         }
     }

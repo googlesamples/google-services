@@ -2,19 +2,20 @@ package com.google.samples.quickstart.canonical
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+  private val signInVM : SignInViewModel by viewModels()
 
-    val runFragment = RunFragment()
+  private fun setupNavigationBar() {
     supportFragmentManager
       .beginTransaction()
-      .replace(R.id.fragment_container, runFragment)
+      .replace(R.id.fragment_container, RunFragment())
       .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
       .commit()
 
@@ -23,30 +24,27 @@ class MainActivity : AppCompatActivity() {
       when (item.itemId) {
 
         R.id.bottom_navigation_item_run -> {
-          val runFragment = RunFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, runFragment)
+            .replace(R.id.fragment_container, RunFragment())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
         }
 
         R.id.bottom_navigation_item_map -> {
-          val mapsFragment = MapsFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, mapsFragment)
+            .replace(R.id.fragment_container, MapsFragment())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
         }
 
         R.id.bottom_navigation_item_profile -> {
-          val meFragment = MeFragment()
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, meFragment)
+            .replace(R.id.fragment_container, MeFragment())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
@@ -57,6 +55,37 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    Log.d(MAIN_ACTIVITY_TAG, "onCreate")
+    signInVM.signInVMInit(this, this)
+    setupNavigationBar()
+  }
 
+  override fun onStart() {
+    super.onStart()
+
+    when (signInVM.isLogIn()) {
+      true -> {
+        Log.d(MAIN_ACTIVITY_TAG, "Already login")
+      }
+
+      false -> {
+        Log.d(MAIN_ACTIVITY_TAG, "No login. Update UI")
+//        signInVM.signInAccountInit()
+        findViewById<ConstraintLayout>(R.id.main_activity_view).removeAllViews()
+        supportFragmentManager
+          .beginTransaction()
+          .replace(R.id.main_activity_view, LoginFragment())
+          .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+          .commit()
+      }
+    }
+  }
+
+  companion object {
+    const val MAIN_ACTIVITY_TAG = "MainActivity"
+  }
 
 }
