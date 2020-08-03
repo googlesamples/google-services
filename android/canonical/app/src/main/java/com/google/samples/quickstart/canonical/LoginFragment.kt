@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.SignInButton
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_FAIL
 import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL
 import com.google.samples.quickstart.canonical.SignInViewModel.Companion.GOOGLE_SIGN_IN_UNSUCCESSFUL
@@ -51,6 +54,21 @@ class LoginFragment : Fragment() {
         signInVM.getFirebaseAuthLogStatusLiveData().observe(this, Observer {
             when (it) {
                 true -> {
+                    val curFirebaseUser = signInVM.getFirebaseAuthCurUser()
+                    val db = Firebase.firestore
+                    val dbFirebaseUser = hashMapOf(
+                        "UserID" to (curFirebaseUser?.uid ?: ""),
+                        "UserName" to "sdsdsds",
+                        "Email" to (curFirebaseUser?.email ?: "")
+                    )
+                    db.collection("RunUser").document(curFirebaseUser!!.uid)
+                        .set(dbFirebaseUser, SetOptions.merge())
+                        .addOnSuccessListener {
+                            Log.d(LOGIN_FRAGMENT_TAG, "DocumentSnapshot added with ID: ${curFirebaseUser.uid}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(LOGIN_FRAGMENT_TAG, "Error adding document", e)
+                        }
                     Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is not null")
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

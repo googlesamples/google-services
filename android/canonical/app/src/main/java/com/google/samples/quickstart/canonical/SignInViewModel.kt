@@ -87,6 +87,8 @@ class SignInViewModel : ViewModel() {
                     curFirebaseUser.value!!.isLogin.value = true
                 } else {
                     // If sign in fails, log a message to the user.
+                    Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_LONG).show()
+                    signOut()
                     Log.w(SIGN_IN_VM_TAG, "signInWithCredential:failure", task.exception)
                 }
             }
@@ -107,6 +109,7 @@ class SignInViewModel : ViewModel() {
                 FIREBASE_AUTH_WITH_GOOGLE_FAIL
             }
         } else {
+            Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_LONG).show()
             Log.w(SIGN_IN_VM_TAG, "Google sign in unsuccessful")
             return GOOGLE_SIGN_IN_UNSUCCESSFUL
         }

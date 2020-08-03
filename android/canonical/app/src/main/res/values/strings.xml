@@ -12,4 +12,5 @@
     <string name="cannot_access_location">Cannot access location now. Please Try later</string>
     <string name="logout_button_text">Logout</string>
     <string name="singout_failed">SignOut Failed. Please try again.</string>
+    <string name="login_failed">Login Failed. Please try it later.</string>
 </resources>
