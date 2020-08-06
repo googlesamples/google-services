@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
   private val signInVM : SignInViewModel by viewModels()
+  private val profileVM : ProfileViewModel by viewModels()
 
   private fun setupNavigationBar() {
     supportFragmentManager
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         R.id.bottom_navigation_item_profile -> {
           supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, MeFragment())
+            .replace(R.id.fragment_container, ProfileFragment())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
           true
@@ -69,11 +70,12 @@ class MainActivity : AppCompatActivity() {
     when (signInVM.isLogIn()) {
       true -> {
         Log.d(MAIN_ACTIVITY_TAG, "Already login")
+        // Init Profile
+        profileVM.initAppUser(signInVM.getFirebaseAuthCurUser()!!)
       }
 
       false -> {
         Log.d(MAIN_ACTIVITY_TAG, "No login. Update UI")
-//        signInVM.signInAccountInit()
         findViewById<ConstraintLayout>(R.id.main_activity_view).removeAllViews()
         supportFragmentManager
           .beginTransaction()

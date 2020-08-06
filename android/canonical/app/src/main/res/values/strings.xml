@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Summer 2020</string>
+    <string name="app_name">Run</string>
     <string name="navigation_menu_run">Run</string>
     <string name="navigation_menu_map">Map</string>
     <string name="navigation_menu_me">Me</string>
@@ -13,4 +13,10 @@
     <string name="logout_button_text">Logout</string>
     <string name="singout_failed">SignOut Failed. Please try again.</string>
     <string name="login_failed">Login Failed. Please try it later.</string>
+    <string name="total_time">TOTAL TIME</string>
+    <string name="total_energy">ENERGY</string>
+    <string name="usr_run_energy">240</string>
+    <string name="usr_run_time">00:00:00</string>
+    <string name="usr_email">User Email</string>
+    <string name="usr_name">User name</string>
 </resources>

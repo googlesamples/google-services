@@ -6,7 +6,8 @@
     <data>
         <variable
             name="stopwatchViewModel"
-            type="com.google.samples.quickstart.canonical.StopwatchViewModel" />
+            type="com.google.samples.quickstart.canonical.StopwatchViewModel"
+            />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +32,7 @@
             android:id="@+id/run_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{stopwatchViewModel.isWorking ? @string/stop : @string/start}"
+            android:text="@{stopwatchViewModel.getIsWorkingMutableLiveData() ? @string/stop : @string/start}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

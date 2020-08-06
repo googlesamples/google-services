@@ -20,6 +20,7 @@ import com.google.samples.quickstart.canonical.SignInViewModel.Companion.GOOGLE_
 class LoginFragment : Fragment() {
 
     private val signInVM: SignInViewModel by activityViewModels()
+    private val profileVM : ProfileViewModel by activityViewModels()
 
     private fun signIn() {
         val signInIntent = signInVM.getSignInIntent()
@@ -54,22 +55,8 @@ class LoginFragment : Fragment() {
         signInVM.getFirebaseAuthLogStatusLiveData().observe(this, Observer {
             when (it) {
                 true -> {
-                    val curFirebaseUser = signInVM.getFirebaseAuthCurUser()
-                    val db = Firebase.firestore
-                    val dbFirebaseUser = hashMapOf(
-                        "UserID" to (curFirebaseUser?.uid ?: ""),
-                        "UserName" to "sdsdsds",
-                        "Email" to (curFirebaseUser?.email ?: "")
-                    )
-                    db.collection("RunUser").document(curFirebaseUser!!.uid)
-                        .set(dbFirebaseUser, SetOptions.merge())
-                        .addOnSuccessListener {
-                            Log.d(LOGIN_FRAGMENT_TAG, "DocumentSnapshot added with ID: ${curFirebaseUser.uid}")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w(LOGIN_FRAGMENT_TAG, "Error adding document", e)
-                        }
                     Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is not null")
+                    // Start main activity
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)

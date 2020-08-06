@@ -3,32 +3,36 @@ package com.google.samples.quickstart.canonical
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
+import com.google.samples.quickstart.canonical.databinding.FragmentProfileBinding
 
 
-class MeFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     private val signInVM: SignInViewModel by activityViewModels()
+    private val profileVM : ProfileViewModel by activityViewModels()
     private lateinit var observer : Observer<Boolean>
+    private lateinit var binding : FragmentProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Add login status change listener
+        // Add login status change listener.
+        // When firebaseUser is null, signing out successfully
         observer = Observer {
             when (it) {
                 true -> {
-                    Log.d(ME_TAG, "firebaseUser is not null")
+                    Log.d(PROFILE_TAG, "firebaseUser is not null")
                 }
 
                 false -> {
-                    Log.d(ME_TAG, "firebaseUser is null")
+                    Log.d(PROFILE_TAG, "firebaseUser is null")
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
@@ -37,6 +41,7 @@ class MeFragment : Fragment() {
         }
         // set LifeCycle owner with MeFragment. Observe will be destroyed when MeFragment is destroyed
         signInVM.getFirebaseAuthLogStatusLiveData().observe(this, observer)
+        profileVM.initAppUserStatistic()
     }
 
     override fun onCreateView(
@@ -44,7 +49,11 @@ class MeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_me, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        binding.lifecycleOwner = this
+        binding.userName = profileVM.getUserName()
+        binding.userEmail = profileVM.getUserEmail()
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,10 +64,19 @@ class MeFragment : Fragment() {
             signInVM.signOut()
         }
         // update UI
-        view.findViewById<TextView>(R.id.textView)?.text = signInVM.getFirebaseAuthCurUser()?.email
+        downloadPhotoAndSetView(view)
+    }
+
+    private fun downloadPhotoAndSetView(view: View) {
+        val url = profileVM.getUserPhotoURL()
+        if (url != "") {
+            Log.d(PROFILE_TAG, url)
+            DownloadImageTask(view.findViewById(R.id.usr_img))
+                .execute(url)
+        }
     }
 
     companion object {
-        private const val ME_TAG = "MeFragment"
+        private const val PROFILE_TAG = "ProfileFragment"
     }
 }

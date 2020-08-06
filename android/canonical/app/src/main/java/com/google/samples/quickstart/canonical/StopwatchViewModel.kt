@@ -9,6 +9,14 @@ class StopwatchViewModel : ViewModel() {
     var isWorking = MutableLiveData<Boolean>(false)
     var fragmentPauseStartTime = MutableLiveData<Long>(0L)
 
+    fun getIsWorkingMutableLiveData() : MutableLiveData<Boolean> {
+        return isWorking
+    }
+
+    fun getIsWorkingFlag() : Boolean {
+        return isWorking.value!!
+    }
+
     fun setPauseOffset(pause_offset_value:Long){
         pauseOffset.value = pause_offset_value
     }

@@ -13,6 +13,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class SignInViewModel : ViewModel() {
@@ -33,10 +35,21 @@ class SignInViewModel : ViewModel() {
         activity = activityMain
     }
 
+    private fun signInFailureHandle() {
+        Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_LONG).show()
+        signOut()
+    }
+
+    private fun setCurFirebaseUser(firebaseUser: FirebaseUser) {
+        curFirebaseUser.value!!.firebaseUser.value = firebaseUser
+        curFirebaseUser.value!!.isLogin.value = true
+    }
+
     private fun googleSignInInit() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(context.getString(R.string.default_web_client_id))
             .requestEmail()
+            .requestProfile()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(activity, gso)
@@ -56,6 +69,41 @@ class SignInViewModel : ViewModel() {
             }
         }
         FirebaseAuth.getInstance().addAuthStateListener(authStateListenerForSignOut!!)
+    }
+
+    private fun createUser(firebaseUser : FirebaseUser) {
+        val db = Firebase.firestore
+        val dbFirebaseUser = hashMapOf(
+            ProfileViewModel.KEY_USR_NAME to (firebaseUser.displayName ?: ""),
+            ProfileViewModel.KEY_USR_EMAIL to (firebaseUser.email ?: ""),
+            ProfileViewModel.KEY_TOTAL_DIS_M to 0L,
+            ProfileViewModel.KEY_TOTAL_EN_CAL to 0L,
+            ProfileViewModel.KEY_TOTAL_TIME_MS to 0L,
+            ProfileViewModel.KEY_SINGLE_RUN_ID_LIST to arrayListOf<String>()
+        )
+        val ref = db.collection(ProfileViewModel.USER_COLLECTION_NAME).document(firebaseUser.uid)
+        ref.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    Log.d(SIGN_IN_VM_TAG, "User already exist with ID: ${document.id}")
+                    setCurFirebaseUser(firebaseUser)
+                } else {
+                    // New user
+                    ref.set(dbFirebaseUser)
+                        .addOnSuccessListener {
+                            setCurFirebaseUser(firebaseUser)
+                            Log.d(SIGN_IN_VM_TAG, "Create user with ID: ${ref.id}")
+                        }
+                        .addOnFailureListener {
+                            signInFailureHandle()
+                            Log.w(SIGN_IN_VM_TAG, "Error adding new user")
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w(SIGN_IN_VM_TAG, "Error getting user info", e)
+                signInFailureHandle()
+            }
     }
 
     private fun googleSignOut() {
@@ -83,12 +131,10 @@ class SignInViewModel : ViewModel() {
                     // Firebase Sign in success, update UI with the signed-in user's information
                     Log.d(SIGN_IN_VM_TAG, "firebase signInWithCredential:success")
                     Log.d(SIGN_IN_VM_TAG, "firebase signed-in user's Email:" + auth.currentUser!!.email)
-                    curFirebaseUser.value!!.firebaseUser.value = auth.currentUser
-                    curFirebaseUser.value!!.isLogin.value = true
+                    createUser(auth.currentUser!!)
                 } else {
                     // If sign in fails, log a message to the user.
-                    Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_LONG).show()
-                    signOut()
+                    signInFailureHandle()
                     Log.w(SIGN_IN_VM_TAG, "signInWithCredential:failure", task.exception)
                 }
             }
@@ -111,6 +157,7 @@ class SignInViewModel : ViewModel() {
         } else {
             Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_LONG).show()
             Log.w(SIGN_IN_VM_TAG, "Google sign in unsuccessful")
+            signInFailureHandle()
             return GOOGLE_SIGN_IN_UNSUCCESSFUL
         }
     }
