@@ -3,7 +3,6 @@ package com.google.samples.quickstart.canonical
 import android.os.SystemClock
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.android.synthetic.main.fragment_run.*
 
 class StopwatchViewModel : ViewModel() {
 

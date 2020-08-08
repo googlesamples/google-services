@@ -83,8 +83,8 @@ class RunFragment : Fragment() {
     }
 
     private fun getCurDateAndTime() : String {
-        val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).format(Date())
-        Log.d(RUN_FRAGMENT_TAG,"record date $date")
+        val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
+        Log.d(RUN_FRAGMENT_TAG,"date $date")
         return date
     }
 

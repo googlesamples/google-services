@@ -115,28 +115,33 @@ class ProfileViewModel : ViewModel() {
         syncAppUserStatistic()
     }
 
-    fun uploadNewRecord(singleRunningTimeMillionSeconds : Long, time : String) {
+    fun uploadNewRecord(singleRunningTimeMillionSeconds : Long, timestamp : String) {
 
         val newTotalTimeMillisecond = getTotalTimeMillisecond()?.plus(
             singleRunningTimeMillionSeconds
         )
         Log.d(PROFILE_VM_TAG, "newTotalTimeMillisecond $newTotalTimeMillisecond")
 
-//        val singleRunDocRef = Firebase.firestore.collection(RUN_COLLECTION_NAME).document()
+        val singleRunDocRef = Firebase.firestore.collection(RUN_COLLECTION_NAME).document()
+        val singleRunData = hashMapOf(
+            KEY_SINGLE_RUN_TIME to singleRunningTimeMillionSeconds,
+            KEY_SINGLE_RUN_TIMESTAMP to timestamp
+        )
+        val updateRunUserData = hashMapOf(
+            KEY_TOTAL_TIME_MS to newTotalTimeMillisecond,
+            KEY_SINGLE_RUN_ID_LIST to FieldValue.arrayUnion(singleRunDocRef.id)
+        )
 
         Firebase.firestore.runBatch { batch ->
-            // TODO update single run list
+            // Create single run record
+            batch.set(singleRunDocRef, singleRunData)
 
-            // update total time
-            val updateRunUserData = hashMapOf(
-                KEY_TOTAL_TIME_MS to newTotalTimeMillisecond,
-                KEY_SINGLE_RUN_ID_LIST to FieldValue.arrayUnion("This is test")
-            )
+            // update user statistics
             batch.update(runUserDocRef, updateRunUserData)
 
         }
             .addOnSuccessListener {
-                Log.d(PROFILE_VM_TAG, "")
+                Log.d(PROFILE_VM_TAG, "Upload record successfully")
                 syncAppUserStatistic()
             }
     }
@@ -152,6 +157,10 @@ class ProfileViewModel : ViewModel() {
         const val KEY_TOTAL_EN_CAL = "TotalEnergyCalories"
         const val KEY_TOTAL_TIME_MS = "TotalTimeMillisecond"
         const val KEY_SINGLE_RUN_ID_LIST = "SingleRunIDList"
+
+        const val KEY_SINGLE_RUN_TIME = "Time"
+        const val KEY_SINGLE_RUN_TIMESTAMP = "Timestamp"
+
         const val DEFAULT_TIME = "00:00:00"
     }
 }
