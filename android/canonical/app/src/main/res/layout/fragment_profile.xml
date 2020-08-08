@@ -4,17 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="userName"
-            type="String" />
-        <variable
-            name="userEmail"
-            type="String" />
+            name="profileViewModel"
+            type="com.google.samples.quickstart.canonical.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+        android:layout_height="match_parent"
+        tools:context=".ProfileFragment">
 
         <RelativeLayout
             android:id="@+id/usr_img_and_name"
@@ -51,7 +48,7 @@
                 android:layout_below="@id/usr_img_card"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="sans-serif-light"
-                android:text="@{userName}"
+                android:text="@{profileViewModel.getUserName()}"
                 android:textColor="@android:color/white"
                 android:textSize="32sp" />
 
@@ -63,7 +60,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@{userEmail}"
+                android:text="@{profileViewModel.getUserEmail()}"
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
@@ -96,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="sans-serif-light"
-                    android:text="@string/usr_run_time"
+                    android:text="@{profileViewModel.getTimeHMSStringMutableLiveData()}"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 

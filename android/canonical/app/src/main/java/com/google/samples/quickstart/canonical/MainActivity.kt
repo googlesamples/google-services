@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,36 +23,41 @@ class MainActivity : AppCompatActivity() {
 
     val bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation_view)
     bottomNavigation.setOnNavigationItemSelectedListener { item ->
-      when (item.itemId) {
+      try {
+        when (item.itemId) {
 
-        R.id.bottom_navigation_item_run -> {
-          supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, RunFragment())
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
-          true
+          R.id.bottom_navigation_item_run -> {
+            supportFragmentManager
+              .beginTransaction()
+              .replace(R.id.fragment_container, RunFragment())
+              .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+              .commit()
+            true
+          }
+
+          R.id.bottom_navigation_item_map -> {
+            supportFragmentManager
+              .beginTransaction()
+              .replace(R.id.fragment_container, MapsFragment())
+              .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+              .commit()
+            true
+          }
+
+          R.id.bottom_navigation_item_profile -> {
+            supportFragmentManager
+              .beginTransaction()
+              .replace(R.id.fragment_container, ProfileFragment())
+              .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+              .commit()
+            true
+          }
+
+          else -> false
         }
-
-        R.id.bottom_navigation_item_map -> {
-          supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, MapsFragment())
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
-          true
-        }
-
-        R.id.bottom_navigation_item_profile -> {
-          supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, ProfileFragment())
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
-          true
-        }
-
-        else -> false
+      } catch (e:Exception) {
+        Log.e(MAIN_ACTIVITY_TAG, "setOnNavigationItemSelectedListener failed", e)
+        false
       }
     }
   }

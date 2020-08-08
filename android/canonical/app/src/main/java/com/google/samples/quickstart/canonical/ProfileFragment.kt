@@ -41,7 +41,6 @@ class ProfileFragment : Fragment() {
         }
         // set LifeCycle owner with MeFragment. Observe will be destroyed when MeFragment is destroyed
         signInVM.getFirebaseAuthLogStatusLiveData().observe(this, observer)
-        profileVM.initAppUserStatistic()
     }
 
     override fun onCreateView(
@@ -51,8 +50,7 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.lifecycleOwner = this
-        binding.userName = profileVM.getUserName()
-        binding.userEmail = profileVM.getUserEmail()
+        binding.profileViewModel = profileVM
         return binding.root
     }
 

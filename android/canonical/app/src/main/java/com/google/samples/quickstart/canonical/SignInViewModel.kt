@@ -61,7 +61,7 @@ class SignInViewModel : ViewModel() {
         authStateListenerForSignOut = FirebaseAuth.AuthStateListener {
             it.currentUser ?. let {
                 Log.w(SIGN_IN_VM_TAG, "firebaseSignOut Failed")
-                Toast.makeText(context, context.getString(R.string.singout_failed), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, context.getString(R.string.sign_out_failed), Toast.LENGTH_LONG).show()
             } ?: run {
                 Log.w(SIGN_IN_VM_TAG, "firebaseSignOut Succeed")
                 curFirebaseUser.value!!.firebaseUser.value = null
@@ -111,7 +111,7 @@ class SignInViewModel : ViewModel() {
         googleSignInClient.signOut()
             .addOnFailureListener {
                 Log.w(SIGN_IN_VM_TAG, "googleSignOut Failed")
-                Toast.makeText(context, context.getString(R.string.singout_failed), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, context.getString(R.string.sign_out_failed), Toast.LENGTH_LONG).show()
             }
     }
 

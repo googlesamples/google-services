@@ -8,10 +8,13 @@ import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.io.InputStream
 import java.net.URL
+import java.util.concurrent.TimeUnit
 
 
 class ProfileViewModel : ViewModel() {
@@ -27,9 +30,15 @@ class ProfileViewModel : ViewModel() {
     )
 
     private lateinit var curAppUser: AppUser
+    private var timeHMSString: MutableLiveData<String> = MutableLiveData(DEFAULT_TIME)
+    private lateinit var runUserDocRef : DocumentReference
 
     private fun getUid() : String {
         return curAppUser.uid
+    }
+
+    private fun getTotalTimeMillisecond() : Long? {
+        return curAppUser.totalTimeMillisecond.value
     }
 
     private fun setTotalDistanceMeters(totalDistanceMeters : Long) {
@@ -48,6 +57,40 @@ class ProfileViewModel : ViewModel() {
         curAppUser.singleRunIDList.value = singleRunIDList
     }
 
+    private fun convertMStoStringHMS(millionSeconds : Long) : String {
+        return "%02d:%02d:%02d".format(
+            TimeUnit.MILLISECONDS.toHours(millionSeconds),
+            TimeUnit.MILLISECONDS.toMinutes(millionSeconds) % TimeUnit.HOURS.toMinutes(1),
+            TimeUnit.MILLISECONDS.toSeconds(millionSeconds) % TimeUnit.MINUTES.toSeconds(1)
+        )
+    }
+
+    private fun setTimeHMSString() {
+        val ms = getTotalTimeMillisecond()
+        val hms = ms ?.let{convertMStoStringHMS(ms)} ?: run { DEFAULT_TIME }
+        timeHMSString.value = hms
+        Log.d(PROFILE_VM_TAG, "setTimeHMSString hms: $hms")
+    }
+
+    private fun getNewSingleRunningRecordRef(singleRunningTimeMillionSeconds : Long, time: String) {
+
+    }
+
+    private fun syncAppUserStatistic() {
+        runUserDocRef.get()
+            .addOnSuccessListener {document ->
+                Log.d(PROFILE_VM_TAG, "Get doc successfully")
+                setTotalDistanceMeters(document.data!![KEY_TOTAL_DIS_M] as Long)
+                setTotalEnergyCalories(document.data!![KEY_TOTAL_EN_CAL] as Long)
+                setTotalTimeMillisecond(document.data!![KEY_TOTAL_TIME_MS] as Long)
+                setSingleRunIDList(document.data!![KEY_SINGLE_RUN_ID_LIST] as ArrayList<String>)
+                setTimeHMSString()
+            }
+            .addOnFailureListener {
+                Log.w(PROFILE_VM_TAG, "Get doc Failed")
+            }
+    }
+
     fun getUserName() : String {
         return curAppUser.userName
     }
@@ -60,27 +103,44 @@ class ProfileViewModel : ViewModel() {
         return curAppUser.googleAccountProfileUrl
     }
 
+    fun getTimeHMSStringMutableLiveData() : MutableLiveData<String> {
+        return timeHMSString
+    }
+
     fun initAppUser(curFirebaseUser : FirebaseUser) {
         Log.d(PROFILE_VM_TAG, "initAppUser")
         curAppUser = AppUser(curFirebaseUser.displayName ?: "", curFirebaseUser.email ?: "",
             curFirebaseUser.uid, curFirebaseUser.photoUrl.toString())
+        runUserDocRef = Firebase.firestore.collection(USER_COLLECTION_NAME).document(getUid())
+        syncAppUserStatistic()
     }
 
-    fun initAppUserStatistic() {
-        val uid = getUid()
-        val ref = Firebase.firestore.collection(USER_COLLECTION_NAME).document(uid)
-        ref.get()
-            .addOnSuccessListener {document ->
-                Log.d(PROFILE_VM_TAG, "Get doc successfully")
-                setTotalDistanceMeters(document.data!![KEY_TOTAL_DIS_M] as Long)
-                setTotalEnergyCalories(document.data!![KEY_TOTAL_EN_CAL] as Long)
-                setTotalTimeMillisecond(document.data!![KEY_TOTAL_TIME_MS] as Long)
-                setSingleRunIDList(document.data!![KEY_SINGLE_RUN_ID_LIST] as ArrayList<String>)
-            }
-            .addOnFailureListener {
-                Log.w(PROFILE_VM_TAG, "Get doc Failed")
+    fun uploadNewRecord(singleRunningTimeMillionSeconds : Long, time : String) {
+
+        val newTotalTimeMillisecond = getTotalTimeMillisecond()?.plus(
+            singleRunningTimeMillionSeconds
+        )
+        Log.d(PROFILE_VM_TAG, "newTotalTimeMillisecond $newTotalTimeMillisecond")
+
+//        val singleRunDocRef = Firebase.firestore.collection(RUN_COLLECTION_NAME).document()
+
+        Firebase.firestore.runBatch { batch ->
+            // TODO update single run list
+
+            // update total time
+            val updateRunUserData = hashMapOf(
+                KEY_TOTAL_TIME_MS to newTotalTimeMillisecond,
+                KEY_SINGLE_RUN_ID_LIST to FieldValue.arrayUnion("This is test")
+            )
+            batch.update(runUserDocRef, updateRunUserData)
+
+        }
+            .addOnSuccessListener {
+                Log.d(PROFILE_VM_TAG, "")
+                syncAppUserStatistic()
             }
     }
+
 
     companion object {
         const val PROFILE_VM_TAG = "ProfileVM"
@@ -92,6 +152,7 @@ class ProfileViewModel : ViewModel() {
         const val KEY_TOTAL_EN_CAL = "TotalEnergyCalories"
         const val KEY_TOTAL_TIME_MS = "TotalTimeMillisecond"
         const val KEY_SINGLE_RUN_ID_LIST = "SingleRunIDList"
+        const val DEFAULT_TIME = "00:00:00"
     }
 }
 
