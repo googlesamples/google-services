@@ -39,7 +39,7 @@ class ProfileViewModel : ViewModel() {
     private lateinit var runCollectionRef : CollectionReference
     private lateinit var curAppUser: AppUser
     private var runHistoryListForView: ArrayList<SingleRun> = ArrayList()
-    private var timeHMSString: MutableLiveData<String> = MutableLiveData(DEFAULT_TIME)
+//    private var timeHMSString: MutableLiveData<String> = MutableLiveData(DEFAULT_TIME)
 
     private fun getUid() : String {
         return curAppUser.uid
@@ -89,12 +89,16 @@ class ProfileViewModel : ViewModel() {
         )
     }
 
-    private fun setTimeHMSString() {
-        val ms = getTotalTimeMillisecond()
-        val hms = ms ?.let{convertMStoStringHMS(ms)} ?: run { DEFAULT_TIME }
-        timeHMSString.value = hms
-        Log.d(PROFILE_VM_TAG, "setTimeHMSString hms: $hms")
+    private fun calculateCalories(millionSeconds : Long) : Long {
+        return millionSeconds.div(4500)
     }
+
+//    private fun setTimeHMSString() {
+//        val ms = getTotalTimeMillisecond()
+//        val hms = ms ?.let{convertMStoStringHMS(ms)} ?: run { DEFAULT_TIME }
+//        timeHMSString.value = hms
+//        Log.d(PROFILE_VM_TAG, "setTimeHMSString hms: $hms")
+//    }
 
 
     private fun syncAppUserStatistic() {
@@ -106,7 +110,7 @@ class ProfileViewModel : ViewModel() {
                 setTotalTimeMillisecond(document.data!![KEY_TOTAL_TIME_MS] as Long)
                 setRunHistoryList(document.data!![KEY_RUN_HISTORY] as ArrayList<HashMap<String, Any>>)
                 setRunHistoryListForView()
-                setTimeHMSString()
+//                setTimeHMSString()
             }
             .addOnFailureListener {
                 Log.w(PROFILE_VM_TAG, "Get doc Failed")
@@ -125,12 +129,13 @@ class ProfileViewModel : ViewModel() {
         return curAppUser.googleAccountProfileUrl
     }
 
-    fun getTimeHMSStringMutableLiveData() : MutableLiveData<String> {
-        return timeHMSString
+    fun getTimeHMSString() : String {
+        val ms = getTotalTimeMillisecond()
+        return ms ?.let { convertMStoStringHMS(ms) } ?: run { DEFAULT_TIME }
     }
 
-    fun getTotalEnergyCaloriesMutableLiveData() : MutableLiveData<Long> {
-        return curAppUser.totalEnergyCalories
+    fun getTotalEnergyCaloriesString() : String {
+        return curAppUser.totalEnergyCalories.value.toString()
     }
 
     fun getRunHistoryListForView(): ArrayList<SingleRun> {
@@ -151,6 +156,9 @@ class ProfileViewModel : ViewModel() {
         val newTotalTimeMillisecond = getTotalTimeMillisecond()?.plus(
             singleRunningTimeMillionSeconds
         )
+
+        val newTotalCalories = calculateCalories(newTotalTimeMillisecond ?: 0)
+
         Log.d(PROFILE_VM_TAG, "newTotalTimeMillisecond $newTotalTimeMillisecond")
 
         val singleRunData = hashMapOf(
@@ -160,7 +168,7 @@ class ProfileViewModel : ViewModel() {
 
         val updateRunUserData = hashMapOf(
             KEY_TOTAL_TIME_MS to newTotalTimeMillisecond,
-            KEY_TOTAL_EN_CAL to (newTotalTimeMillisecond?.div(10000) ?: 0),
+            KEY_TOTAL_EN_CAL to newTotalCalories,
             KEY_RUN_HISTORY to FieldValue.arrayUnion(singleRunData)
         )
 

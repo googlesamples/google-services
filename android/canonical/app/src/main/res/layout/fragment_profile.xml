@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="sans-serif-light"
-                    android:text="@{profileViewModel.getTimeHMSStringMutableLiveData()}"
+                    android:text="@{profileViewModel.getTimeHMSString()}"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 
@@ -139,7 +139,7 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:fontFamily="sans-serif-light"
-                    android:text="@{profileViewModel.getTimeHMSStringMutableLiveData()}"
+                    android:text="@{profileViewModel.getTotalEnergyCaloriesString()}"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 

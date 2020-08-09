@@ -62,20 +62,11 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    Log.d(MAIN_ACTIVITY_TAG, "onCreate")
-    signInVM.signInVMInit(this, this)
-    setupNavigationBar()
-  }
-
-  override fun onStart() {
-    super.onStart()
-
+  private fun checkLogin() {
     when (signInVM.isLogIn()) {
       true -> {
         Log.d(MAIN_ACTIVITY_TAG, "Already login")
+        setupNavigationBar()
         // Init Profile
         profileVM.initAppUser(signInVM.getFirebaseAuthCurUser()!!)
       }
@@ -90,6 +81,14 @@ class MainActivity : AppCompatActivity() {
           .commit()
       }
     }
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    Log.d(MAIN_ACTIVITY_TAG, "onCreate")
+    signInVM.signInVMInit(this, this)
+    checkLogin()
   }
 
   companion object {
