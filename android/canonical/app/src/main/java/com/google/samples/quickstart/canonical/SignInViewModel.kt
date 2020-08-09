@@ -79,7 +79,7 @@ class SignInViewModel : ViewModel() {
             ProfileViewModel.KEY_TOTAL_DIS_M to 0L,
             ProfileViewModel.KEY_TOTAL_EN_CAL to 0L,
             ProfileViewModel.KEY_TOTAL_TIME_MS to 0L,
-            ProfileViewModel.KEY_SINGLE_RUN_ID_LIST to arrayListOf<String>()
+            ProfileViewModel.KEY_RUN_HISTORY to arrayListOf<HashMap<String, Any>>()
         )
         val ref = db.collection(ProfileViewModel.USER_COLLECTION_NAME).document(firebaseUser.uid)
         ref.get()

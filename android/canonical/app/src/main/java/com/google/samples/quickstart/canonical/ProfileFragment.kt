@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -20,6 +21,23 @@ class ProfileFragment : Fragment() {
     private val profileVM : ProfileViewModel by activityViewModels()
     private lateinit var observer : Observer<Boolean>
     private lateinit var binding : FragmentProfileBinding
+
+    private fun downloadPhotoAndSetView(view: View) {
+        val url = profileVM.getUserPhotoURL()
+        if (url != "") {
+            Log.d(PROFILE_TAG, url)
+            DownloadImageTask(view.findViewById(R.id.usr_img))
+                .execute(url)
+        }
+    }
+
+    private fun setRunHistory() {
+        val runHistoryListForView : ArrayList<ProfileViewModel.SingleRun>
+                = profileVM.getRunHistoryListForView()
+        val runHistoryAdapter = RunHistoryAdapter(requireContext(), runHistoryListForView)
+        val runHistoryListView = view?.findViewById<ListView>(R.id.run_history_list_view)
+        runHistoryListView?.adapter = runHistoryAdapter
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +59,7 @@ class ProfileFragment : Fragment() {
         }
         // set LifeCycle owner with MeFragment. Observe will be destroyed when MeFragment is destroyed
         signInVM.getFirebaseAuthLogStatusLiveData().observe(this, observer)
+
     }
 
     override fun onCreateView(
@@ -63,15 +82,7 @@ class ProfileFragment : Fragment() {
         }
         // update UI
         downloadPhotoAndSetView(view)
-    }
-
-    private fun downloadPhotoAndSetView(view: View) {
-        val url = profileVM.getUserPhotoURL()
-        if (url != "") {
-            Log.d(PROFILE_TAG, url)
-            DownloadImageTask(view.findViewById(R.id.usr_img))
-                .execute(url)
-        }
+        setRunHistory()
     }
 
     companion object {

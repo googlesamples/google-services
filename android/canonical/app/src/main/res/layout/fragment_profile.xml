@@ -64,6 +64,13 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
+            <Button
+                android:id="@+id/logout_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/logout_button_text" />
+
         </RelativeLayout>
 
     <LinearLayout
@@ -132,7 +139,7 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:fontFamily="sans-serif-light"
-                    android:text="@string/usr_run_energy"
+                    android:text="@{profileViewModel.getTimeHMSStringMutableLiveData()}"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 
@@ -152,16 +159,12 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/logout_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+    <ListView
+        android:id="@+id/run_history_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/usr_statistic_bar"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

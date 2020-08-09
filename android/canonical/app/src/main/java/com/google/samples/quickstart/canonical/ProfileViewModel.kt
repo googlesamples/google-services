@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -26,12 +27,19 @@ class ProfileViewModel : ViewModel() {
         var totalDistanceMeters : MutableLiveData<Long> = MutableLiveData(0),
         var totalEnergyCalories : MutableLiveData<Long> = MutableLiveData(0),
         var totalTimeMillisecond : MutableLiveData<Long> = MutableLiveData(0),
-        var singleRunIDList : MutableLiveData<ArrayList<String>> = MutableLiveData(ArrayList())
+        var runHistoryList : ArrayList<HashMap<String, Any>> =ArrayList()
     )
 
-    private lateinit var curAppUser: AppUser
-    private var timeHMSString: MutableLiveData<String> = MutableLiveData(DEFAULT_TIME)
+    data class SingleRun (
+        var time : String,
+        var dateTime : String
+    )
+
     private lateinit var runUserDocRef : DocumentReference
+    private lateinit var runCollectionRef : CollectionReference
+    private lateinit var curAppUser: AppUser
+    private var runHistoryListForView: ArrayList<SingleRun> = ArrayList()
+    private var timeHMSString: MutableLiveData<String> = MutableLiveData(DEFAULT_TIME)
 
     private fun getUid() : String {
         return curAppUser.uid
@@ -39,6 +47,12 @@ class ProfileViewModel : ViewModel() {
 
     private fun getTotalTimeMillisecond() : Long? {
         return curAppUser.totalTimeMillisecond.value
+    }
+
+    private fun getRunHistoryList() : ArrayList<HashMap<String, Any>> {
+        val reversedRunHistory = curAppUser.runHistoryList
+        reversedRunHistory.reverse()
+        return reversedRunHistory
     }
 
     private fun setTotalDistanceMeters(totalDistanceMeters : Long) {
@@ -53,8 +67,18 @@ class ProfileViewModel : ViewModel() {
         curAppUser.totalTimeMillisecond.value = totalTimeMillisecond
     }
 
-    private fun setSingleRunIDList(singleRunIDList : ArrayList<String>) {
-        curAppUser.singleRunIDList.value = singleRunIDList
+    private fun setRunHistoryList(runHistoryList : ArrayList<HashMap<String, Any>>) {
+        curAppUser.runHistoryList = runHistoryList
+    }
+
+    private fun setRunHistoryListForView() {
+        runHistoryListForView.clear()
+        val runHistoryListOfHashMap = getRunHistoryList()
+        for (singleRun in runHistoryListOfHashMap) {
+            val singleRunTime : String = convertMStoStringHMS(singleRun[KEY_SINGLE_RUN_TIME] as Long)
+            val singleRunTimestamp : String = singleRun[KEY_SINGLE_RUN_TIMESTAMP] as String
+            runHistoryListForView.add(SingleRun(singleRunTime, singleRunTimestamp))
+        }
     }
 
     private fun convertMStoStringHMS(millionSeconds : Long) : String {
@@ -72,9 +96,6 @@ class ProfileViewModel : ViewModel() {
         Log.d(PROFILE_VM_TAG, "setTimeHMSString hms: $hms")
     }
 
-    private fun getNewSingleRunningRecordRef(singleRunningTimeMillionSeconds : Long, time: String) {
-
-    }
 
     private fun syncAppUserStatistic() {
         runUserDocRef.get()
@@ -83,7 +104,8 @@ class ProfileViewModel : ViewModel() {
                 setTotalDistanceMeters(document.data!![KEY_TOTAL_DIS_M] as Long)
                 setTotalEnergyCalories(document.data!![KEY_TOTAL_EN_CAL] as Long)
                 setTotalTimeMillisecond(document.data!![KEY_TOTAL_TIME_MS] as Long)
-                setSingleRunIDList(document.data!![KEY_SINGLE_RUN_ID_LIST] as ArrayList<String>)
+                setRunHistoryList(document.data!![KEY_RUN_HISTORY] as ArrayList<HashMap<String, Any>>)
+                setRunHistoryListForView()
                 setTimeHMSString()
             }
             .addOnFailureListener {
@@ -107,11 +129,20 @@ class ProfileViewModel : ViewModel() {
         return timeHMSString
     }
 
+    fun getTotalEnergyCaloriesMutableLiveData() : MutableLiveData<Long> {
+        return curAppUser.totalEnergyCalories
+    }
+
+    fun getRunHistoryListForView(): ArrayList<SingleRun> {
+        return runHistoryListForView
+    }
+
     fun initAppUser(curFirebaseUser : FirebaseUser) {
         Log.d(PROFILE_VM_TAG, "initAppUser")
         curAppUser = AppUser(curFirebaseUser.displayName ?: "", curFirebaseUser.email ?: "",
             curFirebaseUser.uid, curFirebaseUser.photoUrl.toString())
         runUserDocRef = Firebase.firestore.collection(USER_COLLECTION_NAME).document(getUid())
+        runCollectionRef = Firebase.firestore.collection(RUN_COLLECTION_NAME)
         syncAppUserStatistic()
     }
 
@@ -122,33 +153,34 @@ class ProfileViewModel : ViewModel() {
         )
         Log.d(PROFILE_VM_TAG, "newTotalTimeMillisecond $newTotalTimeMillisecond")
 
-        val singleRunDocRef = Firebase.firestore.collection(RUN_COLLECTION_NAME).document()
         val singleRunData = hashMapOf(
             KEY_SINGLE_RUN_TIME to singleRunningTimeMillionSeconds,
             KEY_SINGLE_RUN_TIMESTAMP to timestamp
         )
+
         val updateRunUserData = hashMapOf(
             KEY_TOTAL_TIME_MS to newTotalTimeMillisecond,
-            KEY_SINGLE_RUN_ID_LIST to FieldValue.arrayUnion(singleRunDocRef.id)
+            KEY_TOTAL_EN_CAL to (newTotalTimeMillisecond?.div(10000) ?: 0),
+            KEY_RUN_HISTORY to FieldValue.arrayUnion(singleRunData)
         )
 
-        Firebase.firestore.runBatch { batch ->
-            // Create single run record
-            batch.set(singleRunDocRef, singleRunData)
 
-            // update user statistics
+        Firebase.firestore.runBatch { batch ->
             batch.update(runUserDocRef, updateRunUserData)
 
         }
             .addOnSuccessListener {
                 Log.d(PROFILE_VM_TAG, "Upload record successfully")
                 syncAppUserStatistic()
+                // No need to call Adapter.notifyDataSetChanged()
+                // Each time we access profile page, just create a new one.
             }
     }
 
 
     companion object {
         const val PROFILE_VM_TAG = "ProfileVM"
+
         const val USER_COLLECTION_NAME = "RunUser"
         const val RUN_COLLECTION_NAME = "SingleRun"
         const val KEY_USR_NAME = "UserName"
@@ -156,7 +188,7 @@ class ProfileViewModel : ViewModel() {
         const val KEY_TOTAL_DIS_M = "TotalDistanceMeters"
         const val KEY_TOTAL_EN_CAL = "TotalEnergyCalories"
         const val KEY_TOTAL_TIME_MS = "TotalTimeMillisecond"
-        const val KEY_SINGLE_RUN_ID_LIST = "SingleRunIDList"
+        const val KEY_RUN_HISTORY = "RunHistory"
 
         const val KEY_SINGLE_RUN_TIME = "Time"
         const val KEY_SINGLE_RUN_TIMESTAMP = "Timestamp"
