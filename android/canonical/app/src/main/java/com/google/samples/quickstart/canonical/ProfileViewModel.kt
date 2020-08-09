@@ -39,7 +39,6 @@ class ProfileViewModel : ViewModel() {
     private lateinit var runCollectionRef : CollectionReference
     private lateinit var curAppUser: AppUser
     private var runHistoryListForView: ArrayList<SingleRun> = ArrayList()
-//    private var timeHMSString: MutableLiveData<String> = MutableLiveData(DEFAULT_TIME)
 
     private fun getUid() : String {
         return curAppUser.uid
@@ -93,14 +92,6 @@ class ProfileViewModel : ViewModel() {
         return millionSeconds.div(4500)
     }
 
-//    private fun setTimeHMSString() {
-//        val ms = getTotalTimeMillisecond()
-//        val hms = ms ?.let{convertMStoStringHMS(ms)} ?: run { DEFAULT_TIME }
-//        timeHMSString.value = hms
-//        Log.d(PROFILE_VM_TAG, "setTimeHMSString hms: $hms")
-//    }
-
-
     private fun syncAppUserStatistic() {
         runUserDocRef.get()
             .addOnSuccessListener {document ->
@@ -110,7 +101,6 @@ class ProfileViewModel : ViewModel() {
                 setTotalTimeMillisecond(document.data!![KEY_TOTAL_TIME_MS] as Long)
                 setRunHistoryList(document.data!![KEY_RUN_HISTORY] as ArrayList<HashMap<String, Any>>)
                 setRunHistoryListForView()
-//                setTimeHMSString()
             }
             .addOnFailureListener {
                 Log.w(PROFILE_VM_TAG, "Get doc Failed")
