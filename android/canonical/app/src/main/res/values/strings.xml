@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Run</string>
+    <string name="app_name">WeRun</string>
     <string name="navigation_menu_run">Run</string>
     <string name="navigation_menu_map">Map</string>
     <string name="navigation_menu_me">Me</string>
@@ -27,4 +27,5 @@
     <string name="dialog_cancel_button">Cancel</string>
     <string name="submit_confirm_dialog_title">Submission Confirm</string>
     <string name="submit_illegal">Start your running before submission.</string>
+    <string name="welcome"><b>We</b>lcome, <b>Run</b>ner!</string>
 </resources>

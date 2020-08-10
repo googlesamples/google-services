@@ -64,107 +64,110 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/logout_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/logout_button_text" />
-
         </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/usr_statistic_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/profile_statistic_bar_bg"
-        app:layout_constraintTop_toBottomOf="@id/usr_img_and_name">
-
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/usr_statistic_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp">
+            android:orientation="horizontal"
+            android:background="@drawable/profile_statistic_bar_bg"
+            app:layout_constraintTop_toBottomOf="@id/usr_img_and_name">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
-                <TextView
-                    android:id="@+id/usr_run_time"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="@{profileViewModel.getTimeHMSString()}"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/usr_run_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@{profileViewModel.getTimeHMSString()}"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/total_time"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="@string/total_time"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/usr_run_energy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@{profileViewModel.getTotalEnergyCaloriesString()}"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp" />
 
-        </RelativeLayout>
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/total_energy"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-        <RelativeLayout
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/logout_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_baseline_exit_to_app_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ListView
+            android:id="@+id/run_history_list_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/usr_run_energy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:fontFamily="sans-serif-light"
-                    android:text="@{profileViewModel.getTotalEnergyCaloriesString()}"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="center"
-                    android:fontFamily="sans-serif-light"
-                    android:text="@string/total_energy"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/run_history_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintTop_toBottomOf="@+id/usr_statistic_bar"/>
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintTop_toBottomOf="@+id/usr_statistic_bar"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

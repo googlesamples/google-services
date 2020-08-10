@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -75,7 +76,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val logoutButton : Button = view.findViewById(R.id.logout_button)
+        val logoutButton : ImageButton = view.findViewById(R.id.logout_button)
         logoutButton.setOnClickListener {
             // Sign out both Google account and Firebase
             signInVM.signOut()
