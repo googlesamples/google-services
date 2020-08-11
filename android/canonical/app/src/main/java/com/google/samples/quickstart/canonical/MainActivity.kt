@@ -74,11 +74,11 @@ class MainActivity : AppCompatActivity() {
     val observer = Observer<Boolean> {
       when (it) {
         true -> {
-          Log.d("Profile", "firebaseUser is not null")
+          Log.d(MAIN_ACTIVITY_TAG, "firebaseUser is not null")
         }
 
         false -> {
-          Log.d("Profile", "firebaseUser is null")
+          Log.d(MAIN_ACTIVITY_TAG, "firebaseUser is null")
           val intent = Intent(this, MainActivity::class.java)
           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
           startActivity(intent)
