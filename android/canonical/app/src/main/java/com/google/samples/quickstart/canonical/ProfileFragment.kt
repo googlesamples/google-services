@@ -1,12 +1,10 @@
 package com.google.samples.quickstart.canonical
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ListView
 import androidx.fragment.app.Fragment
@@ -20,7 +18,6 @@ class ProfileFragment : Fragment() {
 
     private val signInVM: SignInViewModel by activityViewModels()
     private val profileVM : ProfileViewModel by activityViewModels()
-    private lateinit var observer : Observer<Boolean>
     private lateinit var binding : FragmentProfileBinding
 
     private fun downloadPhotoAndSetView(view: View) {
@@ -38,29 +35,6 @@ class ProfileFragment : Fragment() {
         val runHistoryAdapter = RunHistoryAdapter(requireContext(), runHistoryListForView)
         val runHistoryListView = view?.findViewById<ListView>(R.id.run_history_list_view)
         runHistoryListView?.adapter = runHistoryAdapter
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // Add login status change listener.
-        // When firebaseUser is null, signing out successfully
-        observer = Observer {
-            when (it) {
-                true -> {
-                    Log.d(PROFILE_TAG, "firebaseUser is not null")
-                }
-
-                false -> {
-                    Log.d(PROFILE_TAG, "firebaseUser is null")
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                }
-            }
-        }
-        // set LifeCycle owner with MeFragment. Observe will be destroyed when MeFragment is destroyed
-        signInVM.getFirebaseAuthLogStatusLiveData().observe(this, observer)
-
     }
 
     override fun onCreateView(
@@ -81,9 +55,15 @@ class ProfileFragment : Fragment() {
             // Sign out both Google account and Firebase
             signInVM.signOut()
         }
+        val refreshButton : ImageButton = view.findViewById(R.id.refresh_button)
+        refreshButton.setOnClickListener {
+            profileVM.refreshUser(view.findViewById<ListView>(R.id.run_history_list_view).adapter
+                    as RunHistoryAdapter)
+            downloadPhotoAndSetView(view)
+        }
+        setRunHistory()
         // update UI
         downloadPhotoAndSetView(view)
-        setRunHistory()
     }
 
     companion object {

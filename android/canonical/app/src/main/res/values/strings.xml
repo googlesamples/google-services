@@ -14,7 +14,7 @@
     <string name="cannot_access_location">Cannot access location now. Please Try later</string>
     <string name="logout_button_text">Logout</string>
     <string name="sign_out_failed">SignOut Failed. Please try again.</string>
-    <string name="login_failed">Login Failed. Please try it later.</string>
+    <string name="login_failed">Login Failed. Please try it again.</string>
     <string name="total_time">TOTAL TIME</string>
     <string name="total_energy">CALORIES</string>
     <string name="usr_run_energy">240</string>

@@ -20,7 +20,6 @@ import com.google.samples.quickstart.canonical.SignInViewModel.Companion.GOOGLE_
 class LoginFragment : Fragment() {
 
     private val signInVM: SignInViewModel by activityViewModels()
-    private val profileVM : ProfileViewModel by activityViewModels()
 
     private fun signIn() {
         val signInIntent = signInVM.getSignInIntent()

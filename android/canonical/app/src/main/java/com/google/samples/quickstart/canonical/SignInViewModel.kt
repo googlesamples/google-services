@@ -59,10 +59,7 @@ class SignInViewModel : ViewModel() {
     private fun firebaseSignOutInit() {
         Log.d(SIGN_IN_VM_TAG, "firebaseSignOutInit")
         authStateListenerForSignOut = FirebaseAuth.AuthStateListener {
-            it.currentUser ?. let {
-                Log.w(SIGN_IN_VM_TAG, "firebaseSignOut Failed")
-                Toast.makeText(context, context.getString(R.string.sign_out_failed), Toast.LENGTH_SHORT).show()
-            } ?: run {
+            it.currentUser ?: let {
                 Log.w(SIGN_IN_VM_TAG, "firebaseSignOut Succeed")
                 curFirebaseUser.value!!.firebaseUser.value = null
                 curFirebaseUser.value!!.isLogin.value = false
