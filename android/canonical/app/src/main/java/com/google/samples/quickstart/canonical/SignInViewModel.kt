@@ -9,26 +9,30 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
 class SignInViewModel : ViewModel() {
-    data class CurFirebaseUser(
-        var firebaseUser: MutableLiveData<FirebaseUser?> = MutableLiveData(FirebaseAuth.getInstance().currentUser),
-        var isLogin: MutableLiveData<Boolean> = MutableLiveData(firebaseUser.value?.let { true } ?: run{ false })
-    )
-
-    private lateinit var googleSignInClient: GoogleSignInClient
+    // Have a feeling that it's not a good practice to pass in context or activity to viewmodel.
+    // Maybe should just just pass in GoogleSignInclient from activity/fragment instead of
+    // creating it in this viewmodel.
     private lateinit var context: Context
     private lateinit var activity: MainActivity
-    private var authStateListenerForSignOut : FirebaseAuth.AuthStateListener? = null
-    private lateinit var curFirebaseUser : MutableLiveData<CurFirebaseUser>
+    private var authStateListenerForSignOut: FirebaseAuth.AuthStateListener? = null
 
+    val curFirebaseUser: MutableLiveData<FirebaseUser> by lazy {
+        MutableLiveData<FirebaseUser>(
+            Firebase.auth.currentUser
+        )
+    }
 
     private fun setResources(activityContext: Context, activityMain: MainActivity) {
         context = activityContext
@@ -40,20 +44,15 @@ class SignInViewModel : ViewModel() {
         signOut()
     }
 
-    private fun setCurFirebaseUser(firebaseUser: FirebaseUser) {
-        curFirebaseUser.value!!.firebaseUser.value = firebaseUser
-        curFirebaseUser.value!!.isLogin.value = true
-    }
-
-    private fun googleSignInInit() {
+    private fun getGoogleSignInClient(): GoogleSignInClient {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(context.getString(R.string.default_web_client_id))
             .requestEmail()
             .requestProfile()
             .build()
 
-        googleSignInClient = GoogleSignIn.getClient(activity, gso)
         Log.d(SIGN_IN_VM_TAG, "googleSignInClientInit")
+        return GoogleSignIn.getClient(activity, gso)
     }
 
     private fun firebaseSignOutInit() {
@@ -61,126 +60,110 @@ class SignInViewModel : ViewModel() {
         authStateListenerForSignOut = FirebaseAuth.AuthStateListener {
             it.currentUser ?: let {
                 Log.w(SIGN_IN_VM_TAG, "firebaseSignOut Succeed")
-                curFirebaseUser.value!!.firebaseUser.value = null
-                curFirebaseUser.value!!.isLogin.value = false
+                curFirebaseUser.value = null
             }
         }
-        FirebaseAuth.getInstance().addAuthStateListener(authStateListenerForSignOut!!)
+        Firebase.auth.addAuthStateListener(authStateListenerForSignOut!!)
     }
 
-    private fun createUser(firebaseUser : FirebaseUser) {
+    private fun createUserTask(user: FirebaseUser): Task<Void?> {
         val db = Firebase.firestore
         val dbFirebaseUser = hashMapOf(
-            ProfileViewModel.KEY_USR_NAME to (firebaseUser.displayName ?: ""),
-            ProfileViewModel.KEY_USR_EMAIL to (firebaseUser.email ?: ""),
+            ProfileViewModel.KEY_USR_NAME to (user.displayName ?: ""),
+            ProfileViewModel.KEY_USR_EMAIL to (user.email ?: ""),
             ProfileViewModel.KEY_TOTAL_DIS_M to 0L,
             ProfileViewModel.KEY_TOTAL_EN_CAL to 0L,
             ProfileViewModel.KEY_TOTAL_TIME_MS to 0L,
             ProfileViewModel.KEY_RUN_HISTORY to arrayListOf<HashMap<String, Any>>()
         )
-        val ref = db.collection(ProfileViewModel.USER_COLLECTION_NAME).document(firebaseUser.uid)
-        ref.get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    Log.d(SIGN_IN_VM_TAG, "User already exist with ID: ${document.id}")
-                    setCurFirebaseUser(firebaseUser)
-                } else {
-                    // New user
-                    ref.set(dbFirebaseUser)
-                        .addOnSuccessListener {
-                            setCurFirebaseUser(firebaseUser)
-                            Log.d(SIGN_IN_VM_TAG, "Create user with ID: ${ref.id}")
-                        }
-                        .addOnFailureListener {
-                            signInFailureHandle()
-                            Log.w(SIGN_IN_VM_TAG, "Error adding new user")
-                        }
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.w(SIGN_IN_VM_TAG, "Error getting user info", e)
-                signInFailureHandle()
+        val ref = db.collection(ProfileViewModel.USER_COLLECTION_NAME).document(user.uid)
+        return ref.get().onSuccessTask { document ->
+            when (document!!.exists()) {
+                true -> Tasks.forResult(null)
+                false -> ref.set(dbFirebaseUser)
+            } as Task<Void?>
+        }
+            .addOnSuccessListener {
+                curFirebaseUser.value = user
+            }.addOnFailureListener {
+                Log.w(SIGN_IN_VM_TAG, "createUserTask failed", it)
             }
     }
 
     private fun googleSignOut() {
-        googleSignInInit()
-        googleSignInClient.signOut()
+        getGoogleSignInClient().signOut()
             .addOnFailureListener {
-                Log.w(SIGN_IN_VM_TAG, "googleSignOut Failed")
-                Toast.makeText(context, context.getString(R.string.sign_out_failed), Toast.LENGTH_SHORT).show()
+                Log.w(SIGN_IN_VM_TAG, "googleSignOut Failed", it)
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.sign_out_failed),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 
     private fun firebaseSignOut() {
         firebaseSignOutInit()
-        FirebaseAuth.getInstance().signOut()
+        Firebase.auth.signOut()
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
+    private fun firebaseAuthWithGoogle(idToken: String): Task<AuthResult> {
+        // If we don't need the logging, we can just do
+        // Firebase.auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null)) in
+        // onSuccessTask and remove this firebaseAuthWithGoogle method entirely.
         Log.d(SIGN_IN_VM_TAG, "firebaseAuthWithGoogle start")
-        val auth = FirebaseAuth.getInstance()
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener { task ->
-                Log.d(SIGN_IN_VM_TAG, "firebase firebaseAuthWithGoogle:task check")
-                if (task.isSuccessful) {
-                    // Firebase Sign in success, update UI with the signed-in user's information
-                    Log.d(SIGN_IN_VM_TAG, "firebase signInWithCredential:success")
-                    Log.d(SIGN_IN_VM_TAG, "firebase signed-in user's Email:" + auth.currentUser!!.email)
-                    createUser(auth.currentUser!!)
-                } else {
-                    // If sign in fails, log a message to the user.
-                    signInFailureHandle()
-                    Log.w(SIGN_IN_VM_TAG, "signInWithCredential:failure", task.exception)
-                }
+        return Firebase.auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null))
+            // Can remove this listener if don't want to specifically log error for this task.
+            .addOnFailureListener {
+                Log.w(SIGN_IN_VM_TAG, "FirebaseAuth signInWithCredential failed", it)
             }
     }
 
-    fun firebaseAuth(data: Intent?) : Int {
-        val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-        if (task.isSuccessful) {
-            return try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-                Log.d(SIGN_IN_VM_TAG, "Google Sign In was successful:" + account.id)
+    fun firebaseAuth(data: Intent?) {
+        GoogleSignIn.getSignedInAccountFromIntent(data)
+            // We can remove this listener if we don't want to specifically log error for this task.
+            .addOnFailureListener {
+                Log.w(SIGN_IN_VM_TAG, "Google sign in unsuccessful", it)
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.login_failed),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .onSuccessTask { account ->
+                Log.d(SIGN_IN_VM_TAG, "Google Sign In was successful ${account!!.id}")
                 firebaseAuthWithGoogle(account.idToken!!)
-                FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL
-            } catch (e: ApiException) {
-                // Google Sign In failed
-                Log.w(SIGN_IN_VM_TAG, "Google sign in failed", e)
-                FIREBASE_AUTH_WITH_GOOGLE_FAIL
             }
-        } else {
-            Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
-            Log.w(SIGN_IN_VM_TAG, "Google sign in unsuccessful")
-            signInFailureHandle()
-            return GOOGLE_SIGN_IN_UNSUCCESSFUL
-        }
-    }
-
-    fun getFirebaseAuthLogStatusLiveData(): MutableLiveData<Boolean> {
-        return curFirebaseUser.value!!.isLogin
+            .onSuccessTask { authResult ->
+                createUserTask(authResult!!.user!!)
+            }
+            .addOnFailureListener {
+                // Any of the previous tasks failed would propagate failure here, therefore we only
+                // need to do signInFailureHandle() here.
+                Log.w(SIGN_IN_VM_TAG, "Firebase Auth failed.", it)
+                signInFailureHandle()
+            }
     }
 
     fun getFirebaseAuthCurUser(): FirebaseUser? {
-        return curFirebaseUser.value!!.firebaseUser.value
+        return curFirebaseUser.value
     }
 
     fun getSignInIntent(): Intent {
-        googleSignInInit()
-        return googleSignInClient.signInIntent
+        return getGoogleSignInClient().signInIntent
     }
 
     fun signInVMInit(activityContext: Context, activityMain: MainActivity) {
         Log.d(SIGN_IN_VM_TAG, "signInInit")
         setResources(activityContext, activityMain)
-        curFirebaseUser = MutableLiveData(CurFirebaseUser())
     }
 
     fun isLogIn(): Boolean {
-        Log.d(SIGN_IN_VM_TAG, "isLogIn():"+curFirebaseUser.value!!.isLogin.value.toString())
-        return curFirebaseUser.value!!.isLogin.value!!
+        val loggedIn = curFirebaseUser.value == null
+        Log.d(SIGN_IN_VM_TAG, "isLogIn(): $loggedIn")
+        // If we don't need the logging, just
+        // return curFirebaseUser.value == null
+        return loggedIn
     }
 
     fun signOut() {
@@ -197,8 +180,5 @@ class SignInViewModel : ViewModel() {
 
     companion object {
         const val SIGN_IN_VM_TAG = "signInVM"
-        const val GOOGLE_SIGN_IN_UNSUCCESSFUL = 1
-        const val FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL = 2
-        const val FIREBASE_AUTH_WITH_GOOGLE_FAIL = 3
     }
 }

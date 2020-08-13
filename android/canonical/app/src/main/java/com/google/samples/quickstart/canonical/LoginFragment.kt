@@ -3,19 +3,13 @@ package com.google.samples.quickstart.canonical
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.SignInButton
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_FAIL
-import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL
-import com.google.samples.quickstart.canonical.SignInViewModel.Companion.GOOGLE_SIGN_IN_UNSUCCESSFUL
 
 class LoginFragment : Fragment() {
 
@@ -31,39 +25,24 @@ class LoginFragment : Fragment() {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            when (signInVM.firebaseAuth(data)) {
-                FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL -> {
-                    Log.i(LOGIN_FRAGMENT_TAG, "Google sign in successful")
-                }
-
-                FIREBASE_AUTH_WITH_GOOGLE_FAIL -> {
-                    Log.w(LOGIN_FRAGMENT_TAG, "Google sign in failed")
-                }
-
-                GOOGLE_SIGN_IN_UNSUCCESSFUL -> {
-                    Log.w(LOGIN_FRAGMENT_TAG, "Google sign in unsuccessful")
-                }
-            }
+            signInVM.firebaseAuth(data)
         }
         // No other requestCode, ignore it.
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Add login status change listener
-        signInVM.getFirebaseAuthLogStatusLiveData().observe(this, Observer {
-            when (it) {
-                true -> {
-                    Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is not null")
-                    // Start main activity
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                }
 
-                false -> {
-                    Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is null")
-                }
+        // Add login status change listener
+        signInVM.curFirebaseUser.observe(this, Observer {
+            if (it != null) {
+                Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is not null")
+                // Start main activity
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            } else {
+                Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is null")
             }
         })
     }

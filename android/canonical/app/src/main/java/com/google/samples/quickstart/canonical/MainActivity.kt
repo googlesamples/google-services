@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseUser
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -71,22 +72,18 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun logoutUserObserver() {
-    val observer = Observer<Boolean> {
-      when (it) {
-        true -> {
-          Log.d(MAIN_ACTIVITY_TAG, "firebaseUser is not null")
-        }
-
-        false -> {
-          Log.d(MAIN_ACTIVITY_TAG, "firebaseUser is null")
-          val intent = Intent(this, MainActivity::class.java)
-          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-          startActivity(intent)
-        }
+    val observer = Observer<FirebaseUser> { user: FirebaseUser ? ->
+      if (user == null) {
+        Log.d(MAIN_ACTIVITY_TAG, "firebaseUser is null")
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+      } else {
+        Log.d(MAIN_ACTIVITY_TAG, "firebaseUser is not null")
       }
     }
     // set LifeCycle owner with MainActivity. Observe will be destroyed when MainActivity is destroyed
-    signInVM.getFirebaseAuthLogStatusLiveData().observe(this, observer)
+    signInVM.curFirebaseUser.observe(this, observer)
   }
 
   private fun checkLogin() {
