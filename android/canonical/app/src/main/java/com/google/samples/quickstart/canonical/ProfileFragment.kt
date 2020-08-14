@@ -7,18 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.samples.quickstart.canonical.databinding.FragmentProfileBinding
 
 
 class ProfileFragment : Fragment() {
 
     private val signInVM: SignInViewModel by activityViewModels()
-    private val profileVM : ProfileViewModel by activityViewModels()
-    private lateinit var binding : FragmentProfileBinding
+    private val profileVM: ProfileViewModel by activityViewModels()
+    private lateinit var binding: FragmentProfileBinding
 
     private fun downloadPhotoAndSetView(view: View) {
         val url = profileVM.getUserPhotoURL()
@@ -30,11 +33,19 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setRunHistory() {
-        val runHistoryListForView : ArrayList<ProfileViewModel.SingleRun>
-                = profileVM.getRunHistoryListForView()
+        val runHistoryListForView: ArrayList<ProfileViewModel.SingleRun> =
+            profileVM.getRunHistoryListForView()
         val runHistoryAdapter = RunHistoryAdapter(requireContext(), runHistoryListForView)
         val runHistoryListView = view?.findViewById<ListView>(R.id.run_history_list_view)
         runHistoryListView?.adapter = runHistoryAdapter
+    }
+
+    private fun signOut() {
+        context?.let {
+            val googleSignInOptions =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            signInVM.signOut(GoogleSignIn.getClient(it, googleSignInOptions))
+        }
     }
 
     override fun onCreateView(
@@ -50,15 +61,25 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val logoutButton : ImageButton = view.findViewById(R.id.logout_button)
+        val logoutButton: ImageButton = view.findViewById(R.id.logout_button)
+        signInVM.showSignOutFailedMessage.observe(viewLifecycleOwner, Observer { showMessage ->
+            if (showMessage) {
+                context?.let {
+                    Toast.makeText(it, it.getString(R.string.login_failed), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
         logoutButton.setOnClickListener {
             // Sign out both Google account and Firebase
-            signInVM.signOut()
+            signOut()
         }
-        val refreshButton : ImageButton = view.findViewById(R.id.refresh_button)
+        val refreshButton: ImageButton = view.findViewById(R.id.refresh_button)
         refreshButton.setOnClickListener {
-            profileVM.refreshUser(view.findViewById<ListView>(R.id.run_history_list_view).adapter
-                    as RunHistoryAdapter)
+            profileVM.refreshUser(
+                view.findViewById<ListView>(R.id.run_history_list_view).adapter
+                        as RunHistoryAdapter
+            )
             downloadPhotoAndSetView(view)
         }
         setRunHistory()

@@ -6,9 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 
 class LoginFragment : Fragment() {
@@ -16,8 +19,16 @@ class LoginFragment : Fragment() {
     private val signInVM: SignInViewModel by activityViewModels()
 
     private fun signIn() {
-        val signInIntent = signInVM.getSignInIntent()
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        context?.let {
+            val googleSignInOptions =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(context?.getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .requestProfile()
+                    .build()
+            val signInIntent = GoogleSignIn.getClient(it, googleSignInOptions).signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -45,10 +56,19 @@ class LoginFragment : Fragment() {
                 Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is null")
             }
         })
+        signInVM.showSignInFailedMessage.observe(this, Observer { signInFailed ->
+            if (signInFailed) {
+                context?.let {
+                    Toast.makeText(it, it.getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false)
     }

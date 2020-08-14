@@ -1,14 +1,12 @@
 package com.google.samples.quickstart.canonical
 
-import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.AuthResult
@@ -21,11 +19,11 @@ import com.google.firebase.ktx.Firebase
 
 
 class SignInViewModel : ViewModel() {
-    // Have a feeling that it's not a good practice to pass in context or activity to viewmodel.
-    // Maybe should just just pass in GoogleSignInclient from activity/fragment instead of
+    // Have a feeling that it's not a good practice to store context or activity in viewmodel.
+    // Maybe should just just pass in GoogleSignInClient from activity/fragment instead of
     // creating it in this viewmodel.
-    private lateinit var context: Context
-    private lateinit var activity: MainActivity
+//    private lateinit var context: Context
+//    private lateinit var activity: MainActivity
     private var authStateListenerForSignOut: FirebaseAuth.AuthStateListener? = null
 
     val curFirebaseUser: MutableLiveData<FirebaseUser> by lazy {
@@ -33,27 +31,8 @@ class SignInViewModel : ViewModel() {
             Firebase.auth.currentUser
         )
     }
-
-    private fun setResources(activityContext: Context, activityMain: MainActivity) {
-        context = activityContext
-        activity = activityMain
-    }
-
-    private fun signInFailureHandle() {
-        Toast.makeText(context, context.getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
-        signOut()
-    }
-
-    private fun getGoogleSignInClient(): GoogleSignInClient {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(context.getString(R.string.default_web_client_id))
-            .requestEmail()
-            .requestProfile()
-            .build()
-
-        Log.d(SIGN_IN_VM_TAG, "googleSignInClientInit")
-        return GoogleSignIn.getClient(activity, gso)
-    }
+    var showSignInFailedMessage: MutableLiveData<Boolean> = MutableLiveData(false)
+    var showSignOutFailedMessage: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private fun firebaseSignOutInit() {
         Log.d(SIGN_IN_VM_TAG, "firebaseSignOutInit")
@@ -78,27 +57,17 @@ class SignInViewModel : ViewModel() {
         )
         val ref = db.collection(ProfileViewModel.USER_COLLECTION_NAME).document(user.uid)
         return ref.get().onSuccessTask { document ->
-            when (document!!.exists()) {
-                true -> Tasks.forResult(null)
-                false -> ref.set(dbFirebaseUser)
+            if (document!!.exists()) {
+                Tasks.forResult(null)
+            } else {
+                ref.set(dbFirebaseUser)
             } as Task<Void?>
         }
             .addOnSuccessListener {
                 curFirebaseUser.value = user
+                showSignInFailedMessage.value = false
             }.addOnFailureListener {
                 Log.w(SIGN_IN_VM_TAG, "createUserTask failed", it)
-            }
-    }
-
-    private fun googleSignOut() {
-        getGoogleSignInClient().signOut()
-            .addOnFailureListener {
-                Log.w(SIGN_IN_VM_TAG, "googleSignOut Failed", it)
-                Toast.makeText(
-                    context,
-                    context.getString(R.string.sign_out_failed),
-                    Toast.LENGTH_SHORT
-                ).show()
             }
     }
 
@@ -124,11 +93,6 @@ class SignInViewModel : ViewModel() {
             // We can remove this listener if we don't want to specifically log error for this task.
             .addOnFailureListener {
                 Log.w(SIGN_IN_VM_TAG, "Google sign in unsuccessful", it)
-                Toast.makeText(
-                    context,
-                    context.getString(R.string.login_failed),
-                    Toast.LENGTH_SHORT
-                ).show()
             }
             .onSuccessTask { account ->
                 Log.d(SIGN_IN_VM_TAG, "Google Sign In was successful ${account!!.id}")
@@ -138,24 +102,15 @@ class SignInViewModel : ViewModel() {
                 createUserTask(authResult!!.user!!)
             }
             .addOnFailureListener {
-                // Any of the previous tasks failed would propagate failure here, therefore we only
-                // need to do signInFailureHandle() here.
+                // Any of the previous tasks failed would propagate failure here. Setting
+                // signInFailed status here, and let the view handle displaying login failed text.
                 Log.w(SIGN_IN_VM_TAG, "Firebase Auth failed.", it)
-                signInFailureHandle()
+                showSignInFailedMessage.value = true
             }
     }
 
     fun getFirebaseAuthCurUser(): FirebaseUser? {
         return curFirebaseUser.value
-    }
-
-    fun getSignInIntent(): Intent {
-        return getGoogleSignInClient().signInIntent
-    }
-
-    fun signInVMInit(activityContext: Context, activityMain: MainActivity) {
-        Log.d(SIGN_IN_VM_TAG, "signInInit")
-        setResources(activityContext, activityMain)
     }
 
     fun isLogIn(): Boolean {
@@ -166,9 +121,20 @@ class SignInViewModel : ViewModel() {
         return loggedIn
     }
 
-    fun signOut() {
-        firebaseSignOut()
-        googleSignOut()
+    fun signOut(googleSignInClient: GoogleSignInClient) {
+        // Converting to a task so that when task completes, we can set the status and the view can
+        // handle the message accordingly.
+        Tasks.whenAll(
+            Tasks.forResult(firebaseSignOut()),
+            googleSignInClient.signOut()
+        )
+            .addOnSuccessListener {
+                showSignOutFailedMessage.value = false
+            }
+            .addOnFailureListener {
+                Log.w(SIGN_IN_VM_TAG, "SignOut failed", it)
+                showSignOutFailedMessage.value = true
+            }
     }
 
     override fun onCleared() {
