@@ -8,8 +8,12 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 import org.hamcrest.core.IsNot.not
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,18 +27,39 @@ class RunFragmentTest {
     var activityRule: ActivityTestRule<MainActivity>
             = ActivityTestRule(MainActivity::class.java)
 
+    private lateinit var device : UiDevice
+
     @Before
-    fun makeSureYourAccountHasLoggedIn() {
-        // Your google account must have logged in before test.
-        // Otherwise the main page will be changed to login page,
-        // and all the test will fail.
-        // You only need to login the first time you open the app after
-        // installing it.
+    fun setup() {
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        onView(withId(R.id.sign_in_button))
+            .perform(click())
+        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        googleSignInDialog.clickAndWaitForNewWindow()
+        // Make sure that:
+        // 1. Your google account must have signed out before test.
+        // 2. You should have at lest one google account for your device,
+        // which means, when you click sign in button, you have at least
+        // one account to choose
     }
 
     @Test
-    fun startClickTest() {
+    fun startClick() {
 //        launchFragmentInContainer<RunFragment>()
+        onView(withId(R.id.start_pause_btn))
+            .perform(click())
+        Thread.sleep(2000)
+        onView(withId(R.id.running_chronometer))
+            .check(matches(withText("00:02")))
+        Thread.sleep(2000)
+    }
+
+    @Test
+    fun pauseClick() {
+//        launchFragmentInContainer<RunFragment>()
+        onView(withId(R.id.start_pause_btn))
+            .perform(click())
+        Thread.sleep(2000)
         onView(withId(R.id.start_pause_btn))
             .perform(click())
         Thread.sleep(2000)
@@ -43,20 +68,7 @@ class RunFragmentTest {
     }
 
     @Test
-    fun pauseClickTest() {
-//        launchFragmentInContainer<RunFragment>()
-        onView(withId(R.id.start_pause_btn))
-            .perform(click())
-        Thread.sleep(2000)
-        onView(withId(R.id.start_pause_btn))
-            .perform(click())
-        Thread.sleep(2000)
-        onView(withId(R.id.running_chronometer))
-            .check(matches(withText("00:02")))
-    }
-
-    @Test
-    fun startAndPauseClickTest() {
+    fun startAndPauseClick() {
 //        launchFragmentInContainer<RunFragment>()
         onView(withId(R.id.start_pause_btn))
             .perform(click())
@@ -72,7 +84,7 @@ class RunFragmentTest {
     }
 
     @Test
-    fun resetClickWhenWorkingTest() {
+    fun resetClickWhenWorking() {
 //        launchFragmentInContainer<RunFragment>()
         onView(withId(R.id.start_pause_btn))
             .perform(click())
@@ -84,7 +96,7 @@ class RunFragmentTest {
     }
 
     @Test
-    fun resetClickWhenPausingTest() {
+    fun resetClickWhenPausing() {
 //        launchFragmentInContainer<RunFragment>()
         onView(withId(R.id.start_pause_btn))
             .perform(click())
@@ -105,7 +117,7 @@ class RunFragmentTest {
     }
 
     @Test
-    fun submitClickWhenWorkingTest() {
+    fun submitClickWhenWorking() {
 //        launchFragmentInContainer<RunFragment>()
         onView(withId(R.id.start_pause_btn))
             .perform(click())
@@ -118,10 +130,13 @@ class RunFragmentTest {
         onView(withText("Submission Confirm"))
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
+        onView(withText("Cancel"))
+            .inRoot(isDialog())
+            .perform(click())
     }
 
     @Test
-    fun submitClickWhenPausingTest() {
+    fun submitClickWhenPausing() {
 //        launchFragmentInContainer<RunFragment>()
         onView(withId(R.id.start_pause_btn))
             .perform(click())
@@ -135,15 +150,82 @@ class RunFragmentTest {
         onView(withText("Submission Confirm"))
             .inRoot(isDialog())
             .check(matches(isDisplayed()))
+        onView(withText("Cancel"))
+            .inRoot(isDialog())
+            .perform(click())
     }
 
     @Test
-    fun submitClickBeforeWorkingTest() {
+    fun submitClickBeforeWorking() {
         onView(withId(R.id.submit_btn))
             .perform(click())
         onView(withText(R.string.submit_illegal))
             .inRoot(withDecorView(not(activityRule.activity.window.decorView)))
             .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun submitCancel() {
+        onView(withId(R.id.start_pause_btn))
+            .perform(click())
+        Thread.sleep(2000)
+
+        onView(withId(R.id.submit_btn))
+            .perform(click())
+        onView(withText("Cancel"))
+            .inRoot(isDialog())
+            .perform(click())
+
+        onView(withId(R.id.running_chronometer))
+            .check(matches(withText("00:02")))
+    }
+
+    @Test
+    fun switchFragmentWhenWorking() {
+        onView(withId(R.id.start_pause_btn))
+            .perform(click())
+        Thread.sleep(2000)
+
+        // Fragment transition needs time
+        onView(withId(R.id.bottom_navigation_item_profile))
+            .perform(click())
+        Thread.sleep(500)
+        onView(withId(R.id.bottom_navigation_item_run))
+            .perform(click())
+        Thread.sleep(1000)
+
+        onView(withId(R.id.running_chronometer))
+            .check(matches(withText("00:04")))
+    }
+
+    @Test
+    fun switchFragmentWhenPausing() {
+        onView(withId(R.id.start_pause_btn))
+            .perform(click())
+        Thread.sleep(2000)
+        onView(withId(R.id.start_pause_btn))
+            .perform(click())
+
+        // Fragment transition needs time
+        onView(withId(R.id.bottom_navigation_item_profile))
+            .perform(click())
+        Thread.sleep(1000)
+        onView(withId(R.id.bottom_navigation_item_run))
+            .perform(click())
+
+        onView(withId(R.id.running_chronometer))
+            .check(matches(withText("00:02")))
+    }
+
+
+
+    @After
+    fun logoutUser() {
+        onView(withId(R.id.bottom_navigation_item_profile))
+            .perform(click())
+        onView(withId(R.id.logout_button))
+            .perform(click())
+        Thread.sleep(1000)
     }
 
 }
