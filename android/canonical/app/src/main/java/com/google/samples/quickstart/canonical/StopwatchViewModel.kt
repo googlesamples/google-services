@@ -27,7 +27,7 @@ class StopwatchViewModel : ViewModel() {
         fragmentPauseStartTime.value = fragment_pause_start_time
     }
 
-    private fun getFragmentPauseStartTime() : Long {
+    fun getFragmentPauseStartTime() : Long {
         return fragmentPauseStartTime.value!!
     }
 

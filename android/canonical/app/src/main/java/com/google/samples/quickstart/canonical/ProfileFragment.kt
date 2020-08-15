@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
 import com.google.samples.quickstart.canonical.databinding.FragmentProfileBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class ProfileFragment : Fragment() {
@@ -20,12 +24,14 @@ class ProfileFragment : Fragment() {
     private val profileVM : ProfileViewModel by activityViewModels()
     private lateinit var binding : FragmentProfileBinding
 
-    private fun downloadPhotoAndSetView(view: View) {
+    private fun downloadPhotoAndSetView(userImage: ImageView) {
         val url = profileVM.getUserPhotoURL()
         if (url != "") {
             Log.d(PROFILE_TAG, url)
-            DownloadImageTask(view.findViewById(R.id.usr_img))
-                .execute(url)
+            CoroutineScope(Dispatchers.Main).launch{
+                val bmImage = profileVM.downloadImage(url)
+                userImage.setImageBitmap(bmImage)
+            }
         }
     }
 
@@ -59,11 +65,11 @@ class ProfileFragment : Fragment() {
         refreshButton.setOnClickListener {
             profileVM.refreshUser(view.findViewById<ListView>(R.id.run_history_list_view).adapter
                     as RunHistoryAdapter)
-            downloadPhotoAndSetView(view)
+            downloadPhotoAndSetView(usr_img)
         }
         setRunHistory()
         // update UI
-        downloadPhotoAndSetView(view)
+        downloadPhotoAndSetView(usr_img)
     }
 
     companion object {

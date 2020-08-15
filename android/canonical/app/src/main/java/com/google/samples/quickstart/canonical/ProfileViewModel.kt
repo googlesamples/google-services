@@ -7,12 +7,15 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.CollectionReference
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.InputStream
 import java.net.URL
 import java.util.concurrent.TimeUnit
@@ -36,7 +39,6 @@ class ProfileViewModel : ViewModel() {
     )
 
     private lateinit var runUserDocRef : DocumentReference
-    private lateinit var runCollectionRef : CollectionReference
     private lateinit var curAppUser: AppUser
     private var runHistoryListForView: ArrayList<SingleRun> = ArrayList()
     private var totalEnergyCaloriesMutableLiveDataString : MutableLiveData<String> = MutableLiveData("")
@@ -150,12 +152,11 @@ class ProfileViewModel : ViewModel() {
         return runHistoryListForView
     }
 
-    fun initAppUser(curFirebaseUser : FirebaseUser) {
+    fun initAppUser(userName: String, email: String, uid: String, photoURL: String,
+                    userCollectionName : String = USER_COLLECTION_NAME) {
         Log.d(PROFILE_VM_TAG, "initAppUser")
-        curAppUser = AppUser(curFirebaseUser.displayName ?: "", curFirebaseUser.email ?: "",
-            curFirebaseUser.uid, curFirebaseUser.photoUrl.toString())
-        runUserDocRef = Firebase.firestore.collection(USER_COLLECTION_NAME).document(getUid())
-        runCollectionRef = Firebase.firestore.collection(RUN_COLLECTION_NAME)
+        curAppUser = AppUser(userName, email, uid, photoURL)
+        runUserDocRef = Firebase.firestore.collection(userCollectionName).document(getUid())
         syncAppUserStatistic()
     }
 
@@ -191,12 +192,25 @@ class ProfileViewModel : ViewModel() {
             }
     }
 
+    suspend fun downloadImage(url: String): Bitmap? {
+        var userPhotoBitmap: Bitmap? = null
+        try {
+            Log.d(PROFILE_VM_TAG, url)
+            withContext(Dispatchers.IO) {
+                val inStream: InputStream = URL(url).openStream()
+                userPhotoBitmap = BitmapFactory.decodeStream(inStream)
+            }
+        } catch (e: Exception) {
+            Log.e(PROFILE_VM_TAG, e.message!!)
+        }
+        return userPhotoBitmap
+    }
+
 
     companion object {
         const val PROFILE_VM_TAG = "ProfileVM"
 
         const val USER_COLLECTION_NAME = "RunUser"
-        const val RUN_COLLECTION_NAME = "SingleRun"
         const val KEY_USR_NAME = "UserName"
         const val KEY_USR_EMAIL = "Email"
         const val KEY_TOTAL_DIS_M = "TotalDistanceMeters"
@@ -208,30 +222,5 @@ class ProfileViewModel : ViewModel() {
         const val KEY_SINGLE_RUN_TIMESTAMP = "Timestamp"
 
         const val DEFAULT_TIME = "00:00:00"
-    }
-}
-
-class DownloadImageTask(var bmImage: ImageView) :
-    AsyncTask<String?, Void?, Bitmap?>() {
-
-    override fun onPostExecute(result: Bitmap?) {
-        Log.d(DOWNLOAD_IMAGE_TASK_TAG, "onPostExecute")
-        bmImage.setImageBitmap(result)
-    }
-
-    override fun doInBackground(vararg urls: String?): Bitmap? {
-        val userPhotoUrl = urls[0]
-        var userPhotoBitmap: Bitmap? = null
-        try {
-            val inStream: InputStream = URL(userPhotoUrl).openStream()
-            userPhotoBitmap = BitmapFactory.decodeStream(inStream)
-        } catch (e: Exception) {
-            Log.e(DOWNLOAD_IMAGE_TASK_TAG, e.message!!)
-        }
-        return userPhotoBitmap
-    }
-
-    companion object {
-        const val DOWNLOAD_IMAGE_TASK_TAG = "DownloadImageTask"
     }
 }

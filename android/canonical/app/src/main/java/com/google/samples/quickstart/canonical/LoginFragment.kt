@@ -10,9 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.SignInButton
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_FAIL
 import com.google.samples.quickstart.canonical.SignInViewModel.Companion.FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL
 import com.google.samples.quickstart.canonical.SignInViewModel.Companion.GOOGLE_SIGN_IN_UNSUCCESSFUL

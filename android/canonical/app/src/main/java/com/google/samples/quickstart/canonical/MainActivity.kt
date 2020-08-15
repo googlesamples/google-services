@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
           else -> false
         }
       } catch (e:Exception) {
-        Log.e(MAIN_ACTIVITY_TAG, "setOnNavigationItemSelectedListener failed", e)
+        Log.e(MAIN_ACTIVITY_TAG, "Navigation failed", e)
         false
       }
     }
@@ -95,7 +95,9 @@ class MainActivity : AppCompatActivity() {
         Log.d(MAIN_ACTIVITY_TAG, "Already login")
         setupNavigationBar()
         // Init Profile
-        profileVM.initAppUser(signInVM.getFirebaseAuthCurUser()!!)
+        val firebaseUser = signInVM.getFirebaseAuthCurUser()
+        profileVM.initAppUser(firebaseUser?.displayName ?: "", firebaseUser?.email ?: "",
+          firebaseUser?.uid ?: "", firebaseUser?.photoUrl.toString())
         logoutUserObserver()
       }
 

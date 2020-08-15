@@ -10,6 +10,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -68,7 +70,7 @@ class SignInViewModel : ViewModel() {
         FirebaseAuth.getInstance().addAuthStateListener(authStateListenerForSignOut!!)
     }
 
-    private fun createUser(firebaseUser : FirebaseUser) {
+    private fun createUser(firebaseUser : FirebaseUser, userCollectionName : String = ProfileViewModel.USER_COLLECTION_NAME) {
         val db = Firebase.firestore
         val dbFirebaseUser = hashMapOf(
             ProfileViewModel.KEY_USR_NAME to (firebaseUser.displayName ?: ""),
@@ -78,28 +80,25 @@ class SignInViewModel : ViewModel() {
             ProfileViewModel.KEY_TOTAL_TIME_MS to 0L,
             ProfileViewModel.KEY_RUN_HISTORY to arrayListOf<HashMap<String, Any>>()
         )
-        val ref = db.collection(ProfileViewModel.USER_COLLECTION_NAME).document(firebaseUser.uid)
+        val ref = db.collection(userCollectionName).document(firebaseUser.uid)
         ref.get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    Log.d(SIGN_IN_VM_TAG, "User already exist with ID: ${document.id}")
-                    setCurFirebaseUser(firebaseUser)
-                } else {
-                    // New user
-                    ref.set(dbFirebaseUser)
-                        .addOnSuccessListener {
-                            setCurFirebaseUser(firebaseUser)
-                            Log.d(SIGN_IN_VM_TAG, "Create user with ID: ${ref.id}")
-                        }
-                        .addOnFailureListener {
-                            signInFailureHandle()
-                            Log.w(SIGN_IN_VM_TAG, "Error adding new user")
-                        }
-                }
+            .onSuccessTask { document ->
+                when (document!!.exists()) {
+                    true -> {
+                        Log.d(SIGN_IN_VM_TAG, "User already exist with ID: ${document.id}")
+                        Tasks.forResult(null)
+                    }
+                    false -> ref.set(dbFirebaseUser) // New user
+
+                } as Task<Void?>
             }
-            .addOnFailureListener { e ->
-                Log.w(SIGN_IN_VM_TAG, "Error getting user info", e)
+            .addOnSuccessListener {
+                setCurFirebaseUser(firebaseUser)
+                Log.d(SIGN_IN_VM_TAG, "Create user with ID: ${ref.id}")
+            }
+            .addOnFailureListener {
                 signInFailureHandle()
+                Log.w(SIGN_IN_VM_TAG, "Error adding new user")
             }
     }
 
@@ -143,7 +142,7 @@ class SignInViewModel : ViewModel() {
             return try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
-                Log.d(SIGN_IN_VM_TAG, "Google Sign In was successful:" + account.id)
+                Log.d(SIGN_IN_VM_TAG, "Google Sign In was successful:" + account.idToken)
                 firebaseAuthWithGoogle(account.idToken!!)
                 FIREBASE_AUTH_WITH_GOOGLE_SUCCESSFUL
             } catch (e: ApiException) {

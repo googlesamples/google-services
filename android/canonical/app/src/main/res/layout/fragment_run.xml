@@ -52,8 +52,7 @@
                 android:layout_weight="1"
                 android:layout_margin="20dp"
                 android:src="@drawable/ic_baseline_refresh_24"
-                android:text="@string/reset"
-                />
+                 />
 
             <ImageButton
                 android:id="@+id/start_pause_btn"
@@ -61,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="20dp"
-                android:src="@{stopwatchViewModel.getIsStopwatchWorkingMutableLiveData()?@drawable/ic_baseline_pause_24  : @drawable/ic_baseline_arrow_right_24}"
+                android:src="@{stopwatchViewModel.getIsStopwatchWorkingMutableLiveData()?@drawable/ic_baseline_pause_24  : @drawable/ic_baseline_timer_24}"
                 />
 
 
