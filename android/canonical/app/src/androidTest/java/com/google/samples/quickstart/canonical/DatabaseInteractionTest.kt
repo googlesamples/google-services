@@ -3,7 +3,6 @@ package com.google.samples.quickstart.canonical
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers
@@ -14,7 +13,6 @@ import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiSelector
 import org.hamcrest.Matchers
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,13 +31,17 @@ class DatabaseInteractionTest {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         onView(ViewMatchers.withId(R.id.sign_in_button))
             .perform(click())
-        val googleSignInDialog = device.findObject(UiSelector().text("yl4324@columbia.edu"))
+        val googleSignInDialog = device.findObject(UiSelector().text("example@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
         // Make sure that:
         // 1. Your google account must have signed out before test.
         // 2. You should have at lest one google account for your device,
         // which means, when you click sign in button, you have at least
         // one account to choose
+
+        // Construct your test database:
+        // Account: example@gmail.com
+
     }
 
     @Test
@@ -68,7 +70,7 @@ class DatabaseInteractionTest {
             .inAdapterView(ViewMatchers.withId(R.id.run_history_list_view))
             .atPosition(0)
             .onChildView(ViewMatchers.withId(R.id.single_run_time))
-            .check(matches(ViewMatchers.withText("00:00:05")))
+            .check(matches(ViewMatchers.withText("00:00:05"))) // In your test database, the latest
             .perform(click())
     }
 

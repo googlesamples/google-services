@@ -30,7 +30,7 @@ class LoginFragmentTest {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         Espresso.onView(ViewMatchers.withId(R.id.sign_in_button))
             .perform(ViewActions.click())
-        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        val googleSignInDialog = device.findObject(UiSelector().text("example@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
         // Make sure that:
         // 1. Your google account must have signed out before test.
@@ -52,7 +52,7 @@ class LoginFragmentTest {
         // Sign in test
         Espresso.onView(ViewMatchers.withId(R.id.sign_in_button))
             .perform(ViewActions.click())
-        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        val googleSignInDialog = device.findObject(UiSelector().text("example@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
     }
 
@@ -76,7 +76,7 @@ class LoginFragmentTest {
         // Sign in
         Espresso.onView(ViewMatchers.withId(R.id.sign_in_button))
             .perform(ViewActions.click())
-        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        val googleSignInDialog = device.findObject(UiSelector().text("example@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
 
     }

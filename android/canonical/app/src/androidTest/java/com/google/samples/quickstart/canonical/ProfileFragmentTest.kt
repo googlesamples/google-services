@@ -30,7 +30,7 @@ class ProfileFragmentTest {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         onView(withId(R.id.sign_in_button))
             .perform(click())
-        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        val googleSignInDialog = device.findObject(UiSelector().text("exampleForProfileTest@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
         Thread.sleep(1000)
         // Make sure that:
@@ -38,6 +38,18 @@ class ProfileFragmentTest {
         // 2. You should have at lest one google account for your device,
         // which means, when you click sign in button, you have at least
         // one account to choose
+
+        // Account: exampleForProfileTest@gmail.com
+        // Display name: example user
+
+        // Construct your test database:
+        // User: exampleForProfileTest@gmail.com
+        // Total running time: 00:05:39
+        // Total energy consumed: 74
+        // Latest running history:
+        //      datetime :  2000-01-01 00:00:00
+        //      time :      00:00:02
+
     }
 
     @Test
@@ -47,9 +59,9 @@ class ProfileFragmentTest {
         onView(withId(R.id.usr_img))
             .check(matches(isDisplayed()))
         onView(withId(R.id.usr_name))
-            .check(matches(withText("Yang Li")))
+            .check(matches(withText("example user")))
         onView(withId(R.id.usr_email))
-            .check(matches(withText("sjtuly1996@gmail.com")))
+            .check(matches(withText("exampleForProfileTest@gmail.com")))
     }
 
     @Test
@@ -71,7 +83,7 @@ class ProfileFragmentTest {
         onData(anything()).inAdapterView(withId(R.id.run_history_list_view))
             .atPosition(0)
             .onChildView(withId(R.id.single_run_datetime))
-            .check(matches(withText("2020-08-12 20:11:04")))
+            .check(matches(withText("2000-01-01 00:00:00")))
             .perform(click())
         onData(anything()).inAdapterView(withId(R.id.run_history_list_view))
             .atPosition(0)

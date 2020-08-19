@@ -34,7 +34,7 @@ class RunFragmentTest {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         onView(withId(R.id.sign_in_button))
             .perform(click())
-        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        val googleSignInDialog = device.findObject(UiSelector().text("example@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
         // Make sure that:
         // 1. Your google account must have signed out before test.

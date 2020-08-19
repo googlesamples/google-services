@@ -34,7 +34,7 @@ class MapsFragmentTest {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         onView(ViewMatchers.withId(R.id.sign_in_button))
             .perform(ViewActions.click())
-        val googleSignInDialog = device.findObject(UiSelector().text("sjtuly1996@gmail.com"))
+        val googleSignInDialog = device.findObject(UiSelector().text("example@gmail.com"))
         googleSignInDialog.clickAndWaitForNewWindow()
         // Make sure that:
         // 1. Your google account must have signed out before test.
@@ -46,6 +46,7 @@ class MapsFragmentTest {
 
     @Test
     fun searchDestination() {
+        Thread.sleep(1000)
         onView(ViewMatchers.withId(R.id.bottom_navigation_item_map))
             .perform(ViewActions.click())
         Thread.sleep(3000)

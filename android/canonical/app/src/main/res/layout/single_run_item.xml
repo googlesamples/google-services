@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="2020-08-08 19:51:26"
