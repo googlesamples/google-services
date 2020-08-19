@@ -29,15 +29,28 @@ class RunHistoryAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // Get view for row item
-        val rowView = convertView ?: inflater.inflate(R.layout.single_run_item, parent, false)
-        val timeTextView = rowView.findViewById<TextView>(R.id.single_run_time)
-        val datetimeTextView = rowView.findViewById<TextView>(R.id.single_run_datetime)
+        val rowView : View
+        val holder : ViewHolder
+        if (convertView == null) {
+            rowView = inflater.inflate(R.layout.single_run_item, parent, false)
+            holder = ViewHolder(rowView)
+            rowView.tag = holder
+        } else {
+            rowView = convertView
+            holder = rowView.tag as ViewHolder
+        }
 
         val singleRun = getItem(position) as ProfileViewModel.SingleRun
-        timeTextView.text = singleRun.time
-        datetimeTextView.text = singleRun.dateTime
+        holder.timeTextView.text = singleRun.time
+        holder.datetimeTextView.text = singleRun.dateTime
 
         return rowView
     }
 
+    private class ViewHolder(row: View) {
+        val timeTextView: TextView = row.findViewById(R.id.single_run_time)
+        val datetimeTextView: TextView = row.findViewById(R.id.single_run_datetime)
+    }
+
 }
+
