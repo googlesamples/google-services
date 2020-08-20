@@ -1,57 +1,91 @@
 package com.google.samples.quickstart.canonical
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.SystemClock
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Chronometer
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.samples.quickstart.canonical.databinding.FragmentRunBinding
 import kotlinx.android.synthetic.main.fragment_run.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RunFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RunFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    private lateinit var stopwatchVM: StopwatchViewModel
+    private val stopwatchVM: StopwatchViewModel by activityViewModels()
+    private val profileViewModel : ProfileViewModel by activityViewModels()
     private lateinit var binding : FragmentRunBinding
 
-    private fun startStopTimer(chronometer : Chronometer) {
-        if (!stopwatchVM.isWorking.value!!) {
-            chronometer.base = SystemClock.elapsedRealtime() - stopwatchVM.pauseOffset.value!!
-            chronometer.start()
-            chronometer.showContextMenu()
-            stopwatchVM.setWorkingStatus(true)
+    private fun pauseStopwatch() {
+        running_chronometer.stop()
+        stopwatchVM.pauseStopwatch(running_chronometer.base)
+    }
+
+    private fun startStopwatch() {
+        running_chronometer.base = SystemClock.elapsedRealtime() - stopwatchVM.getPauseOffset()
+        running_chronometer.start()
+        stopwatchVM.startStopwatch()
+    }
+
+    private fun resetStopwatch() {
+        running_chronometer.base = SystemClock.elapsedRealtime()
+        running_chronometer.stop()
+        stopwatchVM.resetStopwatch()
+    }
+
+    private fun startOrPauseStopwatch() {
+        if (!stopwatchVM.getIsStopwatchWorking()) {
+            // pause/init status -> start status
+            startStopwatch()
         } else {
-            chronometer.stop()
-            stopwatchVM.setPauseOffset(SystemClock.elapsedRealtime() - chronometer.base)
-            stopwatchVM.setWorkingStatus(false)
+            // start status -> pause/init status
+            pauseStopwatch()
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private fun submitRecord() {
+        if (!stopwatchVM.getIsReadyForUpload()) {
+            Toast.makeText(context, getString(R.string.submit_illegal), Toast.LENGTH_SHORT).show()
+            return
         }
-        stopwatchVM = activity?.run {
-            ViewModelProviders.of(this)[StopwatchViewModel::class.java]
-        } ?: throw Exception("Null Activity")
+
+        // pause stopwatch if stopwatch is working before user make a confirmation
+        if (stopwatchVM.getIsStopwatchWorking()) {
+            pauseStopwatch()
+        }
+
+        // build alert dialog
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setMessage(getString(R.string.submit_confirm_dialog_message))
+            .setCancelable(false)
+            // user confirm submission
+            .setPositiveButton(getString(R.string.dialog_confirm_button)) { dialog, id ->
+                Toast.makeText(context, "Submitted", Toast.LENGTH_SHORT).show()
+                profileViewModel.uploadNewRecord(stopwatchVM.getPauseOffset(), getCurDateAndTime())
+                resetStopwatch()
+            }
+            // user cancel submission
+            .setNegativeButton(getString(R.string.dialog_cancel_button)) { dialog, id ->
+                dialog.cancel()
+            }
+
+        // submit alert show
+        val alert = dialogBuilder.create()
+        alert.setTitle(getString(R.string.submit_confirm_dialog_title))
+        alert.show()
+    }
+
+    private fun getCurDateAndTime() : String {
+        val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date())
+        Log.d(RUN_FRAGMENT_TAG,"date $date")
+        return date
     }
 
     override fun onCreateView(
@@ -64,51 +98,42 @@ class RunFragment : Fragment() {
         return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RunFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RunFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.runBtn.setOnClickListener {
-            startStopTimer(binding.chronometer)
+        binding.startPauseBtn.setOnClickListener {
+            startOrPauseStopwatch()
+        }
+
+        binding.resetBtn.setOnClickListener {
+            resetStopwatch()
+        }
+
+        binding.submitBtn.setOnClickListener {
+            submitRecord()
         }
 
     }
 
     override fun onResume() {
         super.onResume()
-        if (stopwatchVM.isWorking.value!!) {
-            chronometer?.base = stopwatchVM.fragmentPauseStartTime.value!! - stopwatchVM.pauseOffset.value!!
-            chronometer?.start()
+        if (stopwatchVM.getIsStopwatchWorking()) {
+            running_chronometer.base = stopwatchVM.getActualStartTimeBeforeFragmentPause()
+            running_chronometer.start()
         } else {
-            chronometer?.base = SystemClock.elapsedRealtime() - stopwatchVM.pauseOffset.value!!
-            chronometer?.stop()
+            running_chronometer.base = SystemClock.elapsedRealtime() - stopwatchVM.getPauseOffset()
+            running_chronometer.stop()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        if (stopwatchVM.isWorking.value!!) {
-            stopwatchVM.setPauseOffset(SystemClock.elapsedRealtime() - chronometer.base)
-            stopwatchVM.setFragmentPauseStartTime(SystemClock.elapsedRealtime())
+        if (stopwatchVM.getIsStopwatchWorking()) {
+            stopwatchVM.saveStopwatchStatus(running_chronometer.base)
         }
+    }
+
+    companion object {
+        const val RUN_FRAGMENT_TAG = "RunFragment"
     }
 }

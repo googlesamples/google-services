@@ -52,6 +52,7 @@ class LoginFragment : Fragment() {
             when (it) {
                 true -> {
                     Log.d(LOGIN_FRAGMENT_TAG, "firebaseUser is not null")
+                    // Start main activity
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
