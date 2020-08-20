@@ -31,6 +31,7 @@ import com.google.android.libraries.places.api.model.RectangularBounds
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import java.lang.Exception
 
 class MapsFragment : Fragment() {
 
@@ -101,26 +102,31 @@ class MapsFragment : Fragment() {
         
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             // Got last known location. In some rare situations this can be null.
-            location?.let {
-                Log.d(FRAGMENT_TAG, "Locating Success ${location.latitude}, ${location.longitude}")
-                lastLocation = location
-                currentLatLng = LatLng(location.latitude, location.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    currentLatLng,
-                    ZOOM_VALUE
-                ))
-                map.addMarker(MarkerOptions()
-                            .position(currentLatLng!!)
-                            .title(getString(R.string.my_location_title)))
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                    currentLatLng,
-                    ZOOM_VALUE
-                ))
-                setPlacesSearchBias()
-            } ?: run{
-                Log.d(FRAGMENT_TAG, "Locating Failed")
-                Toast.makeText(this.context, getString(R.string.cannot_access_location), Toast.LENGTH_LONG).show()
+            try {
+                location?.let {
+                    Log.d(FRAGMENT_TAG, "Locating Success ${location.latitude}, ${location.longitude}")
+                    lastLocation = location
+                    currentLatLng = LatLng(location.latitude, location.longitude)
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        currentLatLng,
+                        ZOOM_VALUE
+                    ))
+                    map.addMarker(MarkerOptions()
+                        .position(currentLatLng!!)
+                        .title(getString(R.string.my_location_title)))
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                        currentLatLng,
+                        ZOOM_VALUE
+                    ))
+                    setPlacesSearchBias()
+                } ?: run{
+                    Log.d(FRAGMENT_TAG, "Locating Failed")
+                    Toast.makeText(this.context, getString(R.string.cannot_access_location), Toast.LENGTH_LONG).show()
+                }
+            } catch (e : Exception) {
+                Log.e(FRAGMENT_TAG, "Map generation failed", e)
             }
+
         }
     }
 

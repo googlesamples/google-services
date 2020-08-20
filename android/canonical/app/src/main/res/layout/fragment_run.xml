@@ -6,7 +6,8 @@
     <data>
         <variable
             name="stopwatchViewModel"
-            type="com.google.samples.quickstart.canonical.StopwatchViewModel" />
+            type="com.google.samples.quickstart.canonical.StopwatchViewModel"
+            />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +17,7 @@
         tools:context=".RunFragment">
 
         <Chronometer
-            android:id="@+id/chronometer"
+            android:id="@+id/running_chronometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -26,17 +27,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_view" />
-
-        <Button
-            android:id="@+id/run_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{stopwatchViewModel.isWorking ? @string/stop : @string/start}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chronometer"
-            app:layout_constraintVertical_bias="0.3" />
 
         <ImageView
             android:id="@+id/image_view"
@@ -48,6 +38,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/running_chronometer">
+
+            <ImageButton
+                android:id="@+id/reset_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_baseline_refresh_24"
+                 />
+
+            <ImageButton
+                android:id="@+id/start_pause_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:src="@{stopwatchViewModel.getIsStopwatchWorkingMutableLiveData()?@drawable/ic_baseline_pause_24  : @drawable/ic_baseline_timer_24}"
+                />
+
+
+            <ImageButton
+                android:id="@+id/submit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_baseline_send_24"
+                />
+
+        </LinearLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
